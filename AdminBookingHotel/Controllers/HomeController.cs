@@ -12,6 +12,7 @@ namespace AdminBookingHotel.Controllers
         }
         public IActionResult Login()
         {
+
             return View();
         }
     }

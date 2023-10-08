@@ -1,6 +1,11 @@
-var builder = WebApplication.CreateBuilder(args);
+using DataAccess.DBContext;
+using Microsoft.EntityFrameworkCore;
 
+var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
 // Add services to the container.
+builder.Services.AddDbContext<BookingHotelDbContext>(options =>
+               options.UseSqlServer(configuration.GetConnectionString("MyConnStr")));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
