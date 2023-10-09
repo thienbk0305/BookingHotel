@@ -223,3 +223,9 @@ D:\2.Net\BookingHotel\BookingHotel\bin\Debug\net6.0\runtimes\win\lib\net6.0\Syst
 D:\2.Net\BookingHotel\BookingHotel\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 D:\2.Net\BookingHotel\BookingHotel\obj\Debug\net6.0\BookingHotel.csproj.AssemblyReference.cache
 D:\2.Net\BookingHotel\BookingHotel\obj\Debug\net6.0\BookingHotel.csproj.CopyComplete
+D:\2.Net\BookingHotel\BookingHotel\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+D:\2.Net\BookingHotel\BookingHotel\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\2.Net\BookingHotel\BookingHotel\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\2.Net\BookingHotel\BookingHotel\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+D:\2.Net\BookingHotel\BookingHotel\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+D:\2.Net\BookingHotel\BookingHotel\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
