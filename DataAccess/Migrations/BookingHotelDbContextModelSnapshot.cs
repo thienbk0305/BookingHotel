@@ -753,44 +753,38 @@ namespace DataAccess.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Address")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("DelUser")
                         .HasColumnType("bit");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ImageImgId")
+                        .HasColumnType("int");
 
                     b.Property<string>("ImgCode")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ImgCodeNavigationImgId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
+                    b.Property<string>("LastName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("ReadUser")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime>("SysDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UserCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.Property<bool?>("WriteUser")
                         .HasColumnType("bit");
 
-                    b.HasIndex("ImgCodeNavigationImgId");
+                    b.HasIndex("ImageImgId");
 
                     b.HasDiscriminator().HasValue("User");
                 });
@@ -1004,13 +998,9 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("DataAccess.Entities.User", b =>
                 {
-                    b.HasOne("DataAccess.Entities.Image", "ImgCodeNavigation")
+                    b.HasOne("DataAccess.Entities.Image", null)
                         .WithMany("Users")
-                        .HasForeignKey("ImgCodeNavigationImgId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ImgCodeNavigation");
+                        .HasForeignKey("ImageImgId");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.Customer", b =>

@@ -92,10 +92,8 @@ namespace DataAccess.Migrations
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: true),
-                    UserCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Phone = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ImgCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ReadUser = table.Column<bool>(type: "bit", nullable: true),
@@ -103,8 +101,7 @@ namespace DataAccess.Migrations
                     DelUser = table.Column<bool>(type: "bit", nullable: true),
                     Active = table.Column<bool>(type: "bit", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    SysDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ImgCodeNavigationImgId = table.Column<int>(type: "int", nullable: true),
+                    ImageImgId = table.Column<int>(type: "int", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -124,11 +121,10 @@ namespace DataAccess.Migrations
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AspNetUsers_Image_ImgCodeNavigationImgId",
-                        column: x => x.ImgCodeNavigationImgId,
+                        name: "FK_AspNetUsers_Image_ImageImgId",
+                        column: x => x.ImageImgId,
                         principalTable: "Image",
-                        principalColumn: "ImgId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ImgId");
                 });
 
             migrationBuilder.CreateTable(
@@ -551,9 +547,9 @@ namespace DataAccess.Migrations
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUsers_ImgCodeNavigationImgId",
+                name: "IX_AspNetUsers_ImageImgId",
                 table: "AspNetUsers",
-                column: "ImgCodeNavigationImgId");
+                column: "ImageImgId");
 
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
