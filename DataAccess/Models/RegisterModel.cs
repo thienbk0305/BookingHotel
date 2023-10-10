@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace APIBookingHotel.Models
+namespace DataAccess.Models
 {
     public class RegisterModel
     {

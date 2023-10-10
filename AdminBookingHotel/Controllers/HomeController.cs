@@ -1,5 +1,4 @@
-﻿using AdminBookingHotel.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
 namespace AdminBookingHotel.Controllers
@@ -10,10 +9,6 @@ namespace AdminBookingHotel.Controllers
         {
             return View();
         }
-        public IActionResult Login()
-        {
 
-            return View();
-        }
     }
 }

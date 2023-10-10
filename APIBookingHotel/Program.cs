@@ -1,7 +1,7 @@
-using APIBookingHotel.Repositories;
 using DataAccess.DBContext;
 using DataAccess.Entities;
 using DataAccess.IRepositories;
+using DataAccess.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

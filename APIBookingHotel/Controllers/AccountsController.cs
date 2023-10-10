@@ -1,4 +1,4 @@
-﻿using APIBookingHotel.Models;
+﻿using DataAccess.Models;
 using DataAccess.IRepositories;
 using Microsoft.AspNetCore.Mvc;
 

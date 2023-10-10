@@ -1,4 +1,4 @@
-﻿using APIBookingHotel.Models;
+﻿using DataAccess.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace DataAccess.IRepositories
