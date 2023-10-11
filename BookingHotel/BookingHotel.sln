@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdminBookingHotel", "..\Adm
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "..\DataAccess\DataAccess.csproj", "{FDAD42D9-053D-4AC2-9000-6852C44F79B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APIBookingHotel", "..\APIBookingHotel\APIBookingHotel.csproj", "{06B274DC-9247-4CC4-A3E5-0AB0AA5A4BB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIBookingHotel", "..\APIBookingHotel\APIBookingHotel.csproj", "{06B274DC-9247-4CC4-A3E5-0AB0AA5A4BB3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
