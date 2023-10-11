@@ -10,6 +10,7 @@
         "dependencies": {
           "DataAccess": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.22",
+          "Microsoft.EntityFrameworkCore.Design": "6.0.22",
           "Microsoft.EntityFrameworkCore.Tools": "6.0.22",
           "Swashbuckle.AspNetCore": "6.5.0"
         },

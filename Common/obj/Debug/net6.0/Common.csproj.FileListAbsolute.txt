@@ -9,3 +9,15 @@ D:\2.Net\BookingHotel\Common\obj\Debug\net6.0\Common.dll
 D:\2.Net\BookingHotel\Common\obj\Debug\net6.0\refint\Common.dll
 D:\2.Net\BookingHotel\Common\obj\Debug\net6.0\Common.pdb
 D:\2.Net\BookingHotel\Common\obj\Debug\net6.0\ref\Common.dll
+D:\WEBSITE\BookingHotel\Common\bin\Debug\net6.0\Common.deps.json
+D:\WEBSITE\BookingHotel\Common\bin\Debug\net6.0\Common.dll
+D:\WEBSITE\BookingHotel\Common\bin\Debug\net6.0\Common.pdb
+D:\WEBSITE\BookingHotel\Common\obj\Debug\net6.0\Common.GeneratedMSBuildEditorConfig.editorconfig
+D:\WEBSITE\BookingHotel\Common\obj\Debug\net6.0\Common.AssemblyInfoInputs.cache
+D:\WEBSITE\BookingHotel\Common\obj\Debug\net6.0\Common.AssemblyInfo.cs
+D:\WEBSITE\BookingHotel\Common\obj\Debug\net6.0\Common.csproj.CoreCompileInputs.cache
+D:\WEBSITE\BookingHotel\Common\obj\Debug\net6.0\Common.sourcelink.json
+D:\WEBSITE\BookingHotel\Common\obj\Debug\net6.0\Common.dll
+D:\WEBSITE\BookingHotel\Common\obj\Debug\net6.0\refint\Common.dll
+D:\WEBSITE\BookingHotel\Common\obj\Debug\net6.0\Common.pdb
+D:\WEBSITE\BookingHotel\Common\obj\Debug\net6.0\ref\Common.dll

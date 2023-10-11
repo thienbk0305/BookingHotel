@@ -10,6 +10,7 @@ using System.Text;
 
 namespace DataAccess.Repositories
 {
+   
     public class AccountRepository : IAccountRepository
     {
         private readonly UserManager<User> userManager;

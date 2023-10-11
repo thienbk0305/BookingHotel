@@ -9,6 +9,7 @@
       "BookingHotel/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Relational": "6.0.22",
+          "Microsoft.EntityFrameworkCore.Tools": "6.0.22",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "6.0.16"
         },
         "runtime": {
@@ -1089,6 +1090,18 @@
         }
       },
       "Microsoft.EntityFrameworkCore.Analyzers/6.0.22": {},
+      "Microsoft.EntityFrameworkCore.Design/6.0.22": {
+        "dependencies": {
+          "Humanizer.Core": "2.14.1",
+          "Microsoft.EntityFrameworkCore.Relational": "6.0.22"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.EntityFrameworkCore.Design.dll": {
+            "assemblyVersion": "6.0.22.0",
+            "fileVersion": "6.0.2223.40907"
+          }
+        }
+      },
       "Microsoft.EntityFrameworkCore.Relational/6.0.22": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "6.0.22",
@@ -1099,6 +1112,11 @@
             "assemblyVersion": "6.0.22.0",
             "fileVersion": "6.0.2223.40907"
           }
+        }
+      },
+      "Microsoft.EntityFrameworkCore.Tools/6.0.22": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Design": "6.0.22"
         }
       },
       "Microsoft.Extensions.Caching.Abstractions/6.0.0": {
@@ -2792,12 +2810,26 @@
       "path": "microsoft.entityframeworkcore.analyzers/6.0.22",
       "hashPath": "microsoft.entityframeworkcore.analyzers.6.0.22.nupkg.sha512"
     },
+    "Microsoft.EntityFrameworkCore.Design/6.0.22": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-es9TKd0cpM263Ou0QMEETN7MDzD7kXDkThiiXl1+c/69v97AZlzeLoM5tDdC0RC4L74ZWyk3+WMnoDPL93DDyQ==",
+      "path": "microsoft.entityframeworkcore.design/6.0.22",
+      "hashPath": "microsoft.entityframeworkcore.design.6.0.22.nupkg.sha512"
+    },
     "Microsoft.EntityFrameworkCore.Relational/6.0.22": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-W7yfdEbEuS1OPPxU0EOA6haqI4uvzs7OwHKh81DiJFn3NFNP2ztSovkOzBDhTwHX0j+OySsAj3BEJhuzTVYIVw==",
       "path": "microsoft.entityframeworkcore.relational/6.0.22",
       "hashPath": "microsoft.entityframeworkcore.relational.6.0.22.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore.Tools/6.0.22": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4jViDparrQayAyt7FTokWUjZh9ZOiek1bmX/kl77FK5VYPQmAeVvC6V3mgVQ7erHH05w6Zq55MiSbunq/uX57A==",
+      "path": "microsoft.entityframeworkcore.tools/6.0.22",
+      "hashPath": "microsoft.entityframeworkcore.tools.6.0.22.nupkg.sha512"
     },
     "Microsoft.Extensions.Caching.Abstractions/6.0.0": {
       "type": "package",
