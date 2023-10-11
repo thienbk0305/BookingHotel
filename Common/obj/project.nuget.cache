@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "BzTtHgBxNCl9tPAqMgD7mtNyewbbDCugYgg1qDONdnjGOsN9YgNas91Vv9fPs0VXfWme17BQSEin+hDKWr+S9A==",
+  "dgSpecHash": "ClUYUFW2XTAeIMxvK/G4nP/LcOWqnW7XC/1LCw76qRrnvokTbqKW3ThhkMfJpvJLWSs+M1G6S53jjKnIkqPe4w==",
   "success": true,
   "projectFilePath": "D:\\2.Net\\BookingHotel\\Common\\Common.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Admin\\.nuget\\packages\\axessharp\\1.0.0\\axessharp.1.0.0.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\Admin\\.nuget\\packages\\restsharp\\106.10.1\\restsharp.106.10.1.nupkg.sha512"
+  ],
   "logs": []
 }
