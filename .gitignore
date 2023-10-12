@@ -25,6 +25,7 @@ x64/
 *.bin
 *.json
 *.cache
+*.editconfig
 # NuGet Packages
 *.nupkg
 # The packages folder can be ignored because of Package Restore
