@@ -18,16 +18,19 @@ namespace AdminBookingHotel.Controllers
         {
             return View();
         }
-        //[HttpPost]
-        //public async Task<IActionResult> Login([FromBody] LoginModel model)
-        //{
-        //    var _user = _dbContext.User.Where(m => m.Email == model.Email && m.PasswordHash == model.Password);
-        //    if (_user == null)
-        //    {
-        //        return BadRequest("Invalid email or password.");
-        //    }
-
-        //    return RedirectToAction("Index","Account");
-        //}
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginModel model)
+        {
+            var url_api = "https://localhost:7219/api/";
+            var base_url = "Accounts/Login";
+            var req = new LoginModel { Email = model.Email, Password = model.Password };
+            var dataJson = JsonConvert.SerializeObject(req);
+            var result = Common.HttpHelper.WebPost(url_api, base_url, dataJson);
+            if (string.IsNullOrEmpty(result))
+            {
+                return BadRequest("Invalid email or password.");
+            }
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

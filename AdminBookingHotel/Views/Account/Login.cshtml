@@ -2,7 +2,7 @@
     ViewData["Title"] = "Login";
     Layout = "~/Views/Shared/_LoginLayout.cshtml";
 }
-
+@model DataAccess.Models.LoginModel
 <div class="login-box">
     <div class="login-logo">
         <a href="~/admin/index2.html"><b>Admin</b>Bookng Hotel</a>
@@ -11,9 +11,9 @@
     <div class="card">
         <div class="card-body login-card-body">
             <p class="login-box-msg">Sign in to start your session</p>
-            <form action="/Account/Login" method="post">
+            <form asp-controller="Account" asp-action="Login" method="post">
                 <div class="input-group mb-3">
-                    <input type="email" class="form-control" placeholder="Email" name="Email">
+                    <input type="email" class="form-control" placeholder="Email" asp-for="Email">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Password" name="Password">
+                    <input type="password" class="form-control" placeholder="Password" asp-for="Password">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>

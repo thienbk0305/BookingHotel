@@ -40,9 +40,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "AxesSharp": {
+            "RestSharp": {
               "target": "Package",
-              "version": "[1.0.0, )"
+              "version": "[110.2.0, )"
             }
           },
           "imports": [
