@@ -10,10 +10,12 @@ namespace AdminBookingHotel.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly IHttpContextAccessor _contextAccessor;
         private readonly BookingHotelDbContext _dbContext;
-        public AccountController(BookingHotelDbContext dbContext)
+        public AccountController(BookingHotelDbContext dbContext, IHttpContextAccessor contextAccessor)
         {
             _dbContext = dbContext;
+            _contextAccessor = contextAccessor;
         }
 
         public IActionResult Login()
@@ -52,12 +54,13 @@ namespace AdminBookingHotel.Controllers
 
                 returnData = JsonConvert.DeserializeObject<ReturnData>(result);
 
-                //if (returnData.ResponseCode != null)
-                //{
+                if (returnData.ResponseCode != null)
+                {
+                    _contextAccessor.HttpContext.Session.SetString("USER_ID", returnData.Extention);
 
-                //    Session["USER_ID"] = returnData.ResponseCode;
-                //    Session["USER_FULLNAME"] = returnData.Extention;
-                //}
+                    //Session["USER_ID"] = returnData.ResponseCode;
+                    //Session["USER_FULLNAME"] = returnData.Extention;
+                }
                 // trả kết quả về View 
                 //return Json(returnData);
                 return RedirectToAction("Index", "Home");
