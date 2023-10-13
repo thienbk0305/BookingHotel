@@ -1,7 +1,10 @@
-﻿using DataAccess.Entities;
+﻿using DataAccess.DBContext;
+using DataAccess.Entities;
 using DataAccess.IRepositories;
 using DataAccess.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -15,39 +18,55 @@ namespace DataAccess.Repositories
         private readonly UserManager<User> userManager;
         private readonly SignInManager<User> signInManager;
         private readonly IConfiguration configuration;
+        BookingHotelDbContext _dbContext;
 
-        public AccountRepository(UserManager<User> userManager, SignInManager<User> signInManager, IConfiguration configuration)
+        public AccountRepository(BookingHotelDbContext dbContext, UserManager<User> userManager, SignInManager<User> signInManager, IConfiguration configuration)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.configuration = configuration;
+            this._dbContext = dbContext;
         }
-        public async Task<string> LoginModelAsync(LoginModel model)
+        public async Task<User> LoginModelAsync(LoginModel model)
         {
-            var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
-
-            if (!result.Succeeded)
+            try
             {
-                return string.Empty;
+                // Login : tìm xem có username và passwork nào trong db giống client truyền lên không
+                var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
+
+                // nếu không có thì trả về acc rỗng
+                if (!result.Succeeded)
+                {
+                    return new User();
+                }
+                var user = _dbContext.User.ToList().FindAll(s => s.Email == model.Email).FirstOrDefault(); ;
+
+                return user;
             }
-
-            var authClaims = new List<Claim>
+            catch (Exception)
             {
-                new Claim(ClaimTypes.Email, model.Email),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-            };
 
-            var authenKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"]));
+                throw;
+            }
+            
 
-            var token = new JwtSecurityToken(
-                issuer: configuration["JWT:ValidIssuer"],
-                audience: configuration["JWT:ValidAudience"],
-                expires: DateTime.Now.AddMinutes(20),
-                claims: authClaims,
-                signingCredentials: new SigningCredentials(authenKey, SecurityAlgorithms.HmacSha512Signature)
-            );
+            //var authClaims = new List<Claim>
+            //{
+            //    new Claim(ClaimTypes.Email, model.Email),
+            //    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+            //};
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            //var authenKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"]));
+
+            //var token = new JwtSecurityToken(
+            //    issuer: configuration["JWT:ValidIssuer"],
+            //    audience: configuration["JWT:ValidAudience"],
+            //    expires: DateTime.Now.AddMinutes(20),
+            //    claims: authClaims,
+            //    signingCredentials: new SigningCredentials(authenKey, SecurityAlgorithms.HmacSha512Signature)
+            //);
+
+            //return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
         public async Task<IdentityResult> RegisterAsync(RegisterModel model)

@@ -20,6 +20,7 @@ namespace Common
                 var client = new RestClient(options);
                 var request = new RestRequest(baseUrl, Method.Post);
                 request.AddHeader("Content-Type", "application/json");
+
                 request.AddStringBody(dataJson, DataFormat.Json);
                 var response = client.ExecuteAsync(request).Result;
                 return response.Content;
@@ -32,5 +33,6 @@ namespace Common
            
 
         }
+
     }
 }

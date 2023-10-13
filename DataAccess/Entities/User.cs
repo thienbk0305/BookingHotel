@@ -17,4 +17,5 @@ namespace DataAccess.Entities
         public bool? Active { get; set; }
         public string Description { get; set; } = null!;
     }
+
 }
