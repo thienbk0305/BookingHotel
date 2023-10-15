@@ -5,12 +5,12 @@
 @model DataAccess.Models.LoginModel
 <div class="login-box">
     <div class="login-logo">
-        <a href="~/admin/index2.html"><b>Admin</b>Bookng Hotel</a>
+        <a href="#">Booking Hotel</a>
     </div>
     <!-- /.login-logo -->
     <div class="card">
         <div class="card-body login-card-body">
-            <p class="login-box-msg">Sign in to start your session</p>
+            <p class="login-box-msg">ĐĂNG NHẬP TÀI KHOẢN CỦA BẠN</p>
             <form asp-controller="Account" asp-action="Login" method="post">
                 <div class="input-group mb-3">
                     <input type="email" class="form-control" placeholder="Email" asp-for="Email">
@@ -21,46 +21,61 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Password" asp-for="Password">
+                    <input type="password" class="form-control" placeholder="Mật khẩu" asp-for="Password">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-8">
+                <div class="icheck-primary mb-3 col-12">
+                    <div class="row">
                         <div class="icheck-primary">
                             <input type="checkbox" id="remember">
                             <label for="remember">
-                                Remember Me
+                                Ghi nhớ đăng nhập
                             </label>
                         </div>
                     </div>
-                    <!-- /.col -->
-                    <div class="col-4">
-                        <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-                    </div>
-                    <!-- /.col -->
                 </div>
+
+                <div class="row mb-3 ">
+                    <div class="col-6">
+                        <button style="background-color:#1565c0" type="submit" class="btn btn-primary btn-block">ĐĂNG NHẬP</button>
+                    </div>
+                    <div class="col-6">
+                        <button style="background-color:#ef3a25" type="submit" class="btn btn-primary btn-block">ĐĂNG KÝ</button>
+                    </div>
+                </div>
+                <!-- /.col -->
+                <!-- /.col -->
+
             </form>
 
             <div class="social-auth-links text-center mb-3">
-                <p>- OR -</p>
-                <a href="#" class="btn btn-block btn-primary">
-                    <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-                </a>
-                <a href="#" class="btn btn-block btn-danger">
-                    <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-                </a>
+                <hr class="hr-text gradient" data-content="HOẶC">
+                <div class="mb-2">
+                    <a href="#" class="btn btn-block btn-primary" style="background-color:#4267B2">
+                        <i class="fab fa-facebook mr-2"></i> ĐĂNG NHẬP BẰNG FACEBOOK
+                    </a>
+                </div>
+                <div class="mb-1">
+                    <a href="#" class="btn btn-block btn-danger" style="background-color:#db4a39">
+                        <i class="fab fa-google-plus mr-2"></i> ĐĂNG NHẬP BẰNG GOOGLE+
+                    </a>
+                </div>
+
             </div>
             <!-- /.social-auth-links -->
-            <p class="mb-1">
-                <a href="forgot-password.html">I forgot my password</a>
-            </p>
-            <p class="mb-0">
-                <a href="register.html" class="text-center">Register a new membership</a>
-            </p>
+            <div class="row col-12">
+                <a href="#">QUÊN MẬT KHẨU</a>
+
+
+                <!-- /.col -->
+                <!-- /.col -->
+            </div>
+
+
         </div>
         <!-- /.login-card-body -->
     </div>
