@@ -6,22 +6,28 @@ using System.Text;
 using DataAccess.Entities;
 using Microsoft.AspNetCore.Http;
 
-namespace AdminBookingHotel.Controllers
+
+
+namespace BookingHotel.Controllers
 {
-    public class AccountController : Controller
+    public class cusAccountController : Controller
     {
         private readonly IHttpContextAccessor _contextAccessor;
         private readonly BookingHotelDbContext _dbContext;
-        public AccountController(BookingHotelDbContext dbContext, IHttpContextAccessor contextAccessor)
+        public cusAccountController(BookingHotelDbContext dbContext, IHttpContextAccessor contextAccessor)
         {
             _dbContext = dbContext;
             _contextAccessor = contextAccessor;
+           
         }
 
+        //create partial view _Login
         public IActionResult Login()
         {
             return View();
         }
+
+        //implement logic Login
         [HttpPost]
         public async Task<IActionResult> Login(LoginModel model)
         {
@@ -56,7 +62,7 @@ namespace AdminBookingHotel.Controllers
 
                 if (returnData.ResponseCode != null)
                 {
-                    _contextAccessor.HttpContext.Session.SetString("USER_ID", returnData.Extention);
+                    //_contextAccessor.HttpContext.Session.SetString("CUSTOMER_ID", returnData.Extention);
 
                     //Session["USER_ID"] = returnData.ResponseCode;
                     //Session["USER_FULLNAME"] = returnData.Extention;
@@ -70,7 +76,8 @@ namespace AdminBookingHotel.Controllers
 
                 throw;
             }
-            
+
         }
     }
 }
+

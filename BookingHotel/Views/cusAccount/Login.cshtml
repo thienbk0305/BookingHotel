@@ -1,6 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Login";
-    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+    Layout = "~/Views/Shared/_LoginUserLayout.cshtml";
 }
 @model DataAccess.Models.LoginModel
 <div class="login-box">
@@ -10,8 +10,8 @@
     <!-- /.login-logo -->
     <div class="card">
         <div class="card-body login-card-body">
-            <p class="login-box-msg">ĐĂNG NHẬP QUẢN LÝ</p>
-            <form asp-controller="Account" asp-action="Login" method="post">
+            <p class="login-box-msg">ĐĂNG NHẬP THÀNH VIÊN</p>
+            <form asp-controller="cusAccount" asp-action="Login" method="post">
                 <div class="input-group mb-3">
                     <input type="email" class="form-control" placeholder="Email" asp-for="Email">
                     <div class="input-group-append">
@@ -77,7 +77,7 @@
 
 
         </div>
-    
+
         <!-- /.login-card-body -->
     </div>
 </div>
