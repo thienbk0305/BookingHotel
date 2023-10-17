@@ -62,6 +62,7 @@ namespace BookingHotel.Controllers
 
                 if (returnData.ResponseCode != null)
                 {
+                    //
                     //_contextAccessor.HttpContext.Session.SetString("CUSTOMER_ID", returnData.Extention);
 
                     //Session["USER_ID"] = returnData.ResponseCode;
