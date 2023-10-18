@@ -54,7 +54,7 @@ namespace AdminBookingHotel.Controllers
 
                 returnData = JsonConvert.DeserializeObject<ReturnData>(result);
 
-                if (returnData.ResponseCode != null)
+                if (returnData?.ResponseCode != null)
                 {
                     _contextAccessor.HttpContext.Session.SetString("USER_ID", returnData.Extention);
 
