@@ -15,18 +15,17 @@ namespace APIBookingHotel.Controllers
     public class AccountsController : ControllerBase
     {
         private IBookingHotelUnitOfWork _unitOfWork;
-        private readonly IAccountRepository accountRepo;
         private IConfiguration _configuration;
-        public AccountsController(IAccountRepository repo, IConfiguration configuration,IBookingHotelUnitOfWork unitOfWork)
+
+        public AccountsController(IGenericRepository<User> repo, IConfiguration configuration,IBookingHotelUnitOfWork unitOfWork)
         {
-            accountRepo = repo;
             _configuration = configuration;
             _unitOfWork = unitOfWork;
         }
         [HttpPost("Register")]
         public async Task<IActionResult> Register(RegisterModel registerModel)
         {
-            var result = await accountRepo.RegisterAsync(registerModel);
+            var result = await _unitOfWork.AccountRepository.RegisterAsync(registerModel);
             if (result.Succeeded)
             {
                 return Ok(result.Succeeded);

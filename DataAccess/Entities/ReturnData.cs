@@ -8,8 +8,8 @@ namespace DataAccess.Entities
 {
     public class ReturnData
     {
-        public string ResponseCode { get; set; }
-        public string Description { get; set; }
-        public string Extention { get; set; }
+        public string? ResponseCode { get; set; }
+        public string? Description { get; set; }
+        public string? Extention { get; set; }
     }
 }

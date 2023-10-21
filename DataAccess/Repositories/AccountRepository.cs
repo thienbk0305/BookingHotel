@@ -2,6 +2,7 @@
 using DataAccess.Entities;
 using DataAccess.IRepositories;
 using DataAccess.Models;
+using DataAccess.UnitOfWork;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -13,14 +14,14 @@ using System.Text;
 
 namespace DataAccess.Repositories
 {
-    public class AccountRepository : IAccountRepository
+    public class AccountRepository : GenericRepository<DataAccess.Entities.User>, IAccountRepository
     {
         private readonly UserManager<User> userManager;
         private readonly SignInManager<User> signInManager;
         private readonly IConfiguration configuration;
         BookingHotelDbContext _dbContext;
 
-        public AccountRepository(BookingHotelDbContext dbContext, UserManager<User> userManager, SignInManager<User> signInManager, IConfiguration configuration)
+        public AccountRepository(BookingHotelDbContext dbContext, UserManager<User> userManager, SignInManager<User> signInManager, IConfiguration configuration) : base(dbContext)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
@@ -41,34 +42,15 @@ namespace DataAccess.Repositories
                 }
                 var user = _dbContext.User.ToList().FindAll(s => s.Email == model.Email).FirstOrDefault(); ;
 
-                return user;
+                return user!;
             }
             catch (Exception)
             {
 
                 throw;
             }
-            
-
-            //var authClaims = new List<Claim>
-            //{
-            //    new Claim(ClaimTypes.Email, model.Email),
-            //    new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-            //};
-
-            //var authenKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"]));
-
-            //var token = new JwtSecurityToken(
-            //    issuer: configuration["JWT:ValidIssuer"],
-            //    audience: configuration["JWT:ValidAudience"],
-            //    expires: DateTime.Now.AddMinutes(20),
-            //    claims: authClaims,
-            //    signingCredentials: new SigningCredentials(authenKey, SecurityAlgorithms.HmacSha512Signature)
-            //);
-
-            //return new JwtSecurityTokenHandler().WriteToken(token);
+           
         }
-
         public async Task<IdentityResult> RegisterAsync(RegisterModel model)
         {
             var user = new User

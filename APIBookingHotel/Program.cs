@@ -22,8 +22,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 //
-builder.Services.AddIdentity<User, IdentityRole>()
-    .AddEntityFrameworkStores<BookingHotelDbContext>().AddDefaultTokenProviders();
+builder.Services.AddIdentity<User, IdentityRole>().
+    AddEntityFrameworkStores<BookingHotelDbContext>().AddDefaultTokenProviders();
 //
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
@@ -40,26 +40,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 });
 
 //Dependency Injection
-builder.Services.AddTransient<IBookingHotelUnitOfWork, BookingHotelUnitOfWork>();
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
-
-//
-//builder.Services.AddAuthentication(options => {
-//    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-//    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-//    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-//}).AddJwtBearer(options => {
-//    options.SaveToken = true;
-//    options.RequireHttpsMetadata = false;
-//    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
-//    {
-//        ValidateIssuer = true,
-//        ValidateAudience = true,
-//        ValidAudience = builder.Configuration["JWT:ValidAudience"],
-//        ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
-//        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"]))
-//    };
-//});
+builder.Services.AddTransient<IGenericRepository<User>, GenericRepository<User>>();
+builder.Services.AddTransient<IGenericRepository<Customer>, GenericRepository<Customer>>();
+builder.Services.AddTransient<IBookingHotelUnitOfWork, BookingHotelUnitOfWork>();
 
 var app = builder.Build();
 

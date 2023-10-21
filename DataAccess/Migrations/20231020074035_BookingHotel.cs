@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccess.Migrations
 {
-    public partial class AddIdentityAuthentiCation : Migration
+    public partial class BookingHotel : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

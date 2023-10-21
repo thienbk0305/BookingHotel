@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(BookingHotelDbContext))]
-    [Migration("20231009143437_AddIdentityAuthentiCation")]
-    partial class AddIdentityAuthentiCation
+    [Migration("20231020074035_BookingHotel")]
+    partial class BookingHotel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

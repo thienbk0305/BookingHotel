@@ -23,7 +23,7 @@ namespace Common
 
                 request.AddStringBody(dataJson, DataFormat.Json);
                 var response = client.ExecuteAsync(request).Result;
-                return response.Content;
+                return response.Content!;
             }
             catch (Exception)
             {
