@@ -1,5 +1,12 @@
 using DataAccess.DBContext;
+using DataAccess.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using NToastNotify;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using CC247.Permission;
+using Microsoft.AspNetCore.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +17,24 @@ builder.Services.AddDbContext<BookingHotelDbContext>(options => {
     options.UseSqlServer(builder.Configuration.GetConnectionString("MyConnStr"));
 });
 
+builder.Services.AddMvc().AddNToastNotifyToastr(new ToastrOptions()
+{
+    ProgressBar = false,
+    PositionClass = ToastPositions.BottomLeft
+}).AddNewtonsoftJson(optiton =>
+{
+    optiton.SerializerSettings.ContractResolver = new DefaultContractResolver();
+    optiton.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+});
+
+
+
+builder.Services.AddIdentity<User, IdentityRole>().
+    AddEntityFrameworkStores<BookingHotelDbContext>().AddDefaultTokenProviders();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+//builder.Services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
+//builder.Services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
 
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
@@ -28,6 +52,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
 app.UseStaticFiles();
 
 app.UseRouting();
@@ -36,8 +61,10 @@ app.UseAuthorization();
 
 app.UseSession();
 
+app.MapControllers();
+
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Account}/{action=Login}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

@@ -58,7 +58,14 @@
                 height: 200%;
                 left: 0;
                 top: 0
-            }</style>
+            }
+            </style>
+    <!-- END PAGE LEVEL ~/plugins/CUSTOM STYLES -->
+    <link rel="stylesheet" type="text/css" href="~/admin/plugins/table/datatable/datatables.css">
+    <link rel="stylesheet" type="text/css" href="~/admin/plugins/table/datatable/custom_dt_html5.css">
+    <link rel="stylesheet" href="~/admin/plugins/flatpickr/flatpickr-dark.css" type="text/css">
+    <link rel="stylesheet" href="~/admin/plugins/flatpickr/themes/dark.css">
+    @RenderSection("css",false)
 </head>
 <body class="dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed" style="height: auto;">
     <div class="wrapper">
@@ -75,7 +82,7 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">Trang chủ</a>
+                    <a href="#" class="nav-link">Trang chủ</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Liên hệ</a>
@@ -208,7 +215,7 @@
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
             <a href="index3.html" class="brand-link">
-                <img src="~/admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <img src="~/admin/dist/img/AdminLTELogo.png" alt="Booking Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light"><strong>KHU VỰC ADMIN</strong></span>
             </a>
 
@@ -273,6 +280,7 @@
                                     </li>
                                     </ul>
                                     </li> *@
+
                                     <li class="nav-item">
                                         <a href="#" class="nav-link">
                                             @* <i class="nav-icon fas fa-th"></i> *@
@@ -286,22 +294,26 @@
                                     </li>
                                     <li class="nav-item">
                                         <a href="#" class="nav-link">
-                                            @* <i class="nav-icon fas fa-copy"></i> *@
+                                            <i class="nav-icon fas fa-copy"></i>
                                             <p>
-                                                <strong>
-                                                    QUẢN LÝ NHÂN SỰ
-                                                </strong>
-
+                                                <strong>Quản Lý User</strong>
                                                 <span class="badge badge-info right">6</span>
                                                 <i class="fas fa-angle-left right"></i>
-
                                             </p>
                                         </a>
                                         <ul class="nav nav-treeview">
                                             <li class="nav-item">
-                                                <a href="#" class="nav-link">
-                                                    @* <i class="far fa-circle nav-icon"></i> *@
-                                                    <p>DANH SÁCH NHÂN SỰ</p>
+                                                <a href="/Role/index" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Danh Sách User</p>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <ul class="nav nav-treeview">
+                                            <li class="nav-item">
+                                                <a href="/Role/index" class="nav-link">
+                                                    <i class="far fa-circle nav-icon"></i>
+                                                    <p>Quản Lý Role</p>
                                                 </a>
                                             </li>
                                         </ul>
@@ -486,7 +498,7 @@
         <!-- /.control-sidebar -->
         <!-- Main Footer -->
         <footer class="main-footer">
-            <strong>Copyright © 2023 Công ty cổ phần <a style="color:yellow" "href="https://adminlte.io">Booking Hotel</a>.</strong>
+            <strong>Copyright © 2024 <a style="color:yellow" "href="https://adminlte.io">Booking Hotel</a>.</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
                 <b>Version</b> 3.2.0
@@ -518,6 +530,23 @@
     <script src="~/admin/dist/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="~/admin/dist/js/pages/dashboard2.js"></script>
-
+    <!-- Datatables  -->
+    <script src="~/admin/plugins/moment/moment-with-locales.min.js"></script>
+    <script src="~/admin/plugins/table/datatable/datatables.js"></script>
+    <!-- Datatables Plugins  -->
+    <script src="~/admin/plugins/table/datatable/button-ext/dataTables.buttons.min.js"></script>
+    <script src="~/admin/plugins/table/datatable/button-ext/jszip.min.js"></script>
+    <script src="~/admin/plugins/table/datatable/button-ext/buttons.html5.min.js"></script>
+    <script src="~/admin/plugins/table/datatable/button-ext/buttons.print.min.js"></script>
+    <script src="~/admin/plugins/table/datatable/dataTables.select.min.js"></script>
+    <script src="~/admin/plugins/bootstrap-select/bootstrap-select.js"></script>
+    <script src="~/admin/plugins/flatpickr/flatpickr.js"></script>
+    <script src="~/admin/plugins/dropify/dropify.min.js"></script>
+    <script src="~/admin/plugins/blockui/jquery.blockUI.min.js"></script>
+    <script src="~/admin/plugins/blockui/custom-blockui.js"></script>
+    <script src="~/admin/plugins/flatpickr/shortcut-buttons-flatpickr.min.js"></script>
+    <script src="~/admin/plugins/input-mask/jquery.inputmask.bundle.min.js"></script>
+    @RenderSection("scripts", false)
+    @await Component.InvokeAsync("NToastNotify")
 </body>
 </html>

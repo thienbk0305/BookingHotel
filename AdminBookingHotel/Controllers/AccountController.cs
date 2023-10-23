@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System.Text;
 using DataAccess.Entities;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AdminBookingHotel.Controllers
 {
@@ -22,6 +23,7 @@ namespace AdminBookingHotel.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Login(LoginModel model)
         {
@@ -39,7 +41,7 @@ namespace AdminBookingHotel.Controllers
                 }
                 // Nếu pass kiểm trả thì goi sang API Net Core
                 var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
-                var base_url = "Accounts/Login"; //API Controller
+                var base_url = "Authenticate/Login"; //API Controller
                 var req = new LoginModel { Email = model.Email, Password = model.Password };
                 var dataJson = JsonConvert.SerializeObject(req);
                 var result = Common.HttpHelper.WebPost(url_api, base_url, dataJson);
