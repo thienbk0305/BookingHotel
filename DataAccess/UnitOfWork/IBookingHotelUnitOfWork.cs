@@ -10,9 +10,7 @@ namespace DataAccess.UnitOfWork
 {
     public interface IBookingHotelUnitOfWork
     {
-        IGenericRepository<User> UserRepository { get; }
-        IGenericRepository<Customer> CustomerRepository { get; }
-        IAccountRepository AccountRepository { get; }
+        IIdentityRepository Identity { get; }
         int Save();
         Task<int> SaveAsync();
     }

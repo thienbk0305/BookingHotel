@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
 
-namespace CC247.Permission
+namespace DataAccess.Permission
 {
-    internal class PermissionPolicyProvider : IAuthorizationPolicyProvider
+    public class PermissionPolicyProvider : IAuthorizationPolicyProvider
     {
         public DefaultAuthorizationPolicyProvider FallbackPolicyProvider { get; }
         public PermissionPolicyProvider(IOptions<AuthorizationOptions> options)

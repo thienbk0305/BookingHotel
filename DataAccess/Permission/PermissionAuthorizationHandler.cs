@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 
-namespace CC247.Permission
+namespace DataAccess.Permission
 {
-    internal class PermissionAuthorizationHandler : AuthorizationHandler<PermissionRequirement>
+    public class PermissionAuthorizationHandler : AuthorizationHandler<PermissionRequirement>
     {     
         public PermissionAuthorizationHandler(){}
         protected override async Task HandleRequirementAsync(AuthorizationHandlerContext context, PermissionRequirement requirement)
@@ -16,8 +16,8 @@ namespace CC247.Permission
                 return;
             }
             var permissionss = context.User.Claims.Where(x => x.Type == "Permission" &&
-                                                                x.Value == requirement.Permission &&
-                                                                x.Issuer == "LOCAL AUTHORITY");
+                                                              x.Value == requirement.Permission &&
+                                                              x.Issuer == "LOCAL AUTHORITY");
             if (permissionss.Any())
             {
                 context.Succeed(requirement);

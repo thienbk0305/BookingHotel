@@ -10,21 +10,16 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="~/admin/plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
-
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="~/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="~/admin/dist/css/adminlte.min.css">
+
     <style type="text/css">
         /* Chart.js */
         @@keyframes chartjs-render-animation {
-            from {
-                opacity: .99
-            }
-
-            to {
-                opacity: 1
-            }
+            from {opacity: .99}
+            to { opacity: 1}
         }
 
         .chartjs-render-monitor {
@@ -59,7 +54,7 @@
                 left: 0;
                 top: 0
             }
-            </style>
+    </style>
     <!-- END PAGE LEVEL ~/plugins/CUSTOM STYLES -->
     <link rel="stylesheet" type="text/css" href="~/admin/plugins/table/datatable/datatables.css">
     <link rel="stylesheet" type="text/css" href="~/admin/plugins/table/datatable/custom_dt_html5.css">
@@ -230,7 +225,7 @@
                                     <img src="~/admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                                 </div>
                                 <div class="info">
-                                    <a href="#" class="d-block">@contxt.HttpContext.Session.GetString("USER_ID")</a>
+                                    <a href="#" class="d-block">@contxt.HttpContext!.Session.GetString("TOKEN_SERVER")</a>
                                 </div>
                             </div>
 
@@ -303,7 +298,7 @@
                                         </a>
                                         <ul class="nav nav-treeview">
                                             <li class="nav-item">
-                                                <a href="/Role/index" class="nav-link">
+                                                <a href="/User" class="nav-link">
                                                     <i class="far fa-circle nav-icon"></i>
                                                     <p>Danh Sách User</p>
                                                 </a>
@@ -311,7 +306,7 @@
                                         </ul>
                                         <ul class="nav nav-treeview">
                                             <li class="nav-item">
-                                                <a href="/Role/index" class="nav-link">
+                                                <a href="/Role/Index" class="nav-link">
                                                     <i class="far fa-circle nav-icon"></i>
                                                     <p>Quản Lý Role</p>
                                                 </a>
@@ -369,13 +364,7 @@
                                             </li>
 
                                         </ul>
-
-                                        <strong>
-
                                     <li class="nav-header">KHU VỰC KHÁCH HÀNG</li>
-                                    </strong>
-
-
                                     <li class="nav-item">
                                         <a href="#" class="nav-link">
                                             <p>
@@ -417,13 +406,7 @@
 
                                         </ul>
                                     </li>
-
-                                    <strong>
-
                                     <li class="nav-header">KHU VỰC MERCHANT</li>
-                                    </strong>
-
-
                                     <li class="nav-item">
                                         <a href="#" class="nav-link">
                                                 @* <i class="fa-solid fa-info"></i> *@
@@ -452,10 +435,7 @@
                                         <a href="#" class="nav-link">
                                                 @* <i class="nav-icon fas fa-book"></i> *@
                                             <i class="fa-solid fa-person-military-pointing"></i>
-                                            <p>
-                                                THÔNG TIN BOOKING
-                                                <i class="fas fa-angle-left right"></i>
-                                            </p>
+                                            <p>THÔNG TIN BOOKING<i class="fas fa-angle-left right"></i> </p>
                                         </a>
                                         <ul class="nav nav-treeview">
                                             <li class="nav-item">
@@ -467,16 +447,7 @@
 
                                         </ul>
                                     </li>
-                                    <a href="#" class="nav-link">
-
-                                        <p>
-                                            HOẠT ĐỘNG KINH DOANH
-
-                                        </p>
-                                    </a>
-
-
-
+                                    <a href="#" class="nav-link">HOẠT ĐỘNG KINH DOANH</a>
                                 </ul>
 
                             </nav>
@@ -498,7 +469,7 @@
         <!-- /.control-sidebar -->
         <!-- Main Footer -->
         <footer class="main-footer">
-            <strong>Copyright © 2024 <a style="color:yellow" "href="https://adminlte.io">Booking Hotel</a>.</strong>
+            <strong>Copyright © 2024 <a style="color:yellow" href="https://adminlte.io">Booking Hotel</a>.</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
                 <b>Version</b> 3.2.0
@@ -526,10 +497,8 @@
     <!-- ChartJS -->
     <script src="~/admin/plugins/chart.js/Chart.min.js"></script>
 
-    <!-- AdminLTE for demo purposes -->
-    <script src="~/admin/dist/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="~/admin/dist/js/pages/dashboard2.js"></script>
+@*     <script src="~/admin/dist/js/pages/dashboard2.js"></script> *@
     <!-- Datatables  -->
     <script src="~/admin/plugins/moment/moment-with-locales.min.js"></script>
     <script src="~/admin/plugins/table/datatable/datatables.js"></script>
@@ -546,6 +515,7 @@
     <script src="~/admin/plugins/blockui/custom-blockui.js"></script>
     <script src="~/admin/plugins/flatpickr/shortcut-buttons-flatpickr.min.js"></script>
     <script src="~/admin/plugins/input-mask/jquery.inputmask.bundle.min.js"></script>
+    <script src="~/admin/plugins/sweetalert/sweetalert2.js"></script>
     @RenderSection("scripts", false)
     @await Component.InvokeAsync("NToastNotify")
 </body>

@@ -14,25 +14,6 @@ namespace APIBookingHotel.Controllers
         {
             _unitOfWork = unitOfWork;
         }
-        [HttpGet]
-        public async Task<IActionResult> GetCustomers()
-        {
-            var customers = await _unitOfWork.CustomerRepository.GetAllAsync();
-            return Ok(customers);
-        }
-        [HttpPost]
-        public async Task<IActionResult> AddCustomer(Customer customer)
-        {
-            _unitOfWork.CustomerRepository.Add(customer);
-            await _unitOfWork.SaveAsync();
-            return Ok(201);
-        }
-        //[HttpDelete("Delete/{id}")]
-        //public ActionResult DeleteCustomer(Customer customer)
-        //{
-        //    _unitOfWork.CustomerRepository.Delete(customer);
-        //    _unitOfWork.SaveAsync();
-        //    return Ok();
-        //}
+
     }
 }

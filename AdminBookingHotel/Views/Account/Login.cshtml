@@ -5,15 +5,15 @@
 @model DataAccess.Models.LoginModel
 <div class="login-box">
     <div class="login-logo">
-        <a href="#">Booking Hotel 247</a>
+        <a href="#">Booking Hotel</a>
     </div>
     <!-- /.login-logo -->
     <div class="card">
         <div class="card-body login-card-body">
             <p class="login-box-msg">ĐĂNG NHẬP QUẢN LÝ</p>
-            <form asp-controller="Account" asp-action="Login" method="post">
+            <form method="post">
                 <div class="input-group mb-3">
-                    <input type="email" class="form-control" placeholder="Email" asp-for="Email">
+                    <input id="txtEmail" type="email" class="form-control" placeholder="Email">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-envelope"></span>
@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Mật khẩu" asp-for="Password">
+                    <input id="txtPassWord" type="password" class="form-control" placeholder="Mật khẩu">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
@@ -41,10 +41,10 @@
 
                 <div class="row mb-3 ">
                     <div class="col-6">
-                        <button style="background-color:#1565c0" type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
+                        <button style="background-color:#1565c0" type="button" id="btnLogin" class="btn btn-primary btn-block">Đăng nhập</button>
                     </div>
                     <div class="col-6">
-                        <button style="background-color:#ef3a25" type="submit" class="btn btn-primary btn-block">Đăng ký</button>
+                        <button style="background-color:#ef3a25" type="button" id="btnRegister" class="btn btn-primary btn-block">Đăng ký</button>
                     </div>
                 </div>
                 <!-- /.col -->
@@ -69,15 +69,86 @@
             <!-- /.social-auth-links -->
             <div class="row col-12">
                 <a href="#">Quên mất khẩu</a>
-
-
                 <!-- /.col -->
                 <!-- /.col -->
             </div>
-
-
         </div>
-    
         <!-- /.login-card-body -->
     </div>
 </div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#btnLogin").click(function () {
+                Login();
+            });
+            $("#btnRegister").click(function () {
+                Register();
+            });
+            //Login
+            function Login() {
+                var email = $("#txtEmail").val();
+                var password = $("#txtPassWord").val();
+                var param = {
+                    Email: email,
+                    Password: password
+                };
+                $.ajax({
+                    type: 'POST',
+                    url: "/Account/Authen",
+                    data: param,
+                    dataType: "json",
+                    success: function (data) {
+                        var token = data.token;
+                        if (token != null && token != "") {
+                            var expiration = data.expiration;
+                            setCookie("TOKEN_SERVER", token, expiration);
+                            window.location.href = "/Home"
+                        } else {
+                            alert("Đăng nhập thất bại");
+                        }
+
+                    },
+                    error: function (data) {
+                        console.log("error:" + JSON.stringify(data));
+                    }
+                });
+            }
+            //Register
+            function Register() {
+                var email = $("#txtEmail").val();
+                var password = $("#txtPassWord").val();
+                var param = {
+                    Email: email,
+                    Password: password
+                };
+                $.ajax({
+                    type: 'POST',
+                    url: "/Account/Register",
+                    data: param,
+                    dataType: "json",
+                    success: function (data) {
+                        var ResponseCode = data.ResponseCode;
+                        if (ResponseCode == "1") {
+                            alert("Đăng ký thành công");
+                        } else {
+                            alert("Đăng ký thất bại");
+                        }
+                        window.location.href = "/Account/Login"
+                    },
+                    error: function (data) {
+                        console.log("error:" + JSON.stringify(data));
+                    }
+                });
+            }
+            //Set Cookie
+            function setCookie(cname, cvalue, exdays) {
+                const d = new Date();
+                d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                let expires = "expires=" + d.toUTCString();
+                document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+            }
+        });
+    </script>
+}

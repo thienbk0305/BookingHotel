@@ -1,72 +1,82 @@
-@model AdminBookingHotel.Models.UserAndRoleViewModels.Permissions.PermissionViewModel
+@model DataAccess.Models.Permissions.PermissionResponse
 @{
     ViewBag.Title = "Quản Lý Permissions";
     Layout = "_AdminLayout";
 }
-@section css{
-    <link rel="stylesheet" type="text/css" href="~/assets/css/forms/theme-checkbox-radio.css">
-}
-<div class="page-header">
-    <div class="page-title">
-        <h3>Quản Lý Permission Role @Model.RoleId</h3>
-    </div>
-    <nav class="breadcrumb-one" aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="javascript:void(0);"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></a></li>
-            <li class="breadcrumb-item"><a href="/Role">Danh Sách Roles</a></li>
-            <li class="breadcrumb-item active" aria-current="page"><span>Quản Lý Permission</span></li>
-        </ol>
-    </nav>
-</div>
-<div class="row layout-top-spacing">
-    <div class="col-12">
-        <div class="statbox widget box box-shadow">
-            <div class="widget-content widget-content-area">
-                <form asp-controller="permission" method="post" asp-action="Update" class="d-inline">
-                    <input asp-for="@Model.RoleId" type="hidden" />
-                    <table class="table table-striped" id="permissionTable">
-                        <thead>
-                            <tr>
-                                <th>STT</th>
-                                <th>
-                                    Loại
-                                </th>
-                                <th>
-                                    Permissions
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @for (int i = 0; i < Model.RoleClaims.Count(); i++)
-                            {
-                                <tr>
-                                    <td>@(i+1)</td>
-                                    <td>
-                                        <input asp-for="@Model.RoleClaims[i].Type" type="hidden" />
-                                        @Model.RoleClaims[i].Type
-                                    </td>
-                                    <td>
-                                        <div class="n-chk">
-                                            <label class="new-control new-checkbox new-checkbox-rounded checkbox-primary">
-                                                <input asp-for="@Model.RoleClaims[i].Selected" type="checkbox" class="new-control-input">
-                                                <span class="new-control-indicator"></span> @Model.RoleClaims[i].Value
-                                            </label>
-                                            <input asp-for="@Model.RoleClaims[i].Value" type="hidden" />
-                                        </div>
 
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                    <div class="col-sm-12" style="padding: 20px 20px 0px 0px">
-                        <button type="submit" id="save" class="btn btn-success">
-                            <i class="fa fa-check"></i>
-                            Save
-                        </button>
-                    </div>
-                </form>
-            </div>   
-        </div>     
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="page-header">
+        <div class="page-title">
+            <h3>Quản Lý Permission Role @Model.RoleId</h3>
+        </div>
+        <nav class="breadcrumb-one" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0);"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></a></li>
+                <li class="breadcrumb-item"><a href="/Role">Danh Sách Roles</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><span>Quản Lý Permission</span></li>
+            </ol>
+        </nav>
     </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row layout-top-spacing">
+                <div class="col-12">
+                    <div class="statbox widget box box-shadow">
+                        <div class="widget-content widget-content-area">
+                            <form asp-controller="permission" method="post" asp-action="Update" class="d-inline">
+                                <input asp-for="@Model.RoleId" type="hidden" />
+                                <table class="table table-striped" id="permissionTable">
+                                    <thead>
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>
+                                                Loại
+                                            </th>
+                                            <th>
+                                                Permissions
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (int i = 0; i < Model.RoleClaims!.Count(); i++)
+                                        {
+                                            <tr>
+                                                <td>@(i + 1)</td>
+                                                <td>
+                                                    <input asp-for="@Model.RoleClaims![i].Type" type="hidden" />
+                                                    @Model.RoleClaims![i].Type
+                                                </td>
+                                                <td>
+                                                    <div class="n-chk">
+                                                        <label class="new-control new-checkbox new-checkbox-rounded checkbox-primary">
+                                                            <input asp-for="@Model.RoleClaims[i].Selected" type="checkbox" class="new-control-input">
+                                                            <span class="new-control-indicator"></span> @Model.RoleClaims[i].Value
+                                                        </label>
+                                                        <input asp-for="@Model.RoleClaims[i].Value" type="hidden" />
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                                <div class="col-sm-12" style="padding: 20px 20px 0px 0px">
+                                    <button type="submit" id="save" class="btn btn-success">
+                                        <i class="fa fa-check"></i>
+                                        Save
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/. container-fluid -->
+    </section>
+    <!-- /.content -->
 </div>
+<!-- /.content-wrapper -->

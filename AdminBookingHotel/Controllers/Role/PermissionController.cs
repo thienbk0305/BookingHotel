@@ -2,16 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AdminBookingHotel.Models.UserAndRoleViewModels;
 using Common;
+using DataAccess.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using NToastNotify;
+using static DataAccess.Models.Permissions;
 
 namespace AdminBookingHotel.Controllers.Role
 {
-    [Authorize(Roles = "Admin")]
     public class PermissionController : Controller
     {
         private readonly RoleManager<IdentityRole> _roleManager;
@@ -22,43 +23,77 @@ namespace AdminBookingHotel.Controllers.Role
             _roleManager = roleManager;
             _toastNotification = toastNotification;
         }
-        public async Task<ActionResult> Index(string roleId)
+        public ActionResult Index(string roleId)
         {
-            var model = new Permissions.PermissionViewModel();
-            var allPermissions = new List<DataAccess.Models.RoleClaimsViewModel>();
-            allPermissions.GetPermissions(typeof(Permissions.User), roleId);
+            var listResult = new PermissionResult();
+            var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
+            var base_url = "Identity/Role/GetPermission/" + roleId + ""; //API Controller
+            var dataJson = JsonConvert.SerializeObject(listResult);
+            var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
+            var result = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Get, url_api, base_url, dataJson, token);
 
-            var role = await _roleManager.FindByIdAsync(roleId);
-            model.RoleId = roleId;
-            var claims = await _roleManager.GetClaimsAsync(role);
-            var allClaimValues = allPermissions.Select(a => a.Value).ToList();
-            var roleClaimValues = claims.Select(a => a.Value).ToList();
-            var authorizedClaims = allClaimValues.Intersect(roleClaimValues).ToList();
-            foreach (var permission in allPermissions)
+            if (string.IsNullOrEmpty(result))
             {
-                if (authorizedClaims.Any(a => a == permission.Value))
-                {
-                    permission.Selected = true;
-                }
+                _toastNotification.AddSuccessToastMessage("Bạn không có quyền xem danh sách Role");
+                return RedirectToAction("Index");
             }
-            model.RoleClaims = allPermissions;
-            return View(model);
+
+            listResult = JsonConvert.DeserializeObject<PermissionResult>(result);
+            return View(listResult!.Data);
+
         }
-        public async Task<IActionResult> Update(Permissions.PermissionViewModel model)
+
+        //public async Task<ActionResult> Index(string roleId)
+        //{
+        //    var model = new Permissions.PermissionResponse();
+        //    var allPermissions = new List<RoleClaim>();
+        //    allPermissions.GetPermissions(typeof(Permissions.User), roleId);
+
+        //    var role = await _roleManager.FindByIdAsync(roleId);
+        //    model.RoleId = roleId;
+        //    var claims = await _roleManager.GetClaimsAsync(role);
+        //    var allClaimValues = allPermissions.Select(a => a.Value).ToList();
+        //    var roleClaimValues = claims.Select(a => a.Value).ToList();
+        //    var authorizedClaims = allClaimValues.Intersect(roleClaimValues).ToList();
+        //    foreach (var permission in allPermissions)
+        //    {
+        //        if (authorizedClaims.Any(a => a == permission.Value))
+        //        {
+        //            permission.Selected = true;
+        //        }
+        //    }
+        //    model.RoleClaims = allPermissions;
+        //    return View(model);
+        //}
+        [HttpPost]
+        public IActionResult Update(PermissionResponse model)
         {
-            var role = await _roleManager.FindByIdAsync(model.RoleId);
-            var claims = await _roleManager.GetClaimsAsync(role);
-            foreach (var claim in claims)
+            try
             {
-                await _roleManager.RemoveClaimAsync(role, claim);
+                var listResult = new PermissionResult();
+                var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
+                var base_url = "Identity/Role/UpdatePermission"; //API Controller
+                var dataJson = JsonConvert.SerializeObject(model);
+                var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
+                var result = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Post, url_api, base_url, dataJson, token);
+
+                if (string.IsNullOrEmpty(result))
+                {
+                    _toastNotification.AddSuccessToastMessage("Bạn không có quyền");
+                    return RedirectToAction("Index", "Role");
+                }
+
+                //listResult = JsonConvert.DeserializeObject<PermissionResult>(result);
+
+                _toastNotification.AddSuccessToastMessage("Cập Nhật Thành Công");
+
+                return RedirectToAction("Index", new { roleId = model.RoleId });
             }
-            var selectedClaims = model.RoleClaims!.Where(a => a.Selected).ToList();
-            foreach (var claim in selectedClaims)
+            catch (Exception)
             {
-                await _roleManager.AddPermissionClaim(role, claim.Value!);
+
+                throw;
             }
-            _toastNotification.AddSuccessToastMessage("Cập nhập Permission thành công!");
-            return RedirectToAction("Index", new { roleId = model.RoleId });
         }
     }
 }

@@ -14,16 +14,19 @@
     <link rel="stylesheet" href="~/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="~/admin/dist/css/adminlte.min.css">
+
 </head>
 <body class="hold-transition login-page">
     @RenderBody()
-
-    <!-- /.login-box -->
-    <!-- jQuery -->
-    <script src="~/admin/plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="~/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="~/admin/dist/js/adminlte.min.js"></script>
 </body>
+<!-- /.login-box -->
+<!-- jQuery -->
+<script src="~/admin/plugins/jquery/jquery.min.js"></script>
+@* <script src="~/admin/dist/js/libs/jquery-3.1.1.min.js"></script> *@
+<!-- Bootstrap 4 -->
+<script src="~/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="~/admin/dist/js/adminlte.js"></script>
+@RenderSection("scripts", false)
+@await Component.InvokeAsync("NToastNotify")
 </html>

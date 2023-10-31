@@ -1,9 +1,9 @@
-@model AdminBookingHotel.Models.UserAndRoleViewModels.RoleViewModel
-<form asp-action="Detail" method="post" role="form">
+@model DataAccess.Models.RoleResponse
+<form asp-action="InsertUpdateRole" method="post" role="form">
 <div class="modal-dialog modal-md">
     <div class="modal-content">
         <div class="modal-header bg-purple">
-            <h5 class="modal-title text-white" id="myModalLabel">@Model.RoleName</h5>
+            <h5 class="modal-title text-white" id="myModalLabel">@Model.Name</h5>
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         </div>
         <div class="modal-body">
@@ -18,14 +18,14 @@
                                 <span asp-validation-for="Id" class="text-warning"></span>
                             </div>                      
                             <div class="form-group">
-                                <label class="control-label mb-2" asp-for="RoleName">Role</label>
-                                <input class="form-control filled-input" type="text" value="@Model.RoleName" asp-for="RoleName" class="form-control" required>
-                                <span asp-validation-for="RoleName" class="text-warning"></span>
+                                <label class="control-label mb-2" asp-for="Name">Role</label>
+                                <input class="form-control filled-input" type="text" value="@Model.Name" asp-for="Name" class="form-control" required>
+                                <span asp-validation-for="Name" class="text-warning"></span>
                             </div>
                             <div class="form-group">
-                                <label class="control-label mb-2" asp-for="RoleNomalizedName">Tên Role</label>
-                                <input class="form-control filled-input" type="text" value="@Model.RoleNomalizedName" asp-for="RoleNomalizedName" class="form-control" required>
-                                <span asp-validation-for="RoleNomalizedName" class="text-warning"></span>
+                                <label class="control-label mb-2" asp-for="NormalizedName">Tên Role</label>
+                                <input class="form-control filled-input" type="text" value="@Model.NormalizedName" asp-for="NormalizedName" class="form-control" required>
+                                <span asp-validation-for="NormalizedName" class="text-warning"></span>
                             </div>
                         </div>
                     </div>

@@ -1,9 +1,11 @@
-﻿using AdminBookingHotel.Models.UserAndRoleViewModels;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using NToastNotify;
+using Newtonsoft.Json;
+using DataAccess.Models;
+using System.Collections.Generic;
 
 namespace AdminBookingHotel.Controllers.Role
 {
@@ -18,115 +20,87 @@ namespace AdminBookingHotel.Controllers.Role
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            List<RoleViewModel> model = new List<RoleViewModel>();
-            model = await _roleManager.Roles.Select(r => new RoleViewModel
+            var listResult = new RoleResult();
+            var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
+            var base_url = "Identity/Role/Roles"; //API Controller
+            var dataJson = JsonConvert.SerializeObject(listResult);
+            var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
+            var result = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Get, url_api, base_url, dataJson, token);
+
+            if (string.IsNullOrEmpty(result))
             {
-                Id = r.Id,
-                RoleName = r.Name,
-                RoleNomalizedName = r.NormalizedName
-            }).ToListAsync();
-            return View(model);
+                _toastNotification.AddSuccessToastMessage("Bạn không có quyền");
+                return RedirectToAction("Index");
+            }
+
+            listResult = JsonConvert.DeserializeObject<RoleResult>(result);
+            return View(listResult);
         }
-        
+
         [HttpGet]
         public IActionResult AddNewRole()
         {
             return PartialView("_AddNewRole");
         }
-        
-        [HttpPost]
-        public async Task<IActionResult> AddNewRole(RoleViewModel model)
-        {
 
-                IdentityRole role;
-                role = await _roleManager.FindByIdAsync(model.RoleName);
-                if (role == null)
-                {
-                    role = new IdentityRole();
-                    role.Id = Guid.NewGuid().ToString();
-                    role.Name = model.RoleName;
-                    role.NormalizedName = model.RoleNomalizedName;
-                    IdentityResult roleResult = await _roleManager.CreateAsync(role);
-                    if (roleResult.Succeeded)
-                    {
-                        _toastNotification.AddSuccessToastMessage("Thêm mới Role thành công!");
-                        return RedirectToAction("Index");
-                    }
-                    else
-                    {
-                        _toastNotification.AddErrorToastMessage("Có lỗi xảy ra! Vui lòng kiểm tra lại hoặc liên hệ IT");
-                        return RedirectToAction("Index");
-                    }
-                }
-
-            return RedirectToAction("Index");
-        }
-        
         [HttpGet]
-        public async Task<IActionResult> Detail(string id)
+        public IActionResult Detail(string id)
         {
-            RoleViewModel model = new RoleViewModel();
-            if (!string.IsNullOrEmpty(id))
+            var listResult = new RoleResultById();
+            var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
+            var base_url = "Identity/Role/GetRole/"+id+""; //API Controller
+            var dataJson = JsonConvert.SerializeObject(id);
+            var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
+            var result = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Get, url_api, base_url, dataJson, token);
+
+            if (string.IsNullOrEmpty(result))
             {
-                IdentityRole role = await _roleManager.FindByIdAsync(id);
-                if (role != null)
+                _toastNotification.AddSuccessToastMessage("Bạn không có quyền");
+                return RedirectToAction("Index", "Role");
+            }
+
+            listResult = JsonConvert.DeserializeObject<RoleResultById>(result);
+            return PartialView("_Detail", listResult!.Data);
+
+        }
+
+        [HttpPost]
+        public IActionResult InsertUpdateRole(RoleResponse model)
+        {
+            try
+            {
+                var listResult = new RoleResult();
+                var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
+                var base_url = "Identity/Role/Save"; //API Controller
+                var dataJson = JsonConvert.SerializeObject(model);
+                var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
+                var result = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Post, url_api, base_url, dataJson, token);
+
+                if (string.IsNullOrEmpty(result))
                 {
-                    model.Id = role.Id;
-                    model.RoleName = role.Name;
-                    model.RoleNomalizedName = role.NormalizedName;
-                }
-                else
-                {
-                    _toastNotification.AddErrorToastMessage("Có lỗi xảy ra! Vui lòng kiểm tra lại hoặc liên hệ IT");
+                    _toastNotification.AddSuccessToastMessage("Bạn không có quyền");
                     return RedirectToAction("Index", "Role");
                 }
 
-            }
-            else
-            {
-                _toastNotification.AddErrorToastMessage("Có lỗi xảy ra! Vui lòng kiểm tra lại hoặc liên hệ IT");
-                return RedirectToAction("Index", "Role");
-            }
-            return PartialView("_Detail", model);
-        }
-        
-        [HttpPost]
-        public async Task<IActionResult> Detail(string id, RoleViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                IdentityRole role;
-                role = await _roleManager.FindByIdAsync(id);
-                if (role != null)
+                listResult = JsonConvert.DeserializeObject<RoleResult>(result);
+
+                if (listResult!.Messages![0] == "Role này đã tồn tại")
                 {
-                    try
-                    {
-                        role.Id = model.Id;
-                        role.Name = model.RoleName;
-                        model.RoleNomalizedName = role.NormalizedName;
-                        IdentityResult roleResult = await _roleManager.UpdateAsync(role);
-                        if (roleResult.Succeeded)
-                        {
-                            _toastNotification.AddSuccessToastMessage("Cật nhật thông tin Role thành công!");
-                            return RedirectToAction("Index");
-                        }
-                        else
-                        {
-                            _toastNotification.AddErrorToastMessage("Có lỗi xảy ra! Vui lòng kiểm tra lại hoặc liên hệ IT");
-                            return RedirectToAction("Index");
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        throw ;
-                    }
-
+                    _toastNotification.AddErrorToastMessage("Role này đã tồn tại! Vui lòng kiểm tra lại");
+                    return RedirectToAction("Index", "Role");
                 }
-            }
+                _toastNotification.AddSuccessToastMessage(listResult!.Messages!.FirstOrDefault());
+                return RedirectToAction("Index", "Role");
 
-            return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
+
     }
 }

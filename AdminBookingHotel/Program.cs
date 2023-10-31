@@ -5,8 +5,11 @@ using Microsoft.EntityFrameworkCore;
 using NToastNotify;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using CC247.Permission;
+using DataAccess.Permission;
 using Microsoft.AspNetCore.Authorization;
+using DataAccess.UnitOfWork;
+using DataAccess.IRepositories;
+using DataAccess.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,14 +30,10 @@ builder.Services.AddMvc().AddNToastNotifyToastr(new ToastrOptions()
     optiton.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
 });
 
-
-
 builder.Services.AddIdentity<User, IdentityRole>().
     AddEntityFrameworkStores<BookingHotelDbContext>().AddDefaultTokenProviders();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
-//builder.Services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
-//builder.Services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
+builder.Services.AddScoped(typeof(IUtilitiesRepository<>), typeof(UtilitiesRepository<>));
 
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>

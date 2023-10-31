@@ -11,19 +11,15 @@ namespace DataAccess.UnitOfWork
 {
     public class BookingHotelUnitOfWork : IBookingHotelUnitOfWork
     {
-        public IGenericRepository<User> UserRepository { get; }
-        public IGenericRepository<Customer> CustomerRepository { get; }
-        public IAccountRepository AccountRepository { get; }
+
+        public IIdentityRepository Identity { get; }
 
         private BookingHotelDbContext _dbContext;
 
-        public BookingHotelUnitOfWork (BookingHotelDbContext dbContext,IAccountRepository accountRepository,
-            IGenericRepository<User> users,IGenericRepository<Customer> customers)
+        public BookingHotelUnitOfWork (BookingHotelDbContext dbContext, IIdentityRepository identity)
         {
             _dbContext = dbContext;
-            AccountRepository = accountRepository;
-            UserRepository = users;
-            CustomerRepository = customers;
+            Identity = identity;
         }
         public int Save()
         {
@@ -38,7 +34,6 @@ namespace DataAccess.UnitOfWork
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)

@@ -2,7 +2,7 @@
     ViewData["Title"] = "Login";
     Layout = "~/Views/Shared/_LoginUserLayout.cshtml";
 }
-@model DataAccess.Models.LoginModel
+@model DataAccess.Models.RegisterModel
 @section css {
  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Sans">
 <style>
@@ -275,30 +275,30 @@ html,body {
 }
 
 <div class="form-structor">
-	<form asp-controller="cusAccount" asp-action="Login" method="post">
-		
+	<form>
 		<div class="signup">
-			<h2 class="form-title" id="signup"><span>Hoặc </span>Đăng Ký</h2>
+			<h2 class="form-title" id="signup">Đăng Ký</h2>
 			<div class="form-holder">
-				<input type="email" class="input" placeholder="Email" asp-for="Email"/>
-				<input type="password" class="input" placeholder="Password" asp-for="Password"/>
+				<input type="text" class="input" placeholder="FullName" id="txtFullName" />
+				<input type="email" class="input" placeholder="Email" id="txtEmail" />
+				<input type="password" class="input" placeholder="Password" id="txtPassWord" />
 			</div>
-			<button class="submit-btn">Đăng Ký</button>
+			<button type="button" id="btnRegister" class="submit-btn">Đăng Ký</button>
 		</div>
 		<div class="login slide-up">
 			<div class="center">
-				<h2 class="form-title" id="login"><span>Hoặc </span>Đăng Nhập</h2>
+				<h2 class="form-title" id="login">Đăng Nhập</h2>
 				<div class="form-holder">
-					<input type="email" class="input" placeholder="Email" asp-for="Email"/>
-					<input type="password" class="input" placeholder="Password" asp-for="Password"/>
+					<input type="email" class="input" placeholder="Email" id="txtEmail" />
+					<input type="password" class="input" placeholder="Password" id="txtPassWord" />
 				</div>
-				<button type="submit" class="submit-btn">Đăng Nhập</button>
+				<button type="button" id="btnLogin" class="submit-btn">Đăng Nhập</button>
 			</div>
 		</div>
 	</form>
 </div>
 <script>
-        console.clear();
+        // console.clear();
 
 		const loginBtn = document.getElementById('login');
 		const signupBtn = document.getElementById('signup');
@@ -327,82 +327,83 @@ html,body {
 			});
 		});
 </script>
-@* 
-<div class="login-box">
-    <div class="login-logo">
-        <a href="#">Booking Hotel</a>
-    </div>
-    <!-- /.login-logo -->
-    <div class="card">
-        <div class="card-body login-card-body">
-            <p class="login-box-msg">ĐĂNG NHẬP THÀNH VIÊN</p>
-            <form asp-controller="cusAccount" asp-action="Login" method="post">
-                <div class="input-group mb-3">
-                    <input type="email" class="form-control" placeholder="Email" asp-for="Email">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Mật khẩu" asp-for="Password">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="icheck-primary mb-3 col-12">
-                    <div class="row">
-                        <div class="icheck-primary">
-                            <input type="checkbox" id="remember">
-                            <label for="remember">
-                                Ghi nhớ đăng nhập
-                            </label>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="row mb-3 ">
-                    <div class="col-6">
-                        <button style="background-color:#1565c0" type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
-                    </div>
-                    <div class="col-6">
-                        <button style="background-color:#ef3a25" type="submit" class="btn btn-primary btn-block">Đăng ký</button>
-                    </div>
-                </div>
-                <!-- /.col -->
-                <!-- /.col -->
+@section scripts{
+	<script>
+		$(document).ready(function () {
+			$("#btnLogin").click(function () {
+				Login();
+			});
+			$("#btnRegister").click(function () {
+				Register();
+			});
+			//Login
+			function Login() {
+				var email = $("#txtEmail").val();
+				var password = $("#txtPassWord").val();
+				var param = {
+					Email: email,
+					Password: password
+				};
+				$.ajax({
+					type: 'POST',
+					url: "/cusAccount/Authen",
+					data: param,
+					dataType: "json",
+					success: function (data) {
+						var token = data.token;
+						if (token != null && token != "") {
+							var expiration = data.expiration;
+							setCookie("TOKEN_SERVER", token, expiration);
+							window.location.href = "/Home"
+						} else {
+							alert("Đăng nhập thất bại");
+						}
 
-            </form>
-
-            <div class="social-auth-links text-center mb-3">
-                <hr class="hr-text gradient" data-content="HOẶC">
-                <div class="mb-2">
-                    <a href="#" class="btn btn-block btn-primary" style="background-color:#4267B2">
-                        <i class="fab fa-facebook mr-2"></i> Đăng nhập bằng Facebook
-                    </a>
-                </div>
-                <div class="mb-1">
-                    <a href="#" class="btn btn-block btn-danger" style="background-color:#db4a39">
-                        <i class="fab fa-google-plus mr-2"></i> Đăng nhập bằng Google+
-                    </a>
-                </div>
-
-            </div>
-            <!-- /.social-auth-links -->
-            <div class="row col-12">
-                <a href="#">Quên mất khẩu</a>
-
-
-                <!-- /.col -->
-                <!-- /.col -->
-            </div>
-
-
-        </div>
-
-        <!-- /.login-card-body -->
-    </div>
-</div> *@
+					},
+					error: function (data) {
+						console.log("error:" + JSON.stringify(data));
+					}
+				});
+			}
+			//Register
+			function Register() {
+				var rolename = "Customer"
+				var fullname = $("#txtFullName").val();
+				var email = $("#txtEmail").val();
+				var password = $("#txtPassWord").val();
+				var param = {
+					RoleName: rolename,
+					FullName: fullname,
+					Email: email,
+					Password: password
+				};
+				$.ajax({
+					type: 'POST',
+					url: "/cusAccount/Register",
+					data: param,
+					dataType: "json",
+					success: function (data) {
+						var ResponseCode = data.ResponseCode;
+						if (ResponseCode == "1") {
+							alert("Đăng ký thành công");
+						} else {
+							alert("Đăng ký thất bại");
+						}
+						window.location.href = "/cusAccount/Login"
+					},
+					error: function (data) {
+						console.log("error:" + JSON.stringify(data));
+					}
+				});
+			}
+			//Set Cookie
+			function setCookie(cname, cvalue, exdays) {
+				const d = new Date();
+				d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+				let expires = "expires=" + d.toUTCString();
+				document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+			}
+		});
+	</script>
+}

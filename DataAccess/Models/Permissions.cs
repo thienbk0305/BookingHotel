@@ -2,9 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DataAccess.Models;
 
-namespace AdminBookingHotel.Models.UserAndRoleViewModels
+namespace DataAccess.Models
 {
     public class Permissions
     {
@@ -25,10 +24,23 @@ namespace AdminBookingHotel.Models.UserAndRoleViewModels
             public const string Edit = "Permissions.User.Edit";
             public const string Delete = "Permissions.User.Delete";
         }
-        public class PermissionViewModel
+        public class RoleClaim
+        {
+            public string? Type { get; set; }
+            public string? Value { get; set; }
+            public bool Selected { get; set; }
+        }
+        public class PermissionResponse
         {
             public string? RoleId { get; set; }
-            public IList<RoleClaimsViewModel>? RoleClaims { get; set; }
+            public string? RoleName { get; set; }
+            public List<RoleClaim>? RoleClaims { get; set; }
+        }
+        public class PermissionResult
+        {
+            public PermissionResponse? Data { get; set; }
+            public List<object>? Messages { get; set; }
+            public bool Succeeded { get; set; }
         }
     }
 }

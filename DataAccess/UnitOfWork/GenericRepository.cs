@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using DataAccess.DBContext;
 using DataAccess.Entities;
+using DataAccess.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.UnitOfWork
@@ -135,15 +138,15 @@ namespace DataAccess.UnitOfWork
         public async Task<IEnumerable<T>> FromSqlQueryAsync(string sql, bool allowTracking = true)
         {
             IEnumerable<T> data;
-
-            if (allowTracking)
-            {
-                data = await _db.Set<T>().FromSqlRaw(sql).ToListAsync();
-            }
-            else
-            {
-                data = await _db.Set<T>().FromSqlRaw(sql).ToListAsync();
-            }
+            data = await _db.Set<T>().FromSqlRaw(sql).ToListAsync();
+            //if (allowTracking)
+            //{
+            //    data = await _db.Set<T>().FromSqlRaw(sql).ToListAsync();
+            //}
+            //else
+            //{
+            //    data = await _db.Set<T>().AsNoTracking().FromSql(sql).ToListAsync();
+            //}
             return data;
         }
     }

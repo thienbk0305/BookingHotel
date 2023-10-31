@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(BookingHotelDbContext))]
-    [Migration("20231020074035_BookingHotel")]
+    [Migration("20231024062455_BookingHotel")]
     partial class BookingHotel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -100,12 +100,6 @@ namespace DataAccess.Migrations
                     b.Property<string>("CusAddress")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CusAddress1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CusCard")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("CusCode")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -119,10 +113,7 @@ namespace DataAccess.Migrations
                     b.Property<string>("CusEmail")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CusName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CusPassword")
+                    b.Property<string>("CusFullName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CusPhone")
@@ -755,36 +746,31 @@ namespace DataAccess.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool?>("DelUser")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
+                    b.Property<string>("AvataImage")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FirstName")
-                        .IsRequired()
+                    b.Property<string>("FullName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte>("Gender")
+                        .HasColumnType("tinyint");
 
                     b.Property<int?>("ImageImgId")
                         .HasColumnType("int");
 
-                    b.Property<string>("ImgCode")
-                        .IsRequired()
+                    b.Property<DateTime>("LastPasswordChanged")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NationID")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("ReadUser")
+                    b.Property<bool>("PasswordChanged")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("WriteUser")
-                        .HasColumnType("bit");
+                    b.Property<DateTime>("PasswordExpirationDate")
+                        .HasColumnType("datetime2");
 
                     b.HasIndex("ImageImgId");
 

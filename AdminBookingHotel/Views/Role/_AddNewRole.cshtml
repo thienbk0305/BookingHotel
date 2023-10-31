@@ -1,6 +1,6 @@
-@model AdminBookingHotel.Models.UserAndRoleViewModels.RoleViewModel
+@model DataAccess.Models.RoleResponse
 
-<form asp-action="AddNewRole" role="form">
+<form asp-action="InsertUpdateRole" method="post" role="form">
 <div class="modal-dialog modal-md">
     <div class="modal-content">
         <div class="modal-header">
@@ -13,17 +13,17 @@
                     <div class="col-lg-12">
                         <div class="form-body">                         
                             <div class="form-group">
-                                <label class="control-label mb-2" asp-for="RoleName">Role</label>
+                                <label class="control-label mb-2" asp-for="Name">Role</label>
                                 <div class="input-group">
-                                    <input type="text" asp-for="RoleName" class="form-control">
-                                    <span asp-validation-for="RoleName" class="text-warning"></span>
+                                    <input type="text" asp-for="Name" class="form-control">
+                                    <span asp-validation-for="Name" class="text-warning"></span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label mb-2" asp-for="RoleNomalizedName">Tên Role</label>
+                                <label class="control-label mb-2" asp-for="NormalizedName">Tên Role</label>
                                 <div class="input-group">
-                                    <input type="text" asp-for="RoleNomalizedName" class="form-control">
-                                    <span asp-validation-for="RoleNomalizedName" class="text-warning"></span>
+                                    <input type="text" asp-for="NormalizedName" class="form-control">
+                                    <span asp-validation-for="NormalizedName" class="text-warning"></span>
                                 </div>
                             </div>
                         </div>
