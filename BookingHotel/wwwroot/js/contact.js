@@ -1,85 +1,85 @@
-$(document).ready(function(){
++ACQ-(document).ready(function()+AHs-
     
-    (function($) {
-        "use strict";
+    (function(+ACQ-) +AHs-
+        +ACI-use strict+ACIAOw-
 
     
-    jQuery.validator.addMethod('answercheck', function (value, element) {
-        return this.optional(element) || /^\bcat\b$/.test(value)
-    }, "type the correct answer -_-");
+    jQuery.validator.addMethod('answercheck', function (value, element) +AHs-
+        return this.optional(element) +AHwAfA- /+AF4AXA-bcat+AFw-b+ACQ-/.test(value)
+    +AH0-, +ACI-type the correct answer -+AF8--+ACI-)+ADs-
 
     // validate contactForm form
-    $(function() {
-        $('#contactForm').validate({
-            rules: {
-                name: {
+    +ACQ-(function() +AHs-
+        +ACQ-('+ACM-contactForm').validate(+AHs-
+            rules: +AHs-
+                name: +AHs-
                     required: true,
                     minlength: 2
-                },
-                subject: {
+                +AH0-,
+                phone: +AHs-
                     required: true,
-                    minlength: 4
-                },
-                number: {
-                    required: true,
-                    minlength: 5
-                },
-                email: {
+                    minlength: 11
+                +AH0-,
+                //number: +AHs-
+                //    required: true,
+                //    minlength: 5
+                //+AH0-,
+                email: +AHs-
                     required: true,
                     email: true
-                },
-                message: {
+                +AH0-,
+                message: +AHs-
                     required: true,
-                    minlength: 20
-                }
-            },
-            messages: {
-                name: {
-                    required: "come on, you have a name, don't you?",
-                    minlength: "your name must consist of at least 2 characters"
-                },
-                subject: {
-                    required: "come on, you have a subject, don't you?",
-                    minlength: "your subject must consist of at least 4 characters"
-                },
-                number: {
-                    required: "come on, you have a number, don't you?",
-                    minlength: "your Number must consist of at least 5 characters"
-                },
-                email: {
-                    required: "no email, no message"
-                },
-                message: {
-                    required: "um...yea, you have to write something to send this form.",
-                    minlength: "thats all? really?"
-                }
-            },
-            submitHandler: function(form) {
-                $(form).ajaxSubmit({
-                    type:"POST",
-                    data: $(form).serialize(),
-                    url:"contact_process.php",
-                    success: function() {
-                        $('#contactForm :input').attr('disabled', 'disabled');
-                        $('#contactForm').fadeTo( "slow", 1, function() {
-                            $(this).find(':input').attr('disabled', 'disabled');
-                            $(this).find('label').css('cursor','default');
-                            $('#success').fadeIn()
-                            $('.modal').modal('hide');
-		                	$('#success').modal('show');
-                        })
-                    },
-                    error: function() {
-                        $('#contactForm').fadeTo( "slow", 1, function() {
-                            $('#error').fadeIn()
-                            $('.modal').modal('hide');
-		                	$('#error').modal('show');
-                        })
-                    }
-                })
-            }
-        })
-    })
+                    minlength: 5000
+                +AH0-
+            +AH0-,
+            messages: +AHs-
+                name: +AHs-
+                    required: +ACI-Vui l+API-ng nh+Hq0-p t+AOo-n+ACI-,
+                    minlength: +ACI-T+AOo-n ch+Huk-a +AO0-t nh+HqU-t 2 k+AP0- t+HvEAIg-
+                +AH0-,
+                phone: +AHs-
+                    required: +ACI-Vui l+API-ng nh+Hq0-p s+HtE- +ARE-i+Hsc-n tho+HqE-i+ACI-,
+                    minlength: +ACIAIg-
+                +AH0-,
+                //number: +AHs-
+                //    required: +ACI-come on, you have a number, don't you?+ACI-,
+                //    minlength: +ACI-your Number must consist of at least 5 characters+ACI-
+                //+AH0-,
+                email: +AHs-
+                    required: +ACI-Vui l+API-ng nh+Hq0-p email+ACI-
+                +AH0-,
+                message: +AHs-
+                    required: +ACI-Chia s+Hrs- +AP0- ki+Hr8-n v+AOA-o +APQ- tr+HtE-ng n+AOA-y+ACI-,
+                    minlength: +ACI-chia s+Hrs- th+AOo-m +ARE-i +AF4AXgAi-
+                +AH0-
+            +AH0-,
+            submitHandler: function(form) +AHs-
+                +ACQ-(form).ajaxSubmit(+AHs-
+                    type:+ACI-POST+ACI-,
+                    data: +ACQ-(form).serialize(),
+                    url:+ACI-contact+AF8-process.php+ACI-,
+                    success: function() +AHs-
+                        +ACQ-('+ACM-contactForm :input').attr('disabled', 'disabled')+ADs-
+                        +ACQ-('+ACM-contactForm').fadeTo( +ACI-slow+ACI-, 1, function() +AHs-
+                            +ACQ-(this).find(':input').attr('disabled', 'disabled')+ADs-
+                            +ACQ-(this).find('label').css('cursor','default')+ADs-
+                            +ACQ-('+ACM-success').fadeIn()
+                            +ACQ-('.modal').modal('hide')+ADs-
+		                	+ACQ-('+ACM-success').modal('show')+ADs-
+                        +AH0-)
+                    +AH0-,
+                    error: function() +AHs-
+                        +ACQ-('+ACM-contactForm').fadeTo( +ACI-slow+ACI-, 1, function() +AHs-
+                            +ACQ-('+ACM-error').fadeIn()
+                            +ACQ-('.modal').modal('hide')+ADs-
+		                	+ACQ-('+ACM-error').modal('show')+ADs-
+                        +AH0-)
+                    +AH0-
+                +AH0-)
+            +AH0-
+        +AH0-)
+    +AH0-)
         
- })(jQuery)
-})
+ +AH0-)(jQuery)
++AH0-)

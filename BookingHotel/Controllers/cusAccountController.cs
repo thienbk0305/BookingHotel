@@ -65,8 +65,6 @@ namespace BookingHotel.Controllers
 					tokenInfor.ResponseCode = "1";
 					tokenInfor.Description = "Đăng nhập thành công";
 					tokenInfor.Extention = model.Email;
-					//_contextAccessor.HttpContext!.Session.SetString("TOKEN_SERVER", model.Email);
-
 				}
 				else
 				{

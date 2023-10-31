@@ -5,9 +5,7 @@ using System.Reflection;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using RestSharp;
-using Microsoft.AspNetCore.Mvc;
 
 
 namespace Common
@@ -56,21 +54,6 @@ namespace Common
             {
 
                 return ex.Message;
-            }
-        }
-        public static string GetApiToken(object listResult,Method method,string base_url, string token)
-        {
-            try
-            {
-                var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
-                var dataJson = JsonConvert.SerializeObject(listResult);
-                var result = WebPost_WithToken(method, url_api, base_url, dataJson, token);
-                return result;
-            }
-            catch (Exception)
-            {
-
-                throw;
             }
         }
     

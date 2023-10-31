@@ -1,0 +1,485 @@
+﻿﻿@{
+    ViewData["Title"] = "Tin tức";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--================Banner Area =================-->
+<section class="banner_area blog_banner d_flex align-items-center">
+    <div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
+    <div class="container">
+        <div class="banner_content text-center">
+            <h4>Tin tức<br />khách sạn nổi bật</h4>
+            <p>Hãy để Booking Hotel 247 giúp bạn tận hưởng kì nghỉ tuyệt vời của bạn</p>
+            <a href="#" class="btn white_btn button_hover">Xem thêm</a>
+        </div>
+    </div>
+</section>
+<!--================Banner Area =================-->
+
+<section class="banner_area">
+    <div class="hotel_booking_area position">
+        <div class="container">
+            <div class="hotel_booking_table">
+                <div class="col-md-3">
+                    <h2>ĐẶT PHÒNG<br> CỦA BẠN</h2>
+                </div>
+                <div class="col-md-9">
+                    <div class="boking_table">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="book_tabel_item">
+                                    <div class="form-group">
+                                        <div class='input-group date' id='datetimepicker11'>
+                                            <input type='text' class="form-control" placeholder="Ngày nhận phòng" />
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class='input-group date' id='datetimepicker1'>
+                                            <input type='text' class="form-control" placeholder="Ngày trả phòng" />
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="book_tabel_item">
+                                    <div class="input-group">
+                                        <select class="wide">
+                                            <option data-display="Người lớn">Người lớn</option>
+                                            <option value="1">Người già</option>
+                                            <option value="2">Người trẻ</option>
+                                            <option value="3">Người tàn tật</option>
+                                        </select>
+                                    </div>
+                                    <div class="input-group">
+                                        <select class="wide">
+                                            <option data-display="Trẻ em">Trẻ em</option>
+                                            <option value="1">Trẻ em</option>
+                                            <option value="2">Em bé</option>
+                                            <option value="3">Trẻ sơ sinh</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="book_tabel_item">
+                                    <div class="input-group">
+                                        <select class="wide">
+                                            <option data-display="Số phòng">Danh sách</option>
+                                            <option value="1">Phòng 01</option>
+                                            <option value="2">Phòng 02</option>
+                                            <option value="3">Phòng 03</option>
+                                        </select>
+                                    </div>
+                                    <a class="book_now_btn button_hover" href="#">Đặt ngay</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================Blog Categories Area =================-->
+@* <section class="blog_categorie_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="categories_post">
+                    <img src="image/blog/cat-post/cat-post-3.jpg" alt="post">
+                    <div class="categories_details">
+                        <div class="categories_text">
+                            <a href="blog-details.html"><h5>Social Life</h5></a>
+                            <div class="border_line"></div>
+                            <p>Enjoy your social life together</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="categories_post">
+                    <img src="image/blog/cat-post/cat-post-2.jpg" alt="post">
+                    <div class="categories_details">
+                        <div class="categories_text">
+                            <a href="blog-details.html"><h5>Politics</h5></a>
+                            <div class="border_line"></div>
+                            <p>Be a part of politics</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="categories_post">
+                    <img src="image/blog/cat-post/cat-post-1.jpg" alt="post">
+                    <div class="categories_details">
+                        <div class="categories_text">
+                            <a href="blog-details.html"><h5>Food</h5></a>
+                            <div class="border_line"></div>
+                            <p>Let the food be finished</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> *@
+<!--================Blog Categories Area =================-->
+<!--================Blog Area =================-->
+<section class="blog_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="blog_left_sidebar">
+                    <article class="row blog_item">
+                        <div class="col-md-3">
+                            <div class="blog_info text-right">
+                                <div class="post_tag">
+                                    <a href="#">Du lịch,</a>
+                                    <a href="#">Dịch vụ,</a>
+                                    <a href="#">Vũng Tàu,</a>
+                                    <a href="#">Giá rẻ</a>
+                                </div>
+                                <ul class="blog_meta list_style">
+                                    <li><a href="#">Mark wiens<i class="lnr lnr-user"></i></a></li>
+                                    <li><a href="#">12 Dec, 2017<i class="lnr lnr-calendar-full"></i></a></li>
+                                    <li><a href="#">1.2M Views<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">06 Comments<i class="lnr lnr-bubble"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="blog_post">
+                                <img src="~/image/blog/main-blog/m-blog-1.jpg" alt="">
+                                <div class="blog_details">
+                                    <a asp-controller="news" asp-action="detail"><h2>Lạc vào chốn bình yên tại 14 khách sạn đẳng cấp nhất Vũng Tàu</h2></a>
+                                    <p>Thành phố biển Vũng Tàu luôn là lựa chọn tuyệt vời cho những du khách muốn tìm kiếm sự thư giãn và bình yên. Đến đây, bạn có thể tạm quên đi cuộc sống ồn ào và được sống vào một ...</p>
+                                    <a asp-controller="news" asp-action="detail" class="view_btn button_hover">Xem chi tiết</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="row blog_item">
+                        <div class="col-md-3">
+                            <div class="blog_info text-right">
+                                <div class="post_tag">
+                                    <a href="#">Du lịch,</a>
+                                    <a href="#">Đà Lạt,</a>
+                                    <a href="#">Giá rẻ,</a>
+                                    <a href="#">Dịch vụ</a>
+                                </div>
+                                <ul class="blog_meta list_style">
+                                    <li><a href="#">Mark wiens<i class="lnr lnr-user"></i></a></li>
+                                    <li><a href="#">12 Dec, 2017<i class="lnr lnr-calendar-full"></i></a></li>
+                                    <li><a href="#">1.2M Views<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">06 Comments<i class="lnr lnr-bubble"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="blog_post">
+                                <img src="~/image/blog/main-blog/m-blog-2.jpg" alt="">
+                                <div class="blog_details">
+                                    <a asp-controller="news" asp-action="detail"><h2>Nghỉ dưỡng đẳng cấp với top 12 resort view đồi thông tại Đà Lạt</h2></a>
+                                    <p>Thành phố ngàn hoa luôn là điểm du lịch không thể bỏ lỡ của nhiều du khách trong và ngoài nước. Đà Thành nằm giữa cảnh đẹp của sương mù và rừng thông bạt ngàn đã tạo nên một vẻ đẹp ...</p>
+                                    <a asp-controller="news" asp-action="detail" class="view_btn button_hover">Xem chi tiết</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="row blog_item">
+                        <div class="col-md-3">
+                            <div class="blog_info text-right">
+                                <div class="post_tag">
+                                    <a href="#">Phú Quốc,</a>
+                                    <a href="#">Du lịch,</a>
+                                    <a href="#">Thức ăn,</a>
+                                    <a href="#">Dịch vụ</a>
+                                </div>
+                                <ul class="blog_meta list_style">
+                                    <li><a href="#">Mark wiens<i class="lnr lnr-user"></i></a></li>
+                                    <li><a href="#">12 Dec, 2017<i class="lnr lnr-calendar-full"></i></a></li>
+                                    <li><a href="#">1.2M Views<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">06 Comments<i class="lnr lnr-bubble"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="blog_post">
+                                <img src="~/image/blog/main-blog/m-blog-3.jpg" alt="">
+                                <div class="blog_details">
+                                    <a asp-controller="news" asp-action="detail"><h2>Một thoáng bình yên với 13 khách sạn view đẹp tại Phú Quốc</h2></a>
+                                    <p>
+                                        Phú Quốc đã trở thành một cái tên không còn xa lạ cho những tín đồ đam mê du lịch. Đây là điểm đến hút khách bậc nhất với bãi cát trắng tinh cùng làn nước biển trong veo. ...
+                                    </p>
+                                    <a asp-controller="news" asp-action="detail" class="view_btn button_hover">Xem chi tiết</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="row blog_item">
+                        <div class="col-md-3">
+                            <div class="blog_info text-right">
+                                <div class="post_tag">
+                                    <a href="#">Hạ Long,</a>
+                                    <a href="#">Du lịch,</a>
+                                    <a href="#">Thức ăn,</a>
+                                    <a href="#">Dịch vụ</a>
+                                </div>
+                                <ul class="blog_meta list_style">
+                                    <li><a href="#">Mark wiens<i class="lnr lnr-user"></i></a></li>
+                                    <li><a href="#">12 Dec, 2017<i class="lnr lnr-calendar-full"></i></a></li>
+                                    <li><a href="#">1.2M Views<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">06 Comments<i class="lnr lnr-bubble"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="blog_post">
+                                <img src="~/image/blog/main-blog/m-blog-4.jpg" alt="">
+                                <div class="blog_details">
+                                    <a asp-controller="news" asp-action="detail"><h2>Top 13 khách sạn gây thương nhớ tại thành phố biển Hạ Long</h2></a>
+                                    <p>Hạ Long được biết đến với những hang động đá vôi kỳ vĩ hay vùng vịnh hoang sơ. Đứng đầu trong danh sách di sản thiên nhiên, do vậy, điểm đến này đã thu hút đông đảo khách du lịch trong và ngoài nước. Du lịch ...</p>
+                                    <a asp-controller="news" asp-action="detail" class="view_btn button_hover">Xem chi tiết</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="row blog_item">
+                        <div class="col-md-3">
+                            <div class="blog_info text-right">
+                                <div class="post_tag">
+                                    <a href="#">Phan Thiết,</a>
+                                    <a href="#">Du lịch,</a>
+                                    <a href="#">Thức ăn,</a>
+                                    <a href="#">Dịch vụ</a>
+                                </div>
+                                <ul class="blog_meta list_style">
+                                    <li><a href="#">Mark wiens<i class="lnr lnr-user"></i></a></li>
+                                    <li><a href="#">12 Dec, 2017<i class="lnr lnr-calendar-full"></i></a></li>
+                                    <li><a href="#">1.2M Views<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">06 Comments<i class="lnr lnr-bubble"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="blog_post">
+                                <img src="~/image/blog/main-blog/m-blog-5.jpg" alt="">
+                                <div class="blog_details">
+                                    <a asp-controller="news" asp-action="detail"><h2>Khách sạn Phan Thiết đẳng cấp 5 sao | Đặt phòng giá rẻ lễ 2/9</h2></a>
+                                    <p>Khách sạn Phan Thiết đối với các tín đồ đam mê du lịch không chỉ là địa điểm lưu trú. Được ưu ái gọi bằng cái tên “Thủ phủ của khách sạn và resort”, các khách sạn tại đây còn là cửa ngõ đưa bạn vào thế giới của sự thư thái và tận hưởng đẳng cấp. Hãy cùng điểm qua 7 cái tên đẹp và sang trọng ...</p>
+                                    <a asp-controller="news" asp-action="detail" class="view_btn button_hover">Xem chi tiết</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <nav class="blog-pagination justify-content-center d-flex">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a href="#" class="page-link" aria-label="Previous">
+                                    <span aria-hidden="true">
+                                        <span class="lnr lnr-chevron-left"></span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a href="#" class="page-link">01</a></li>
+                            <li class="page-item active"><a href="#" class="page-link">02</a></li>
+                            <li class="page-item"><a href="#" class="page-link">03</a></li>
+                            <li class="page-item"><a href="#" class="page-link">04</a></li>
+                            <li class="page-item"><a href="#" class="page-link">09</a></li>
+                            <li class="page-item">
+                                <a href="#" class="page-link" aria-label="Next">
+                                    <span aria-hidden="true">
+                                        <span class="lnr lnr-chevron-right"></span>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="blog_right_sidebar">
+                    <aside class="single_sidebar_widget search_widget">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Tìm kiếm tin tức">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"><i class="lnr lnr-magnifier"></i></button>
+                            </span>
+                        </div><!-- /input-group -->
+                        <div class="br"></div>
+                    </aside>
+                    <aside class="single_sidebar_widget author_widget">
+                        <img class="author_img rounded-circle" src="~/image/blog/author.png" alt="">
+                        <h4>BOOKING HOTEL 247</h4>
+                        <p>Dịch vụ đặt phòng khách sạn nhanh nhất hiện nay</p>
+                        <div class="social_icon">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-github"></i></a>
+                            <a href="#"><i class="fa fa-behance"></i></a>
+                        </div>
+                        <label>Mọi thắc mắc của quý khách</label>
+                        Xin vui lòng liên hệ :<a href="tel:18009090">1800 9090</a></span>
+                        <div class="br"></div>
+                    </aside>
+                    <aside class="single_sidebar_widget popular_post_widget">
+                        <h3 class="widget_title">Combo Khách sạn ưu đãi</h3>
+                        <div class="media post_item">
+                            <img src="~/image/blog/post1.jpg" alt="post">
+                            <div class="media-body">
+                                <a href="#">
+                                    <h3>
+                                        Combo Vé máy bay / Xe giường nằm + khách sạn Sapa
+                                    </h3>
+                                </a>
+                                <p style="color:red"><strong>Từ 3,388,000đ</strong></p>
+                            </div>
+                        </div>
+                        <div class="media post_item">
+                            <img src="~/image/blog/post1.jpg" alt="post">
+                            <div class="media-body">
+                                <a href="#">
+                                    <h3>
+                                        Combo Vé máy bay / Xe giường nằm + khách sạn Sapa
+                                    </h3>
+                                </a>
+                                <p style="color:red"><strong>Từ 3,388,000đ</strong></p>
+                            </div>
+                        </div>
+                        <div class="media post_item">
+                            <img src="~/image/blog/post1.jpg" alt="post">
+                            <div class="media-body">
+                                <a href="#">
+                                    <h3>
+                                        Combo Vé máy bay / Xe giường nằm + khách sạn Sapa
+                                    </h3>
+                                </a>
+                                <p style="color:red"><strong>Từ 3,388,000đ</strong></p>
+                            </div>
+                        </div>
+                        <div class="media post_item">
+                            <img src="~/image/blog/post1.jpg" alt="post">
+                            <div class="media-body">
+                                <a href="#">
+                                    <h3>
+                                        Combo Vé máy bay / Xe giường nằm + khách sạn Sapa
+                                    </h3>
+                                </a>
+                                <p style="color:red"><strong>Từ 3,388,000đ</strong></p>
+                            </div>
+                        </div>
+                        <div class="br"></div>
+                    </aside>
+                    <aside class="single_sidebar_widget ads_widget">
+                        <a href="#"><img class="img-fluid" src="~/image/blog/add.jpg" alt=""></a>
+                        <div class="br"></div>
+                    </aside>
+                    <aside class="single_sidebar_widget post_category_widget">
+                        <h4 class="widget_title">Post Catgories</h4>
+                        <ul class="list_style cat-list">
+                            <li>
+                                <a href="#" class="d-flex justify-content-between">
+                                    <p>Technology</p>
+                                    <p>37</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="d-flex justify-content-between">
+                                    <p>Lifestyle</p>
+                                    <p>24</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="d-flex justify-content-between">
+                                    <p>Fashion</p>
+                                    <p>59</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="d-flex justify-content-between">
+                                    <p>Art</p>
+                                    <p>29</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="d-flex justify-content-between">
+                                    <p>Food</p>
+                                    <p>15</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="d-flex justify-content-between">
+                                    <p>Architecture</p>
+                                    <p>09</p>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="d-flex justify-content-between">
+                                    <p>Adventure</p>
+                                    <p>44</p>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="br"></div>
+                    </aside>
+                    <aside class="single-sidebar-widget newsletter_widget">
+                        <h4 class="widget_title">Newsletter</h4>
+                        <p>
+                            Here, I focus on a range of items and features that we use in life without
+                            giving them a second thought.
+                        </p>
+                        <div class="form-group d-flex flex-row">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+                                </div>
+                                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Enter email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email'">
+                            </div>
+                            <a href="#" class="bbtns">Subcribe</a>
+                        </div>
+                        <p class="text-bottom">You can unsubscribe at any time</p>
+                        <div class="br"></div>
+                    </aside>
+                    <aside class="single-sidebar-widget tag_cloud_widget">
+                        <h4 class="widget_title">Tag Clouds</h4>
+                        <ul class="list_style">
+                            <li><a href="#">Technology</a></li>
+                            <li><a href="#">Fashion</a></li>
+                            <li><a href="#">Architecture</a></li>
+                            <li><a href="#">Fashion</a></li>
+                            <li><a href="#">Food</a></li>
+                            <li><a href="#">Technology</a></li>
+                            <li><a href="#">Lifestyle</a></li>
+                            <li><a href="#">Art</a></li>
+                            <li><a href="#">Adventure</a></li>
+                            <li><a href="#">Food</a></li>
+                            <li><a href="#">Lifestyle</a></li>
+                            <li><a href="#">Adventure</a></li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================Blog Area =================-->
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="~/js/jquery-3.2.1.min.js"></script>
+<script src="~/js/popper.js"></script>
+<script src="~/js/bootstrap.min.js"></script>
+<script src="~/vendors/owl-carousel/owl.carousel.min.js"></script>
+<script src="~/js/jquery.ajaxchimp.min.js"></script>
+<script src="~/js/mail-script.js"></script>
+<script src="~/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="~/vendors/nice-select/js/jquery.nice-select.js"></script>
+<script src="~/js/mail-script.js"></script>
+<script src="~/js/stellar.js"></script>
+<script src="~/vendors/lightbox/simpleLightbox.min.js"></script>
+<script src="~/js/custom.js"></script>
