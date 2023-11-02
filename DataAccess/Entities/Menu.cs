@@ -8,7 +8,7 @@ namespace DataAccess.Entities
     {
         public Menu()
         {
-            News = new HashSet<New>();
+            New = new HashSet<New>();
         }
         [Key]
         public int MenuId { get; set; }
@@ -20,6 +20,6 @@ namespace DataAccess.Entities
         public string? LangCode { get; set; }
 
         public virtual Language? LangCodeNavigation { get; set; }
-        public virtual ICollection<New> News { get; set; }
+        public virtual ICollection<New> New { get; set; }
     }
 }

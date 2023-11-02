@@ -8,11 +8,11 @@ namespace DataAccess.Entities
     {
         public Room()
         {
-            Bookings = new HashSet<Booking>();
+            Booking = new HashSet<Booking>();
         }
         [Key]
         public int RoomId { get; set; }
-        public string RoomCode { get; set; } = null!;
+        public string? RoomCode { get; set; }
         public string? HotelCode { get; set; }
         public int? Floor { get; set; }
         public int? RoomMax { get; set; }
@@ -23,6 +23,6 @@ namespace DataAccess.Entities
 
         public virtual Hotel? HotelCodeNavigation { get; set; }
         public virtual Image? ImgCodeNavigation { get; set; }
-        public virtual ICollection<Booking> Bookings { get; set; }
+        public virtual ICollection<Booking> Booking { get; set; }
     }
 }

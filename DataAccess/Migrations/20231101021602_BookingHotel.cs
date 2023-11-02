@@ -29,7 +29,7 @@ namespace DataAccess.Migrations
                 {
                     CusId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CusCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CusCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CusFullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Gender = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CusEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -51,7 +51,7 @@ namespace DataAccess.Migrations
                 {
                     ImgId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ImgCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImgCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PathServer = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FileName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -91,13 +91,15 @@ namespace DataAccess.Migrations
                     Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FullName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Gender = table.Column<byte>(type: "tinyint", nullable: true),
-                    NationID = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NationId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AvataImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AvatarImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Active = table.Column<bool>(type: "bit", nullable: true),
                     PasswordChanged = table.Column<bool>(type: "bit", nullable: true),
                     LastPasswordChanged = table.Column<DateTime>(type: "datetime2", nullable: true),
                     PasswordExpirationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    RefreshToken = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RefreshTokenExpiryTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ImageImgId = table.Column<int>(type: "int", nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -130,7 +132,7 @@ namespace DataAccess.Migrations
                 {
                     HotelId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    HotelCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    HotelCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     HotelName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     HotelAddress = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     HotelLevel = table.Column<int>(type: "int", nullable: true),
@@ -155,11 +157,11 @@ namespace DataAccess.Migrations
                 {
                     LangId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    LangCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LangCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LangName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ImgCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImgCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SysDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ImgCodeNavigationImgId = table.Column<int>(type: "int", nullable: false)
+                    ImgCodeNavigationImgId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -168,8 +170,7 @@ namespace DataAccess.Migrations
                         name: "FK_Language_Image_ImgCodeNavigationImgId",
                         column: x => x.ImgCodeNavigationImgId,
                         principalTable: "Image",
-                        principalColumn: "ImgId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ImgId");
                 });
 
             migrationBuilder.CreateTable(
@@ -263,12 +264,12 @@ namespace DataAccess.Migrations
                 {
                     EId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CusCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    HotelCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CusCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    HotelCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Rate = table.Column<int>(type: "int", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CusCodeNavigationCusId = table.Column<int>(type: "int", nullable: false),
-                    HotelCodeNavigationHotelId = table.Column<int>(type: "int", nullable: false)
+                    CusCodeNavigationCusId = table.Column<int>(type: "int", nullable: true),
+                    HotelCodeNavigationHotelId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -277,14 +278,12 @@ namespace DataAccess.Migrations
                         name: "FK_Evaluate_Customer_CusCodeNavigationCusId",
                         column: x => x.CusCodeNavigationCusId,
                         principalTable: "Customer",
-                        principalColumn: "CusId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "CusId");
                     table.ForeignKey(
                         name: "FK_Evaluate_Hotel_HotelCodeNavigationHotelId",
                         column: x => x.HotelCodeNavigationHotelId,
                         principalTable: "Hotel",
-                        principalColumn: "HotelId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "HotelId");
                 });
 
             migrationBuilder.CreateTable(
@@ -293,12 +292,12 @@ namespace DataAccess.Migrations
                 {
                     PId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    HotelCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    HotelCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Active = table.Column<bool>(type: "bit", nullable: true),
-                    HotelCodeNavigationHotelId = table.Column<int>(type: "int", nullable: false)
+                    HotelCodeNavigationHotelId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -307,8 +306,7 @@ namespace DataAccess.Migrations
                         name: "FK_Policy_Hotel_HotelCodeNavigationHotelId",
                         column: x => x.HotelCodeNavigationHotelId,
                         principalTable: "Hotel",
-                        principalColumn: "HotelId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "HotelId");
                 });
 
             migrationBuilder.CreateTable(
@@ -317,7 +315,7 @@ namespace DataAccess.Migrations
                 {
                     RoomId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RoomCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RoomCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     HotelCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Floor = table.Column<int>(type: "int", nullable: true),
                     RoomMax = table.Column<int>(type: "int", nullable: true),
@@ -375,14 +373,14 @@ namespace DataAccess.Migrations
                 {
                     SId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    SCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    HotelCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    SCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    HotelCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ImgCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImgCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Active = table.Column<bool>(type: "bit", nullable: true),
-                    HotelCodeNavigationHotelId = table.Column<int>(type: "int", nullable: false),
-                    ImgCodeNavigationImgId = table.Column<int>(type: "int", nullable: false)
+                    HotelCodeNavigationHotelId = table.Column<int>(type: "int", nullable: true),
+                    ImgCodeNavigationImgId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -391,14 +389,12 @@ namespace DataAccess.Migrations
                         name: "FK_Service_Hotel_HotelCodeNavigationHotelId",
                         column: x => x.HotelCodeNavigationHotelId,
                         principalTable: "Hotel",
-                        principalColumn: "HotelId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "HotelId");
                     table.ForeignKey(
                         name: "FK_Service_Image_ImgCodeNavigationImgId",
                         column: x => x.ImgCodeNavigationImgId,
                         principalTable: "Image",
-                        principalColumn: "ImgId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ImgId");
                 });
 
             migrationBuilder.CreateTable(
@@ -431,19 +427,19 @@ namespace DataAccess.Migrations
                 {
                     BookId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    BookCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CusCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    HotelCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RoomCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BookCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CusCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    HotelCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RoomCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CheckIn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CheckOut = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Active = table.Column<bool>(type: "bit", nullable: true),
                     Deposit = table.Column<bool>(type: "bit", nullable: true),
                     Paid = table.Column<bool>(type: "bit", nullable: true),
                     Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CusCodeNavigationCusId = table.Column<int>(type: "int", nullable: false),
-                    HotelCodeNavigationHotelId = table.Column<int>(type: "int", nullable: false),
-                    RoomCodeNavigationRoomId = table.Column<int>(type: "int", nullable: false)
+                    CusCodeNavigationCusId = table.Column<int>(type: "int", nullable: true),
+                    HotelCodeNavigationHotelId = table.Column<int>(type: "int", nullable: true),
+                    RoomCodeNavigationRoomId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -452,20 +448,17 @@ namespace DataAccess.Migrations
                         name: "FK_Booking_Customer_CusCodeNavigationCusId",
                         column: x => x.CusCodeNavigationCusId,
                         principalTable: "Customer",
-                        principalColumn: "CusId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "CusId");
                     table.ForeignKey(
                         name: "FK_Booking_Hotel_HotelCodeNavigationHotelId",
                         column: x => x.HotelCodeNavigationHotelId,
                         principalTable: "Hotel",
-                        principalColumn: "HotelId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "HotelId");
                     table.ForeignKey(
                         name: "FK_Booking_Room_RoomCodeNavigationRoomId",
                         column: x => x.RoomCodeNavigationRoomId,
                         principalTable: "Room",
-                        principalColumn: "RoomId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "RoomId");
                 });
 
             migrationBuilder.CreateTable(
@@ -474,19 +467,19 @@ namespace DataAccess.Migrations
                 {
                     NewsId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NewsCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NewsCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SumContent = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     NewsContent = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ImgCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ImgCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Datetime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Source = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CountView = table.Column<int>(type: "int", nullable: true),
                     MenuId = table.Column<int>(type: "int", nullable: false),
-                    LangCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LangCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SysDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ImgCodeNavigationImgId = table.Column<int>(type: "int", nullable: false),
-                    LangCodeNavigationLangId = table.Column<int>(type: "int", nullable: false)
+                    ImgCodeNavigationImgId = table.Column<int>(type: "int", nullable: true),
+                    LangCodeNavigationLangId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -495,14 +488,12 @@ namespace DataAccess.Migrations
                         name: "FK_New_Image_ImgCodeNavigationImgId",
                         column: x => x.ImgCodeNavigationImgId,
                         principalTable: "Image",
-                        principalColumn: "ImgId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ImgId");
                     table.ForeignKey(
                         name: "FK_New_Language_LangCodeNavigationLangId",
                         column: x => x.LangCodeNavigationLangId,
                         principalTable: "Language",
-                        principalColumn: "LangId",
-                        onDelete: ReferentialAction.NoAction);
+                        principalColumn: "LangId");
                     table.ForeignKey(
                         name: "FK_New_Menu_MenuId",
                         column: x => x.MenuId,

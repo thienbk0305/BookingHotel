@@ -77,13 +77,7 @@ namespace APIBookingHotel.Controllers
                 var roles = await _userManager.GetRolesAsync(user);
                 var roleClaims = new List<Claim>();
                 var permissionClaims = new List<Claim>();
-                foreach (var role in roles)
-                {
-                    roleClaims.Add(new Claim(ClaimTypes.Role, role));
-                    var thisRole = await _roleManager.FindByNameAsync(role);
-                    var allPermissionsForThisRoles = await _roleManager.GetClaimsAsync(thisRole);
-                    permissionClaims.AddRange(allPermissionsForThisRoles);
-                };
+
 
                 var authClaims = new List<Claim>
                 {
@@ -96,6 +90,14 @@ namespace APIBookingHotel.Controllers
                 .Union(userClaims)
                 .Union(roleClaims)
                 .Union(permissionClaims);
+
+                foreach (var role in roles)
+                {
+                    roleClaims.Add(new Claim(ClaimTypes.Role, role));
+                    var thisRole = await _roleManager.FindByNameAsync(role);
+                    var allPermissionsForThisRoles = await _roleManager.GetClaimsAsync(thisRole);
+                    permissionClaims.AddRange(allPermissionsForThisRoles);
+                };
 
                 var token = CreateToken(authClaims);
                 var refreshToken = GenerateRefreshToken();
@@ -167,7 +169,7 @@ namespace APIBookingHotel.Controllers
                     //Add User into Role
                     if (await _roleManager.RoleExistsAsync(model.RoleName))
                     {
-                        await _userManager.AddToRoleAsync(user, UserRoles.User);
+                        await _userManager.AddToRoleAsync(user, model.RoleName);
                     }
                 }
 

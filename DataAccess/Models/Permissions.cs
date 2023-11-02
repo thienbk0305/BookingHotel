@@ -17,12 +17,12 @@ namespace DataAccess.Models
                 $"Permissions.{module}.Delete",
             };
         }
-        public static class User
+        public static class Users
         {
-            public const string View = "Permissions.User.View";
-            public const string Create = "Permissions.User.Create";
-            public const string Edit = "Permissions.User.Edit";
-            public const string Delete = "Permissions.User.Delete";
+            public const string View = "Permissions.Users.View";
+            public const string Create = "Permissions.Users.Create";
+            public const string Edit = "Permissions.Users.Edit";
+            public const string Delete = "Permissions.Users.Delete";
         }
         public class RoleClaim
         {

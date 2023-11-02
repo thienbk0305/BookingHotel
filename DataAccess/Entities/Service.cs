@@ -8,14 +8,14 @@ namespace DataAccess.Entities
     {
         [Key]
         public int SId { get; set; }
-        public string SCode { get; set; } = null!;
-        public string HotelCode { get; set; } = null!;
+        public string? SCode { get; set; }
+        public string? HotelCode { get; set; }
         public string? SName { get; set; }
-        public string ImgCode { get; set; } = null!;
+        public string? ImgCode { get; set; }
         public string? Description { get; set; }
         public bool? Active { get; set; }
 
-        public virtual Hotel HotelCodeNavigation { get; set; } = null!;
-        public virtual Image ImgCodeNavigation { get; set; } = null!;
+        public virtual Hotel? HotelCodeNavigation { get; set; }
+        public virtual Image? ImgCodeNavigation { get; set; }
     }
 }

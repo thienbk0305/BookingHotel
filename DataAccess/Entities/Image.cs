@@ -8,26 +8,26 @@ namespace DataAccess.Entities
     {
         public Image()
         {
-            Hotels = new HashSet<Hotel>();
-            Languages = new HashSet<Language>();
-            News = new HashSet<New>();
-            Rooms = new HashSet<Room>();
-            Services = new HashSet<Service>();
-            Users = new HashSet<User>();
+            Hotel = new HashSet<Hotel>();
+            Language = new HashSet<Language>();
+            New = new HashSet<New>();
+            Room = new HashSet<Room>();
+            Service = new HashSet<Service>();
+            User = new HashSet<User>();
         }
         [Key]
         public int ImgId { get; set; }
-        public string ImgCode { get; set; } = null!;
+        public string? ImgCode { get; set; }
         public string? PathServer { get; set; }
         public string? FileName { get; set; }
         public string? Description { get; set; }
         public DateTime? SysDate { get; set; }
 
-        public virtual ICollection<Hotel> Hotels { get; set; }
-        public virtual ICollection<Language> Languages { get; set; }
-        public virtual ICollection<New> News { get; set; }
-        public virtual ICollection<Room> Rooms { get; set; }
-        public virtual ICollection<Service> Services { get; set; }
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<Hotel> Hotel { get; set; }
+        public virtual ICollection<Language> Language { get; set; }
+        public virtual ICollection<New> New { get; set; }
+        public virtual ICollection<Room> Room { get; set; }
+        public virtual ICollection<Service> Service { get; set; }
+        public virtual ICollection<User> User { get; set; }
     }
 }

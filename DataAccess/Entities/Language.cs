@@ -8,18 +8,18 @@ namespace DataAccess.Entities
     {
         public Language()
         {
-            Menus = new HashSet<Menu>();
-            News = new HashSet<New>();
+            Menu = new HashSet<Menu>();
+            New = new HashSet<New>();
         }
         [Key]
         public int LangId { get; set; }
-        public string LangCode { get; set; } = null!;
+        public string? LangCode { get; set; }
         public string? LangName { get; set; }
-        public string ImgCode { get; set; } = null!;
+        public string? ImgCode { get; set; }
         public DateTime? SysDate { get; set; }
 
-        public virtual Image ImgCodeNavigation { get; set; } = null!;
-        public virtual ICollection<Menu> Menus { get; set; }
-        public virtual ICollection<New> News { get; set; }
+        public virtual Image? ImgCodeNavigation { get; set; }
+        public virtual ICollection<Menu> Menu { get; set; }
+        public virtual ICollection<New> New { get; set; }
     }
 }

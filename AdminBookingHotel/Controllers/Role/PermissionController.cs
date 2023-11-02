@@ -43,28 +43,6 @@ namespace AdminBookingHotel.Controllers.Role
 
         }
 
-        //public async Task<ActionResult> Index(string roleId)
-        //{
-        //    var model = new Permissions.PermissionResponse();
-        //    var allPermissions = new List<RoleClaim>();
-        //    allPermissions.GetPermissions(typeof(Permissions.User), roleId);
-
-        //    var role = await _roleManager.FindByIdAsync(roleId);
-        //    model.RoleId = roleId;
-        //    var claims = await _roleManager.GetClaimsAsync(role);
-        //    var allClaimValues = allPermissions.Select(a => a.Value).ToList();
-        //    var roleClaimValues = claims.Select(a => a.Value).ToList();
-        //    var authorizedClaims = allClaimValues.Intersect(roleClaimValues).ToList();
-        //    foreach (var permission in allPermissions)
-        //    {
-        //        if (authorizedClaims.Any(a => a == permission.Value))
-        //        {
-        //            permission.Selected = true;
-        //        }
-        //    }
-        //    model.RoleClaims = allPermissions;
-        //    return View(model);
-        //}
         [HttpPost]
         public IActionResult Update(PermissionResponse model)
         {

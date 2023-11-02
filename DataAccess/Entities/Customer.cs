@@ -8,12 +8,12 @@ namespace DataAccess.Entities
     {
         public Customer()
         {
-            Bookings = new HashSet<Booking>();
-            Evaluates = new HashSet<Evaluate>();
+            Booking = new HashSet<Booking>();
+            Evaluate = new HashSet<Evaluate>();
         }
         [Key]
         public int CusId { get; set; }
-        public string CusCode { get; set; } = null!;
+        public string? CusCode { get; set; }
         public string? CusFullName { get; set; }
         public string? Gender { get; set; }
         public string? CusEmail { get; set; }
@@ -24,7 +24,7 @@ namespace DataAccess.Entities
         public bool? Active { get; set; }
         public DateTime? SysDate { get; set; }
 
-        public virtual ICollection<Booking> Bookings { get; set; }
-        public virtual ICollection<Evaluate> Evaluates { get; set; }
+        public virtual ICollection<Booking> Booking { get; set; }
+        public virtual ICollection<Evaluate> Evaluate { get; set; }
     }
 }

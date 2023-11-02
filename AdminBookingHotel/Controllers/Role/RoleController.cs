@@ -51,7 +51,7 @@ namespace AdminBookingHotel.Controllers.Role
             var listResult = new RoleResultById();
             var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
             var base_url = "Identity/Role/GetRole/"+id+""; //API Controller
-            var dataJson = JsonConvert.SerializeObject(id);
+            var dataJson = JsonConvert.SerializeObject(listResult);
             var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
             var result = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Get, url_api, base_url, dataJson, token);
 

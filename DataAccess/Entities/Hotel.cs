@@ -9,15 +9,15 @@ namespace DataAccess.Entities
         public Hotel()
         {
             Bookings = new HashSet<Booking>();
-            Evaluates = new HashSet<Evaluate>();
-            Policies = new HashSet<Policy>();
-            Rooms = new HashSet<Room>();
-            SaleOffs = new HashSet<SaleOff>();
-            Services = new HashSet<Service>();
+            Evaluate = new HashSet<Evaluate>();
+            Policy = new HashSet<Policy>();
+            Room = new HashSet<Room>();
+            SaleOff = new HashSet<SaleOff>();
+            Service = new HashSet<Service>();
         }
         [Key]
         public int HotelId { get; set; }
-        public string HotelCode { get; set; } = null!;
+        public string? HotelCode { get; set; }
         public string? HotelName { get; set; }
         public string? HotelAddress { get; set; }
         public int? HotelLevel { get; set; }
@@ -27,10 +27,10 @@ namespace DataAccess.Entities
 
         public virtual Image? ImgCodeNavigation { get; set; }
         public virtual ICollection<Booking> Bookings { get; set; }
-        public virtual ICollection<Evaluate> Evaluates { get; set; }
-        public virtual ICollection<Policy> Policies { get; set; }
-        public virtual ICollection<Room> Rooms { get; set; }
-        public virtual ICollection<SaleOff> SaleOffs { get; set; }
-        public virtual ICollection<Service> Services { get; set; }
+        public virtual ICollection<Evaluate> Evaluate { get; set; }
+        public virtual ICollection<Policy> Policy { get; set; }
+        public virtual ICollection<Room> Room { get; set; }
+        public virtual ICollection<SaleOff> SaleOff { get; set; }
+        public virtual ICollection<Service> Service { get; set; }
     }
 }

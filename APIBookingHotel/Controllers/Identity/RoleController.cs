@@ -18,7 +18,7 @@ namespace APIBookingHotel.Controllers.Identity
 {
     [ApiController]
     [Route("api/Identity/Role")]
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class RoleController : ControllerBase
     {
         private readonly RoleManager<IdentityRole> _roleManager;
@@ -35,8 +35,9 @@ namespace APIBookingHotel.Controllers.Identity
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        //[Authorize(Policy = Permissions.User.View)]
         [Route("Roles")]
+        [Authorize(Policy = Permissions.Users.View)]
+        
         public async Task<IActionResult> GetRolesAsync()
         {
             var roles = await _roleManager.Roles.ToListAsync();
@@ -52,7 +53,7 @@ namespace APIBookingHotel.Controllers.Identity
         /// <returns></returns>
 
         [HttpGet]
-        //[Authorize(Policy = Permissions.User.Edit)]
+        [Authorize(Policy = Permissions.Users.Edit)]
         [Route("GetRole/{id}")]
         public async Task<Result<RoleResponse>> GetByIdAsync(string id)
         {
@@ -68,7 +69,7 @@ namespace APIBookingHotel.Controllers.Identity
         /// <returns></returns>
 
         [HttpPost]
-        //[Authorize(Policy = Permissions.User.Edit)]
+        [Authorize(Policy = Permissions.Users.Edit)]
         [Route("Save")]
         public async Task<Result<string>> SaveAsync(RoleResponse request)
         {   //Add New Role
@@ -105,14 +106,14 @@ namespace APIBookingHotel.Controllers.Identity
         /// <returns></returns>
 
         [HttpGet]
-        //[Authorize(Policy = Permissions.User.View)]
+        [Authorize(Policy = Permissions.Users.View)]
         [Route("GetPermission/{roleId}")]
         public async Task<IActionResult> GetAllPermissionsAsync(string roleId)
         {
             var model = new PermissionResponse();
             var allPermissions = new List<RoleClaim>();
 
-            allPermissions.GetPermissions(typeof(Permissions.User), roleId);
+            allPermissions.GetPermissions(typeof(Permissions.Users), roleId);
 
             var role = await _roleManager.FindByIdAsync(roleId);
             model.RoleId = roleId;
@@ -139,7 +140,7 @@ namespace APIBookingHotel.Controllers.Identity
         /// <returns></returns>
 
         [HttpPost]
-        //[Authorize(Policy = Permissions.User.Edit)]
+        [Authorize(Policy = Permissions.Users.Edit)]
         [Route("UpdatePermission")]
         public async Task<Result<string>> UpdatePermission(PermissionResponse model)
         {

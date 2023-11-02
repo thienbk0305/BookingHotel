@@ -59,7 +59,7 @@
                         "visible": false,
                     },
                     {
-                        'targets': [5],
+                        'targets': [6],
                         'render': function (data, type, row, meta) {
                             var out;
                             if (data === true) {
@@ -75,15 +75,11 @@
                     { "data": "PhoneNumber", "name": "PhoneNumber", "autoWidth": true },
                     { "data": "Email", "name": "Email", "autoWidth": true },
                     { "data": "UserName", "name": "UserName", "autoWidth": true },
+                    { "data": "RoleName", "name": "RoleName", "autoWidth": true },
                     { "data": "Active", "name": "Active", "autoWidth": true },
                     {
                         "render": function (data, type, row, meta) {
-                            return '<div class="btn-group"><a type="button" class="btn btn-primary btn-sm" href="/User/Detail/' + row.Id + '">Edit</a>' +
-                                '<button type="button" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">' +
-                                '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>' +
-                                '</button>' +
-                                '<div class="dropdown-menu" aria-labelledby="dropdownMenuReference1">' +
-                                '<a class="dropdown-item" href="/User/ManageRoles/' + row.Id + '">Roles</a></div></div>'
+                            return '<div class="btn-group"><a type="button" class="btn btn-primary btn-sm" href="/User/Detail/' + row.Id + '">Edit</a></div>'
 
                         }
                     }
@@ -175,6 +171,7 @@
                                                 <th>Số Điện Thoại</th>
                                                 <th>Email</th>
                                                 <th>UserName</th>
+                                                <th>Quyền</th>
                                                 <th>Tình Trạng</th>
                                                 <th>Xem</th>
                                             </tr>
@@ -186,6 +183,7 @@
                                                 <th>Số Điện Thoại</th>
                                                 <th>Email</th>
                                                 <th>UserName</th>
+                                                <th>Quyền</th>
                                                 <th>Tình Trạng</th>
                                                 <th>Xem</th>
                                             </tr>

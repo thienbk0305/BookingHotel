@@ -21,13 +21,15 @@ namespace AdminBookingHotel.Controllers.User
         IUtilitiesRepository<ProfileView> _utilitiesRepository;
         private readonly IToastNotification _toastNotification;
         private readonly IConfiguration _configuration;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly BookingHotelDbContext _dbContext;
         public UserController(IUtilitiesRepository<ProfileView> utilitiesRepository, 
-                              IToastNotification toastNotification, IConfiguration configuration, BookingHotelDbContext dbContext)
+                              IToastNotification toastNotification, IConfiguration configuration, RoleManager<IdentityRole> roleManager,BookingHotelDbContext dbContext)
         {
             _utilitiesRepository = utilitiesRepository;
             _toastNotification = toastNotification;
             _configuration = configuration;
+            _roleManager = roleManager;
             _dbContext = dbContext;
             
         }
@@ -53,7 +55,7 @@ namespace AdminBookingHotel.Controllers.User
 
                 var listResult = new List<ProfileView>();
                 var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
-                var base_url = "Identity/Role/Users?searchValue="+ searchValue + "&roleValue="+ roleValue; //API Controller
+                var base_url = "Identity/Identity/Users?searchValue=" + searchValue + "&roleValue="+ roleValue; //API Controller
                 var dataJson = JsonConvert.SerializeObject(listResult);
                 var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
                 var result = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Get, url_api, base_url, dataJson, token);
@@ -76,20 +78,32 @@ namespace AdminBookingHotel.Controllers.User
             }
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> Detail(string id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    var user = await _dbContext.User.FirstOrDefaultAsync(m => m.Id == id);
-        //    if (user == null)
-        //    {
-        //        _toastNotification.AddErrorToastMessage("Có lỗi xảy ra! Vui lòng kiểm tra lại thông tin");
-        //        return RedirectToAction("Index", "User");
-        //    }
-        //    return View(user);
-        //}
+        [HttpGet]
+        public  IActionResult Detail(string id)
+        {
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var listResult = new ProfileViewById();
+            var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
+            var base_url = "Identity/Identity/GetUser/" + id + ""; //API Controller
+            var dataJson = JsonConvert.SerializeObject(listResult);
+            var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
+            var result = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Get, url_api, base_url, dataJson, token);
+
+            if (string.IsNullOrEmpty(result))
+            {
+                _toastNotification.AddErrorToastMessage("Có lỗi xảy ra! Vui lòng kiểm tra lại thông tin");
+                return RedirectToAction("Index", "User");
+            }
+
+            listResult = JsonConvert.DeserializeObject<ProfileViewById>(result);
+            var roleNames = _dbContext.Roles.ToList();
+            ViewData["RoleName"] = new SelectList(roleNames, "Id", "Name");
+            return PartialView("Detail", listResult!.Data);
+        }
+
     }
 }

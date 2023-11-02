@@ -16,7 +16,6 @@ namespace APIBookingHotel.AutoMapper
         public AutoMapperProfile()
         {
             CreateMap<IdentityRole,RoleResponse>().ReverseMap();
-            //CreateMap<User, ProfileView>().ReverseMap();
             CreateMap<ProfileView, User>().ReverseMap();
         }
     }

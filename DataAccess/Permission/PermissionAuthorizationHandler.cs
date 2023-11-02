@@ -16,8 +16,7 @@ namespace DataAccess.Permission
                 return;
             }
             var permissionss = context.User.Claims.Where(x => x.Type == "Permission" &&
-                                                              x.Value == requirement.Permission &&
-                                                              x.Issuer == "LOCAL AUTHORITY");
+                                                              x.Value == requirement.Permission);
             if (permissionss.Any())
             {
                 context.Succeed(requirement);

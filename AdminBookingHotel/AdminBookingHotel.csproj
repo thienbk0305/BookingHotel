@@ -14,6 +14,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\admin\dist\bootstrap\js\bootstrap.js" />
+    <None Include="wwwroot\admin\dist\bootstrap\js\bootstrap.min.js" />
+    <None Include="wwwroot\admin\dist\bootstrap\js\popper.min.js" />
+    <None Include="wwwroot\admin\dist\fonts\fontawesome\fontawesome-webfont.svg" />
+    <None Include="wwwroot\admin\dist\fonts\fontawesome\fontawesome-webfont.woff2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="6.0.22" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.22" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.22">
