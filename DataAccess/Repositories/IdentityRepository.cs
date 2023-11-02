@@ -53,9 +53,10 @@ namespace DataAccess.Repositories
                                   AvatarImage = users.AvatarImage,
                                   RoleId = roles.Id,
                                   RoleName = roles.Name
-                }).Where(
-                m => m.Id != null && m.Id.ToLower().Contains(searchValue!.ToString().ToLower()) ||
-                m.RoleName != null && m.RoleName.ToLower().Contains(roleValue!.ToString().ToLower())).AsNoTracking().ToListAsync();
+                }).Where(m =>
+                (m.Id != null && m.Id.ToLower().Contains(searchValue!.ToString().ToLower()) ||
+                m.Email != null && m.Email.ToLower().Contains(searchValue!.ToString().ToLower())) &&
+                (m.RoleName != null && m.RoleName.ToLower().Contains(roleValue!.ToString().ToLower()))).AsNoTracking().ToListAsync();
             await _db.SaveChangesAsync(cancellation);
             return data;
 

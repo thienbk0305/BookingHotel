@@ -85,7 +85,7 @@ builder.Services.AddSwaggerGen(c => {
 
 //Dependency Injection
 builder.Services.AddScoped<IIdentityRepository, IdentityRepository>();
-builder.Services.AddScoped<IContactRepository, ContactRepository>();
+//builder.Services.AddScoped<IContactRepository, ContactRepository>();
 builder.Services.AddTransient<IBookingHotelUnitOfWork, BookingHotelUnitOfWork>();
 builder.Services.AddScoped(typeof(IUtilitiesRepository<>), typeof(UtilitiesRepository<>));
 

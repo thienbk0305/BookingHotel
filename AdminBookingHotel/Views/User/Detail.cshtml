@@ -3,7 +3,12 @@
     ViewBag.Title = "Xem Thông Tin User - " + @Model.FullName;
     Layout = "_AdminLayout";
 }
-
+@section css{
+    <link href="~/Admin/plugins/dropify/dropify.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Admin/css/users/user-profile.css" rel="stylesheet" type="text/css" />
+    <link href="~/Admin/css/forms/switches.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/Admin/plugins/multi-select/css/multi-select.min.css">
+        }
 @section scripts {
 <script src="~/Admin/plugins/multi-select/js/jquery.multi-select.min.js"></script>
 <script src="~/Admin/plugins/sweetalert/sweetalert2.js"></script>
@@ -159,9 +164,9 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="control-label mb-2" asp-for="RoleName">Quyền</label>
-                                                            <select class="selectpicker form-control" asp-for="RoleName"
+                                                            <select class="selectpicker form-control" asp-for="RoleId"
                                                                     asp-items="ViewBag.RoleName">
-                                                                <option value="">Select RoleName</option>
+                                                                <option value="">Chọn Quyền</option>
                                                             </select>
                                                             <span asp-validation-for="RoleName" class="text-warning"></span>
                                                         </div>
