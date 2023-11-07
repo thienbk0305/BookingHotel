@@ -1,8 +1,11 @@
 ﻿using DataAccess.DBContext;
 using DataAccess.Entities;
 using DataAccess.IRepositories;
+using DataAccess.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,13 +16,17 @@ namespace DataAccess.UnitOfWork
     {
 
         public IIdentityRepository Identity { get; }
+        public IContactRepository ContactRepository { get; private set; }
+        public ICustomerRepository CustomerRepository { get; private set; }
 
-        private BookingHotelDbContext _dbContext;
+        private readonly BookingHotelDbContext _dbContext;
 
         public BookingHotelUnitOfWork (BookingHotelDbContext dbContext, IIdentityRepository identity)
         {
             _dbContext = dbContext;
             Identity = identity;
+            ContactRepository = new ContactRepository(_dbContext);
+            CustomerRepository = new CustomerRepository(_dbContext);
         }
         public int Save()
         {

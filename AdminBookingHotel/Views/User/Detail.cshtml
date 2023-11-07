@@ -1,6 +1,5 @@
 @model DataAccess.Models.ProfileView;
 @{
-    ViewBag.Title = "Xem Thông Tin User - " + @Model.FullName;
     Layout = "_AdminLayout";
 }
 @section css{
@@ -59,7 +58,7 @@
                                 </a>
                             </div>
                             <div class="text-center user-info">
-                                <img src="@(string.IsNullOrEmpty(Model.AvatarImage) ? "/Uploads/User/Images/Avatars/avatar.png": @Model.AvatarImage)"
+                                <img src="@(string.IsNullOrEmpty(Model.AvatarImage) ? "/Avatar/f525ce87-4cfd-40e1-954c-bb256d203e04.png": @Model.AvatarImage)"
                                      alt="avatar" width="120px" height="120px">
                                 <p class="">@Model.FullName</p>
                             </div>
@@ -76,7 +75,7 @@
                                 </div>
                                 <div class="text-center mt-2">
                                     <form id="resetpassword">
-                                        <input type="hidden" value="@Model.Id" id="userId" name="userId">
+                                        @* <input type="hidden" value="@Model.Id" id="userId" name="userId"> *@
                                         <button class="btn btn-success" type="button" id="btnResetPassword">
                                             Reset Mật Khẩu
                                         </button>
@@ -117,7 +116,7 @@
                                                                 Tên Truy
                                                                 Cập
                                                             </label>
-                                                            <input id="thisUser" type="hidden" class="form-control"
+                                                            <input id="Id" type="hidden" class="form-control" asp-for="Id"
                                                                    value="@Model.Id">
                                                             <input type="text" asp-for="UserName" class="form-control"
                                                                    value="@Model.UserName">
@@ -143,8 +142,7 @@
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label class="control-label mb-2" asp-for="PhoneNumber">
-                                                                Số Điện
-                                                                Thoại
+                                                                Số Điện Thoại
                                                             </label>
                                                             <input type="text" class="form-control" asp-for="PhoneNumber"
                                                                    value="@Model.PhoneNumber">
@@ -163,12 +161,12 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label class="control-label mb-2" asp-for="RoleName">Quyền</label>
+                                                            <label class="control-label mb-2" asp-for="RoleId">Quyền</label>
                                                             <select class="selectpicker form-control" asp-for="RoleId"
                                                                     asp-items="ViewBag.RoleName">
                                                                 <option value="">Chọn Quyền</option>
                                                             </select>
-                                                            <span asp-validation-for="RoleName" class="text-warning"></span>
+                                                            <span asp-validation-for="RoleId" class="text-warning"></span>
                                                         </div>
                                                     </div> 
                                                     <div class="col-md-3">
@@ -184,7 +182,7 @@
                                                 </div>
                                             </div>
                                             <div>
-                                                <input type="submit" asp-action="Detail" asp-controller="User"
+                                                <input type="submit" asp-action="Update" asp-controller="User"
                                                        class="btn btn-primary" value="Lưu"></input>
                                             </div>
                                         </form>

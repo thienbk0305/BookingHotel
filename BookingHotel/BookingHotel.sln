@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess", "..\DataAccess
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIBookingHotel", "..\APIBookingHotel\APIBookingHotel.csproj", "{06B274DC-9247-4CC4-A3E5-0AB0AA5A4BB3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBookingHotel", "..\MediaBookingHotel\MediaBookingHotel.csproj", "{4D561BE7-E422-41E7-8B0C-8C038E9602BB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{06B274DC-9247-4CC4-A3E5-0AB0AA5A4BB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06B274DC-9247-4CC4-A3E5-0AB0AA5A4BB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06B274DC-9247-4CC4-A3E5-0AB0AA5A4BB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D561BE7-E422-41E7-8B0C-8C038E9602BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D561BE7-E422-41E7-8B0C-8C038E9602BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D561BE7-E422-41E7-8B0C-8C038E9602BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D561BE7-E422-41E7-8B0C-8C038E9602BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

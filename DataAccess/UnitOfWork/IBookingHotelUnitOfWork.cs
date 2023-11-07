@@ -11,6 +11,8 @@ namespace DataAccess.UnitOfWork
     public interface IBookingHotelUnitOfWork
     {
         IIdentityRepository Identity { get; }
+        IContactRepository ContactRepository { get; }
+        ICustomerRepository CustomerRepository { get; }
         int Save();
         Task<int> SaveAsync();
     }

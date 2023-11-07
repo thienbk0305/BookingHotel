@@ -15,6 +15,7 @@ namespace DataAccess.Models
                 $"Permissions.{module}.View",
                 $"Permissions.{module}.Edit",
                 $"Permissions.{module}.Delete",
+                $"Permissions.{module}.Export",
             };
         }
         public static class Users
@@ -23,6 +24,15 @@ namespace DataAccess.Models
             public const string Create = "Permissions.Users.Create";
             public const string Edit = "Permissions.Users.Edit";
             public const string Delete = "Permissions.Users.Delete";
+            public const string Export = "Permissions.Users.Export";
+        }
+        public static class Customers
+        {
+            public const string View = "Permissions.Customers.View";
+            public const string Create = "Permissions.Customers.Create";
+            public const string Edit = "Permissions.Customers.Edit";
+            public const string Delete = "Permissions.Customers.Delete";
+            public const string Export = "Permissions.Customers.Export";
         }
         public class RoleClaim
         {

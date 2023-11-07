@@ -14,7 +14,7 @@ namespace DataAccess.Entities
         public string? NationId { get; set; }
         public string? Address { get; set; }
         public string? AvatarImage { get; set; }
-        public bool Active { get; set; }
+        public bool Active { get; set; } = false;
         public bool PasswordChanged { get; set; }
         public DateTime? LastPasswordChanged { get; set; }
         public DateTime? PasswordExpirationDate { get; set; }

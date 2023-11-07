@@ -24,17 +24,12 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("DataAccess.Entities.Booking", b =>
                 {
-                    b.Property<int>("BookId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookId"), 1L, 1);
-
-                    b.Property<bool?>("Active")
-                        .HasColumnType("bit");
-
                     b.Property<string>("BookCode")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
 
                     b.Property<DateTime?>("CheckIn")
                         .HasColumnType("datetime2");
@@ -42,19 +37,18 @@ namespace DataAccess.Migrations
                     b.Property<DateTime?>("CheckOut")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("CusCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("CusCodeNavigationCusId")
-                        .HasColumnType("int");
+                    b.Property<string>("CusCodeByUserId")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<bool?>("Deposit")
                         .HasColumnType("bit");
 
-                    b.Property<string>("HotelCode")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("HotelCodeByUserId")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("HotelCodeNavigationHotelId")
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
                     b.Property<string>("Note")
@@ -63,38 +57,32 @@ namespace DataAccess.Migrations
                     b.Property<bool?>("Paid")
                         .HasColumnType("bit");
 
-                    b.Property<string>("RoomCode")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("RoomCodeByUserId")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("RoomCodeNavigationRoomId")
-                        .HasColumnType("int");
+                    b.HasKey("BookCode");
 
-                    b.HasKey("BookId");
+                    b.HasIndex("CusCodeByUserId");
 
-                    b.HasIndex("CusCodeNavigationCusId");
+                    b.HasIndex("HotelCodeByUserId");
 
-                    b.HasIndex("HotelCodeNavigationHotelId");
-
-                    b.HasIndex("RoomCodeNavigationRoomId");
+                    b.HasIndex("RoomCodeByUserId");
 
                     b.ToTable("Booking");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.Customer", b =>
                 {
-                    b.Property<int>("CusId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("CusCode")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CusId"), 1L, 1);
-
-                    b.Property<bool?>("Active")
+                    b.Property<bool>("Active")
                         .HasColumnType("bit");
 
                     b.Property<string>("CusAddress")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CusCode")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CusDescription")
@@ -115,58 +103,58 @@ namespace DataAccess.Migrations
                     b.Property<string>("Gender")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("SysDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("CusId");
+                    b.HasKey("CusCode");
 
                     b.ToTable("Customer");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.Evaluate", b =>
                 {
-                    b.Property<int>("EId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("CusCode")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime?>("CreationDate")
+                        .HasColumnType("datetime2");
 
-                    b.Property<int?>("CusCodeNavigationCusId")
-                        .HasColumnType("int");
+                    b.Property<string>("CusCodeByUserId")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("HotelCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("HotelCodeNavigationHotelId")
-                        .HasColumnType("int");
+                    b.Property<string>("HotelCodeByUserId")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int?>("Rate")
                         .HasColumnType("int");
 
-                    b.HasKey("EId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("CusCodeNavigationCusId");
+                    b.HasIndex("CusCodeByUserId");
 
-                    b.HasIndex("HotelCodeNavigationHotelId");
+                    b.HasIndex("HotelCodeByUserId");
 
                     b.ToTable("Evaluate");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.Hotel", b =>
                 {
-                    b.Property<int>("HotelId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("HotelCode")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HotelId"), 1L, 1);
-
-                    b.Property<bool?>("Active")
+                    b.Property<bool>("Active")
                         .HasColumnType("bit");
 
                     b.Property<string>("Description")
@@ -175,35 +163,36 @@ namespace DataAccess.Migrations
                     b.Property<string>("HotelAddress")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("HotelCode")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int?>("HotelLevel")
                         .HasColumnType("int");
 
                     b.Property<string>("HotelName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImgCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ImgCodeNavigationImgId")
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
-                    b.HasKey("HotelId");
+                    b.Property<string>("ImageImgCode")
+                        .HasColumnType("nvarchar(50)");
 
-                    b.HasIndex("ImgCodeNavigationImgId");
+                    b.Property<string>("ImgCodeByUserId")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("HotelCode");
+
+                    b.HasIndex("ImageImgCode");
+
+                    b.HasIndex("ImgCodeByUserId");
 
                     b.ToTable("Hotel");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.Image", b =>
                 {
-                    b.Property<int>("ImgId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ImgId"), 1L, 1);
+                    b.Property<string>("ImgCode")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -211,8 +200,8 @@ namespace DataAccess.Migrations
                     b.Property<string>("FileName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImgCode")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
 
                     b.Property<string>("PathServer")
                         .HasColumnType("nvarchar(max)");
@@ -220,54 +209,18 @@ namespace DataAccess.Migrations
                     b.Property<DateTime?>("SysDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("ImgId");
+                    b.HasKey("ImgCode");
 
                     b.ToTable("Image");
                 });
 
-            modelBuilder.Entity("DataAccess.Entities.Language", b =>
-                {
-                    b.Property<int>("LangId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LangId"), 1L, 1);
-
-                    b.Property<string>("ImgCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ImgCodeNavigationImgId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("LangCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LangName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("SysDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("LangId");
-
-                    b.HasIndex("ImgCodeNavigationImgId");
-
-                    b.ToTable("Language");
-                });
-
             modelBuilder.Entity("DataAccess.Entities.Menu", b =>
                 {
-                    b.Property<int>("MenuId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MenuId"), 1L, 1);
-
-                    b.Property<string>("LangCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("LangCodeNavigationLangId")
-                        .HasColumnType("int");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int?>("MenuLevel")
                         .HasColumnType("int");
@@ -284,20 +237,16 @@ namespace DataAccess.Migrations
                     b.Property<bool?>("Visible")
                         .HasColumnType("bit");
 
-                    b.HasKey("MenuId");
-
-                    b.HasIndex("LangCodeNavigationLangId");
+                    b.HasKey("Id");
 
                     b.ToTable("Menu");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.New", b =>
                 {
-                    b.Property<int>("NewsId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NewsId"), 1L, 1);
+                    b.Property<string>("NewsCode")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int?>("CountView")
                         .HasColumnType("int");
@@ -305,23 +254,18 @@ namespace DataAccess.Migrations
                     b.Property<DateTime?>("Datetime")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ImgCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ImgCodeNavigationImgId")
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
-                    b.Property<string>("LangCode")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("ImageImgCode")
+                        .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("LangCodeNavigationLangId")
-                        .HasColumnType("int");
+                    b.Property<string>("ImgCodeByUserId")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int>("MenuId")
                         .HasColumnType("int");
-
-                    b.Property<string>("NewsCode")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NewsContent")
                         .HasColumnType("nvarchar(max)");
@@ -338,57 +282,22 @@ namespace DataAccess.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("NewsId");
+                    b.HasKey("NewsCode");
 
-                    b.HasIndex("ImgCodeNavigationImgId");
+                    b.HasIndex("ImageImgCode");
 
-                    b.HasIndex("LangCodeNavigationLangId");
+                    b.HasIndex("ImgCodeByUserId");
 
                     b.HasIndex("MenuId");
 
                     b.ToTable("New");
                 });
 
-            modelBuilder.Entity("DataAccess.Entities.Policy", b =>
-                {
-                    b.Property<int>("PId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PId"), 1L, 1);
-
-                    b.Property<bool?>("Active")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("HotelCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("HotelCodeNavigationHotelId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("PCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("PId");
-
-                    b.HasIndex("HotelCodeNavigationHotelId");
-
-                    b.ToTable("Policy");
-                });
-
             modelBuilder.Entity("DataAccess.Entities.Room", b =>
                 {
-                    b.Property<int>("RoomId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoomId"), 1L, 1);
+                    b.Property<string>("RoomCode")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<bool?>("Active")
                         .HasColumnType("bit");
@@ -399,43 +308,45 @@ namespace DataAccess.Migrations
                     b.Property<int?>("Floor")
                         .HasColumnType("int");
 
-                    b.Property<string>("HotelCode")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("HotelCodeByUserId")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("HotelCodeNavigationHotelId")
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
-                    b.Property<string>("ImgCode")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("ImageImgCode")
+                        .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("ImgCodeNavigationImgId")
-                        .HasColumnType("int");
+                    b.Property<string>("ImgCodeByUserId")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("RoomCode")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int?>("RoomMax")
                         .HasColumnType("int");
 
-                    b.HasKey("RoomId");
+                    b.HasKey("RoomCode");
 
-                    b.HasIndex("HotelCodeNavigationHotelId");
+                    b.HasIndex("HotelCodeByUserId");
 
-                    b.HasIndex("ImgCodeNavigationImgId");
+                    b.HasIndex("ImageImgCode");
+
+                    b.HasIndex("ImgCodeByUserId");
 
                     b.ToTable("Room");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.SaleOff", b =>
                 {
-                    b.Property<int>("SaleId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SaleId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<bool?>("Active")
                         .HasColumnType("bit");
@@ -455,29 +366,25 @@ namespace DataAccess.Migrations
                     b.Property<DateTime?>("ExpiryDatetime")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("HotelCode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("HotelCodeNavigationHotelId")
-                        .HasColumnType("int");
+                    b.Property<string>("HotelCodeByUserId")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<int?>("Numbers")
                         .HasColumnType("int");
 
-                    b.HasKey("SaleId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("HotelCodeNavigationHotelId");
+                    b.HasIndex("HotelCodeByUserId");
 
                     b.ToTable("SaleOff");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.Service", b =>
                 {
-                    b.Property<int>("SId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SId"), 1L, 1);
+                    b.Property<string>("ServiceCode")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<bool?>("Active")
                         .HasColumnType("bit");
@@ -485,29 +392,31 @@ namespace DataAccess.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("HotelCode")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("HotelCodeByUserId")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("HotelCodeNavigationHotelId")
+                    b.Property<int>("Id")
                         .HasColumnType("int");
 
-                    b.Property<string>("ImgCode")
+                    b.Property<string>("ImageImgCode")
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("ImgCodeByUserId")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("ServiceName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ImgCodeNavigationImgId")
-                        .HasColumnType("int");
+                    b.HasKey("ServiceCode");
 
-                    b.Property<string>("SCode")
-                        .HasColumnType("nvarchar(max)");
+                    b.HasIndex("HotelCodeByUserId");
 
-                    b.Property<string>("SName")
-                        .HasColumnType("nvarchar(max)");
+                    b.HasIndex("ImageImgCode");
 
-                    b.HasKey("SId");
-
-                    b.HasIndex("HotelCodeNavigationHotelId");
-
-                    b.HasIndex("ImgCodeNavigationImgId");
+                    b.HasIndex("ImgCodeByUserId");
 
                     b.ToTable("Service");
                 });
@@ -720,7 +629,7 @@ namespace DataAccess.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
-                    b.Property<bool?>("Active")
+                    b.Property<bool>("Active")
                         .HasColumnType("bit");
 
                     b.Property<string>("Address")
@@ -735,8 +644,8 @@ namespace DataAccess.Migrations
                     b.Property<byte>("Gender")
                         .HasColumnType("tinyint");
 
-                    b.Property<int?>("ImageImgId")
-                        .HasColumnType("int");
+                    b.Property<string>("ImageImgCode")
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime?>("LastPasswordChanged")
                         .HasColumnType("datetime2");
@@ -756,83 +665,71 @@ namespace DataAccess.Migrations
                     b.Property<DateTime?>("RefreshTokenExpiryTime")
                         .HasColumnType("datetime2");
 
-                    b.HasIndex("ImageImgId");
+                    b.HasIndex("ImageImgCode");
 
                     b.HasDiscriminator().HasValue("User");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.Booking", b =>
                 {
-                    b.HasOne("DataAccess.Entities.Customer", "CusCodeNavigation")
+                    b.HasOne("DataAccess.Entities.Customer", "CusCodeByUser")
                         .WithMany("Booking")
-                        .HasForeignKey("CusCodeNavigationCusId");
+                        .HasForeignKey("CusCodeByUserId");
 
-                    b.HasOne("DataAccess.Entities.Hotel", "HotelCodeNavigation")
-                        .WithMany("Bookings")
-                        .HasForeignKey("HotelCodeNavigationHotelId");
-
-                    b.HasOne("DataAccess.Entities.Room", "RoomCodeNavigation")
+                    b.HasOne("DataAccess.Entities.Hotel", "HotelCodeByUser")
                         .WithMany("Booking")
-                        .HasForeignKey("RoomCodeNavigationRoomId");
+                        .HasForeignKey("HotelCodeByUserId");
 
-                    b.Navigation("CusCodeNavigation");
+                    b.HasOne("DataAccess.Entities.Room", "RoomCodeByUser")
+                        .WithMany("Booking")
+                        .HasForeignKey("RoomCodeByUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("HotelCodeNavigation");
+                    b.Navigation("CusCodeByUser");
 
-                    b.Navigation("RoomCodeNavigation");
+                    b.Navigation("HotelCodeByUser");
+
+                    b.Navigation("RoomCodeByUser");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.Evaluate", b =>
                 {
-                    b.HasOne("DataAccess.Entities.Customer", "CusCodeNavigation")
+                    b.HasOne("DataAccess.Entities.Customer", "CusCodeByUser")
                         .WithMany("Evaluate")
-                        .HasForeignKey("CusCodeNavigationCusId");
+                        .HasForeignKey("CusCodeByUserId");
 
-                    b.HasOne("DataAccess.Entities.Hotel", "HotelCodeNavigation")
+                    b.HasOne("DataAccess.Entities.Hotel", "HotelCodeByUser")
                         .WithMany("Evaluate")
-                        .HasForeignKey("HotelCodeNavigationHotelId");
+                        .HasForeignKey("HotelCodeByUserId");
 
-                    b.Navigation("CusCodeNavigation");
+                    b.Navigation("CusCodeByUser");
 
-                    b.Navigation("HotelCodeNavigation");
+                    b.Navigation("HotelCodeByUser");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.Hotel", b =>
                 {
-                    b.HasOne("DataAccess.Entities.Image", "ImgCodeNavigation")
+                    b.HasOne("DataAccess.Entities.Image", null)
                         .WithMany("Hotel")
-                        .HasForeignKey("ImgCodeNavigationImgId");
+                        .HasForeignKey("ImageImgCode");
 
-                    b.Navigation("ImgCodeNavigation");
-                });
+                    b.HasOne("DataAccess.Entities.Hotel", "ImgCodeByUser")
+                        .WithMany()
+                        .HasForeignKey("ImgCodeByUserId");
 
-            modelBuilder.Entity("DataAccess.Entities.Language", b =>
-                {
-                    b.HasOne("DataAccess.Entities.Image", "ImgCodeNavigation")
-                        .WithMany("Language")
-                        .HasForeignKey("ImgCodeNavigationImgId");
-
-                    b.Navigation("ImgCodeNavigation");
-                });
-
-            modelBuilder.Entity("DataAccess.Entities.Menu", b =>
-                {
-                    b.HasOne("DataAccess.Entities.Language", "LangCodeNavigation")
-                        .WithMany("Menu")
-                        .HasForeignKey("LangCodeNavigationLangId");
-
-                    b.Navigation("LangCodeNavigation");
+                    b.Navigation("ImgCodeByUser");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.New", b =>
                 {
-                    b.HasOne("DataAccess.Entities.Image", "ImgCodeNavigation")
+                    b.HasOne("DataAccess.Entities.Image", null)
                         .WithMany("New")
-                        .HasForeignKey("ImgCodeNavigationImgId");
+                        .HasForeignKey("ImageImgCode");
 
-                    b.HasOne("DataAccess.Entities.Language", "LangCodeNavigation")
-                        .WithMany("New")
-                        .HasForeignKey("LangCodeNavigationLangId");
+                    b.HasOne("DataAccess.Entities.Hotel", "ImgCodeByUser")
+                        .WithMany()
+                        .HasForeignKey("ImgCodeByUserId");
 
                     b.HasOne("DataAccess.Entities.Menu", "Menu")
                         .WithMany("New")
@@ -840,59 +737,60 @@ namespace DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ImgCodeNavigation");
-
-                    b.Navigation("LangCodeNavigation");
+                    b.Navigation("ImgCodeByUser");
 
                     b.Navigation("Menu");
                 });
 
-            modelBuilder.Entity("DataAccess.Entities.Policy", b =>
-                {
-                    b.HasOne("DataAccess.Entities.Hotel", "HotelCodeNavigation")
-                        .WithMany("Policy")
-                        .HasForeignKey("HotelCodeNavigationHotelId");
-
-                    b.Navigation("HotelCodeNavigation");
-                });
-
             modelBuilder.Entity("DataAccess.Entities.Room", b =>
                 {
-                    b.HasOne("DataAccess.Entities.Hotel", "HotelCodeNavigation")
+                    b.HasOne("DataAccess.Entities.Hotel", "HotelCodeByUser")
                         .WithMany("Room")
-                        .HasForeignKey("HotelCodeNavigationHotelId");
+                        .HasForeignKey("HotelCodeByUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("DataAccess.Entities.Image", "ImgCodeNavigation")
+                    b.HasOne("DataAccess.Entities.Image", null)
                         .WithMany("Room")
-                        .HasForeignKey("ImgCodeNavigationImgId");
+                        .HasForeignKey("ImageImgCode");
 
-                    b.Navigation("HotelCodeNavigation");
+                    b.HasOne("DataAccess.Entities.Hotel", "ImgCodeByUser")
+                        .WithMany()
+                        .HasForeignKey("ImgCodeByUserId");
 
-                    b.Navigation("ImgCodeNavigation");
+                    b.Navigation("HotelCodeByUser");
+
+                    b.Navigation("ImgCodeByUser");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.SaleOff", b =>
                 {
-                    b.HasOne("DataAccess.Entities.Hotel", "HotelCodeNavigation")
+                    b.HasOne("DataAccess.Entities.Hotel", "HotelCodeByUser")
                         .WithMany("SaleOff")
-                        .HasForeignKey("HotelCodeNavigationHotelId");
+                        .HasForeignKey("HotelCodeByUserId");
 
-                    b.Navigation("HotelCodeNavigation");
+                    b.Navigation("HotelCodeByUser");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.Service", b =>
                 {
-                    b.HasOne("DataAccess.Entities.Hotel", "HotelCodeNavigation")
+                    b.HasOne("DataAccess.Entities.Hotel", "HotelCodeByUser")
                         .WithMany("Service")
-                        .HasForeignKey("HotelCodeNavigationHotelId");
+                        .HasForeignKey("HotelCodeByUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("DataAccess.Entities.Image", "ImgCodeNavigation")
+                    b.HasOne("DataAccess.Entities.Image", null)
                         .WithMany("Service")
-                        .HasForeignKey("ImgCodeNavigationImgId");
+                        .HasForeignKey("ImageImgCode");
 
-                    b.Navigation("HotelCodeNavigation");
+                    b.HasOne("DataAccess.Entities.Hotel", "ImgCodeByUser")
+                        .WithMany()
+                        .HasForeignKey("ImgCodeByUserId");
 
-                    b.Navigation("ImgCodeNavigation");
+                    b.Navigation("HotelCodeByUser");
+
+                    b.Navigation("ImgCodeByUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -950,7 +848,7 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("DataAccess.Entities.Image", null)
                         .WithMany("User")
-                        .HasForeignKey("ImageImgId");
+                        .HasForeignKey("ImageImgCode");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.Customer", b =>
@@ -962,11 +860,9 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("DataAccess.Entities.Hotel", b =>
                 {
-                    b.Navigation("Bookings");
+                    b.Navigation("Booking");
 
                     b.Navigation("Evaluate");
-
-                    b.Navigation("Policy");
 
                     b.Navigation("Room");
 
@@ -979,8 +875,6 @@ namespace DataAccess.Migrations
                 {
                     b.Navigation("Hotel");
 
-                    b.Navigation("Language");
-
                     b.Navigation("New");
 
                     b.Navigation("Room");
@@ -988,13 +882,6 @@ namespace DataAccess.Migrations
                     b.Navigation("Service");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("DataAccess.Entities.Language", b =>
-                {
-                    b.Navigation("Menu");
-
-                    b.Navigation("New");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.Menu", b =>

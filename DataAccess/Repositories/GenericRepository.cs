@@ -14,56 +14,56 @@ using static DataAccess.Models.Permissions;
 
 namespace DataAccess.Repositories
 {
-    public class GenericRepository<T> : IGenericRepository<T> where T : class,IEntity
+    public class GenericRepository<TContext, T> : IGenericRepository<T>
+    where T : class, IEntity where TContext : DbContext
     {
-        private BookingHotelDbContext _db;
-        public GenericRepository(BookingHotelDbContext db)
+        protected readonly TContext _context;
+        public GenericRepository(TContext context)
         {
-            _db = db;
+            _context = context;
         }
 
         public async Task<T> Add(T entity, CancellationToken cancellation)
         {
-            await _db.Set<T>().AddAsync(entity);
-            await _db.SaveChangesAsync(cancellation);
+            await _context.Set<T>().AddAsync(entity);
+            await _context.SaveChangesAsync(cancellation);
             return entity;
         }
         public async Task<T> Delete(int id, CancellationToken cancellation)
         {
-            var entity = await _db.Set<T>().AsAsyncEnumerable().FirstOrDefaultAsync(e => e.Id == id);
+            var entity = await _context.Set<T>().AsAsyncEnumerable().FirstOrDefaultAsync(e => e.Id == id);
             if (entity == null)
             {
                 return entity!;
             }
-            _db.Set<T>().Remove(entity);
-            await _db.SaveChangesAsync(cancellation);
+            _context.Set<T>().Remove(entity);
+            await _context.SaveChangesAsync(cancellation);
             return entity!;
         }
 
         public async Task<List<T>> GetAll(CancellationToken cancellation)
         {
-            var entity = await _db.Set<T>().AsAsyncEnumerable().ToListAsync();
-            await _db.SaveChangesAsync(cancellation);
+            var entity = await _context.Set<T>().AsAsyncEnumerable().ToListAsync();
+            await _context.SaveChangesAsync(cancellation);
             return entity;
         }
 
         public async Task<T> GetById(int id, CancellationToken cancellation)
         {
-            var entity = await _db.Set<T>().AsNoTracking().FirstOrDefaultAsync(t => t.Id == id);
-            await _db.SaveChangesAsync(cancellation);
+            var entity = await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(t => t.Id == id);
+            await _context.SaveChangesAsync(cancellation);
             return entity!;
         }
 
-        public async Task<T> Update(string userId, CancellationToken cancellation)
+        public async Task<T> Update(T entity, CancellationToken cancellation)
         {
 
-            var entity = await _db.Set<T>().AsAsyncEnumerable().FirstOrDefaultAsync(e => e.UserId == userId);
             if (entity == null)
             {
                 return entity!;
             }
-            _db.Set<T>().Update(entity);
-            await _db.SaveChangesAsync(cancellation);
+            _context.Set<T>().Update(entity);
+            await _context.SaveChangesAsync(cancellation);
             return entity!;
         }
     }

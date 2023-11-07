@@ -16,6 +16,7 @@ namespace DataAccess.IRepositories
         Task<ProfileView> GetById(string id, CancellationToken cancellation);
         Task<DataAccess.Entities.User> Add(DataAccess.Entities.User entity, CancellationToken cancellation);
         Task<DataAccess.Entities.User> Update(string userId, CancellationToken cancellation);
+        Task<int> UpdateAsync(ProfileView p, CancellationToken cancellation);
         Task<DataAccess.Entities.User> Delete(string id, CancellationToken cancellation);
 
     }

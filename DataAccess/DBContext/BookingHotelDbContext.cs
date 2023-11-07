@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,17 +16,29 @@ namespace DataAccess.DBContext
         {
 
         }
-        protected override void OnModelCreating(ModelBuilder builder) { base.OnModelCreating(builder); }
+        protected override void OnModelCreating(ModelBuilder builder) 
+        { 
+            base.OnModelCreating(builder);
+
+            builder.Entity<Hotel>()
+            .HasMany(h => h.Service) // Assuming 'Service' is the collection navigation property in 'Hotel'
+            .WithOne(s => s.HotelCodeByUser) // Assuming 'Hotel' is the navigation property in 'Service' pointing back to 'Hotel'
+            .HasForeignKey(s => s.HotelCodeByUserId); // Assuming 'HotelId' is the foreign key property in 'Service'
+
+            builder.Entity<Hotel>()
+            .HasMany(h => h.Room) // Assuming 'Room' is the collection navigation property in 'Hotel'
+            .WithOne(s => s.HotelCodeByUser) // Assuming 'Hotel' is the navigation property in 'Room' pointing back to 'Hotel'
+            .HasForeignKey(s => s.HotelCodeByUserId); // Assuming 'HotelId' is the foreign key property in 'Room'
+
+        }
 
         public virtual DbSet<Booking> Booking { get; set; } = null!;
         public virtual DbSet<Customer> Customer { get; set; } = null!;
         public virtual DbSet<Evaluate> Evaluate { get; set; } = null!;
         public virtual DbSet<Hotel> Hotel { get; set; } = null!;
         public virtual DbSet<Image> Image { get; set; } = null!;
-        public virtual DbSet<Language> Language { get; set; } = null!;
         public virtual DbSet<Menu> Menu { get; set; } = null!;
         public virtual DbSet<New> New { get; set; } = null!;
-        public virtual DbSet<Policy> Policy { get; set; } = null!;
         public virtual DbSet<Room> Room { get; set; } = null!;
         public virtual DbSet<SaleOff> SaleOff { get; set; } = null!;
         public virtual DbSet<Service> Service { get; set; } = null!;

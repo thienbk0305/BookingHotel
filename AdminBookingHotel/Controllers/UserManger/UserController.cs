@@ -23,15 +23,15 @@ namespace AdminBookingHotel.Controllers.User
         private readonly IConfiguration _configuration;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly BookingHotelDbContext _dbContext;
-        public UserController(IUtilitiesRepository<ProfileView> utilitiesRepository, 
-                              IToastNotification toastNotification, IConfiguration configuration, RoleManager<IdentityRole> roleManager,BookingHotelDbContext dbContext)
+        public UserController(IUtilitiesRepository<ProfileView> utilitiesRepository,
+                              IToastNotification toastNotification, IConfiguration configuration, RoleManager<IdentityRole> roleManager, BookingHotelDbContext dbContext)
         {
             _utilitiesRepository = utilitiesRepository;
             _toastNotification = toastNotification;
             _configuration = configuration;
             _roleManager = roleManager;
             _dbContext = dbContext;
-            
+
         }
         [HttpGet]
         public IActionResult Index()
@@ -55,12 +55,12 @@ namespace AdminBookingHotel.Controllers.User
 
                 var listResult = new List<ProfileView>();
                 var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
-                var base_url = "Identity/Identity/Users?searchValue=" + searchValue + "&roleValue="+ roleValue; //API Controller
+                var base_url = "Identity/Identity/Users?searchValue=" + searchValue + "&roleValue=" + roleValue; //API Controller
                 var dataJson = JsonConvert.SerializeObject(listResult);
                 var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
                 var result = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Get, url_api, base_url, dataJson, token);
 
-                if (string.IsNullOrEmpty(result))
+                if (string.IsNullOrEmpty(result) || result == null)
                 {
                     _toastNotification.AddSuccessToastMessage("Bạn không có quyền");
                     return RedirectToAction("Index");
@@ -79,9 +79,8 @@ namespace AdminBookingHotel.Controllers.User
         }
 
         [HttpGet]
-        public  IActionResult Detail(string id)
+        public IActionResult Detail(string id)
         {
-
             if (id == null)
             {
                 return NotFound();
@@ -104,6 +103,31 @@ namespace AdminBookingHotel.Controllers.User
             ViewData["RoleName"] = new SelectList(roleNames, "Id", "Name");
             return PartialView("Detail", listResult!.Data);
         }
+        [HttpPost]
+        public IActionResult Update(string id, ProfileView model)
+        {
+            if (id != model.Id)
+            {
+                return NotFound();
+            }
+            if (ModelState.IsValid)
+            {
+                var listResult = new ProfileViewById();
+                var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
+                var base_url = "Identity/Identity/UpdateUser"; //API Controller
+                var dataJson = JsonConvert.SerializeObject(model);
+                var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
+                var result = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Put, url_api, base_url, dataJson, token);
+                if (string.IsNullOrEmpty(result))
+                {
+                    _toastNotification.AddErrorToastMessage("Có lỗi xảy ra! Vui lòng kiểm tra lại thông tin");
+                    return RedirectToAction("Index", "Detail/" + id + "");
+                }
 
+            }
+            _toastNotification.AddSuccessToastMessage("Cập nhật thông tin User thành công!");
+            return RedirectToAction("Index");
+
+        }
     }
 }

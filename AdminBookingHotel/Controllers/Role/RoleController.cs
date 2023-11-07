@@ -13,10 +13,12 @@ namespace AdminBookingHotel.Controllers.Role
     {
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IToastNotification _toastNotification;
-        public RoleController(RoleManager<IdentityRole> roleManager, IToastNotification toastNotification)
+        private readonly IConfiguration _configuration;
+        public RoleController(RoleManager<IdentityRole> roleManager, IToastNotification toastNotification, IConfiguration configuration)
         {
             _roleManager = roleManager;
             _toastNotification = toastNotification;
+            _configuration = configuration;
         }
 
         [HttpGet]

@@ -13,31 +13,34 @@ using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using Common;
 using static DataAccess.Models.Permissions;
+using APIBookingHotel.BaseModel;
+using OfficeOpenXml;
 
 namespace APIBookingHotel.Controllers.Identity
 {
     [ApiController]
     [Route("api/Identity/Role")]
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class RoleController : ControllerBase
     {
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IMapper _mapper;
+        private readonly IConfiguration _configuration;
 
-        public RoleController(RoleManager<IdentityRole> roleManager,IMapper mapper)
+        public RoleController(RoleManager<IdentityRole> roleManager,IMapper mapper, IConfiguration configuration)
         {
             _roleManager = roleManager;
             _mapper = mapper;
+            _configuration = configuration;
         }
-
+                               
         /// <summary>
         /// Get all roles
         /// </summary>
         /// <returns></returns>
         [HttpGet]
         [Route("Roles")]
-        [Authorize(Policy = Permissions.Users.View)]
-        
+        //[Authorize(Policy = Permissions.Users.View)]
         public async Task<IActionResult> GetRolesAsync()
         {
             var roles = await _roleManager.Roles.ToListAsync();
@@ -53,7 +56,7 @@ namespace APIBookingHotel.Controllers.Identity
         /// <returns></returns>
 
         [HttpGet]
-        [Authorize(Policy = Permissions.Users.Edit)]
+        //[Authorize(Policy = Permissions.Users.Edit)]
         [Route("GetRole/{id}")]
         public async Task<Result<RoleResponse>> GetByIdAsync(string id)
         {
@@ -69,7 +72,7 @@ namespace APIBookingHotel.Controllers.Identity
         /// <returns></returns>
 
         [HttpPost]
-        [Authorize(Policy = Permissions.Users.Edit)]
+        //[Authorize(Policy = Permissions.Users.Edit)]
         [Route("Save")]
         public async Task<Result<string>> SaveAsync(RoleResponse request)
         {   //Add New Role
@@ -106,7 +109,7 @@ namespace APIBookingHotel.Controllers.Identity
         /// <returns></returns>
 
         [HttpGet]
-        [Authorize(Policy = Permissions.Users.View)]
+        //[Authorize(Policy = Permissions.Users.View)]
         [Route("GetPermission/{roleId}")]
         public async Task<IActionResult> GetAllPermissionsAsync(string roleId)
         {
@@ -140,7 +143,7 @@ namespace APIBookingHotel.Controllers.Identity
         /// <returns></returns>
 
         [HttpPost]
-        [Authorize(Policy = Permissions.Users.Edit)]
+        //[Authorize(Policy = Permissions.Users.Edit)]
         [Route("UpdatePermission")]
         public async Task<Result<string>> UpdatePermission(PermissionResponse model)
         {
@@ -165,5 +168,110 @@ namespace APIBookingHotel.Controllers.Identity
             }
             
         }
+
+        [HttpPost("Import")]
+        //[Authorize(Policy = Permissions.Users.Edit)]
+        public async Task<int> Import([FromForm] UploadFileInput formFile)
+        {
+            var errItemStr = string.Empty;
+            //var errItemCount = 0;
+            //var successItemCount = 0;
+
+            try
+            {
+
+                if (formFile == null || formFile.File!.Length <= 0)
+                {
+                    throw new Exception("file dữ liệu không được trống");
+                }
+
+                if (!Path.GetExtension(formFile.File.FileName).Equals(".xlsx", StringComparison.OrdinalIgnoreCase))
+                {
+                    throw new Exception("Hệ thống chỉ hỗ trợ file .xlsx");
+                }
+
+                using (var stream = new MemoryStream())
+                {
+                    await formFile.File.CopyToAsync(stream);
+
+                    using (var package = new ExcelPackage(stream))
+                    {
+                        ExcelPackage.LicenseContext = LicenseContext.Commercial;
+                        ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
+                        var rowCount = worksheet.Dimension.Rows;
+
+                        for (int row = 3; row <= rowCount; row++)
+                        {
+                            var Id = worksheet.Cells[row, 1]?.Value?.ToString()?.Trim();
+                            var Name = worksheet.Cells[row, 2]?.Value?.ToString()?.Trim();
+                            var NormalizedName = worksheet.Cells[row, 3]?.Value?.ToString()?.Trim();
+
+                            var identityRole = new IdentityRole
+                            {
+                                Id = Id,
+                                Name = Name,
+                                NormalizedName = NormalizedName
+                            };
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                
+            }
+
+            return 1;
+        }
+
+        [HttpPost("Export")]
+        //[Authorize(Policy = Permissions.Users.Edit)]
+        public async Task<IActionResult> Export([FromBody] RoleResponse requestData)
+        {
+            //Export from template
+            var contentRoot = _configuration["TemplateEXCEL"] ?? "";
+            var webRoot = Path.Combine(contentRoot, "Template");
+            var templateFileInfo = new FileInfo(Path.Combine(contentRoot, "CheckDailyTemplate.xlsx"));
+            var packageReport = await DesignWorkSheetExportAsync(requestData, templateFileInfo);
+
+            return File(packageReport!, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Report.xlsx");
+
+            //Export directory
+            //var packageReport = await DesignWorkSheetExportAsync(requestData);
+            //return File(packageReport!, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Report.xlsx");
+        }
+
+        private async Task<byte[]?> DesignWorkSheetExportAsync(RoleResponse requestData, FileInfo path)
+        {
+            ExcelPackage.LicenseContext = LicenseContext.Commercial;
+
+            using (var package = new ExcelPackage(path))
+            {
+                //Tạo mới package execl
+                ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Data");
+                var list = await _roleManager.Roles.ToListAsync();
+
+                worksheet.Cells["A1:B1"].Merge = true;
+                worksheet.Cells["A1:B1"].Value = "Export";
+                worksheet.Cells["A2"].Value = "NAME";
+                int index = 3;
+                int total = list.Count;
+                int stt = 1;
+                foreach (var item in list)
+                {
+                    int megerRow = index;
+                    worksheet.Cells[index, 1, megerRow, 1].Merge = true;
+                    worksheet.Cells[index, 2, megerRow, 2].Merge = true;
+
+                    worksheet.Cells[$"A{index}"].Value = item.Name;
+                    index++;
+                    stt++;
+                }
+
+                package.Save();
+                return package.GetAsByteArray();
+            }
+        }
+
     }
 }

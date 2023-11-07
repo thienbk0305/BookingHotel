@@ -1,4 +1,5 @@
 ﻿using DataAccess.Entities;
+using DataAccess.Models;
 using DataAccess.UnitOfWork;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,8 @@ using System.Threading.Tasks;
 
 namespace DataAccess.IRepositories
 {
-    public interface IContactRepository : IGenericRepository<Evaluate>
+    public interface ICustomerRepository : IGenericRepository<Customer>
     {
+        Task<int> InsertAsync(ContactView c, CancellationToken cancellation);
     }
 }

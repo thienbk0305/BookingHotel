@@ -19,8 +19,8 @@ var configuration = builder.Configuration;
 builder.Services.AddDbContext<BookingHotelDbContext>(options => {
     options.UseSqlServer(builder.Configuration.GetConnectionString("MyConnStr"));
 });
-////redis
-//builder.Services.AddStackExchangeRedisCache(options => { options.Configuration = configuration["RedisCacheUrl"]; });
+//redis
+builder.Services.AddStackExchangeRedisCache(options => { options.Configuration = configuration["RedisCacheUrl"]; });
 
 //Adding IdentityRole
 builder.Services.AddIdentity<User, IdentityRole>().
@@ -85,7 +85,7 @@ builder.Services.AddSwaggerGen(c => {
 
 //Dependency Injection
 builder.Services.AddScoped<IIdentityRepository, IdentityRepository>();
-//builder.Services.AddScoped<IContactRepository, ContactRepository>();
+builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddTransient<IBookingHotelUnitOfWork, BookingHotelUnitOfWork>();
 builder.Services.AddScoped(typeof(IUtilitiesRepository<>), typeof(UtilitiesRepository<>));
 
