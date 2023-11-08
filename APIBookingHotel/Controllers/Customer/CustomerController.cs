@@ -46,15 +46,15 @@ namespace APIBookingHotel.Controllers.Customer
         /// Get All Customer
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
-        [Route("Customers")]
-        //[Authorize(Policy = Permissions.Users.View)]
-        public async Task<IActionResult> GetCustomerAll(string? searchValue)
-        {
-            var customerResult = await _unitOfWork.CustomerRepository.GetAllCustomerAsync(searchValue!, HttpContext.RequestAborted);
-            var result = _mapper.Map<List<ContactView>>(customerResult);
-            return Ok(result);
-        }
+        //[HttpGet]
+        //[Route("Customers")]
+        ////[Authorize(Policy = Permissions.Users.View)]
+        //public async Task<IActionResult> GetCustomerAll(string? searchValue)
+        //{
+        //    var customerResult = await _unitOfWork.CustomerRepository.GetAllCustomerAsync(searchValue!, HttpContext.RequestAborted);
+        //    var result = _mapper.Map<List<ContactView>>(customerResult);
+        //    return Ok(result);
+        //}
 
          /// <summary>
          /// Add Contact
