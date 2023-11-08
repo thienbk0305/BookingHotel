@@ -8,9 +8,13 @@
 
   <ItemGroup>
     <Compile Remove="Models\UserAndRoleViewModels\**" />
+    <Compile Remove="wwwroot\admin\plugins\table\**" />
     <Content Remove="Models\UserAndRoleViewModels\**" />
+    <Content Remove="wwwroot\admin\plugins\table\**" />
     <EmbeddedResource Remove="Models\UserAndRoleViewModels\**" />
+    <EmbeddedResource Remove="wwwroot\admin\plugins\table\**" />
     <None Remove="Models\UserAndRoleViewModels\**" />
+    <None Remove="wwwroot\admin\plugins\table\**" />
   </ItemGroup>
 
   <ItemGroup>
