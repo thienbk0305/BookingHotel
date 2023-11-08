@@ -8,13 +8,9 @@
 
   <ItemGroup>
     <Compile Remove="Models\UserAndRoleViewModels\**" />
-    <Compile Remove="wwwroot\admin\plugins\table\**" />
     <Content Remove="Models\UserAndRoleViewModels\**" />
-    <Content Remove="wwwroot\admin\plugins\table\**" />
     <EmbeddedResource Remove="Models\UserAndRoleViewModels\**" />
-    <EmbeddedResource Remove="wwwroot\admin\plugins\table\**" />
     <None Remove="Models\UserAndRoleViewModels\**" />
-    <None Remove="wwwroot\admin\plugins\table\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,6 +19,10 @@
     <None Include="wwwroot\admin\dist\bootstrap\js\popper.min.js" />
     <None Include="wwwroot\admin\dist\fonts\fontawesome\fontawesome-webfont.svg" />
     <None Include="wwwroot\admin\dist\fonts\fontawesome\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\admin\plugins\datatables\button-ext\buttons.html5.min.js" />
+    <None Include="wwwroot\admin\plugins\datatables\button-ext\buttons.print.min.js" />
+    <None Include="wwwroot\admin\plugins\datatables\button-ext\dataTables.buttons.min.js" />
+    <None Include="wwwroot\admin\plugins\datatables\button-ext\jszip.min.js" />
   </ItemGroup>
 
   <ItemGroup>
