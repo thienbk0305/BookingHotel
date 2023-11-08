@@ -31,7 +31,6 @@ namespace AdminBookingHotel.Controllers.User
             _configuration = configuration;
             _roleManager = roleManager;
             _dbContext = dbContext;
-
         }
         [HttpGet]
         public IActionResult Index()
@@ -121,7 +120,7 @@ namespace AdminBookingHotel.Controllers.User
                 if (string.IsNullOrEmpty(result))
                 {
                     _toastNotification.AddErrorToastMessage("Có lỗi xảy ra! Vui lòng kiểm tra lại thông tin");
-                    return RedirectToAction("Index", "Detail/" + id + "");
+                    return Json(new { result = "Redirect", url = Url.Action("Detail", "User", new { id = id  }) });
                 }
 
             }

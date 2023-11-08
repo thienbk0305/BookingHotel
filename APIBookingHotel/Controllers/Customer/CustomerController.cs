@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Distributed;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace APIBookingHotel.Controllers.Customer
 {
@@ -41,11 +43,24 @@ namespace APIBookingHotel.Controllers.Customer
         }
 
         /// <summary>
-        /// Add Contact
+        /// Get All Customer
         /// </summary>
-        /// <param name="ProfileView"></param>
         /// <returns></returns>
-        /// // do chỗ này anh không chi rõ là đến cái nào
+        [HttpGet]
+        [Route("Customers")]
+        //[Authorize(Policy = Permissions.Users.View)]
+        public async Task<IActionResult> GetCustomerAll(string? searchValue)
+        {
+            var customerResult = await _unitOfWork.CustomerRepository.GetAllCustomerAsync(searchValue!, HttpContext.RequestAborted);
+            var result = _mapper.Map<List<ContactView>>(customerResult);
+            return Ok(result);
+        }
+
+         /// <summary>
+         /// Add Contact
+         /// </summary>
+         /// <param name="ProfileView"></param>
+         /// <returns></returns>
         [HttpPut]
         [Route("AddContact")]
         //[Authorize(Policy = Permissions.Users.Edit)]
