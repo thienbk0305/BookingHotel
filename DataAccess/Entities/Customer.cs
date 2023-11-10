@@ -12,11 +12,11 @@ namespace DataAccess.Entities
             Booking = new HashSet<Booking>();
             Evaluate = new HashSet<Evaluate>();
         }
-        
-        public int Id { get; set; }
-        [Key]
-        [MaxLength(50)]
-        public string CusCode { get; set; }
+        public string Id { get; set; }
+        //public int Id { get; set; }
+        //[Key]
+        //[MaxLength(50)]
+        //public string CusCode { get; set; }
         public string? CusFullName { get; set; }
         public string? Gender { get; set; }
         public string? CusEmail { get; set; }
@@ -29,5 +29,6 @@ namespace DataAccess.Entities
 
         public virtual ICollection<Booking> Booking { get; set; }
         public virtual ICollection<Evaluate> Evaluate { get; set; }
+        
     }
 }

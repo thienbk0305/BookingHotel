@@ -8,7 +8,7 @@ namespace DataAccess.Entities
     public class SaleOff : IEntity
     {
         [Key]
-        public int Id { get; set; }
+        public string Id { get; set; }
         public decimal? Discount { get; set; }
         public DateTime? Datetime { get; set; }
         public DateTime? BeginDatetime { get; set; }
@@ -18,7 +18,7 @@ namespace DataAccess.Entities
         public bool? Active { get; set; }=false;
 
         public virtual Hotel HotelCodeByUser { get; set; }
-        [MaxLength(50)]
+        
         public string? HotelCodeByUserId { get; set; }
     }
 }

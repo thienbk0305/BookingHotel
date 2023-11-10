@@ -15,9 +15,8 @@ namespace DataAccess.Entities
             Service = new HashSet<Service>();
             User = new HashSet<User>();
         }
-        public int Id { get; set; }
-        [Key]
-        [MaxLength(50)]
+        public string Id { get; set; }
+
         public string ImgCode { get; set; }
         public string? PathServer { get; set; }
         public string? FileName { get; set; }

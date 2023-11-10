@@ -62,35 +62,38 @@ namespace APIBookingHotel.Controllers.Identity
         public async Task<IActionResult> GetAll(string? searchValue, string? roleValue)
         {
 
-            var key_cache = "GET_LIST_USER_"+ roleValue;
-            var cacheValue = await _cache.GetAsync(key_cache);
-            if (cacheValue != null)
-            {
-                var cachedDataString = Encoding.UTF8.GetString(cacheValue);
-                if (cachedDataString != null)
-                {
+            //var key_cache = "GET_LIST_USER_"+ roleValue;
+            //var cacheValue = await _cache.GetAsync(key_cache);
+            //if (cacheValue != null)
+            //{
+            //    var cachedDataString = Encoding.UTF8.GetString(cacheValue);
+            //    if (cachedDataString != null)
+            //    {
 
-                     var list = JsonConvert.DeserializeObject<List<ProfileView>>(cachedDataString.ToString());
-                    return Ok(list);
-                }
-            }
+            //         var list = JsonConvert.DeserializeObject<List<ProfileView>>(cachedDataString.ToString());
+            //        return Ok(list);
+            //    }
+            //}
+
+            //var userResult = await _unitOfWork.Identity.GetAllUserInRoleAsync(searchValue!, roleValue!, HttpContext.RequestAborted);
+            //var result = _mapper.Map<List<ProfileView>>(userResult);
+
+            //if (result.Count > 0)
+            //{
+            //    // lưu cache 
+            //    var dataCache = JsonConvert.SerializeObject(result);
+
+            //    var dataToCache = Encoding.UTF8.GetBytes(dataCache);
+
+            //    DistributedCacheEntryOptions options = new DistributedCacheEntryOptions()
+            //        .SetAbsoluteExpiration(DateTime.Now.AddMinutes(5))
+            //        .SetSlidingExpiration(TimeSpan.FromMinutes(3));
+
+            //    await _cache.SetAsync(key_cache, dataToCache, options);
+            //}
 
             var userResult = await _unitOfWork.Identity.GetAllUserInRoleAsync(searchValue!, roleValue!, HttpContext.RequestAborted);
             var result = _mapper.Map<List<ProfileView>>(userResult);
-
-            if (result.Count > 0)
-            {
-                // lưu cache 
-                var dataCache = JsonConvert.SerializeObject(result);
-
-                var dataToCache = Encoding.UTF8.GetBytes(dataCache);
-
-                DistributedCacheEntryOptions options = new DistributedCacheEntryOptions()
-                    .SetAbsoluteExpiration(DateTime.Now.AddMinutes(5))
-                    .SetSlidingExpiration(TimeSpan.FromMinutes(3));
-
-                await _cache.SetAsync(key_cache, dataToCache, options);
-            }
             return Ok(result);
 
 

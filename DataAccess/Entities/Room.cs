@@ -11,9 +11,8 @@ namespace DataAccess.Entities
         {
             Booking = new HashSet<Booking>();
         }
-        public int Id { get; set; }
-        [Key]
-        [MaxLength(50)]
+        public string Id { get; set; }
+
         public string RoomCode { get; set; }
         public int? Floor { get; set; }
         public int? RoomMax { get; set; }
@@ -22,11 +21,11 @@ namespace DataAccess.Entities
         public bool? Active { get; set; }
 
         public virtual Hotel HotelCodeByUser { get; set; }
-        [MaxLength(50)]
+        
         public string? HotelCodeByUserId { get; set; }
 
         public virtual Hotel ImgCodeByUser { get; set; }
-        [MaxLength(50)]
+        
         public string? ImgCodeByUserId { get; set; }
 
         public virtual ICollection<Booking> Booking { get; set; }
