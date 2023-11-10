@@ -8,13 +8,9 @@
 
   <ItemGroup>
     <Compile Remove="Models\UserAndRoleViewModels\**" />
-    <Compile Remove="wwwroot\admin\plugins\flatpickr\**" />
     <Content Remove="Models\UserAndRoleViewModels\**" />
-    <Content Remove="wwwroot\admin\plugins\flatpickr\**" />
     <EmbeddedResource Remove="Models\UserAndRoleViewModels\**" />
-    <EmbeddedResource Remove="wwwroot\admin\plugins\flatpickr\**" />
     <None Remove="Models\UserAndRoleViewModels\**" />
-    <None Remove="wwwroot\admin\plugins\flatpickr\**" />
   </ItemGroup>
 
   <ItemGroup>
