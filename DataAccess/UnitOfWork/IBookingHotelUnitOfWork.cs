@@ -13,6 +13,8 @@ namespace DataAccess.UnitOfWork
         IIdentityRepository Identity { get; }
         IContactRepository ContactRepository { get; }
         ICustomerRepository CustomerRepository { get; }
+
+        INewsRepository NewsRepository { get; }
         int Save();
         Task<int> SaveAsync();
     }

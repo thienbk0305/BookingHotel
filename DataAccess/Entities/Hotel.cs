@@ -15,9 +15,8 @@ namespace DataAccess.Entities
             SaleOff = new HashSet<SaleOff>();
             Service = new HashSet<Service>();
         }
-        public int Id { get; set; }
-        [Key]
-        [MaxLength(50)]
+        public string Id { get; set; }
+
         public string HotelCode { get; set; }
         public string? HotelName { get; set; }
         public string? HotelAddress { get; set; }
@@ -26,7 +25,7 @@ namespace DataAccess.Entities
         public bool Active { get; set; } = false;
 
         public virtual Hotel ImgCodeByUser { get; set; }
-        [MaxLength(50)]
+        
         public string? ImgCodeByUserId { get; set; }
 
 

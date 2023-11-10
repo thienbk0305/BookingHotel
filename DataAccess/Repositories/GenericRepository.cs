@@ -29,7 +29,7 @@ namespace DataAccess.Repositories
             await _context.SaveChangesAsync(cancellation);
             return entity;
         }
-        public async Task<T> Delete(int id, CancellationToken cancellation)
+        public async Task<T> Delete(string id, CancellationToken cancellation)
         {
             var entity = await _context.Set<T>().AsAsyncEnumerable().FirstOrDefaultAsync(e => e.Id == id);
             if (entity == null)
@@ -48,7 +48,7 @@ namespace DataAccess.Repositories
             return entity;
         }
 
-        public async Task<T> GetById(int id, CancellationToken cancellation)
+        public async Task<T> GetById(string id, CancellationToken cancellation)
         {
             var entity = await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(t => t.Id == id);
             await _context.SaveChangesAsync(cancellation);
