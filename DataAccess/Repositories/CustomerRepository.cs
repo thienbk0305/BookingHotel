@@ -22,7 +22,7 @@ namespace DataAccess.Repositories
 
         public async Task<int> InsertAsync(ContactView c, CancellationToken cancellation)
         {
-            var cCusCode = new SqlParameter("@c0", c.CusCode);
+            var cId = new SqlParameter("@c0", c.Id);
             var cFullName = new SqlParameter("@c1", c.CusFullName);
             cFullName.Value = String.IsNullOrEmpty(c.CusFullName) ? String.Empty : c.CusFullName;
             var cPhoneNumber = new SqlParameter("@c2", c.CusPhone);
@@ -30,10 +30,11 @@ namespace DataAccess.Repositories
             var cEmail = new SqlParameter("@c3", c.CusEmail);
             cEmail.Value = String.IsNullOrEmpty(c.CusEmail) ? String.Empty : c.CusEmail;
 
-            var cDescription = new SqlParameter("@c4", c.Description);
-            cDescription.Value = String.IsNullOrEmpty(c.Description) ? String.Empty : c.Description;
+            var eId = new SqlParameter("@e0", c.Id_Evaluate);
+            var eDescription = new SqlParameter("@e1", c.Description);
+            eDescription.Value = String.IsNullOrEmpty(c.Description) ? String.Empty : c.Description;
 
-            return await _context.Database.ExecuteSqlRawAsync("EXEC SP_ContactInsert @c0,@c1,@c2,@c3,@c4", cCusCode, cFullName, cPhoneNumber, cEmail, cDescription);
+            return await _context.Database.ExecuteSqlRawAsync("EXEC SP_InsertContact @c0,@c1,@c2,@c3,@e0,@e1", cId, cFullName, cPhoneNumber, cEmail, eId, eDescription);
         }
     }
 }
