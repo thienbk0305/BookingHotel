@@ -10,19 +10,15 @@
     <Compile Remove="Controllers\Hotel\**" />
     <Compile Remove="Controllers\NewFolder1\**" />
     <Compile Remove="Controllers\NewFolder2\**" />
-    <Compile Remove="Controllers\NewFolder\**" />
     <Content Remove="Controllers\Hotel\**" />
     <Content Remove="Controllers\NewFolder1\**" />
     <Content Remove="Controllers\NewFolder2\**" />
-    <Content Remove="Controllers\NewFolder\**" />
     <EmbeddedResource Remove="Controllers\Hotel\**" />
     <EmbeddedResource Remove="Controllers\NewFolder1\**" />
     <EmbeddedResource Remove="Controllers\NewFolder2\**" />
-    <EmbeddedResource Remove="Controllers\NewFolder\**" />
     <None Remove="Controllers\Hotel\**" />
     <None Remove="Controllers\NewFolder1\**" />
     <None Remove="Controllers\NewFolder2\**" />
-    <None Remove="Controllers\NewFolder\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,6 +38,10 @@
     <ProjectReference Include="..\Common\Common.csproj" />
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
     <ProjectReference Include="..\MediaBookingHotel\MediaBookingHotel.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\Rooms\" />
   </ItemGroup>
 
 </Project>

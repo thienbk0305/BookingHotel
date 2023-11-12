@@ -30,10 +30,6 @@ namespace DataAccess.Migrations
                     b.Property<bool>("Active")
                         .HasColumnType("bit");
 
-                    b.Property<string>("BookCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("CheckIn")
                         .HasColumnType("datetime2");
 
@@ -56,7 +52,6 @@ namespace DataAccess.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("RoomCodeByUserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
@@ -150,25 +145,19 @@ namespace DataAccess.Migrations
                     b.Property<string>("HotelAddress")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("HotelCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int?>("HotelLevel")
                         .HasColumnType("int");
 
                     b.Property<string>("HotelName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("ImgCodeByUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.HasKey("Id");
+                    b.Property<DateTime?>("SysDate")
+                        .HasColumnType("datetime2");
 
-                    b.HasIndex("ImageId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ImgCodeByUserId");
 
@@ -231,14 +220,11 @@ namespace DataAccess.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
+
                     b.Property<int?>("CountView")
                         .HasColumnType("int");
-
-                    b.Property<DateTime?>("Datetime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("ImageId")
-                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ImgCodeByUserId")
                         .HasColumnType("nvarchar(450)");
@@ -260,8 +246,6 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ImageId");
-
                     b.HasIndex("ImgCodeByUserId");
 
                     b.ToTable("New");
@@ -272,7 +256,7 @@ namespace DataAccess.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<bool?>("Active")
+                    b.Property<bool>("Active")
                         .HasColumnType("bit");
 
                     b.Property<string>("Description")
@@ -282,10 +266,6 @@ namespace DataAccess.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("HotelCodeByUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ImageId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ImgCodeByUserId")
@@ -294,18 +274,15 @@ namespace DataAccess.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("RoomCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int?>("RoomMax")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("SysDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
                     b.HasIndex("HotelCodeByUserId");
-
-                    b.HasIndex("ImageId");
 
                     b.HasIndex("ImgCodeByUserId");
 
@@ -317,13 +294,10 @@ namespace DataAccess.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<bool?>("Active")
+                    b.Property<bool>("Active")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("BeginDatetime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("Datetime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -341,6 +315,9 @@ namespace DataAccess.Migrations
                     b.Property<int?>("Numbers")
                         .HasColumnType("int");
 
+                    b.Property<DateTime?>("SysDate")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.HasIndex("HotelCodeByUserId");
@@ -353,34 +330,27 @@ namespace DataAccess.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<bool?>("Active")
+                    b.Property<bool>("Active")
                         .HasColumnType("bit");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("HotelCodeByUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ImageId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ImgCodeByUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ServiceCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("ServiceName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("SysDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
                     b.HasIndex("HotelCodeByUserId");
-
-                    b.HasIndex("ImageId");
 
                     b.HasIndex("ImgCodeByUserId");
 
@@ -648,9 +618,7 @@ namespace DataAccess.Migrations
 
                     b.HasOne("DataAccess.Entities.Room", "RoomCodeByUser")
                         .WithMany("Booking")
-                        .HasForeignKey("RoomCodeByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RoomCodeByUserId");
 
                     b.Navigation("CusCodeByUser");
 
@@ -676,12 +644,8 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("DataAccess.Entities.Hotel", b =>
                 {
-                    b.HasOne("DataAccess.Entities.Image", null)
+                    b.HasOne("DataAccess.Entities.Image", "ImgCodeByUser")
                         .WithMany("Hotel")
-                        .HasForeignKey("ImageId");
-
-                    b.HasOne("DataAccess.Entities.Hotel", "ImgCodeByUser")
-                        .WithMany()
                         .HasForeignKey("ImgCodeByUserId");
 
                     b.Navigation("ImgCodeByUser");
@@ -689,12 +653,8 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("DataAccess.Entities.New", b =>
                 {
-                    b.HasOne("DataAccess.Entities.Image", null)
+                    b.HasOne("DataAccess.Entities.Image", "ImgCodeByUser")
                         .WithMany("New")
-                        .HasForeignKey("ImageId");
-
-                    b.HasOne("DataAccess.Entities.Hotel", "ImgCodeByUser")
-                        .WithMany()
                         .HasForeignKey("ImgCodeByUserId");
 
                     b.Navigation("ImgCodeByUser");
@@ -704,16 +664,10 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("DataAccess.Entities.Hotel", "HotelCodeByUser")
                         .WithMany("Room")
-                        .HasForeignKey("HotelCodeByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("HotelCodeByUserId");
 
-                    b.HasOne("DataAccess.Entities.Image", null)
+                    b.HasOne("DataAccess.Entities.Image", "ImgCodeByUser")
                         .WithMany("Room")
-                        .HasForeignKey("ImageId");
-
-                    b.HasOne("DataAccess.Entities.Hotel", "ImgCodeByUser")
-                        .WithMany()
                         .HasForeignKey("ImgCodeByUserId");
 
                     b.Navigation("HotelCodeByUser");
@@ -734,16 +688,10 @@ namespace DataAccess.Migrations
                 {
                     b.HasOne("DataAccess.Entities.Hotel", "HotelCodeByUser")
                         .WithMany("Service")
-                        .HasForeignKey("HotelCodeByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("HotelCodeByUserId");
 
-                    b.HasOne("DataAccess.Entities.Image", null)
+                    b.HasOne("DataAccess.Entities.Image", "ImgCodeByUser")
                         .WithMany("Service")
-                        .HasForeignKey("ImageId");
-
-                    b.HasOne("DataAccess.Entities.Hotel", "ImgCodeByUser")
-                        .WithMany()
                         .HasForeignKey("ImgCodeByUserId");
 
                     b.Navigation("HotelCodeByUser");

@@ -9,11 +9,13 @@ namespace DataAccess.Models.NewsModels
 {
     public class NewsViewModel
     {
-        public string Id { get; set; }
+        public string? Id { get; set; }
         public string? Title { get; set; }
         public string? SumContent { get; set; }
         public string? NewsContent { get; set; }
-        public DateTime? Datetime { get; set; }
         public string? Source { get; set; }
+        public bool Active { get; set; }
+        public DateTime? SysDate { get; set; }
+
     }
 }

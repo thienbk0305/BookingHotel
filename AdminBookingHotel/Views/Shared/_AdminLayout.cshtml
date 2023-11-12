@@ -8,12 +8,12 @@
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
     <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="~/admin/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="~/admin/plugins/fontawesome-free/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="~/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <link rel="stylesheet" href="~/admin/plugins/overlayScrollbars/css/OverlayScrollbars.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="~/admin/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="~/admin/dist/css/adminlte.css">
 
     <style type="text/css">
         /* Chart.js */
@@ -56,19 +56,15 @@
             }
     </style>
     <!-- END PAGE LEVEL ~/plugins/CUSTOM STYLES -->
-    <link rel="stylesheet" type="text/css" href="~/admin/plugins/table/datatable/datatables.css">
-    <link rel="stylesheet" type="text/css" href="~/admin/plugins/table/datatable/custom_dt_html5.css">
+    <link rel="stylesheet" type="text/css" href="~/admin/plugins/datatables/datatables.css">
+    <link rel="stylesheet" type="text/css" href="~/admin/plugins/datatables/custom_dt_html5.css">
     <link rel="stylesheet" href="~/admin/plugins/flatpickr/flatpickr-dark.css" type="text/css">
     <link rel="stylesheet" href="~/admin/plugins/flatpickr/themes/dark.css">
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
-@*     <link href="~/Admin/dist/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="~/Admin/dist/css/plugins.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="~/Admin/plugins/table/datatable/dt-global_style.css">
-    <link href="~/Admin/dist/css/dashboard/dash_2.css" rel="stylesheet" type="text/css" /> *@
-    <link rel="stylesheet" type="text/css" href="~/Admin/plugins/bootstrap-select/bootstrap-select.css">
-    <link href="~/Admin/dist/css/components/tabs-accordian/custom-tabs.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="~/Admin/plugins/table/datatable/select.bootstrap4.css">
-    <link href="~/Admin/plugins/flatpickr/flatpickr.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="~/admin/plugins/bootstrap-select/bootstrap-select.css">
+    <link href="~/admin/dist/css/components/tabs-accordian/custom-tabs.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="~/admin/plugins/datatables/select.bootstrap4.css">
+    <link href="~/admin/plugins/flatpickr/flatpickr.css" rel="stylesheet" type="text/css">
     }
 
     <!-- END GLOBAL MANDATORY STYLES -->
@@ -256,37 +252,6 @@
                             <!-- Sidebar Menu -->
                             <nav class="mt-2">
                                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                                    <!-- Add icons to the links using the .nav-icon class
-                                         with font-awesome or any other icon font library -->
-                                    @* <li class="nav-item menu-open">
-                                    <a href="#" class="nav-link active">
-                                    <i class="nav-icon fas fa-tachometer-alt"></i>
-                                    <p>
-                                    Dashboard
-                                    <i class="right fas fa-angle-left"></i>
-                                    </p>
-                                    </a>
-                                    <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                    <a href="./index.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Dashboard v1</p>
-                                    </a>
-                                    </li>
-                                    <li class="nav-item">
-                                    <a href="./index2.html" class="nav-link active">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Dashboard v2</p>
-                                    </a>
-                                    </li>
-                                    <li class="nav-item">
-                                    <a href="./index3.html" class="nav-link">
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>Dashboard v3</p>
-                                    </a>
-                                    </li>
-                                    </ul>
-                                    </li> *@
                                     @*------KHU VỰC QUẢN TRỊ------*@
                                     <li class="nav-item">
                                         <a href="#" class="nav-link">
@@ -475,7 +440,7 @@
     <!-- ./wrapper -->
     <!-- REQUIRED SCRIPTS -->
     <!-- jQuery -->
-    <script src="~/admin/plugins/jquery/jquery.min.js"></script>
+    <script src="~/admin/plugins/jquery/jquery.js"></script>
     <!-- Bootstrap -->
     <script src="~/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- overlayScrollbars -->
@@ -511,6 +476,7 @@
     <script src="~/admin/plugins/flatpickr/shortcut-buttons-flatpickr.min.js"></script>
     <script src="~/admin/plugins/input-mask/jquery.inputmask.bundle.min.js"></script>
     <script src="~/admin/plugins/sweetalert/sweetalert2.js"></script>
+    <script src="~/admin/ckeditor/ckeditor.js"></script>
     @RenderSection("scripts", false)
     @await Component.InvokeAsync("NToastNotify")
 </body>

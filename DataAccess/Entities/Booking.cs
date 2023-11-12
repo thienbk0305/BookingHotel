@@ -10,8 +10,6 @@ namespace DataAccess.Entities
     {
 
         public string Id { get; set; }
-        public string BookCode { get; set; }
-
         public DateTime? CheckIn { get; set; }
         public DateTime? CheckOut { get; set; }
         public bool Active { get; set; } = false;
@@ -19,17 +17,15 @@ namespace DataAccess.Entities
         public bool? Paid { get; set; }
         public string? Note { get; set; }
 
-        public virtual Customer CusCodeByUser { get; set; }
-        
+        public virtual Customer? CusCodeByUser { get; set; }
         public string? CusCodeByUserId { get; set; }
 
-        
+        public virtual Hotel? HotelCodeByUser { get; set; }
         public string? HotelCodeByUserId { get; set; }
-        public virtual Hotel HotelCodeByUser { get; set; }
 
-        
-        public string RoomCodeByUserId { get; set; }
         public virtual Room? RoomCodeByUser { get; set; }
+        public string? RoomCodeByUserId { get; set; }
+
 
     }
 }

@@ -12,19 +12,18 @@ namespace DataAccess.Entities
             Booking = new HashSet<Booking>();
         }
         public string Id { get; set; }
-
-        public string RoomCode { get; set; }
         public int? Floor { get; set; }
         public int? RoomMax { get; set; }
         public decimal Price { get; set; }
         public string? Description { get; set; }
-        public bool? Active { get; set; }
+        public bool Active { get; set; } = false;
+        public DateTime? SysDate { get; set; }
 
-        public virtual Hotel HotelCodeByUser { get; set; }
+        public virtual Hotel? HotelCodeByUser { get; set; }
         
         public string? HotelCodeByUserId { get; set; }
 
-        public virtual Hotel ImgCodeByUser { get; set; }
+        public virtual Image? ImgCodeByUser { get; set; }
         
         public string? ImgCodeByUserId { get; set; }
 

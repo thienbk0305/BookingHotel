@@ -13,10 +13,6 @@ namespace DataAccess.Entities
             Evaluate = new HashSet<Evaluate>();
         }
         public string Id { get; set; }
-        //public int Id { get; set; }
-        //[Key]
-        //[MaxLength(50)]
-        //public string CusCode { get; set; }
         public string? CusFullName { get; set; }
         public string? Gender { get; set; }
         public string? CusEmail { get; set; }
