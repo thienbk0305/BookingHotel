@@ -19,6 +19,7 @@ namespace DataAccess.UnitOfWork
         public IContactRepository ContactRepository { get; private set; }
         public ICustomerRepository CustomerRepository { get; private set; }
         public INewsRepository NewsRepository { get; private set; }
+        public IRoomsRepository RoomsRepository { get; private set; }
 
         private readonly BookingHotelDbContext _dbContext;
 
@@ -29,6 +30,7 @@ namespace DataAccess.UnitOfWork
             ContactRepository = new ContactRepository(_dbContext);
             CustomerRepository = new CustomerRepository(_dbContext);
             NewsRepository = new NewsRepository(_dbContext);
+            RoomsRepository = new RoomsRepository(_dbContext);
         }
         public int Save()
         {

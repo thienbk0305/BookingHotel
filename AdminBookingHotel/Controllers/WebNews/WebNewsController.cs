@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using NToastNotify;
+using System.ComponentModel.DataAnnotations;
+using System.Net;
 
 namespace AdminBookingHotel.Controllers.News
 {
@@ -59,7 +61,7 @@ namespace AdminBookingHotel.Controllers.News
 
                 listResult = JsonConvert.DeserializeObject<List<NewsViewModel>>(result);
 
-                var returnedData = _utilitiesRepository.InitiateDataTable(draw!, length!, start!, listResult);
+                var returnedData = _utilitiesRepository.InitiateDataTable(draw!, length!, start!, listResult!);
                 return returnedData;
             }
             catch (Exception)
@@ -74,11 +76,11 @@ namespace AdminBookingHotel.Controllers.News
         {
             if (id == null)
             {
-                return NotFound();
+                return PartialView("_Detail");
             }
             var news = new NewsViewModel();
             var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
-            var base_url = "news/singlenews?id=" + id ; //API Controller
+            var base_url = "News/SingleNews?id=" + id; //API Controller
             var dataJson = JsonConvert.SerializeObject(news);
             var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
             var result = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Get, url_api, base_url, dataJson, token);
@@ -90,19 +92,27 @@ namespace AdminBookingHotel.Controllers.News
             }
 
             news = JsonConvert.DeserializeObject<NewsViewModel>(result);
-            
+
             return PartialView("_Detail", news);
         }
 
         [HttpPost]
-        public IActionResult Update (NewsViewModel model)
+        public IActionResult Update([FromBody] NewsViewModel model)
         {
             var id = model.Id;
+            model.NewsContent = WebUtility.HtmlEncode(model.NewsContent);
             try
             {
-                
+
                 var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
-                var base_url = "news/editnews?id="+model.Id; //API Controller
+                var base_url = "";
+                if (string.IsNullOrEmpty(id) || id == "0")
+                {
+                    base_url = "News/AddNews"; //API Controller
+                } else
+                {
+                    base_url = "News/EditNews?id=" + model.Id; //API Controller
+                }
                 var dataJson = JsonConvert.SerializeObject(model);
                 var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
                 var updatedNews = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Post, url_api, base_url, dataJson, token);

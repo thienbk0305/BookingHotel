@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace APIBookingHotel.Controllers.News
 {
     [Authorize(Roles = "Admin")]
-    [Route("api/news/")]
+    [Route("api/News/")]
     [ApiController]
     public class NewsController : ControllerBase
     {
@@ -28,7 +28,7 @@ namespace APIBookingHotel.Controllers.News
         // <param name="searchDate"></param>
         // <param name="searchString"></param>
         [HttpGet]
-        [Route("getnews")]
+        [Route("GetNews")]
         public async Task<IActionResult> GetNewsAsync(DateTime? fromDate, DateTime? toDate, string? searchString)
         {
             var result = new List<NewsViewModel>();
@@ -47,7 +47,7 @@ namespace APIBookingHotel.Controllers.News
         //
         // <param name="id"></param>
         [HttpGet]
-        [Route("singlenews")]
+        [Route("SingleNews")]
         public async Task<IActionResult> GetSingleNews(string id)
         {
             var result = new NewsViewModel();
@@ -66,8 +66,8 @@ namespace APIBookingHotel.Controllers.News
         //</summary>
         //
         // <param name="id"></param>
-        [HttpPut]
-        [Route("addnews")]
+        [HttpPost]
+        [Route("AddNews")]
         public async Task<IActionResult> AddNews(NewsViewModel model)
         {
             if (ModelState.IsValid)
@@ -75,12 +75,12 @@ namespace APIBookingHotel.Controllers.News
                 var news = new New();
                 news = _mapper.Map<New>(model);
                 news.Id = Common.Security.GenerateRandomId();
-                news.Datetime = DateTime.Now;
+                news.SysDate = DateTime.Now;
                 var result = await _bookingHotelUnitOfWork.NewsRepository.Add(news, HttpContext.RequestAborted);
                 if (result  != null)
                 {
                     await _bookingHotelUnitOfWork.SaveAsync();
-                    return NoContent();
+                    return Ok(news);
                 }
             }
             return BadRequest();
@@ -93,7 +93,7 @@ namespace APIBookingHotel.Controllers.News
         // <param name="id"></param>
         // <param name="NewsModel"></param>
         [HttpPost]
-        [Route("editnews")]
+        [Route("EditNews")]
         public async Task<IActionResult> EditNews(string id,NewsViewModel model)
         {
             var news = await _bookingHotelUnitOfWork.NewsRepository.GetById(id, HttpContext.RequestAborted);
@@ -103,11 +103,12 @@ namespace APIBookingHotel.Controllers.News
             if (ModelState.IsValid)
             {
                 news = _mapper.Map<New>(model);
+                news.SysDate = DateTime.Now;
                 var result = await _bookingHotelUnitOfWork.NewsRepository.Update(news, HttpContext.RequestAborted);
                 if (result != null)
                 {
-                    
-                    return NoContent();
+                    await _bookingHotelUnitOfWork.SaveAsync();
+                    return Ok(news);
                 }
             }
             return BadRequest();
@@ -120,7 +121,7 @@ namespace APIBookingHotel.Controllers.News
         // <param name="id"></param>
         // <param name="NewsModel"></param>
         [HttpDelete]
-        [Route("deletenews")]
+        [Route("DeleteNews")]
         public async Task<IActionResult> DeleteNews(string id)
         {
             var news = await _bookingHotelUnitOfWork.NewsRepository.GetById(id, HttpContext.RequestAborted);

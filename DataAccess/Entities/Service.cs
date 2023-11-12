@@ -9,16 +9,16 @@ namespace DataAccess.Entities
     {
         
         public string Id { get; set; }
-        public string ServiceCode { get; set; }
         public string? ServiceName { get; set; }
         public string? Description { get; set; }
-        public bool? Active { get; set; }=false;
+        public bool Active { get; set; } = false;
+        public DateTime? SysDate { get; set; }
 
-        public virtual Hotel HotelCodeByUser { get; set; }
+        public virtual Hotel? HotelCodeByUser { get; set; }
         
         public string? HotelCodeByUserId { get; set; }
 
-        public virtual Hotel ImgCodeByUser { get; set; }
+        public virtual Image? ImgCodeByUser { get; set; }
         
         public string? ImgCodeByUserId { get; set; }
     }
