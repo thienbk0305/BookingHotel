@@ -8,12 +8,6 @@
 
   <ItemGroup>
     <Compile Remove="Models\UserAndRoleViewModels\**" />
-<<<<<<< HEAD
-    <Content Remove="Models\UserAndRoleViewModels\**" />
-    <EmbeddedResource Remove="Models\UserAndRoleViewModels\**" />
-    <None Remove="Models\UserAndRoleViewModels\**" />
-=======
->>>>>>> e357955edbf315f006bcf4e8333afb8ab151ea9a
     <Compile Remove="wwwroot\admin\dist\bootstrap\**" />
     <Compile Remove="wwwroot\admin\plugins\flatpickr\**" />
     <Content Remove="Models\UserAndRoleViewModels\**" />
