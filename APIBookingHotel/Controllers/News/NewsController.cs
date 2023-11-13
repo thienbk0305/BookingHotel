@@ -137,8 +137,8 @@ namespace APIBookingHotel.Controllers.News
             var result = await _bookingHotelUnitOfWork.NewsRepository.Delete(id, HttpContext.RequestAborted);
             if (result != null)
             {
-                
-                return NoContent();
+                await _bookingHotelUnitOfWork.SaveAsync();
+                return Ok(news);
             }
             return BadRequest();
         }

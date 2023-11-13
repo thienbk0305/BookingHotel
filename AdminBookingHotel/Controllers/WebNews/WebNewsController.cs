@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using NToastNotify;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
@@ -155,8 +156,9 @@ namespace AdminBookingHotel.Controllers.News
             }
 
             news = JsonConvert.DeserializeObject<NewsViewModel>(result);
+            _toastNotification.AddSuccessToastMessage("Success!");
+            return RedirectToAction("Index", "WebNews");
 
-            return PartialView("_Detail", news);
 
         }
     }

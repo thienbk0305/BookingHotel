@@ -80,8 +80,8 @@
             {
                 "render": function (data, type, row, meta) {
                     return (
-                        "<div class='btn-group'><button type='button' class='btn btn-primary btn-sm' onclick='return getNewsByID(\"" + row.Id + "\")'>Edit</button></div>" +
-                        "<div class='btn-group'><button type='button' class='btn btn-primary btn-sm' onclick='return deleteNewsByID(\"" + row.Id + "\")'>Delete</button></div>"
+                         "<div class='btn-group'><button type='button' class='btn btn-primary btn-sm' onclick='return getNewsByID(\"" + row.Id + "\")'>Edit</button></div>" +
+                         "<div class='btn-group'><button type='button' class='btn btn-primary btn-sm' onclick='return deleteNewsByID(\"" + row.Id + "\")'>Delete</button></div>"
                 );
             },
             "width": "20%"
@@ -117,22 +117,18 @@ function getNewsByID(Id) {
             Swal.fire("Error", errormessage.responseText, "error");
         }
     });
-}
-function deleteNewsByID(Id) {
-    console.log("id: " + Id)
-    $.ajax({
-        url: "/WebNews/Delete/",
-        contentType: "application/json; charset=utf-8",
-        data: { 'Id': Id },
+};
+
+function deleteNewsByID(id) {
+    return $.ajax({
+        url: "/WebNews/Delete/" + id,
         type: "DELETE",
         success: function (e) {
-            alert(e.result)
-            location.reload()
         },
-        error: function (errormessage) {
-            Swal.fire("Error", errormessage.responseText, "error");
+        error: function (e) {
+            swal("Error", e.responseText, "error")
         }
-    });
+    }), !1
 }
 
 

@@ -61,10 +61,7 @@ namespace AdminBookingHotel.Controllers.Role
                     return RedirectToAction("Index", "Role");
                 }
 
-                //listResult = JsonConvert.DeserializeObject<PermissionResult>(result);
-
                 _toastNotification.AddSuccessToastMessage("Cập Nhật Thành Công");
-
                 return RedirectToAction("Index", new { roleId = model.RoleId });
             }
             catch (Exception)
