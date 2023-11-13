@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-  <!--<ItemGroup>
+  <ItemGroup>
     <Compile Remove="Models\UserAndRoleViewModels\**" />
     <Content Remove="Models\UserAndRoleViewModels\**" />
     <EmbeddedResource Remove="Models\UserAndRoleViewModels\**" />
@@ -22,7 +22,7 @@
     <None Remove="Models\UserAndRoleViewModels\**" />
     <None Remove="wwwroot\admin\dist\bootstrap\**" />
     <None Remove="wwwroot\admin\plugins\flatpickr\**" />
-  </ItemGroup>-->
+  </ItemGroup>
 
   <ItemGroup>
     <None Include="wwwroot\admin\ckeditor\adapters\jquery.js" />
