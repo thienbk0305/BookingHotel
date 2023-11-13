@@ -67,19 +67,22 @@
             }
         ],
         "columns": [
-        {
-            data: null,
-            defaultContent: "",
-            width: "5%"
-        },
-        { "data": "SysDate", "name": "SysDate", "autoWidth": true },
-        { "data": "Title", "name": "Title", "autoWidth": true },
-        { "data": "SumContent", "name": "Summary", "autoWidth": true },
-        { "data": "Source", "name": "Source", "autoWidth": true },
-        { "data": "Active", "name": "Active", "autoWidth": true },
-        {
-            "render": function (data, type, row, meta) {
-                return "<div class='btn-group'><button type='button' class='btn btn-primary btn-sm' onclick='return getNewsByID(\"" + row.Id + "\")'>Edit</button></div>"
+            {
+                data: null,
+                defaultContent: "",
+                width: "5%"
+            },
+            { "data": "SysDate", "name": "SysDate", "autoWidth": true },
+            { "data": "Title", "name": "Title", "autoWidth": true },
+            { "data": "SumContent", "name": "Summary", "autoWidth": true },
+            { "data": "Source", "name": "Source", "autoWidth": true },
+            { "data": "Active", "name": "Active", "autoWidth": true },
+            {
+                "render": function (data, type, row, meta) {
+                    return (
+                        "<div class='btn-group'><button type='button' class='btn btn-primary btn-sm' onclick='return getNewsByID(\"" + row.Id + "\")'>Edit</button></div>" +
+                        "<div class='btn-group'><button type='button' class='btn btn-primary btn-sm' onclick='return deleteNewsByID(\"" + row.Id + "\")'>Delete</button></div>"
+                );
             },
             "width": "20%"
         }
@@ -109,6 +112,22 @@ function getNewsByID(Id) {
         success: function (result) {
             $('#NewsDetailModal').html(result);
             $('#NewsDetailModal').modal('show');
+        },
+        error: function (errormessage) {
+            Swal.fire("Error", errormessage.responseText, "error");
+        }
+    });
+}
+function deleteNewsByID(Id) {
+    console.log("id: " + Id)
+    $.ajax({
+        url: "/WebNews/Delete/",
+        contentType: "application/json; charset=utf-8",
+        data: { 'Id': Id },
+        type: "DELETE",
+        success: function (e) {
+            alert(e.result)
+            location.reload()
         },
         error: function (errormessage) {
             Swal.fire("Error", errormessage.responseText, "error");

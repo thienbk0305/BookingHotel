@@ -40,8 +40,4 @@
     <ProjectReference Include="..\MediaBookingHotel\MediaBookingHotel.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\Rooms\" />
-  </ItemGroup>
-
 </Project>

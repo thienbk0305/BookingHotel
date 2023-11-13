@@ -133,5 +133,31 @@ namespace AdminBookingHotel.Controllers.News
                 throw;
             }
         }
+
+        [HttpDelete]
+        public IActionResult Delete(string id)
+        {
+            if (id == null)
+            {
+                return PartialView("_Detail");
+            }
+            var news = new NewsViewModel();
+            var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
+            var base_url = "News/DeleteNews?id=" + id; //API Controller
+            var dataJson = JsonConvert.SerializeObject(news);
+            var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
+            var result = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Delete, url_api, base_url, dataJson, token);
+
+            if (string.IsNullOrEmpty(result))
+            {
+                _toastNotification.AddErrorToastMessage("Có lỗi xảy ra! Vui lòng kiểm tra lại thông tin");
+                return RedirectToAction("Index", "WebNews");
+            }
+
+            news = JsonConvert.DeserializeObject<NewsViewModel>(result);
+
+            return PartialView("_Detail", news);
+
+        }
     }
 }
