@@ -16,7 +16,7 @@
                             <input type="hidden" value="@Model?.Id" asp-for="Id" id="modelId" />
                             <div class="form-group">
                                 <label class="control-label mb-2" asp-for="Title">Title</label>
-                                <input class="form-control filled-input" readonly='@(Model?.Id != null ? "readonly" : null)' type="text" id="modelTitle" value="@Model?.Title" asp -for="Title" class="form-control" required>
+                                <input class="form-control filled-input" @* readonly='@(Model?.Id != null ? "readonly" : null)' *@ type="text" id="modelTitle" value="@Model?.Title" asp -for="Title" class="form-control" required>
                                 <span asp-validation-for="Title" class="text-warning"></span>
                             </div>
                             <div class="form-group">
@@ -28,7 +28,7 @@
                                 <label class="control-label mb-2" asp-for="NewsContent">Content</label>
                                 <textarea cols="50" rows="10" class="form-control filled-input" id="modelNewsContent" asp-for="NewsContent" class="form-control" required></textarea>
                                 <span asp-validation-for="NewsContent" class="text-warning"></span>
-                                @* @Html.ValidationMessageFor(Model => Model.NewsContent,"", new {@class = "text-danger"}) *@
+                                @Html.ValidationMessageFor(Model => Model.NewsContent,"", new {@class = "text-danger"})
                             </div>
                             <div class="form-group">
                                 <label class="control-label mb-2" asp-for="Source">Source</label>
