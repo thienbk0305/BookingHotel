@@ -1,8 +1,18 @@
-﻿﻿@{
+﻿@using DataAccess.Models.NewsModels;
+@using System.Net;
+﻿@{
     ViewData["Title"] = "Tin tức";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@model NewsViewModel
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            var content = '@Html.Raw(WebUtility.HtmlDecode(@Model?.NewsContent))';
+            $("#sumcontent").html(content)
+        });
+        </script>
+}
 <!--================Breadcrumb Area =================-->
 <section class="breadcrumb_area blog_banner_two">
     <div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background=""></div>
@@ -52,34 +62,19 @@
                         </div>
                     </div>
                     <div class="col-lg-9 col-md-9 blog_details">
-                        <h2>Lạc vào chốn bình yên tại 14 khách sạn đẳng cấp nhất Vũng Tàu</h2>
+                        <h2>@Model.Title</h2>
                         <p class="excert">
-                            Thành phố biển Vũng Tàu luôn là lựa chọn tuyệt vời cho những du khách muốn tìm kiếm sự thư giãn và bình yên.
+                            @Model.SumContent
                         </p>
-                        <p>
-                            Đến đây, bạn có thể tạm quên đi cuộc sống ồn ào và được sống vào một không gian tự nhiên tuyệt đẹp.
-                        <p>
-                            Các điểm lưu trú tại Vũng Tàu còn mang đến nhiều dịch vụ giải trí để làm mới tinh thần du khách ngay lập tức. Cùng Vietnam Booking khám phá danh sách top 14 khách sạn nổi bật nhất tại thành phố Vũng Tàu ngay nhé!
-                        </p>
+                        
                     </div>
                     <div class="col-lg-12">
                         <div class="quotes">
-                            Khách sạn Malibu Beach Vũng Tàu chính là một dòng chảy thời gian yên bình với không gian thời thượng và lộng lẫy. Khách sạn có view hướng biển cực kỳ thu hút. Từ Malibu, bạn dễ dàng thấy được biển xanh cùng bãi cát trắng mịn trải dài. Được thành lập từ năm 2016, khách sạn được thiết kế trên 20 tầng. Khách sạn có thiết kế theo cách châu Âu hiện đại với gam màu trung tính làm chủ đạo.
+                            @Model.SumContent
                         </div>
                         <div class="row">
-                            <div class="col-6">
-                                <img class="img-fluid" src="~/image/blog/post-img1.jpg" alt="">
-                            </div>
-                            <div class="col-6">
-                                <img class="img-fluid" src="~/image/blog/post-img2.jpg" alt="">
-                            </div>
-                            <div class="col-lg-12 mt-25">
-                                <p>
-                                    Sàn phòng ngủ được lát đá cẩm thạch cao cấp. Hệ thống đèn ngủ dịu nhẹ của khách sạn đã mang đến không gian đẳng cấp hơn bao giờ hết. Tone màu của phòng dùng màu nâu trầm cùng sữa trắng tinh khôi vô cùng hút mắt. Nội thất gỗ càng làm tôn thêm không gian đẳng cấp. Tất cả phòng tại Malibu đều được trang bị đầy đủ tiện nghi như tivi, điều hòa, wifi,...
-                                </p>
-                                <p>
-                                    MCSE boot camps have its supporters and its detractors. Some people do not understand why you should have to spend money on boot camp when you can get the MCSE study materials yourself at a fraction of the camp price. However, who has the willpower.
-                                </p>
+                            <div id="sumcontent" class="col-lg-6 col-md-6 col-12">
+
                             </div>
                         </div>
                     </div>

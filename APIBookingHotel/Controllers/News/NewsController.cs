@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace APIBookingHotel.Controllers.News
 {
-    [Authorize(Roles = "Admin")]
+    
     [Route("api/News/")]
     [ApiController]
     public class NewsController : ControllerBase
@@ -29,6 +29,7 @@ namespace APIBookingHotel.Controllers.News
         // <param name="searchString"></param>
         [HttpGet]
         [Route("GetNews")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetNewsAsync(DateTime? fromDate, DateTime? toDate, string? searchString)
         {
             var result = new List<NewsViewModel>();
@@ -48,6 +49,7 @@ namespace APIBookingHotel.Controllers.News
         // <param name="id"></param>
         [HttpGet]
         [Route("SingleNews")]
+        [AllowAnonymous]
         public async Task<IActionResult> GetSingleNews(string id)
         {
             var result = new NewsViewModel();
@@ -68,6 +70,7 @@ namespace APIBookingHotel.Controllers.News
         // <param name="id"></param>
         [HttpPost]
         [Route("AddNews")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddNews(NewsViewModel model)
         {
             if (ModelState.IsValid)
@@ -94,6 +97,7 @@ namespace APIBookingHotel.Controllers.News
         // <param name="NewsModel"></param>
         [HttpPost]
         [Route("EditNews")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> EditNews(string id,NewsViewModel model)
         {
             var news = await _bookingHotelUnitOfWork.NewsRepository.GetById(id, HttpContext.RequestAborted);
@@ -122,6 +126,7 @@ namespace APIBookingHotel.Controllers.News
         // <param name="NewsModel"></param>
         [HttpDelete]
         [Route("DeleteNews")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteNews(string id)
         {
             var news = await _bookingHotelUnitOfWork.NewsRepository.GetById(id, HttpContext.RequestAborted);

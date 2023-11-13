@@ -11,7 +11,7 @@ $("#updateBtn").click(function () {
     var modelNewsContent = $("#modelNewsContent").val();
     var modelSource = $("#modelSource").val();
     var modelActive = $("#modelActive").val();
-
+    console.log(modelNewsContent )      
 
     model = {
         Id: id, Title: modelTitle, SumContent: modelSumContent, NewsContent: modelNewsContent, Source: modelSource, Active: modelActive
