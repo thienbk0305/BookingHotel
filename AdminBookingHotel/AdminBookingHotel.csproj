@@ -8,11 +8,6 @@
 
   <ItemGroup>
     <Compile Remove="Models\UserAndRoleViewModels\**" />
-<<<<<<< HEAD
-    <Content Remove="Models\UserAndRoleViewModels\**" />
-    <EmbeddedResource Remove="Models\UserAndRoleViewModels\**" />
-    <None Remove="Models\UserAndRoleViewModels\**" />
-=======
     <Compile Remove="wwwroot\admin\dist\bootstrap\**" />
     <Compile Remove="wwwroot\admin\plugins\flatpickr\**" />
     <Content Remove="Models\UserAndRoleViewModels\**" />
@@ -24,7 +19,6 @@
     <None Remove="Models\UserAndRoleViewModels\**" />
     <None Remove="wwwroot\admin\dist\bootstrap\**" />
     <None Remove="wwwroot\admin\plugins\flatpickr\**" />
->>>>>>> thienbk
   </ItemGroup>
 
   <ItemGroup>
