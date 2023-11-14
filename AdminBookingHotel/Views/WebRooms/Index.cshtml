@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Quản Lý Tin Tức";
+    ViewBag.Title = "Quản Lý Phòng";
     Layout = "_AdminLayout";
 }
 @section css {
@@ -8,7 +8,7 @@
 @section scripts
     {
     <!-- New JS Function -->
-    <script src="~/admin/dist/js/news/news.js"></script>
+    <script src="~/admin/dist/js/rooms/rooms.js"></script>
     <script src="~/admin/plugins/summernote/summernote-bs4.min.js"></script>
 }
 
@@ -17,13 +17,13 @@
     <!-- Content Header (Page header) -->
     <div class="page-header">
         <div class="page-title">
-            <h3>Danh Sách Tin Tức</h3>
+            <h3>Danh Sách Phòng</h3>
         </div>
         <nav class="breadcrumb-one" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="javascript:void(0);"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0);">Quản Lý Tin Tức</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><span>Danh Sách Tin Tức</span></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">Quản Lý Phòng</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><span>Danh Sách Phòng</span></li>
             </ol>
         </nav>
     </div>
@@ -32,7 +32,8 @@
     <section class="content">
         <div class="container-fluid">
             <!--/. container-fluid -->
-            <form id="NewsModal">
+            <form id="RoomsModal">
+
                 <div class="row layout-top-spacing">
                     <div class="col-12">
                         <div class="statbox widget box box-shadow">
@@ -71,21 +72,23 @@
                                             Thêm Mới
                                         </button>
                                         <div class="modal fade bs-example-modal-xl" tabindex="-1" role="dialog"
-                                             aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" id="NewsDetailModal"
-                                             data-url="@Url.Action("Detail", "WebNews")"></div>
+                                             aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" id="RoomsDetailModal"
+                                             data-url="@Url.Action("Detail", "WebRooms")"></div>
 
                                     </div>
                                 </div>
                                 <div class="table-wrap mt-2">
                                     <div class="table-responsive style-1">
-                                        <table id="newsTable" class="table style-1 table-hover non-hover" style="width:100%">
+                                        <table id="roomsTable" class="table style-1 table-hover non-hover" style="width:100%">
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
                                                     <th>DateTime</th>
-                                                    <th>Tiêu Đề</th>
-                                                    <th>Tóm Tắt</th>
-                                                    <th>Nguồn</th>
+                                                    <th>Phòng</th>
+                                                    <th>Kích Thước</th>
+                                                    <th>Loại Giường</th>
+                                                    <th>Người</th>
+                                                    <th>Giá</th>
                                                     <th>Tình Trạng</th>
                                                     <th>Chi Tiết</th>
                                                 </tr>
@@ -94,9 +97,11 @@
                                                 <tr>
                                                     <th>#</th>
                                                     <th>DateTime</th>
-                                                    <th>Tiêu Đề</th>
-                                                    <th>Tóm Tắt</th>
-                                                    <th>Nguồn</th>
+                                                    <th>Phòng</th>
+                                                    <th>Kích Thước</th>
+                                                    <th>Loại Giường</th>
+                                                    <th>Người</th>
+                                                    <th>Giá</th>
                                                     <th>Tình Trạng</th>
                                                     <th>Chi Tiết</th>
                                                 </tr>

@@ -1,7 +1,7 @@
 ﻿using DataAccess.DBContext;
 using DataAccess.IRepositories;
 using DataAccess.Models;
-using DataAccess.Models.NewsModels;
+using DataAccess.Models.RoomsModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -11,16 +11,16 @@ using NToastNotify;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
 
-namespace AdminBookingHotel.Controllers.WebNews
+namespace AdminBookingHotel.Controllers.WebRooms
 {
-    public class WebNewsController : Controller
+    public class WebRoomsController : Controller
     {
-        IUtilitiesRepository<NewsViewModel> _utilitiesRepository;
+        IUtilitiesRepository<RoomsViewModel> _utilitiesRepository;
         private readonly IToastNotification _toastNotification;
 
         private readonly IConfiguration _configuration;
 
-        public WebNewsController(IUtilitiesRepository<NewsViewModel> utilitiesRepository,
+        public WebRoomsController(IUtilitiesRepository<RoomsViewModel> utilitiesRepository,
                               IToastNotification toastNotification, IConfiguration configuration)
         {
             _utilitiesRepository = utilitiesRepository;
@@ -47,9 +47,9 @@ namespace AdminBookingHotel.Controllers.WebNews
                         : Request.Form["length"].FirstOrDefault());
                 var searchValue = Request.Form["search[value]"].FirstOrDefault();
 
-                var listResult = new List<NewsViewModel>();
+                var listResult = new List<RoomsViewModel>();
                 var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
-                var base_url = "News/GetNews"; //API Controller
+                var base_url = "Rooms/GetRooms"; //API Controller
                 var dataJson = JsonConvert.SerializeObject(listResult);
                 var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
                 var result = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Get, url_api, base_url, dataJson, token);
@@ -60,7 +60,7 @@ namespace AdminBookingHotel.Controllers.WebNews
                     return RedirectToAction("Index");
                 }
 
-                listResult = JsonConvert.DeserializeObject<List<NewsViewModel>>(result);
+                listResult = JsonConvert.DeserializeObject<List<RoomsViewModel>>(result);
 
                 var returnedData = _utilitiesRepository.InitiateDataTable(draw!, length!, start!, listResult!);
                 return returnedData;
@@ -79,29 +79,28 @@ namespace AdminBookingHotel.Controllers.WebNews
             {
                 return PartialView("_Detail");
             }
-            var news = new NewsViewModel();
+            var rooms = new RoomsViewModel();
             var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
-            var base_url = "News/SingleNews?id=" + id; //API Controller
-            var dataJson = JsonConvert.SerializeObject(news);
+            var base_url = "Rooms/SingleRooms?id=" + id; //API Controller
+            var dataJson = JsonConvert.SerializeObject(rooms);
             var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
             var result = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Get, url_api, base_url, dataJson, token);
 
             if (string.IsNullOrEmpty(result))
             {
                 _toastNotification.AddErrorToastMessage("Có lỗi xảy ra! Vui lòng kiểm tra lại thông tin");
-                return RedirectToAction("Index", "WebNews");
+                return RedirectToAction("Index", "WebRooms");
             }
 
-            news = JsonConvert.DeserializeObject<NewsViewModel>(result);
+            rooms = JsonConvert.DeserializeObject<RoomsViewModel>(result);
 
-            return PartialView("_Detail", news);
+            return PartialView("_Detail", rooms);
         }
 
         [HttpPost]
-        public IActionResult Update([FromBody] NewsViewModel model)
+        public IActionResult Update([FromBody] RoomsViewModel model)
         {
             var id = model.Id;
-            model.NewsContent = WebUtility.HtmlEncode(model.NewsContent);
             try
             {
 
@@ -109,23 +108,23 @@ namespace AdminBookingHotel.Controllers.WebNews
                 var base_url = "";
                 if (string.IsNullOrEmpty(id) || id == "0")
                 {
-                    base_url = "News/AddNews"; //API Controller
+                    base_url = "Rooms/AddRooms"; //API Controller
                 } else
                 {
-                    base_url = "News/EditNews?id=" + model.Id; //API Controller
+                    base_url = "Rooms/EditRooms?id=" + model.Id; //API Controller
                 }
                 var dataJson = JsonConvert.SerializeObject(model);
                 var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
-                var updatedNews = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Post, url_api, base_url, dataJson, token);
+                var updatedRooms = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Post, url_api, base_url, dataJson, token);
 
-                if (string.IsNullOrEmpty(updatedNews))
+                if (string.IsNullOrEmpty(updatedRooms))
                 {
-                    return RedirectToAction("Index", "WebNews");
+                    return RedirectToAction("Index", "WebRooms");
                 }
 
-                var result = JsonConvert.DeserializeObject<RoleResult>(updatedNews);
+                var result = JsonConvert.DeserializeObject<RoleResult>(updatedRooms);
                 _toastNotification.AddSuccessToastMessage("Success!");
-                return RedirectToAction("Index", "WebNews");
+                return RedirectToAction("Index", "WebRooms");
 
             }
             catch (Exception)
@@ -142,19 +141,22 @@ namespace AdminBookingHotel.Controllers.WebNews
             {
                 return PartialView("_Detail");
             }
+
             var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
-            var base_url = "News/DeleteNews?id=" + id; //API Controller
+            var base_url = "Rooms/DeleteRooms?id=" + id; //API Controller
             var dataJson = JsonConvert.SerializeObject(id);
             var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
-            var deleteNews = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Delete, url_api, base_url, dataJson, token);
+            var deleteRooms = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Delete, url_api, base_url, dataJson, token);
 
-            if (string.IsNullOrEmpty(deleteNews))
+            if (string.IsNullOrEmpty(deleteRooms))
             {
                 _toastNotification.AddErrorToastMessage("Có lỗi xảy ra! Vui lòng kiểm tra lại thông tin");
-                return RedirectToAction("Index", "WebNews");
+                return RedirectToAction("Index", "WebRooms");
             }
+
+            var result = JsonConvert.DeserializeObject<RoleResult>(deleteRooms);
             _toastNotification.AddSuccessToastMessage("Success!");
-            return RedirectToAction("Index", "WebNews");
+            return RedirectToAction("Index", "WebRooms");
 
 
         }

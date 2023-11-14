@@ -4,6 +4,7 @@ using DataAccess.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(BookingHotelDbContext))]
-    partial class BookingHotelDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231114034042_EditRoom")]
+    partial class EditRoom
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -271,17 +273,18 @@ namespace DataAccess.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("RoomHuman")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte>("RoomHuman")
+                        .HasColumnType("tinyint");
 
                     b.Property<string>("RoomName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("RoomSize")
                         .HasColumnType("int");
 
-                    b.Property<string>("RoomType")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte>("RoomType")
+                        .HasColumnType("tinyint");
 
                     b.Property<string>("ServiceCodeByUserId")
                         .HasColumnType("nvarchar(450)");

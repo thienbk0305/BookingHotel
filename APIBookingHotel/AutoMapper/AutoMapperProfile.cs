@@ -7,6 +7,7 @@ using AutoMapper;
 using DataAccess.Entities;
 using DataAccess.Models;
 using DataAccess.Models.NewsModels;
+using DataAccess.Models.RoomsModels;
 using Microsoft.AspNetCore.Identity;
 
 namespace APIBookingHotel.AutoMapper
@@ -18,6 +19,7 @@ namespace APIBookingHotel.AutoMapper
             CreateMap<IdentityRole,RoleResponse>().ReverseMap();
             CreateMap<ProfileView, User>().ReverseMap();
             CreateMap<NewsViewModel, New>().ReverseMap();
+            CreateMap<RoomsViewModel, Room>().ReverseMap();
         }
     }
 }

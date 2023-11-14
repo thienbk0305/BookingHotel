@@ -111,7 +111,6 @@ namespace APIBookingHotel.Controllers.rooms
                 var result = await _bookingHotelUnitOfWork.RoomsRepository.Update(rooms, HttpContext.RequestAborted);
                 if (result != null)
                 {
-                    await _bookingHotelUnitOfWork.SaveAsync();
                     return Ok(rooms);
                 }
             }
@@ -137,8 +136,7 @@ namespace APIBookingHotel.Controllers.rooms
             var result = await _bookingHotelUnitOfWork.RoomsRepository.Delete(id, HttpContext.RequestAborted);
             if (result != null)
             {
-                
-                return NoContent();
+                return Ok(1);
             }
             return BadRequest();
         }
