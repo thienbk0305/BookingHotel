@@ -31,14 +31,13 @@ $("#updateBtn").click(function () {
     var modelRoomName = $("#modelRoomName").val();
     var modelRoomType = ($('#modelRoomType').val() != null ? $('#modelRoomType').val().join(',') : "");
     var modelRoomHuman = ($('#modelRoomHuman').val() != null ? $('#modelRoomHuman').val().join(',') : "");
-/*    var modelPrice = parseInt($("#modelPrice").val());*/
-    //var modelRoomSize = $("#modelRoomSize").val();
-    //var modelActive = $("#modelActive").val();
-    console.log("id: " + id)
-    console.log("modelRoomName: " + modelRoomName)
+    var modelPrice = parseInt($("#modelPrice").val(), 10);
+    var modelRoomSize = $("#modelRoomSize").val();
+    var modelActive = $("#modelActive").val();
+
     model = {
-        Id: id, RoomName: modelRoomName, RoomType: modelRoomType, RoomHuman: modelRoomHuman
-       /* , RoomSize: modelRoomSize, Active: modelActive*/
+        Id: id, RoomName: modelRoomName, RoomType: modelRoomType, RoomHuman: modelRoomHuman,
+        Price: modelPrice, RoomSize: modelRoomSize, Active: modelActive
     }
 
         $.ajax({

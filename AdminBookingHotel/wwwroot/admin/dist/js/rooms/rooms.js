@@ -64,37 +64,86 @@
                     } else out = '<span class="badge badge-warning"> InActive </span>';
                     return out;
                 }
+            },
+            {
+                targets: [4],
+                render: function (e, t, r, n) {
+                    return (
+                        1 === e
+                            ? (out =
+                                '<span class="badge outline-badge-warning">1 giường đôi</span>')
+                            : 2 === e
+                                ? (out =
+                                    '<span class="badge outline-badge-secondary">2 giường đơn</span>')
+                                : 3 === e
+                                    ? (out =
+                                        '<span class="badge outline-badge-danger">1 giường đôi hoặc 2 giường đơn</span>')
+                                    : 4 === e
+                                    ? (out =
+                                            '<span class="badge outline-badge-info">2 giường đơn / 1 giường King</span>')
+                                        : 5 === e
+                                        ? (out =
+                                                '<span class="badge outline-badge-secondary">2 giường đơn / 1 giường Queen</span>')
+                                            : 6 === e &&
+                                            (out =
+                                                '<span class="badge outline-badge-info">1 giường đôi + 1 giường tầng</span>'),
+                        out
+                    );
+                },
+            },
+            {
+                targets: [5],
+                render: function (e, t, r, n) {
+                    return (
+                        1 === e
+                            ? (out =
+                                '<span class="badge outline-badge-warning">2 người lớn</span>')
+                            : 2 === e
+                                ? (out =
+                                    '<span class="badge outline-badge-secondary">2 em bé</span>')
+                                : 3 === e
+                                    ? (out =
+                                        '<span class="badge outline-badge-danger">1 em bé</span>')
+                                    : 4 === e
+                                        ? (out =
+                                            '<span class="badge outline-badge-danger">2 bé dưới 6 tuổi</span>')
+                                            : 5 === e &&
+                                            (out =
+                                                '<span class="badge outline-badge-info">1 bé dưới 12 tuổi</span>'),
+                        out
+                    );
+                },
             }
         ],
-        "columns": [
-            {
-                data: null,
-                defaultContent: "",
-                width: "5%"
-            },
-            { "data": "SysDate", "name": "SysDate", "autoWidth": true },
-            { "data": "RoomName", "name": "RoomName", "autoWidth": true },
-            { "data": "RoomSize", "name": "RoomSize", "autoWidth": true },
-            { "data": "RoomType", "name": "RoomType", "autoWidth": true },
-            { "data": "RoomHuman", "name": "RoomHuman", "autoWidth": true },
-            { "data": "Price", "name": "Price", "autoWidth": true },
-            { "data": "Active", "name": "Active", "autoWidth": true },
-            {
-                "render": function (data, type, row, meta) {
-                    return (
-                         "<div class='btn-group'><button type='button' class='btn btn-primary btn-sm' onclick='return getRoomsByID(\"" + row.Id + "\")'>Edit</button></div>" +
-                         "<div class='btn-group'><button type='button' class='btn btn-primary btn-sm' onclick='return deleteRoomsByID(\"" + row.Id + "\")'>Delete</button></div>"
-                );
-            },
-            "width": "20%"
-        }
-    ]
+    "columns": [
+    {
+        data: null,
+        defaultContent: "",
+        width: "5%"
+    },
+    { "data": "SysDate", "name": "SysDate", "autoWidth": true },
+    { "data": "RoomName", "name": "RoomName", "autoWidth": true },
+    { "data": "RoomSize", "name": "RoomSize", "autoWidth": true },
+    { "data": "RoomType", "name": "RoomType", "autoWidth": true },
+    { "data": "RoomHuman", "name": "RoomHuman", "autoWidth": true },
+    { "data": "Price", "name": "Price", "autoWidth": true },
+    { "data": "Active", "name": "Active", "autoWidth": true },
+    {
+        "render": function (data, type, row, meta) {
+            return (
+                "<div class='btn-group'><button type='button' class='btn btn-primary btn-sm' onclick='return getRoomsByID(\"" + row.Id + "\")'>Edit</button></div>" +
+                "<div class='btn-group'><button type='button' class='btn btn-primary btn-sm' onclick='return deleteRoomsByID(\"" + row.Id + "\")'>Delete</button></div>"
+            );
+        },
+        "width": "20%"
+    }
+]
     });
 var oTable = $('#roomsTable').DataTable();
 $('#btnQuery').click(function () {
     oTable.draw();
 });
-    $(document).on("hide.bs.modal", "#RoomsDetailModal", function () {
+$(document).on("hide.bs.modal", "#RoomsDetailModal", function () {
     oTable.draw();
 });
 $("#btnAddNew").click(function () {

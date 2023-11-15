@@ -12,7 +12,7 @@ namespace DataAccess.Models.RoomsModels
     {
         public string? Id { get; set; }
         public string? RoomName { get; set; }
-        public int? RoomSize { get; set; }
+        public string? RoomSize { get; set; }
         public string? RoomHuman { get; set; }
         public string? RoomType { get; set; }
         public decimal Price { get; set; }

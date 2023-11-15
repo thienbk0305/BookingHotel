@@ -1,0 +1,73 @@
+﻿USE [BookingHotel]
+GO
+/****** Object:  StoredProcedure [dbo].[SP_UpdatePID]    Script Date: 15/11/2023 9:00:40 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+ALTER PROCEDURE [dbo].[SP_UpdatePID]
+	@Id nvarchar(450),
+	@FullName nvarchar(MAX),
+	@PhoneNumber nvarchar(MAX),
+	@Email nvarchar(256),
+	@UserName nvarchar(256),
+	@Gender bit,
+	@NationId nvarchar(MAX),
+	@Address nvarchar(MAX),
+	@AvatarImage nvarchar(MAX),
+	@Active bit,
+	@RoleId nvarchar(450)
+AS
+BEGIN
+	--Update AspNetUsers
+	Update AspNetUsers Set
+				FullName = @FullName,
+				PhoneNumber = @PhoneNumber,
+				Email = @Email,
+				UserName = @UserName,
+				Gender = @Gender,
+				NationId = @NationId,
+				Address = @Address,
+				AvatarImage = @AvatarImage,
+				Active = @Active
+
+	Where Id = @Id
+	--Update AspNetUsers
+	Update AspNetUserRoles Set RoleId = @RoleId
+	Where UserId= @Id
+END
+---------------------------------------------------------------------------------------------------------------
+USE [BookingHotel]
+GO
+/****** Object:  StoredProcedure [dbo].[SP_InsertContact]    Script Date: 15/11/2023 9:00:55 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+ALTER PROCEDURE [dbo].[SP_InsertContact]
+	@Id nvarchar(450),
+	@CusFullName nvarchar(MAX),
+	@CusPhone nvarchar(MAX),
+	@CusEmail nvarchar(256),
+
+	@Id_Evaluate nvarchar(450),
+	@Description nvarchar(MAX)
+AS
+BEGIN
+	--Insert Customer
+Insert Into Customer (Id,CusFullName,CusPhone,CusEmail)
+Values (@Id,@CusFullName,@CusPhone,@CusEmail)
+	--Insert Customer
+Insert Into Evaluate(Id,Description,CusCodeByUserId)
+Values (@Id_Evaluate,@Description,@Id)
+END
