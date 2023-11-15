@@ -146,7 +146,7 @@ namespace APIBookingHotel.Controllers.Identity
             try
             {
 
-                var url_api = _config["MEDIA:URL"] ?? "https://localhost:7125/";
+                var url_api = _config["MEDIA:URL"] ?? "https://localhost:7204/";
                 var base_url = "Upload/UploadProductImage";
 
                 var secretKey = _config["Sercurity:secretKeyEmployeer"] ?? "CAjEbwkeGqO@#Gn3Fsd8SRs2dFLMfxTo11a";

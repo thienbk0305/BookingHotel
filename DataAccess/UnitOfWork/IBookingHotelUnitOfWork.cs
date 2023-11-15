@@ -16,6 +16,8 @@ namespace DataAccess.UnitOfWork
 
         INewsRepository NewsRepository { get; }
         IRoomsRepository RoomsRepository { get; }
+        IServicesRepository ServicesRepository { get; }
+        IHotelsRepository HotelsRepository { get; }
         int Save();
         Task<int> SaveAsync();
     }

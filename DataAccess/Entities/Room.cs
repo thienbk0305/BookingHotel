@@ -10,6 +10,7 @@ namespace DataAccess.Entities
         public Room()
         {
             Booking = new HashSet<Booking>();
+            Service = new HashSet<Service>();
         }
         public string Id { get; set; }  
         public string? RoomName { get; set; }
@@ -21,19 +22,20 @@ namespace DataAccess.Entities
         public bool Active { get; set; } = false;
         public DateTime? SysDate { get; set; }
 
-        public virtual Hotel? HotelCodeByUser { get; set; }
+        //public virtual Hotel? HotelCodeByUser { get; set; }
         
-        public string? HotelCodeByUserId { get; set; }
+        //public string? HotelCodeByUserId { get; set; }
 
-        public virtual Service? ServiceCodeByUser { get; set; }
+        //public virtual Service? ServiceCodeByUser { get; set; }
 
-        public string? ServiceCodeByUserId { get; set; }
+        //public string? ServiceCodeByUserId { get; set; }
 
         public virtual Image? ImgCodeByUser { get; set; }
         
         public string? ImgCodeByUserId { get; set; }
 
         public virtual ICollection<Booking> Booking { get; set; }
+        public virtual ICollection<Service> Service { get; set; }
     }
     public enum Human : byte
     {

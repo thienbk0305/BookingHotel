@@ -88,6 +88,8 @@ builder.Services.AddScoped<IIdentityRepository, IdentityRepository>();
 builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
 builder.Services.AddScoped<INewsRepository, NewsRepository>();
 builder.Services.AddScoped<IRoomsRepository, RoomsRepository>();
+builder.Services.AddScoped<IServicesRepository, ServicesRepository>();
+builder.Services.AddScoped<IHotelsRepository, HotelsRepository>();
 builder.Services.AddTransient<IBookingHotelUnitOfWork, BookingHotelUnitOfWork>();
 builder.Services.AddScoped(typeof(IUtilitiesRepository<>), typeof(UtilitiesRepository<>));
 

@@ -12,12 +12,12 @@ namespace DataAccess.DBContext
 {
     public class BookingHotelDbContext : IdentityDbContext
     {
-        public BookingHotelDbContext (DbContextOptions options) : base(options)
+        public BookingHotelDbContext(DbContextOptions options) : base(options)
         {
 
         }
-        protected override void OnModelCreating(ModelBuilder builder) 
-        { 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
             base.OnModelCreating(builder);
 
             builder.Entity<Hotel>()
@@ -25,10 +25,15 @@ namespace DataAccess.DBContext
             .WithOne(s => s.HotelCodeByUser) // Assuming 'Hotel' is the navigation property in 'Service' pointing back to 'Hotel'
             .HasForeignKey(s => s.HotelCodeByUserId); // Assuming 'HotelId' is the foreign key property in 'Service'
 
-            builder.Entity<Hotel>()
-            .HasMany(h => h.Room) // Assuming 'Room' is the collection navigation property in 'Hotel'
-            .WithOne(s => s.HotelCodeByUser) // Assuming 'Hotel' is the navigation property in 'Room' pointing back to 'Hotel'
-            .HasForeignKey(s => s.HotelCodeByUserId); // Assuming 'HotelId' is the foreign key property in 'Room'
+            //builder.Entity<Hotel>()
+            //.HasMany(h => h.Room) // Assuming 'Room' is the collection navigation property in 'Hotel'
+            //.WithOne(s => s.HotelCodeByUser) // Assuming 'Hotel' is the navigation property in 'Room' pointing back to 'Hotel'
+            //.HasForeignKey(s => s.HotelCodeByUserId); // Assuming 'HotelId' is the foreign key property in 'Room'
+
+             builder.Entity<Room>()
+            .HasMany(h => h.Service) // Assuming 'Service' is the collection navigation property in 'Hotel'
+            .WithOne(s => s.RoomCodeByUser) // Assuming 'Hotel' is the navigation property in 'Service' pointing back to 'Hotel'
+            .HasForeignKey(s => s.RoomCodeByUserId); // Assuming 'HotelId' is the foreign key property in 'Service'
 
         }
 

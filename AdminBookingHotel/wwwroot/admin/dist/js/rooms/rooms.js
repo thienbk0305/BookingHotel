@@ -64,55 +64,6 @@
                     } else out = '<span class="badge badge-warning"> InActive </span>';
                     return out;
                 }
-            },
-            {
-                targets: [4],
-                render: function (e, t, r, n) {
-                    return (
-                        1 === e
-                            ? (out =
-                                '<span class="badge outline-badge-warning">1 giường đôi</span>')
-                            : 2 === e
-                                ? (out =
-                                    '<span class="badge outline-badge-secondary">2 giường đơn</span>')
-                                : 3 === e
-                                    ? (out =
-                                        '<span class="badge outline-badge-danger">1 giường đôi hoặc 2 giường đơn</span>')
-                                    : 4 === e
-                                    ? (out =
-                                            '<span class="badge outline-badge-info">2 giường đơn / 1 giường King</span>')
-                                        : 5 === e
-                                        ? (out =
-                                                '<span class="badge outline-badge-secondary">2 giường đơn / 1 giường Queen</span>')
-                                            : 6 === e &&
-                                            (out =
-                                                '<span class="badge outline-badge-info">1 giường đôi + 1 giường tầng</span>'),
-                        out
-                    );
-                },
-            },
-            {
-                targets: [5],
-                render: function (e, t, r, n) {
-                    return (
-                        1 === e
-                            ? (out =
-                                '<span class="badge outline-badge-warning">2 người lớn</span>')
-                            : 2 === e
-                                ? (out =
-                                    '<span class="badge outline-badge-secondary">2 em bé</span>')
-                                : 3 === e
-                                    ? (out =
-                                        '<span class="badge outline-badge-danger">1 em bé</span>')
-                                    : 4 === e
-                                        ? (out =
-                                            '<span class="badge outline-badge-danger">2 bé dưới 6 tuổi</span>')
-                                            : 5 === e &&
-                                            (out =
-                                                '<span class="badge outline-badge-info">1 bé dưới 12 tuổi</span>'),
-                        out
-                    );
-                },
             }
         ],
     "columns": [

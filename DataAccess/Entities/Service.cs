@@ -11,6 +11,7 @@ namespace DataAccess.Entities
         public string Id { get; set; }
         public string? ServiceName { get; set; }
         public string? ServiceType { get; set; }
+        public string? ServiceContent { get; set; }
         public string? Description { get; set; }
         public bool Active { get; set; } = false;
         public DateTime? SysDate { get; set; }
