@@ -262,7 +262,7 @@ namespace DataAccess.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("HotelCodeByUserId")
+                    b.Property<string>("HotelId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ImgCodeByUserId")
@@ -283,19 +283,14 @@ namespace DataAccess.Migrations
                     b.Property<string>("RoomType")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ServiceCodeByUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<DateTime?>("SysDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("HotelCodeByUserId");
+                    b.HasIndex("HotelId");
 
                     b.HasIndex("ImgCodeByUserId");
-
-                    b.HasIndex("ServiceCodeByUserId");
 
                     b.ToTable("Room");
                 });
@@ -353,7 +348,13 @@ namespace DataAccess.Migrations
                     b.Property<string>("ImgCodeByUserId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("RoomCodeByUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("ServiceName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ServiceType")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("SysDate")
@@ -364,6 +365,8 @@ namespace DataAccess.Migrations
                     b.HasIndex("HotelCodeByUserId");
 
                     b.HasIndex("ImgCodeByUserId");
+
+                    b.HasIndex("RoomCodeByUserId");
 
                     b.ToTable("Service");
                 });
@@ -673,23 +676,15 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("DataAccess.Entities.Room", b =>
                 {
-                    b.HasOne("DataAccess.Entities.Hotel", "HotelCodeByUser")
+                    b.HasOne("DataAccess.Entities.Hotel", null)
                         .WithMany("Room")
-                        .HasForeignKey("HotelCodeByUserId");
+                        .HasForeignKey("HotelId");
 
                     b.HasOne("DataAccess.Entities.Image", "ImgCodeByUser")
                         .WithMany("Room")
                         .HasForeignKey("ImgCodeByUserId");
 
-                    b.HasOne("DataAccess.Entities.Service", "ServiceCodeByUser")
-                        .WithMany()
-                        .HasForeignKey("ServiceCodeByUserId");
-
-                    b.Navigation("HotelCodeByUser");
-
                     b.Navigation("ImgCodeByUser");
-
-                    b.Navigation("ServiceCodeByUser");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.SaleOff", b =>
@@ -711,9 +706,15 @@ namespace DataAccess.Migrations
                         .WithMany("Service")
                         .HasForeignKey("ImgCodeByUserId");
 
+                    b.HasOne("DataAccess.Entities.Room", "RoomCodeByUser")
+                        .WithMany("Service")
+                        .HasForeignKey("RoomCodeByUserId");
+
                     b.Navigation("HotelCodeByUser");
 
                     b.Navigation("ImgCodeByUser");
+
+                    b.Navigation("RoomCodeByUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -810,6 +811,8 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("DataAccess.Entities.Room", b =>
                 {
                     b.Navigation("Booking");
+
+                    b.Navigation("Service");
                 });
 #pragma warning restore 612, 618
         }

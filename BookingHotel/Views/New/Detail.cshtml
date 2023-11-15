@@ -8,7 +8,7 @@
 @section scripts {
     <script>
         $(document).ready(function () {
-            var content = '@Html.Raw(WebUtility.HtmlDecode(@Model?.NewsContent))';
+            var content = `@Html.Raw(WebUtility.HtmlDecode(@Model?.NewsContent))`;
             $("#sumcontent").html(content)
         });
         </script>

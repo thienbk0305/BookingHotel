@@ -26,7 +26,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label mb-2" asp-for="NewsContent">Content</label>
-                                <textarea cols="50" rows="10" class="form-control filled-input" id="modelNewsContent" asp-for="NewsContent" class="form-control" required></textarea>
+                                <textarea id="newsContent" asp-for="NewsContent" required></textarea>
                                 <span asp-validation-for="NewsContent" class="text-warning"></span>
                             </div>
                             <div class="form-group">
@@ -44,6 +44,14 @@
                                     </label>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label class="control-label mb-2">Feature Image</label>
+                                <div class="input-group">
+                                    <input type="file" id="featureImg" name="featureImg">
+                                    <button type="button" id="uploadImg">Upload</button>
+                                    <img id="imagePreview" style="max-width: 100%; max-height: 300px;" />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -59,16 +67,13 @@
         <!-- /.modal-dialog -->
     </div>
 </form>
-<script>
-
+<script type="text/javascript">
     $(document).ready(function () {
-        var content = '@Html.Raw(WebUtility.HtmlDecode(@Model?.NewsContent))';
-        $('#modelNewsContent').summernote('code', content);
+        var decodedContent = `@Html.Raw(WebUtility.HtmlDecode(@Model?.NewsContent))`;
+        $("#newsContent").summernote({ height: 300 });
+        $("#newsContent").summernote('code', decodedContent);
 
     });
-
-    // CKEDITOR.replace('modelNewsContent');
-
 </script>
 <script src="~/admin/dist/js/news/newsdetail.js"></script>
 

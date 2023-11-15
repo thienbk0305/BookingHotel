@@ -23,6 +23,7 @@ using Newtonsoft.Json;
 using APIBookingHotel.BaseModel;
 using OfficeOpenXml;
 using System.Security.Claims;
+using DataAccess.Models.NewsModels;
 
 namespace APIBookingHotel.Controllers.Identity
 {
@@ -146,7 +147,7 @@ namespace APIBookingHotel.Controllers.Identity
             try
             {
 
-                var url_api = _config["MEDIA:URL"] ?? "https://localhost:7125/";
+                var url_api = _config["MEDIA:URL"] ?? "https://localhost:51148/";
                 var base_url = "Upload/UploadProductImage";
 
                 var secretKey = _config["Sercurity:secretKeyEmployeer"] ?? "CAjEbwkeGqO@#Gn3Fsd8SRs2dFLMfxTo11a";
@@ -158,7 +159,8 @@ namespace APIBookingHotel.Controllers.Identity
                 //var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"].Value : string.Empty;
 
                 var result = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Post,url_api, base_url, dataJson, "");
-
+                var data = JsonConvert.DeserializeObject<UploadImageResponseData>(result);
+                return Ok(data);
             }
             catch (Exception)
             {
@@ -166,7 +168,7 @@ namespace APIBookingHotel.Controllers.Identity
                 throw;
             }
 
-            return Ok(returnData);
+            
         }
     }
 }

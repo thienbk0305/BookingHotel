@@ -1,20 +1,20 @@
-﻿$(document).ready(function () {
-
-});
-
+﻿
+var imageData;
 $("#updateBtn").click(function () {
 
     if ($("#modelId").val() == "") { id = 0 }
     else { id = $("#modelId").val() }
     var modelTitle = $("#modelTitle").val();
     var modelSumContent = $("#modelSumContent").val();
-    var modelNewsContent = $("#modelNewsContent").val();
+    var modelNewsContent = $("#newsContent").val();
     var modelSource = $("#modelSource").val();
     var modelActive = $("#modelActive").val();
-    console.log(modelNewsContent )      
+    
+
+    console.log(imageData)      
 
     model = {
-        Id: id, Title: modelTitle, SumContent: modelSumContent, NewsContent: modelNewsContent, Source: modelSource, Active: modelActive
+        Id: id, Title: modelTitle, SumContent: modelSumContent, NewsContent: modelNewsContent, Source: modelSource, Active: modelActive, ImgCodeByUserId: imageData
     }
     $.ajax({
         url: '/WebNews/Update',
@@ -59,3 +59,50 @@ $("#updateBtn").click(function () {
         }
     })
 });
+$("#uploadImg").click(function () {
+    console.log("up")
+    var imageData = convertImg();
+    
+})
+function convertImg() {
+    debugger
+    var input = document.getElementById('featureImg');
+    var file = input.files[0];
+    var imgData;
+    if (file) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            var base64String = e.target.result.split(",")[1];
+            imgData = sendDataToApi(base64String)
+            
+        }
+        reader.readAsDataURL(file);
+        $("#imagePreview").attr("src", URL.createObjectURL(file));
+        return imgData;
+    }
+}
+
+function sendDataToApi(base64String) {
+    var sign = crypto.randomUUID();
+    var apiUrl = "WebNews/UploadImage";
+    var returnData;
+    $.ajax({
+        type: "POST",
+        url: apiUrl,
+        data: {
+            sign: sign,
+            base64Image: base64String 
+        },
+        
+        success: function (response) {
+            
+            var obj = JSON.parse(response);
+            returnData = obj.description;
+            console.log(returnData)
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    })
+    return returnData;
+}

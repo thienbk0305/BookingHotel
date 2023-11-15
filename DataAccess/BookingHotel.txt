@@ -1,4 +1,4 @@
-﻿USE [BookingHotel]
+﻿USE [BookingHotel_247]
 GO
 /****** Object:  StoredProcedure [dbo].[SP_UpdatePID]    Script Date: 15/11/2023 9:00:40 AM ******/
 SET ANSI_NULLS ON
@@ -42,7 +42,7 @@ BEGIN
 	Where UserId= @Id
 END
 ---------------------------------------------------------------------------------------------------------------
-USE [BookingHotel]
+USE [BookingHotel_247]
 GO
 /****** Object:  StoredProcedure [dbo].[SP_InsertContact]    Script Date: 15/11/2023 9:00:55 AM ******/
 SET ANSI_NULLS ON

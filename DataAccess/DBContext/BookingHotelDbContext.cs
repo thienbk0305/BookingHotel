@@ -25,11 +25,15 @@ namespace DataAccess.DBContext
             .WithOne(s => s.HotelCodeByUser) // Assuming 'Hotel' is the navigation property in 'Service' pointing back to 'Hotel'
             .HasForeignKey(s => s.HotelCodeByUserId); // Assuming 'HotelId' is the foreign key property in 'Service'
 
-            builder.Entity<Hotel>()
-            .HasMany(h => h.Room) // Assuming 'Room' is the collection navigation property in 'Hotel'
-            .WithOne(s => s.HotelCodeByUser) // Assuming 'Hotel' is the navigation property in 'Room' pointing back to 'Hotel'
-            .HasForeignKey(s => s.HotelCodeByUserId); // Assuming 'HotelId' is the foreign key property in 'Room'
+            //builder.Entity<Hotel>()
+            //.HasMany(h => h.Room) // Assuming 'Room' is the collection navigation property in 'Hotel'
+            //.WithOne(s => s.HotelCodeByUser) // Assuming 'Hotel' is the navigation property in 'Room' pointing back to 'Hotel'
+            //.HasForeignKey(s => s.HotelCodeByUserId); // Assuming 'HotelId' is the foreign key property in 'Room'
 
+            builder.Entity<Room>()
+            .HasMany(h => h.Service) // Assuming 'Service' is the collection navigation property in 'Room'
+            .WithOne(s => s.RoomCodeByUser) // Assuming 'Room' is the navigation property in 'Service' pointing back to 'Room'
+            .HasForeignKey(s => s.RoomCodeByUserId); // Assuming 'RoomId' is the foreign key property in 'Service'
         }
 
         public virtual DbSet<Booking> Booking { get; set; } = null!;
