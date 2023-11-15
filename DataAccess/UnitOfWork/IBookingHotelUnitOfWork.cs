@@ -1,5 +1,6 @@
 ﻿using DataAccess.Entities;
 using DataAccess.IRepositories;
+using DataAccess.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,9 @@ namespace DataAccess.UnitOfWork
         IRoomsRepository RoomsRepository { get; }
         IServicesRepository ServicesRepository { get; }
         IHotelsRepository HotelsRepository { get; }
+        IImagesRepository ImagesRepository { get; }
+        IBookingsRepository BookingsRepository { get; }
+
         int Save();
         Task<int> SaveAsync();
     }

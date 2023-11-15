@@ -22,6 +22,8 @@ namespace DataAccess.UnitOfWork
         public IRoomsRepository RoomsRepository { get; private set; }
         public IServicesRepository ServicesRepository { get; private set; }
         public IHotelsRepository HotelsRepository { get; private set; }
+        public IImagesRepository ImagesRepository { get; private set; }
+        public IBookingsRepository BookingsRepository { get; private set; }
 
         private readonly BookingHotelDbContext _dbContext;
 
@@ -35,7 +37,8 @@ namespace DataAccess.UnitOfWork
             RoomsRepository = new RoomsRepository(_dbContext);
             ServicesRepository = new ServicesRepository(_dbContext);
             HotelsRepository = new HotelsRepository(_dbContext);
-            
+            ImagesRepository = new ImagesRepository(_dbContext);
+            BookingsRepository  = new BookingsRepository(_dbContext);
         }
         public int Save()
         {

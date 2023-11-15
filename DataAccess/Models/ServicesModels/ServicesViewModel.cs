@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Models.HotelsModels
+namespace DataAccess.Models.ServicesModels
 {
-    public class HotelsViewModel
+    public class ServicesViewModel
     {
         public string Id { get; set; }
-        public string? HotelName { get; set; }
-        public string? HotelAddress { get; set; }
-        public int? HotelLevel { get; set; }
+        public string? ServiceName { get; set; }
+        public string? ServiceType { get; set; }
+        public string? ServiceContent { get; set; }
         public string? Description { get; set; }
         public bool Active { get; set; }
         public DateTime? SysDate { get; set; }
