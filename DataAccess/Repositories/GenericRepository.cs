@@ -66,5 +66,19 @@ namespace DataAccess.Repositories
             await _context.SaveChangesAsync(cancellation);
             return entity!;
         }
+
+        /// <summary>
+        /// Get entities from sql string async
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<T>> FromSqlQueryAsync(string sql, CancellationToken cancellation)
+        {
+            IEnumerable<T> data;
+
+            data = await _context.Set<T>().FromSqlRaw(sql).ToListAsync();
+            await _context.SaveChangesAsync(cancellation);
+            return data;
+        }
     }
 }

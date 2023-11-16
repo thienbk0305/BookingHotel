@@ -10,8 +10,7 @@ $("#updateBtn").click(function () {
     var modelSumContent = $("#modelSumContent").val();
     var modelNewsContent = $("#modelNewsContent").val();
     var modelSource = $("#modelSource").val();
-    var modelActive = $("#modelActive").val();
-    console.log(modelNewsContent )      
+    var modelActive = $("#modelActive").val();    
 
     model = {
         Id: id, Title: modelTitle, SumContent: modelSumContent, NewsContent: modelNewsContent, Source: modelSource, Active: modelActive
@@ -56,6 +55,7 @@ $("#updateBtn").click(function () {
                 title: 'Lỗi',
                 text: 'Cập nhập thông tin không thành công'
             });
+
         }
     })
 });

@@ -155,9 +155,9 @@ namespace APIBookingHotel.Controllers.Identity
 
                 var dataJson = JsonConvert.SerializeObject(requestData);
 
-                //var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"].Value : string.Empty;
+                var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
 
-                var result = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Post,url_api, base_url, dataJson, "");
+                var result = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Post,url_api, base_url, dataJson, token);
 
             }
             catch (Exception)

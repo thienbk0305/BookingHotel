@@ -30,10 +30,23 @@ namespace APIBookingHotel.Controllers.News
         [HttpGet]
         [Route("GetNews")]
         [AllowAnonymous]
+        //public async Task<IActionResult> GetNewsAsync(DateTime? fromDate, DateTime? toDate, string? searchString)
+        //{
+        //    var result = new List<NewsViewModel>();
+        //    var news = await _bookingHotelUnitOfWork.NewsRepository.GetAll(HttpContext.RequestAborted);
+        //    if (news != null)
+        //    {
+        //        //result = _mapper.Map<List<NewsViewModel>>(news);
+        //        return Ok(news);
+        //    }
+        //    return BadRequest();
+        //}
+
         public async Task<IActionResult> GetNewsAsync(DateTime? fromDate, DateTime? toDate, string? searchString)
         {
+            string sql = "Select N.*,I.FileName From New N Left Join Image I On N.ImgCodeByUserId=I.Id";
             var result = new List<NewsViewModel>();
-            var news = await _bookingHotelUnitOfWork.NewsRepository.GetAll(HttpContext.RequestAborted);
+            var news = await _bookingHotelUnitOfWork.NewsRepository.FromSqlQueryAsync(sql, HttpContext.RequestAborted);
             if (news != null)
             {
                 //result = _mapper.Map<List<NewsViewModel>>(news);

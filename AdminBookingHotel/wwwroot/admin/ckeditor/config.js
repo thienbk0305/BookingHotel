@@ -1,18 +1,10 @@
 /**
- * @license Copyright (c) 2003-2013, CKSource - Frederico Knabben. All rights reserved.
- * For licensing, see LICENSE.md or http://ckeditor.com/license
+ * @license Copyright (c) 2003-2023, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see https://ckeditor.com/legal/ckeditor-oss-license
  */
 
-CKEDITOR.editorConfig = function (config) {
-  // Define changes to default configuration here.
-  // For the complete reference:
-  // http://docs.ckeditor.com/#!/api/CKEDITOR.config
-
-  config.filebrowserImageBrowseUrl = "/ckeditor/ImageBrowser.aspx";
-  config.filebrowserImageWindowWidth = 780;
-  config.filebrowserImageWindowHeight = 720;
-  config.filebrowserBrowseUrl = "/ckeditor/LinkBrowser.aspx";
-  config.filebrowserWindowWidth = 500;
-  config.filebrowserWindowHeight = 650;
-  config.autoParagraph = false;
+CKEDITOR.editorConfig = function( config ) {
+	// Define changes to default configuration here. For example:
+	// config.language = 'fr';
+	// config.uiColor = '#AADC6E';
 };

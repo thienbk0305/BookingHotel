@@ -14,5 +14,6 @@ namespace DataAccess.IRepositories
         Task<T> Add(T entity, CancellationToken cancellation);
         Task<T> Update(T entity, CancellationToken cancellation);
         Task<T> Delete(string id, CancellationToken cancellation);
+        Task<IEnumerable<T>> FromSqlQueryAsync(string sql, CancellationToken cancellation);
     }
 }

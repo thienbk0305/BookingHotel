@@ -35,7 +35,6 @@ namespace MediaBookingHotel.Controllers
                 var secretKey = _config["Sercurity:secretKeyEmployeer"] ?? "CAjEbwkeGqO@#Gn3Fsd8SRs2dFLMfxTo11a";
                 var verifySign = Common.Security.MD5Hash(requestData.base64Image + "|" + secretKey);
 
-                // xử lý che email , số điện thoại , link
                 if (requestData.sign != verifySign)
                 {
 
