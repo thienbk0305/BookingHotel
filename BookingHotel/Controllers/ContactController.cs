@@ -8,8 +8,8 @@ using NToastNotify;
 
 namespace BookingHotel.Controllers
 {
-
-	public class ContactController : Controller
+    [Route("contact")]
+    public class ContactController : Controller
 	{
 
         IUtilitiesRepository<ContactView> _utilitiesRepository;
@@ -27,6 +27,9 @@ namespace BookingHotel.Controllers
             _dbContext = dbContext;
 
         }
+
+        [Route("contact")]
+        [Route("")]
         public IActionResult Index()
 		{
 			return View();
@@ -54,6 +57,14 @@ namespace BookingHotel.Controllers
             _toastNotification.AddSuccessToastMessage("Cập nhật thông tin User thành công!");
             return RedirectToAction("Index");
 
+        }
+
+
+
+        [Route("partnerForm")]
+        [Route("")]
+        public IActionResult partnerForm() {
+            return View();
         }
 
 

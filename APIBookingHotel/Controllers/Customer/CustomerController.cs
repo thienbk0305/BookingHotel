@@ -53,7 +53,7 @@ namespace APIBookingHotel.Controllers.Customer
         {
             if (ModelState.IsValid)
             {
-                c.CusCode = Common.Security.GenerateRandomId();
+                c.CusCode = Common.Security.GenerateRandomId(); //get random ID
                 var contactsResponse = _mapper.Map<ContactView>(c);
                 await _unitOfWork.CustomerRepository.InsertAsync(contactsResponse, HttpContext.RequestAborted);
                 await _unitOfWork.SaveAsync();

@@ -43,9 +43,10 @@ button:focus{
     outline: none;
 }
 
-.container{
-    @media(min-width:1200px){
+.container {
+    @media(min-width:1200px) {
         max-width: 1170px;
+        margin-top: 20px;
     }
 }
 

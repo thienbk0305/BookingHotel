@@ -9,11 +9,11 @@ namespace DataAccess.Entities
     {
         public Hotel()
         {
-            Booking = new HashSet<Booking>();
+            bookingDetail = new HashSet<BookingDetail>();
             Evaluate = new HashSet<Evaluate>();
             Room = new HashSet<Room>();
             SaleOff = new HashSet<SaleOff>();
-            Service = new HashSet<Service>();
+            serviceDetail = new HashSet<ServiceDetail>();
         }
         public int Id { get; set; }
         [Key]
@@ -30,10 +30,10 @@ namespace DataAccess.Entities
         public string? ImgCodeByUserId { get; set; }
 
 
-        public virtual ICollection<Booking> Booking { get; set; }
         public virtual ICollection<Evaluate> Evaluate { get; set; }
         public virtual ICollection<Room> Room { get; set; }
         public virtual ICollection<SaleOff> SaleOff { get; set; }
-        public virtual ICollection<Service> Service { get; set; }
+        public virtual ICollection<ServiceDetail> serviceDetail { get; set; }
+        public virtual ICollection<BookingDetail> bookingDetail { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace DataAccess.DBContext
             base.OnModelCreating(builder);
 
             builder.Entity<Hotel>()
-            .HasMany(h => h.Service) // Assuming 'Service' is the collection navigation property in 'Hotel'
+            .HasMany(h => h.serviceDetail) // Assuming 'Service' is the collection navigation property in 'Hotel'
             .WithOne(s => s.HotelCodeByUser) // Assuming 'Hotel' is the navigation property in 'Service' pointing back to 'Hotel'
             .HasForeignKey(s => s.HotelCodeByUserId); // Assuming 'HotelId' is the foreign key property in 'Service'
 
@@ -43,6 +43,9 @@ namespace DataAccess.DBContext
         public virtual DbSet<SaleOff> SaleOff { get; set; } = null!;
         public virtual DbSet<Service> Service { get; set; } = null!;
         public virtual DbSet<User> User { get; set; } = null!;
+        public virtual DbSet<ServiceDetail> ServiceDetail { get; set; } = null!;
+        public virtual DbSet<BookingDetail> BookingDetail { get; set; } = null!;
+
 
     }
 }

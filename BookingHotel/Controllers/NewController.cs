@@ -18,6 +18,13 @@ namespace BookingHotel.Controllers
             return View();
         }
 
+        [Route("aboutUs")]
+        [Route("")]
+        public IActionResult AboutUs()
+        {
+            return View();
+        }
+
     }
 
 }

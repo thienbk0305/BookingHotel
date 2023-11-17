@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="image/favicon.png" type="image/png">
+    <link rel="icon" href="~/image/favicon.png" type="image/png">
     <title>Booking Hotel 247</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="~/css/bootstrap.css">
@@ -15,10 +15,13 @@
     <link rel="stylesheet" href="~/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="~/vendors/nice-select/css/nice-select.css">
     <link rel="stylesheet" href="~/vendors/owl-carousel/owl.carousel.min.css">
+    <link href="~/style_hotel.css" rel="stylesheet" />
     <!-- main css -->
+    <link href="~/css/style_hotel.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
     <link rel="stylesheet" href="~/css/style.css">
     <link rel="stylesheet" href="~/css/responsive.css">
+   @*  <link rel="stylesheet" href="~/fonts/fontawesome-webfont.ttf" /> *@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
     <script src="~/js/jquery-3.2.1.min.js"></script>
     <!--gmaps Js-->
@@ -27,15 +30,14 @@
     <!-- contact js -->
     <script src="~/js/jquery.form.js"></script>
     <script src="~/js/jquery.validate.min.js"></script>
-
     <script src="~/js/custom.js"></script>
     <script src="~/js/contact.js"></script>
+
+
+
     @RenderSection("css",false)
 </head>
-@* <style>
 
-
-</style> *@
 <body>
     <!--================Header Area =================-->
     <header class="header_area">
@@ -57,15 +59,15 @@
                             <ul class="dropdown-menu">
                                 @* <li class="nav-item"><a class="nav-link" href="#">Tìm theo khu vực</a></li> *@
                                 <li class="nav-item"><a class="nav-link" asp-controller="New" asp-action="index">Tin tức</a></li>
-                                <li class="nav-item"><a class="nav-link" asp-controller="news" asp-action="detail">Hướng dẫn đặt phòng</a></li>
-                                <li class="nav-item"><a class="nav-link" asp-controller="Contact" asp-action="index">Đối tác khách sạn</a></li>
+                                <li class="nav-item"><a class="nav-link" asp-controller="New" asp-action="Index">Hướng dẫn đặt phòng</a></li>
+                                <li class="nav-item"><a class="nav-link" asp-controller="contact" asp-action="partnerForm">Đối tác khách sạn</a></li>
 
                             </ul>
                         </li>
-                        <li class="nav-item"><a style="color:red" class="nav-link" asp-controller="news" asp-action="index"><strong>Flash Sale</strong></a></li>
+                        <li class="nav-item"><a style="color:red" class="nav-link" asp-controller="New" asp-action="Index"><strong>Flash Sale</strong></a></li>
                         <li class="nav-item"><a class="nav-link" asp-controller="Profile" asp-action="index">Booking của tôi</a></li>
-                        <li class="nav-item"><a class="nav-link">Trung tâm trợ giúp</a></li>
-                        <li class="nav-item"><a class="nav-link" asp-controller="contact" asp-action="index">Liên hệ</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="booking" asp-action="bookingConfirm">Trung tâm trợ giúp</a></li>
+                        <li class="nav-item"><a class="nav-link" asp-controller="contact" asp-action="contact">Liên hệ</a></li>
                         <li class="nav-item"><a style="color:red" class="nav-link" asp-controller="cusAccount" asp-action="Login"><strong>Đăng Ký</strong></a></li>
                         <li class="nav-item"><a style="color:blue" class="nav-link" asp-controller="cusAccount" asp-action="Login"><strong>Đăng nhập</strong></a></li>
                     </ul>
@@ -161,18 +163,18 @@
     <!--================ End footer Area  =================-->
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/popper.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
-    <script src="js/jquery.ajaxchimp.min.js"></script>
-    <script src="js/mail-script.js"></script>
-    <script src="vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
-    <script src="vendors/nice-select/js/jquery.nice-select.js"></script>
-    <script src="js/mail-script.js"></script>
-    <script src="js/stellar.js"></script>
-    <script src="vendors/lightbox/simpleLightbox.min.js"></script>
-    <script src="js/custom.js"></script>
+    <script src="~/js/jquery-3.2.1.min.js"></script>
+    <script src="~/js/popper.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/vendors/owl-carousel/owl.carousel.min.js"></script>
+    <script src="~/js/jquery.ajaxchimp.min.js"></script>
+    <script src="~/js/mail-script.js"></script>
+    <script src="~/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+    <script src="~/vendors/nice-select/js/jquery.nice-select.js"></script>
+    <script src="~/js/mail-script.js"></script>
+    <script src="~/js/stellar.js"></script>
+    <script src="~/vendors/lightbox/simpleLightbox.min.js"></script>
+    <script src="~/js/custom.js"></script>
     <!-- Datatables  -->
     <script src="~plugins/moment/moment-with-locales.min.js"></script>
     <script src="~plugins/table/datatable/datatables.js"></script>

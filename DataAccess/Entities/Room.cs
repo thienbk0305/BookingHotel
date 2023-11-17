@@ -9,7 +9,7 @@ namespace DataAccess.Entities
     {
         public Room()
         {
-            Booking = new HashSet<Booking>();
+            bookingDetail = new HashSet<BookingDetail>();
         }
         public int Id { get; set; }
         [Key]
@@ -29,6 +29,7 @@ namespace DataAccess.Entities
         [MaxLength(50)]
         public string? ImgCodeByUserId { get; set; }
 
-        public virtual ICollection<Booking> Booking { get; set; }
+        public virtual ICollection<BookingDetail> bookingDetail { get; set; }
+        public virtual ICollection<ServiceDetail> serviceDetail { get; set; }
     }
 }

@@ -1,0 +1,766 @@
+﻿﻿@{
+    ViewData["Title"] = "Về chúng tôi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+
+	.col-lg-12 {
+		width: 100%;
+	}
+
+	.partner-box-content {
+		margin-bottom: 0px;
+		padding-top: 30px;
+		padding-left:120px;
+	}
+
+	.title-partner {
+		font-size: 28px;
+		font-family: 'os_semi_bold';
+		text-align: center;
+		margin-bottom: 30px;
+		margin-top: 0px;
+		color: #15284a;
+	}
+
+	.partner-box-content h4.description {
+		font-size: 14px;
+		color: #373f58;
+		font-family: 'os_regular';
+		text-align: center;
+		line-height: 21px;
+	}
+
+	h3 {
+		display: block;
+		font-size: 1.17em;
+		margin-block-start: 1em;
+		margin-block-end: 1em;
+		margin-inline-start: 0px;
+		margin-inline-end: 0px;
+		font-weight: bold;
+	}
+	element.style {
+		padding: 20px;
+		text-align: justify;
+	}
+	.page-content-default{
+		margin-top: 30px;
+	}
+	h1{
+		margin: 0px;
+		padding: 0px;
+		font-size: 24px;
+		color: #F3C300;
+		font-family: 'r_conde_regular';
+		padding-bottom: 10px;
+		border-bottom: 1px solid #e1e1e1;
+		
+	}
+
+	.page-content-default .page-box-content h2 {
+		font-size: 20px;
+		font-family: 'r_conde_regular';
+		color: #F3C300;
+		margin: 10px 0px;
+		font-family: sans-serif;
+	}
+	.container{
+		padding-right: 15px;
+		padding-left: 15px;
+		margin-right: auto;
+		margin-left: auto;
+	}
+	.row{
+		margin-right: -15px;
+		margin-left: -15px;
+	}
+
+	.page-box-content {
+		background: #fff;
+			
+	}
+
+	b, strong {
+		font-weight: 700;
+	}
+
+	p {
+		margin: 0 0 10px;
+		display: block;
+		margin-block-start: 1em;
+		margin-block-end: 1em;
+		margin-inline-start: 0px;
+		margin-inline-end: 0px;
+	}
+	img{
+		vertical-align: middle;
+		border: 0;
+	}
+
+    a {
+        color: #428bca;
+        text-decoration: none;
+        background: 0 0;
+    }
+
+	/* PARTNER BOX */
+	.partner-box-content {
+		margin-bottom: 0px;
+		padding-top: 30px;
+	}
+	.partner-box-content .owl-nav {
+			display: none;
+		}
+
+		.partner-box-content .title-partner {
+			font-size: 28px;
+			font-family: 'os_semi_bold';
+			text-align: center;
+			margin-bottom: 30px;
+			margin-top: 0px;
+			color: #15284a;
+		}
+
+		.partner-box-content h4.description {
+			font-size: 14px;
+			color: #373f58;
+			font-family: 'os_regular';
+			text-align: center;
+			line-height: 21px;
+		}
+
+		.partner-box-content .description-partner {
+			font-size: 16px;
+			font-family: 'arial';
+			margin-bottom: 30px;
+		}
+
+		.partner-box-content .partner-box-item {
+			padding-bottom: 30px;
+		}
+
+			.partner-box-content .partner-box-item ul {
+				padding: 0px;
+				margin: 0px;
+				display: grid;
+				grid-template-columns: auto auto auto auto auto;
+			}
+
+				.partner-box-content .partner-box-item ul li {
+					list-style: none;
+					text-align: center;
+					margin-bottom: 10px;
+					margin-top: 10px;
+					padding: 10px;
+				}
+
+					.partner-box-content .partner-box-item ul li img {
+						max-height: 40px;
+						max-width:60px;
+					}
+
+			.partner-box-content .partner-box-item.type-blog {
+				border-bottom: 0px;
+			}
+
+				.partner-box-content .partner-box-item.type-blog ul {
+					display: grid;
+					grid-template-columns: auto auto auto;
+				}
+
+					.partner-box-content .partner-box-item.type-blog ul li {
+						width: 100%;
+						padding: 8.49px;
+					}
+
+						.partner-box-content .partner-box-item.type-blog ul li img {
+							max-height: inherit;
+							width: 100%;
+						}
+
+						.partner-box-content .partner-box-item.type-blog ul li a {
+							font-family: 'arial';
+							color: #434343;
+							text-decoration: none;
+						}
+
+							.partner-box-content .partner-box-item.type-blog ul li a .box-content {
+								padding-top: 15px;
+								line-height: 1.3;
+								border: 1px solid #ccc;
+								padding-bottom: 15px;
+								border-top: 0px;
+								font-size: 14px;
+								padding: 15px;
+								min-height: 85px;
+							}
+
+							.partner-box-content .partner-box-item.type-blog ul li a .box-img {
+								height: 120px;
+								overflow: hidden;
+							}
+
+			.partner-box-content .partner-box-item.type-channel {
+				border-bottom: 0px;
+				border-bottom: 1px solid #d9d9d9;
+			}
+
+				.partner-box-content .partner-box-item.type-channel.type-gain-award ul li .box-title {
+					font-size: 16px;
+					color: #000000;
+					font-family: 'r_conde_bold';
+					margin-top: 10px;
+				}
+
+				.partner-box-content .partner-box-item.type-channel.type-gain-award ul li .box-description {
+					font-size: 16px;
+					color: #797b7c;
+					font-family: 'r_conde_regular';
+					margin-top: 10px;
+				}
+
+	/* END PARTNER BOX */
+
+	/* WHY CHOOSE US */
+	.frontpage-why-choose-us {
+		margin-bottom: 120px;
+	}
+
+	.box-container-why-choose-us {
+		width: 800px;
+		margin: 0px auto;
+	}
+
+	.frontpage-why-choose-us .box-content.box-why-choose-us {
+		color: #383838;
+		font-size: 16px;
+		font-family: 'arial';
+		min-height: 120px;
+		padding: 20px 10px;
+		margin-bottom: 10px;
+	}
+
+	.frontpage-why-choose-us .frontpage-title-why-choose-us {
+		text-align: center;
+		font-size: 30px;
+		font-family: 'r_conde_regular';
+		margin-bottom: 30px;
+		margin-top: 0px;
+	}
+
+	.frontpage-why-choose-us .box-content.box-why-choose-us tr td.icon-left {
+		padding-right: 30px;
+	}
+
+	.frontpage-why-choose-us .box-content.box-why-choose-us tr td.icon-right {
+		padding-left: 30px;
+	}
+
+	.frontpage-why-choose-us .box-content.box-why-choose-us tr td {
+		vertical-align: middle;
+	}
+
+		.frontpage-why-choose-us .box-content.box-why-choose-us tr td h3 {
+			text-align: left;
+			margin: 0px;
+			margin-bottom: 15px;
+		}
+
+	.frontpage-why-choose-us .box-content.box-why-choose-us img {
+		width: 120px;
+	}
+
+	/* END WHY CHOOSE US */
+</style>
+<!--================Breadcrumb Area =================-->
+<section class="breadcrumb_area">
+    <div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background=""></div>
+    <div class="container">
+        <div class="page-cover text-center">
+            <h2 class="page-cover-tittle">Về chúng tôi</h2>
+            <ol class="breadcrumb">
+                <li><a asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+                <li class="active">Về chúng tôi</li>
+            </ol>
+        </div>
+    </div>
+</section>
+<!--================Breadcrumb Area =================-->
+
+
+<div class="page-content-default">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-md-12">
+				<h1>Về chúng tôi</h1>
+				<div class="page-box-content" style="padding:20px;">
+					<h2 style="text-align: justify;">
+						<strong>THÔNG TIN CHUNG</strong>
+					</h2>
+
+					<p style="text-align: justify;">
+						Tên doanh nghiệp: <strong>Công ty Cổ phần Booking Hotel 247 </strong>
+					</p>
+
+					<p style="text-align: justify;">
+						Tên Tiếng Anh: <strong>Booking Hotel 247  Corporation </strong>
+					</p>
+
+					<p style="text-align: justify;">
+						Tên viết tắt: <strong>Booking Hotel 247  Corp</strong>
+					</p>
+
+					<p style="text-align: justify;">
+						Được Sở Kế Hoạch và Đầu Tư Thành phố Hồ Chí Minh cấp Giấy phép kinh doanh số <strong>0308042348 vào ngày 03 tháng 4 năm 2009.</strong>
+					</p>
+
+					<p style="text-align: justify;">
+						<strong>✔</strong> Giấy Phép Lữ hành quốc tế &amp; nội địa:<b>&nbsp;</b>Số GP/No.: 79-917/2018/TCDL-GP LHQT
+					</p>
+
+					<p style="text-align: justify;">
+						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Số GP: 79-0016/2018/SDL-GP LHNĐ
+					</p>
+
+					<p style="text-align: justify;">
+						<strong>✔ Chứng nhận Đại lý vé máy bay</strong> chuyên nghiệp của<strong> IATA</strong> - Hiệp hội Vận tải Hàng không Quốc tế
+					</p>
+
+					<p style="text-align: justify;">
+						<strong>✔ Chứng nhận Đại lý chính thức </strong>của nhiều hãng hàng không nội địa và quốc tế: Vietnam Airlines, Vietjet Air, Jetstar Pacific...
+					</p>
+
+					<p style="text-align: justify;">
+						<strong>✔ Đối tác </strong>của các chuỗi khách sạn hàng đầu trong và ngoài nước như: Vinpearl, Mường Thanh, Intercontinental,...
+					</p>
+
+					<p style="text-align: justify;">
+						Trải qua&nbsp;13&nbsp;năm hình thành và phát triển, Công ty Cổ phần Việt Nam Booking hiện nay là địa chỉ cung cấp đầy đủ các dịch vụ chất lượng, từ&nbsp;<strong><a href="http://www.vietnambooking.com/ve-may-bay" target="_blank">đặt vé máy bay giá rẻ</a>, <a href="http://www.vietnambooking.com/du-lich" target="_blank">tour du lịch</a>, <a href="http://www.vietnambooking.com/khach-san" target="_blank">đặt phòng khách sạn</a></strong>&nbsp;đến<strong>&nbsp;<a href="http://www.vietnambooking.com/visa" target="_blank">làm visa trọn gói</a>,</strong> giúp quý khách hàng có được hành trình như ý muốn.
+					</p>
+
+					<p style="text-align: justify;">
+						<strong>Công ty Cổ phần Booking Hotel 247  (Booking Online)</strong> đặt trụ sở chính tại TPHCM và chi nhánh&nbsp;ở hai thành phố lớn là Hà Nội và Đà Nẵng. Đặc biệt, chúng tôi đã áp dụng công nghệ mới trong giao dịch online qua hệ thống website: <a href="https://www.vietnambooking.com/"><strong>bookinghotel247.com</strong></a> và Tổng đài tư vấn 24/7: <a b-ga2sykz3d4="" style="color:RED" href="tel:18009090"><strong>18009090</strong> </a>
+					</p>
+
+					<h2 style="text-align: justify;">
+						<strong>LĨNH VỰC KINH DOANH</strong>
+					</h2>
+
+					<p style="text-align: justify;">
+						<strong><span style="font-size: 13px;">Booking Hotel 247 đang cung cấp 4 lĩnh vực dịch vụ sau:</span></strong>
+					</p>
+
+					<p style="text-align: justify;">
+						<span style="color:#0000FF;"><u><strong>1/ Vé máy bay:</strong></u></span>&nbsp;Là thế mạnh đặc thù của chúng tôi, với phòng bán vé trực tiếp trên cả ba miền Bắc – Trung – Nam cùng đội ngũ tư vấn chuyên nghiệp, giao vé tận nhà quý khách. Mong muốn hàng đầu của Booking Hotel 247 là đem đến cho khách hàng những tấm vé máy bay giá tốt, hành trình bay thuận tiện nhất.
+					</p>
+
+					<p style="text-align: justify;">
+						Booking Hotel 247 là một trong số ít những công ty trở thành <strong>đại lý chính thức</strong> của các hãng hàng không nội địa như:&nbsp;Vietnam Airlines, Vietjet Air, Jetstar Pacific. Hơn nữa, chúng tôi còn đạt được danh hiệu đại lý chuyên nghiệp theo tiêu chuẩn của IATA (Hiệp hội Vận tải Hàng không Quốc tế) trong lĩnh vực cung cấp vé máy bay của các hãng hàng không quốc tế như Singapore Airlines, Korean Air, EVA Air, Qatar Airlines, Thai Airways, American Airlines, Air France, Qantas, China Southern Airlines, China Airlines, United Airlines, Emirates<em>…</em>&nbsp;
+					</p>
+
+					<p style="text-align: justify;">
+						<span style="color:#0000FF;"><u><strong>2/ </strong><strong>Phòng khách sạn:</strong></u></span>&nbsp;Với mạng lưới đối tác rộng lớn: <strong>2000</strong> khách sạn tại Việt Nam và hơn <strong>30.000</strong> khách sạn quốc tế, chúng tôi nỗ lực mang đến cho quý khách một nơi lưu trú an toàn, thuận tiện và giá tốt nhất cho chuyến đi của mình.
+					</p>
+
+					<p style="text-align: justify;">
+						Quý khách có thể tham khảo hình ảnh thực tế, so sánh chính sách giá phòng và quy định của nhiều khách sạn trên hệ thống vietnambooking.com vô cùng tiện lợi.
+					</p>
+
+					<p style="text-align: justify;">
+						<span style="color:#0000FF;"><u><strong>3/ Tổ chức tour du lịch</strong>:</u></span>&nbsp;Công ty Cổ phần&nbsp;Việt Nam Booking chuyên cung cấp các <strong>tour du lịch đa dạng</strong> loại hình như du lịch nghỉ dưỡng, du lịch khám phá – trải nghiệm với lịch trình mới lạ hấp dẫn, dịch vụ đi kèm đạt chuẩn chất lượng và đặc biệt giá cả vô cùng tiết kiệm.
+					</p>
+
+					<p>
+						Ngoài ra, chúng tôi có thế mạnh tổ chức tour thiết kế riêng – M.I.C.E, team building &amp; gala dinner cho các cơ quan đoàn thể, doanh nghiệp, đơn vị hành chính sự nghiệp, là cơ hội để gắn kết tập thể, nâng cao tinh thần lao động và cống hiến.
+					</p>
+
+					<p style="text-align: justify;">
+						<span style="color:#0000FF;"><u><strong>4/ Tư vấn &amp; hỗ trợ Visa</strong>:</u></span>&nbsp;Chúng tôi luôn sẵn sàng tư vấn, hướng dẫn quý khách có nhu cầu <strong>xin visa trọn gói</strong>. Booking Hotel 247 có bề dày kinh nghiệm và uy tín trong lĩnh vực visa du lịch, visa thăm thân nhân và visa công tác cho người Việt Nam nhập cảnh vào các nước phát triển của Châu Á, châu Âu, Úc, Mỹ… Với tỉ lệ đậu lên đến 98%, thậm chí đối với các hồ sơ khó, trường hợp xin visa khẩn.
+					</p>
+
+					<p style="text-align: justify;">
+						<meta charset="utf-8">
+					</p>
+
+					<h2 dir="ltr" style="text-align: justify;">
+						<strong>LỊCH SỬ, QUÁ TRÌNH HÌNH THÀNH VÀ PHÁT TRIỂN</strong>
+					</h2>
+
+					<p dir="ltr" style="text-align: justify;">
+						<span style="color:#0000FF;"><strong>03.04.2009:</strong></span> Được Sở Kế Hoạch và Đầu Tư Thành phố Hồ Chí Minh cấp Giấy chứng nhận đăng ký doanh nghiệp số 0308042348, Booking Hotel 247 <strong>thành lập văn phòng đầu tiên</strong>, đặt trụ sở tại 190&nbsp;Trần Quý, Phường 6, Quận 11, TP. HCM. Trong năm 2009, Booking Hotel 247 trên cương vị là một đại lý vé máy bay giá rẻ, uy tín đã chiếm trọn lòng tin của những khách hàng quen thuộc. Với mục tiêu và phương hướng kinh doanh đúng đắn, trong&nbsp;năm này, Booking Hotel 247 đã dần có chỗ đứng và tạo dấu ấn mạnh mẽ.
+					</p>
+
+					<p dir="ltr" style="text-align: justify;">
+						<span style="color:#0000FF;"><strong>2010 -&nbsp;2011:</strong></span><span style="color:#0000CD;"><strong>&nbsp;</strong></span>Tiếp tục mục tiêu ban đầu là xây dựng nên một địa chỉ “booking” chất lượng nhất cho đa dịch vụ, Booking Hotel 247 đã bước đầu tiến vào thị trường <strong>Khách sạn và Tour du lịch</strong>. Booking Hotel 247 đã hợp tác với nhiều đơn vị Khách sạn, Lữ hành để tổ chức thành công những Tour du lịch nội địa đầu tiên, đưa người Việt đến với nhiều cảnh quan tươi đẹp của đất nước. Đặc biệt, các tour đoàn thể, tour MICE của Công ty đã được nhiều đơn vị tin chọn.
+					</p>
+
+					<p dir="ltr" style="text-align: justify;">
+						Giai đoạn này, Booking Hotel 247 cũng chào sân lĩnh vực <strong>Dịch vụ Visa</strong> và may mắn được nhiều khách hàng đón nhận. Đáp lại đó, Công ty đã dốc hết sức để nâng cao tỷ lệ đậu Visa gần như tuyệt đối với mức <span style="color:#FF0000;"><strong>97%</strong></span>, giúp cho nhiều khách hàng thành công có thị thực các nước phát triển trên thế giới.&nbsp;
+					</p>
+
+					<p dir="ltr" style="text-align: justify;">
+						<span style="color:#0000FF;"><strong>2012 - 2015:</strong></span> Nhằm phục vụ nhu cầu giao dịch tận chỗ của khách hàng, trong 4&nbsp;năm,&nbsp;Công ty <strong>mở rộng thêm chi nhánh</strong> ở 2 khu vực trung tâm sầm uất của 2 thành phố lớn nhất nước. Đó là văn phòng TP.HCM tại 164 Lê Thánh Tôn, Phường Bến Thành, Quận 1, văn phòng 192 Trần Quý, Phường 6, Quận 11&nbsp;và văn phòng phía Bắc tại Hà Nội 30 Phan Chu Trinh, Quận Hoàn Kiếm.
+					</p>
+
+					<p dir="ltr" style="text-align: justify;">
+						Hình ảnh Booking Hotel 247 bắt đầu phủ sóng trên nhiều phương tiện truyền thông khi trở thành <strong>đại lý chính thức</strong> của các hãng hàng không quốc nội cũng như hợp tác với gần 200 hãng hàng không quốc tế nổi tiếng.&nbsp;Trong những năm này, Công ty cũng tổ chức thành công nhiều tour du lịch quốc tế với mức chi phí hợp lý làm hài lòng du khách.
+					</p>
+
+					<p dir="ltr" style="text-align: justify;">
+						<span style="color:#0000FF;"><strong>2016 - 2017:</strong></span> 2016 là năm đánh dấu bước ngoặt của Công ty khi áp dụng công nghệ mới trong giao dịch online. Cụ thể là sự cải tiến vượt bậc&nbsp;của hệ thống website <strong>www.vietnambooking.com</strong> đã mang đến một cuộc cách mạng số hóa giúp các khách hàng của Vietnam Booking đặt dịch vụ tiện lợi, dễ dàng hơn. Đồng thời,&nbsp;Công ty cho ra mắt <strong>ứng dụng di động Vietnam Booking</strong> trên Google Play và App Store cho phép khách hàng theo dõi chương trình khuyến mãi &amp; đặt dịch vụ nhanh chóng hơn.
+					</p>
+
+					<p dir="ltr" style="text-align: justify;">
+						<span style="color:#0000FF;"><strong>2017 - 2019:</strong></span> Ở khu vực miền Trung, sau nhiều năm phục vụ trực tuyến, Vietnam Booking đã khai trương chi nhánh đầu tiên tại đầu cầu Đà Nẵng - thành phố nhộn nhịp và thu hút đông đảo du khách quốc tế nhất. Giai đoạn này&nbsp;cũng là năm ghi lại sự thành công rực rỡ của Công ty với việc mở liên tiếp&nbsp;văn phòng thứ 4 (235/14 Tạ Uyên, P.6, Q.11)&nbsp;và thứ 5 (54 Phạm Hồng Thái, P. Bến Thành, Q.1) tại TP. HCM.&nbsp;
+					</p>
+
+					<p dir="ltr" style="text-align: justify;">
+						<span style="color:#0000FF;"><strong>2019 - 2021:</strong></span> Giai đoạn này, Vietnam Booking chú trọng vào việc đóng góp nhiều hơn nữa các giá trị cho xã hội. Cụ thể, Công ty đã tài trợ cho nhiều sự kiện cộng đồng, gây quỹ giúp đỡ đồng bào gặp khó khăn do thiên tai,... Tiêu biểu trong đó có thể kể đến việc là <strong>Nhà tài trợ Bạc</strong> cho cuộc thi: “I - HOTELIER XI” do trường Đại học Hoa Sen tổ chức; tổ chức chương trình gây quỹ “Sưởi Ấm miền Trung - Triệu Trái Tim 1 Tấm Lòng”.&nbsp;
+					</p>
+
+					<p dir="ltr" style="text-align: justify;">
+						Trong suốt hành trình hơn 13&nbsp;năm hình thành và phát triển, Công ty cũng đã nhận được sự công nhận to lớn từ các đơn vị uy tín trong ngành khi được trao tặng hàng loạt giải thưởng danh giá. Nổi bật trong đó là danh hiệu “<strong>Sản phẩm - Dịch vụ chất lượng châu Á 2019</strong>” và “<strong>Top 20 thương hiệu nổi tiếng hàng đầu Việt Nam năm 2019</strong>”. Đây là thành quả xứng đáng cho Vietnam Booking sau hơn 13 năm nỗ lực, phấn đấu trở thành một trong những thương hiệu uy tín dẫn đầu ngành.&nbsp;
+					</p>
+
+					<h2 style="text-align: justify;">
+						<strong>MỤC TIÊU &amp; SỨ MỆNH</strong>
+					</h2>
+
+					<p style="text-align: justify;">
+						Lấy niềm tin của khách hàng là phương châm và thước đo chất lượng dịch vụ, Vietnam Booking luôn mong muốn thương hiệu của mình được gắn với uy tín và chất lượng. Ngày nay, khi thị trường luôn liên tục thay đổi, chúng tôi càng xác định rõ ràng mục tiêu và sứ mệnh của mình hơn:
+					</p>
+
+					<p style="text-align: justify;">
+						<em><u>Đối với khách hàng và đối tác:</u></em>
+					</p>
+
+					<ul>
+						<li style="text-align: justify;">
+							Xây dựng uy tín và thực hiện đúng mọi cam kết trước, trong và sau khi tiến hành giao dịch giữa các bên.
+						</li>
+						<li style="text-align: justify;">
+							Chuyên cung cấp, tư vấn dịch vụ chất lượng nhất cho khách hàng với mức giá tốt nhất và phù hợp nhất.
+						</li>
+						<li style="text-align: justify;">
+							Thực hiện nghiệp vụ tư vấn bán hàng một cách nhanh chóng, hiệu quả nhất
+						</li>
+					</ul>
+
+					<p style="text-align: justify;">
+						<em><u>Đối với xã hội:</u></em>
+					</p>
+
+					<ul>
+						<li style="text-align: justify;">
+							Xây dựng văn hóa doanh nghiệp hiệu quả điển hình tại Việt Nam.
+						</li>
+						<li style="text-align: justify;">
+							Đóng góp tích cực vào các hoạt động hướng về cộng đồng, vì lợi ích chung của xã hội.
+						</li>
+					</ul>
+
+					<h2 style="text-align: justify;">
+						<strong>TẦM NHÌN, CHIẾN LƯỢC PHÁT TRIỂN</strong>
+					</h2>
+
+					<p style="text-align: justify;">
+						Tập thể <strong>Công ty Cổ phần&nbsp;Booking Hotel 247</strong> luôn mong muốn đem đến cho khách hàng thông tin dịch vụ mới, chất lượng và trở thành “người bạn đồng hành” trên mọi hành trình. Chính vì thế, chúng tôi đặt mục tiêu hoàn thiện và phát triển thương hiệu theo hướng:
+					</p>
+
+					<ul>
+						<li style="text-align: justify;">
+							Mở rộng hệ thống văn phòng tới các thành phố như: Huế, Hải Phòng, Nha Trang,…
+						</li>
+						<li style="text-align: justify;">
+							Luôn cải thiện công nghệ trong thời đại 4.0 để đem đến trải nghiệm dịch vụ tốt nhất cho khách hàng.
+						</li>
+						<li style="text-align: justify;">
+							Nâng cao nghiệp vụ của đội ngũ nhân viên
+						</li>
+						<li style="text-align: justify;">
+							Đơn giản hóa quy trình đặt dịch vụ nhằm giúp khách hàng tiết kiệm tối đa thời gian.
+						</li>
+						<li style="text-align: justify;">
+							Trở thành đại lý uy tín chính thức của tất cả các hãng hàng không trên thế giới.
+						</li>
+						<li style="text-align: justify;">
+							Bắt tay hợp tác với nhiều đối tác - &nbsp;đơn vị cung cấp dịch vụ liên quan và đem lại lợi ích cao nhất cho khách hàng.
+						</li>
+					</ul>
+
+					<h2 style="text-align: justify;">
+						<strong>HÌNH ẢNH GIẢI THƯỞNG &amp; CHỨNG NHẬN</strong>
+					</h2>
+
+					<p style="text-align: center;">
+						<img alt="Vietnam Booking đạt giải top20 thưởng hiệu" src="https://www.vietnambooking.com/wp-content/uploads/2019/08/vietnambooking-dat-giai-thuong-top20-thuong-hieu.jpg">
+					</p>
+
+					<p style="text-align: center;">
+						<em><span style="color:#000000;">Top 20 Thương hiệu Việt nổi tiếng hàng đầu</span></em>
+					</p>
+
+					<p style="text-align: center;">
+						<img alt="Đại diện Vietnam Booking nhận giải thưởng tại lễ Công bố Giải thưởng thương hiệu chất lương 2019" src="https://www.vietnambooking.com/wp-content/uploads/2019/12/vietnam-booking-duoc-vinh-danh-tai-le-cong-bo-thuong-hieu-chat-luong-chau-a-20191.jpg" style="height: 413px; width: 620px;">
+					</p>
+
+					<p style="text-align: center;">
+						<em>Đại diện Booking Hotel 247 nhận giải thưởng tại lễ Công bố Giải thưởng thương hiệu chất lượng Châu Á</em>
+					</p>
+
+					<p style="text-align: center;">
+						<img alt="" src="https://www.vietnambooking.com/wp-content/uploads/2018/09/gioi-thieu-vietnam-booking-28-09-2018-12.jpg">
+					</p>
+
+					<p style="text-align: center;">
+						<span style="color:#000000;"><em>Hãng hàng không Vietjet Air</em></span>
+					</p>
+
+					<p style="text-align: center;">
+						<img alt="Công ty du lịch tphcm uy tín" src="https://www.vietnambooking.com/wp-content/uploads/2018/09/gioi-thieu-vietnam-booking-28-09-2018-11.jpg">
+					</p>
+
+					<p style="text-align: center;">
+						<span style="color:#000000;"><em>Hãng hàng không Jetstar Pacific</em></span>
+					</p>
+
+					<p style="text-align: center;">
+						<img alt="Chứng nhận của IATA - Hiệp hội Vận tải Hàng không Quốc tế công ty du lịch uy tín" src="https://www.vietnambooking.com/wp-content/uploads/2018/09/gioi-thieu-vietnam-booking-28-09-2018-10.jpg">
+					</p>
+
+					<p style="text-align: center;">
+						<em>Chứng nhận của IATA - Hiệp hội Vận tải Hàng không Quốc tế</em>
+					</p>
+
+					<h2 style="text-align: justify;">
+						<strong>MỘT SỐ GIẢI THƯỞNG KHÁC &amp; BÁO CHÍ NÓI GÌ VỀ BOOKING HOTEL 247</strong>
+					</h2>
+
+					<p style="text-align: center;">
+					</p><div class="container">
+						<div class="row">
+							<div class="col-lg-12 col-md-12">
+								<div class="partner-box-content">
+									<h3 class="title-partner">Thành tựu &amp; giải thưởng</h3>
+									<h4 class="description"></h4>
+									<div class="partner-box-item type-channel type-gain-award">
+										<ul id="owl-slider-home-gain-award" class="owl-carousel owl-theme owl-loaded owl-drag"><div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 1330px;"><div class="owl-item active" style="width: 190px;"><li class="item"><a target="_blank" rel="nofollow" href="https://diendandoanhnghiep.vn/cong-ty-vietnam-booking-vao-top-20-thuong-hieu-noi-tieng-nam-2019-207257.html"><img class="lazy" src="https://www.vietnambooking.com/wp-content/uploads/2019/08/top-20-famous-brand-2019.png" alt="Top 20 thương hiệu nổi tiếng hàng đầu 2019" style="display: inline-block;"><div class="box-title">GIẢI THƯỞNG</div><div class="box-description">Top 20 thương hiệu nổi tiếng hàng đầu 2019</div> </a></li>
+									</div>
+									<div class="owl-item active" style="width: 190px;">
+										<li class="item">
+											<a target="_blank" rel="nofollow" href="https://vnmedia.vn/giai-tri-so/202109/vietnam-booking-lot-vao-top-10-dich-vu-xuat-sac-vi-nguoi-tieu-dung-6a574a0/">
+												<img class="lazy" src="https://www.vietnambooking.com/wp-content/uploads/2019/05/01.png" alt="" style="display: inline-block;">
+												<div class="box-title">TOP 10</div><div class="box-description">Dịch vụ xuất sắc vì người tiêu dùng</div> </a></li></div>
+												<div class="owl-item active" style="width: 190px;">
+													<li class="item"><a target="_blank" rel="nofollow" href="https://plo.vn/thi-truong-tieu-dung/nhip-song-do-thi/vietnam-booking-duoc-ton-vinh-bang-vang-danh-cho-doanh-nghiep-1018322.html">
+														<img class="lazy" src="https://www.vietnambooking.com/wp-content/uploads/2019/05/02.png" alt="" style="display: inline-block;">
+														<div class="box-title">BẢNG VÀNG</div>
+														<div class="box-description">Doanh nghiệp uy tín phát triển thịnh vượng</div> </a></li></div>
+														<div class="owl-item active" style="width: 190px;">
+															<li class="item">
+																<a target="_blank" rel="nofollow" href="https://vietbao.vn/vietnam-booking-nhan-duoc-danh-hieu-doanh-nghiep-tieu-bieu-cua-nam-271897.html">
+																	<img class="lazy" src="https://www.vietnambooking.com/wp-content/uploads/2019/05/03.png" alt="" style="display: inline-block;">
+																	<div class="box-title">DANH HIỆU</div>
+																	<div class="box-description">Doanh nghiệp tiêu biểu của năm</div> </a></li></div>
+																	<div class="owl-item active" style="width: 190px;">
+																		<li class="item">
+																			<a target="_blank" rel="nofollow" href="https://doisongvietnam.vn/giai-thuong-the-guide-awards-ton-vinh-thuong-hieu-vietnam-booking-125943-6.html">
+																				<img class="lazy" src="https://www.vietnambooking.com/wp-content/uploads/2019/05/04.png" alt="" style="display: inline-block;">
+																				<div class="box-title">DANH HIỆU</div>
+																				<div class="box-description">The Guide Awards</div> </a></li></div>
+																				
+								</div>
+@* 							</div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev disabled"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div>
+ *@							@* <div class="owl-dots">
+                                <button role="button" class="owl-dot active"><span></span></button>
+									<button role="button" class="owl-dot"><span></span></button></div> *@
+								</ul>
+							<script>
+								APPS_BASE.base_owl_slider({ id_tag: '#owl-slider-home-gain-award', count_item: 6 });
+							</script>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>            <div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12">
+					<div class="partner-box-content">
+						<h3 class="title-partner">Booking Hotel 247 đã được nhắc đến trên</h3>
+						<h4 class="description"></h4>
+						<div class="partner-box-item type-channel type-gain-award">
+							<ul id="owl-slider-home-news" class="owl-carousel owl-theme owl-loaded owl-drag">
+								<div class="owl-stage-outer">
+									<div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 4370px;">
+										<div class="owl-item active" style="width: 190px;">
+										<li class="item">
+											<a target="_blank" rel="nofollow" href="https://vietnamnet.vn/vn/thi-truong-tieu-dung/vietnam-booking-duoc-vinh-danh-top-20-thuong-hieu-noi-tieng-hang-dau-560421.html">
+												<img class="lazy" src="https://www.vietnambooking.com/wp-content/uploads/2019/08/Vietnamnet-Logo.png" alt="Báo Vietnamnet.vn" style="display: inline-block;" >
+												<div class="box-title"></div>
+												<div class="box-description"></div>
+											</a>
+											</li>
+						</div>
+						<div class="owl-item active" style="width: 190px;">
+							<li class="item">
+								<a target="_blank" rel="nofollow" href="https://baodautu.vn/cong-ty-du-lich-vietnam-booking-duoc-ton-vinh-tai-chuong-trinh-doanh-nghiep--doanh-nhan-hoc-tap-va-lam-theo-loi-bac-d105858.html">
+									<img class="lazy" src="https://www.vietnambooking.com/wp-content/uploads/2019/08/logo.png" alt="Báo đầu tư" style="display: inline-block;">
+									<div class="box-title"></div>
+									<div class="box-description"></div>
+								</a>
+								</li>
+								</div>
+									<div class="owl-item active" style="width: 190px;">
+										<li class="item"><a target="_blank" rel="nofollow" href="https://www.24h.com.vn/the-gioi-giai-tri/da-nang-thu-vi-trong-bo-anh-cua-sieu-mau-quoc-te-jessica-minh-anh-c680a1062969.html">
+											<img class="lazy" src="https://www.vietnambooking.com/wp-content/uploads/2019/03/24_h.png" alt="24h.com.vn" style="display: inline-block;"><div class="box-title"></div>
+											<div class="box-description"></div>
+										</a>
+										</li>
+										</div>
+											<div class="owl-item active" style="width: 190px;">
+												<li class="item">
+													<a target="_blank" rel="nofollow" href="https://www.tienphong.vn/du-lich/da-nang-that-thu-vi-moi-me-trong-bo-anh-moi-nhat-cua-jessica-minh-anh-1437727.tpo">
+														<img class="lazy" src="https://www.vietnambooking.com/wp-content/uploads/2019/03/tien_phong.png" alt="Báo Tiền Phong" style="display: inline-block;"><div class="box-title"></div><div class="box-description"></div> </a></li></div>
+														<div class="owl-item active" style="width: 190px;">
+															<li class="item">
+																<a target="_blank" rel="nofollow" href="https://thanhnien.vn/ban-can-biet/vietnam-booking-gop-phan-uom-mam-tai-nang-du-lich-tre-1106114.html">
+																	<img class="lazy" src="https://www.vietnambooking.com/wp-content/uploads/2019/07/thanhnien.png" alt="" style="display: inline-block;">
+																	<div class="box-title"></div>
+																	<div class="box-description"></div> </a></li></div>
+																	<div class="owl-item active" style="width: 190px;">
+																		<li class="item">
+																			<a target="_blank" rel="nofollow" href="https://vnexpress.net/du-lich/vietnam-booking-chao-san-du-lich-giam-30-gia-tour-thang-11-3833458.html">
+																				<img class="lazy" src="https://www.vietnambooking.com/wp-content/uploads/2019/03/vnexpress-1.png" alt="Báo điện tử Vietnam Express" style="display: inline-block;">
+																				<div class="box-title"></div>
+																				<div class="box-description"></div></a></li></div>
+																				<div class="owl-item" style="width: 190px;">
+																					<li class="item">
+																						<a target="_blank" rel="nofollow" href="http://kinhtevn.com.vn/vietnam-booking-duoc-ton-vinh-tai-chuong-trinh-doanh-nghiep-doanh-nhan-hoc-tap-va-lam-theo-loi-bac-40361.html&amp;secureURL=71bc42edac85c96410b42c5e1a88fd21?fbclid=IwAR15PjJcbuj4LksPx7DIWDbmHgAFB4YWqzCa9whFQtaiPiHeQzeODM6eEWw">
+																							<img class="lazy" src="https://www.vietnambooking.com/wp-content/uploads/2019/08/kinhtevn.png" alt="Báo Kinh Tế Việt Nam" style="display: inline-block;">
+																							<div class="box-title"></div>
+																							<div class="box-description"></div></a></li></div>
+																							<div class="owl-item" style="width: 190px;">
+																								<li class="item"><a target="_blank" rel="nofollow" href="http://www.thuonggiaonline.vn/vietnam-booking-duoc-ton-vinh-tai-chuong-trinh-doanh-nhan-lam-theo-loi-bac-25514.htm?fbclid=IwAR1cqZtL6bVog35pysbi8gMDFRYs1rkQ4dDWoLz35jZsr0glfnqivM18M6A"><img class="lazy" src="https://www.vietnambooking.com/wp-content/uploads/2019/08/logo-1.png" alt="Báo Thương Gia Online" style="display: inline-block;">
+																									<div class="box-title"></div>
+																									<div class="box-description"></div> </a></li></div>
+																									<div class="owl-item" style="width: 190px;">
+																										<li class="item">
+																											<a target="_blank" rel="nofollow" href="http://vccinews.vn/news/25358/vietnam-booking-duoc-ton-vinh-tai-chuong-trinh-doanh-nghiep-%E2%80%93-doanh-nhan-hoc-tap-va-lam-theo-loi-bac.html">
+																												<img class="lazy" src="https://www.vietnambooking.com/wp-content/uploads/2019/08/vcci-la-gi.png" alt="Báo VCCI" style="display: inline-block;"><div class="box-title"></div><div class="box-description"></div> </a></li></div>
+																												<div class="owl-item" style="width: 190px;">
+																													<li class="item">
+																														<a target="_blank" rel="nofollow" href="http://kenh14.vn/vietnam-booking-truyen-cam-hung-dam-me-de-cac-ban-sinh-vien-nganh-dich-vu-du-lich-toa-sang-20190722173737522.chn"><img class="lazy" src="https://www.vietnambooking.com/wp-content/uploads/2019/07/kenh14.png" alt="" style="display: inline-block;"><div class="box-title"></div><div class="box-description"></div> </a></li></div>
+																														<div class="owl-item" style="width: 190px;">
+																															<li class="item"><a target="_blank" rel="nofollow" href="https://saovadoanhnhan.vn/da-nang-that-thu-vi-moi-me-trong-bo-anh-moi-nhat-cua-sieu-mau-quoc-te-jessica-minh-anh/"><img class="lazy" src="https://data.vietnambooking.com/common/svg/icon_img_default.svg" data-src="https://www.vietnambooking.com/wp-content/uploads/2019/07/doanh_nhan.png" alt=""><div class="box-title"></div><div class="box-description"></div> </a></li></div>
+																															<div class="owl-item" style="width: 190px;">
+																																<li class="item">
+																																	<a target="_blank" rel="nofollow" href="http://svvn.vn/song-tre/vietnam-booking-dong-hanh-cung-sv-du-lich-toan-quoc-trong-i-hotelier-2019-20190723163908445.htm">
+																																		<img class="lazy" src="https://data.vietnambooking.com/common/svg/icon_img_default.svg" data-src="https://www.vietnambooking.com/wp-content/uploads/2019/07/sinhvienvietnam.png" alt=""><div class="box-title"></div>
+																																		<div class="box-description"></div> </a></li></div>
+																																		<div class="owl-item" style="width: 190px;">
+																																			<li class="item"><a target="_blank" rel="nofollow" href="https://doanhnhansaigon.vn/dich-vu/vietnam-booking-dong-hanh-cung-sieu-mau-quoc-te-jessica-minh-anh-trai-nghiem-jeep-tour-son-tra-1093028.html"><img class="lazy" src="https://data.vietnambooking.com/common/svg/icon_img_default.svg" data-src="https://www.vietnambooking.com/wp-content/uploads/2019/07/doanh_nhan_sai_gon.png" alt=""><div class="box-title"></div><div class="box-description"></div> </a></li></div><div class="owl-item" style="width: 190px;"><li class="item"><a target="_blank" rel="nofollow" href="https://giaoducthoidai.vn/thoi-su/vietnam-booking-truyen-cam-hung-dam-me-de-cac-ban-sinh-vien-nganh-dich-vu-du-lich-toa-sang-4021693-q.html"><img class="lazy" src="https://data.vietnambooking.com/common/svg/icon_img_default.svg" data-src="https://www.vietnambooking.com/wp-content/uploads/2019/07/1_OUJR.png" alt=""><div class="box-title"></div><div class="box-description"></div> </a></li></div><div class="owl-item" style="width: 190px;"><li class="item"><a target="_blank" rel="nofollow" href="https://baomoi.com/kham-pha-da-nang-bang-xe-jeep-cung-sieu-mau-quoc-te/c/31311740.epi"><img class="lazy" src="https://data.vietnambooking.com/common/svg/icon_img_default.svg" data-src="https://www.vietnambooking.com/wp-content/uploads/2019/07/bao_moi.png" alt=""><div class="box-title"></div><div class="box-description"></div> </a></li></div><div class="owl-item" style="width: 190px;"><li class="item"><a target="_blank" rel="nofollow" href="https://doanhnghiepvathuonghieu.vn/da-nang-that-thu-vi-moi-me-trong-bo-anh-moi-nhat-cua-sieu-mau-quoc-te-jessica-minh-anh.html"><img class="lazy" src="https://data.vietnambooking.com/common/svg/icon_img_default.svg" data-src="https://www.vietnambooking.com/wp-content/uploads/2019/07/doanh_nghiep_va_thuong_hieu.png" alt=""><div class="box-title"></div><div class="box-description"></div> </a></li></div><div class="owl-item" style="width: 190px;"><li class="item"><a target="_blank" rel="nofollow" href="http://dulichvietnam.org.vn/d1359/co-mot-da-nang-thu-vi-trong-bo-anh-moi-nhat-cua-sieu-mau-quoc-te-jessica-minh-anh-.html"><img class="lazy" src="https://data.vietnambooking.com/common/svg/icon_img_default.svg" data-src="https://www.vietnambooking.com/wp-content/uploads/2019/07/du_lich_viet_nam.png" alt=""><div class="box-title"></div><div class="box-description"></div> </a></li></div><div class="owl-item" style="width: 190px;"><li class="item"><a target="_blank" rel="nofollow" href="https://tcdulichtphcm.vn/trai-nghiem-jeep-tour-son-tra-cung-sieu-mau-quoc-te-jessica-minh-anh/"><img class="lazy" src="https://data.vietnambooking.com/common/svg/icon_img_default.svg" data-src="https://www.vietnambooking.com/wp-content/uploads/2019/07/du_lich.png" alt=""><div class="box-title"></div><div class="box-description"></div> </a></li></div><div class="owl-item" style="width: 190px;"><li class="item"><a target="_blank" rel="nofollow" href="https://chaovietnam.vn/tin-tuc/vi/Da-Nang-that-la-thu-vi-moi-me-trong-bo-anh-moi-nhat-cua-sieu-mau-quoc-te-Jessica-Minh-Anh-"><img class="lazy" src="https://data.vietnambooking.com/common/svg/icon_img_default.svg" data-src="https://www.vietnambooking.com/wp-content/uploads/2019/07/chao_viet_nam.png" alt=""><div class="box-title"></div><div class="box-description"></div> </a></li></div><div class="owl-item" style="width: 190px;"><li class="item"><a target="_blank" rel="nofollow" href=" http://dulichgiaitri.com/loi-di-nao-cho-doanh-nghiep-du-lich-noi-dia-thoi-4-0/ "><img class="lazy" src="https://data.vietnambooking.com/common/svg/icon_img_default.svg" data-src="https://www.vietnambooking.com/wp-content/uploads/2019/03/du_lich_giai_tri.png" alt="Du lịch giải trí"><div class="box-title"></div><div class="box-description"></div> </a></li></div><div class="owl-item" style="width: 190px;"><li class="item"><a target="_blank" rel="nofollow" href="https://tingiaoduc24h.vn/soi-dong-dem-dai-nhac-hoi-the-harmony-cherub/10089/"><img class="lazy" src="https://data.vietnambooking.com/common/svg/icon_img_default.svg" data-src="https://www.vietnambooking.com/wp-content/uploads/2021/02/tingiaoduc.jpg" alt=""><div class="box-title"></div><div class="box-description"></div> </a></li></div><div class="owl-item" style="width: 190px;"><li class="item"><a target="_blank" rel="nofollow" href="https://thoibaonganhang.vn/vietnam-booking-nha-tai-tro-kim-cuong-dong-hanh-cung-sinh-vien-hoc-vien-tai-chinh-111280.html"><img class="lazy" src="https://data.vietnambooking.com/common/svg/icon_img_default.svg" data-src="https://www.vietnambooking.com/wp-content/uploads/2021/02/nganhanglogo.jpg" alt=""><div class="box-title"></div><div class="box-description"></div> </a></li></div><div class="owl-item" style="width: 190px;"><li class="item"><a target="_blank" rel="nofollow" href="https://dulichvietnam.com.vn/vietnam-booking-dong-hanh-cung-dai-nhac-hoi-thuong-nien-the-harmony-cherub.html"><img class="lazy" src="https://data.vietnambooking.com/common/svg/icon_img_default.svg" data-src="https://www.vietnambooking.com/wp-content/uploads/2021/02/dulich.jpg" alt=""><div class="box-title"></div><div class="box-description"></div> </a></li></div>
+					</div>
+				</div>
+@* 				<div class="owl-nav"><button type="button" role="presentation" class="owl-prev disabled"><span aria-label="Previous">‹</span></button><button type="button" role="presentation" class="owl-next"><span aria-label="Next">›</span></button></div><div class="owl-dots"><button role="button" class="owl-dot active"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button><button role="button" class="owl-dot"><span></span></button></div></ul>
+ *@				<script>
+					APPS_BASE.base_owl_slider({ id_tag: '#owl-slider-home-news', count_item: 6 });
+				</script>
+			</div>
+		</div>
+	</div>
+</div>
+			</div>
+<p></p>
+
+<h2 style="text-align: justify;">
+	<strong>HÌNH ẢNH KHÁCH HÀNG CỦA BOOKING HOTEL 247</strong>
+</h2>
+
+<p style="text-align: center;">
+	<img alt="Công ty du lịch uy tín tphcm Vietnambooking" src="https://www.vietnambooking.com/wp-content/uploads/2018/09/gioi-thieu-vietnam-booking-28-09-2018-16.jpg">
+</p>
+
+<p style="text-align: center;">
+	<em>Diễn viên Trần Nhượng tại văn phòng Booking Hotel 247 Hà Nội.</em>
+</p>
+
+<p style="text-align: center;">
+	<img alt="cong ty du lich vietnam booking" class="alignnone size-full wp-image-352757" height="465" src="https://www.vietnambooking.com/wp-content/uploads/2017/07/cong-ty-co-phan-vietnam-booking-7.jpg" width="620">
+</p>
+
+<p style="text-align: center;">
+	<em>Khách hàng vui chơi với Tour Team Building của&nbsp;Booking Hotel 247</em>
+</p>
+
+<p style="text-align: center;">
+	<img alt="cong ty du lich vietnam booking " class="alignnone size-full wp-image-352755" height="428" src="https://www.vietnambooking.com/wp-content/uploads/2017/07/cong-ty-co-phan-vietnam-booking-5.jpg" width="620">
+</p>
+
+<p style="text-align: center;">
+	<em>Tour đoàn&nbsp;do Booking Hotel 247 tổ chức</em>
+</p>
+
+<p style="text-align: center;">
+	<img alt="cong ty lu hanh viet nam booking" class="alignnone size-full wp-image-352758" height="437" src="https://www.vietnambooking.com/wp-content/uploads/2017/07/cong-ty-co-phan-vietnam-booking-6.jpg" width="620">
+</p>
+
+<p style="text-align: center;">
+	<em>Tour đoàn&nbsp;Công ty&nbsp;do Booking Hotel 247 tổ chức</em>
+</p>
+
+<p style="text-align: center;">
+	<img alt="gioi thieu vietnam booking" class="alignnone size-full wp-image-352746" height="413" src="https://www.vietnambooking.com/wp-content/uploads/2017/07/cong-ty-co-phan-vietnam-booking-3.jpg" width="620">
+</p>
+
+<p style="text-align: center;">
+	<em>Khách hàng ký nhận thưởng tại văn phòng Booking Hotel 247 thành phố&nbsp;Hồ Chí Minh</em>
+</p>
+
+<p style="text-align: center;">
+	<img alt="gioi thieu vietnam booking" class="alignnone size-full wp-image-352745" height="434" src="https://www.vietnambooking.com/wp-content/uploads/2017/07/gioi-thieu-vietnam-booking.png" width="620">
+</p>
+
+<p style="text-align: center;">
+	<em>Khách hàng hái lộc đầu năm tại Booking Hotel 247.</em>
+</p>
+
+<h2 style="text-align: justify;">
+	<strong>HÌNH ẢNH MỘT SỐ VĂN PHÒNG CỦA BOOKING HOTEL 247</strong>
+</h2>
+
+<p style="text-align: center;">
+	<img alt="cong ty co phan vietnam booking" class="alignnone size-full wp-image-352597" height="413" src="https://www.vietnambooking.com/wp-content/uploads/2017/07/cong-ty-co-phan-vietnam-booking-1.jpg" width="620">
+</p>
+
+<p style="text-align: center;">
+	<em>Đội ngũ nhân viên tại văn phòng 192 Trần Quý, P.6, Quận 11, TP. HCM</em>
+</p>
+
+<p style="text-align: center;">
+	<img alt="cong ty co phan vietnam booking" class="alignnone size-full wp-image-352685" height="413" src="https://www.vietnambooking.com/wp-content/uploads/2017/07/cong-ty-co-phan-vietnam-booking-2-1.jpg" width="620">
+</p>
+
+<p style="text-align: center;">
+	<em>Các tư vấn viên chuyên nghiệp tại văn phòng 54 Phạm Hồng Thái, P. Bến Thành, Quận 1, TP.HCM</em>
+</p>
+
+<p style="text-align: center;">
+	<img alt="gioi thieu vietnam booking" class="alignnone size-full wp-image-352749" height="413" src="https://www.vietnambooking.com/wp-content/uploads/2017/07/cong-ty-co-phan-vietnam-booking-4.jpg" width="620">
+</p>
+
+<p style="text-align: center;">
+	<em>Văn phòng 190&nbsp;Trần Quý, P.6, Quận 11, TP.HCM</em>
+</p>
+
+<p style="text-align: justify;">
+	<strong><em>(đang cập nhật)</em></strong>
+</p>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>

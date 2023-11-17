@@ -11,11 +11,18 @@ namespace BookingHotel.Controllers
         {
             return View();
         }
+
         //hotel detail page
         [Route("hoteldetail")]
         [Route("")]
         public IActionResult hotelDetail()
         {
+            return View();
+        }
+
+        [Route("hotel-filter")]
+        [Route("")]
+        public IActionResult hotelFilter() { 
             return View();
         }
     }
