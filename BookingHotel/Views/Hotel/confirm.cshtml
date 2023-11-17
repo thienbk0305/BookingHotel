@@ -1,0 +1,222 @@
+﻿@{
+    ViewData["Title"] = "Thông tin đặt phòng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+} 
+<style>
+    .row {
+        margin-top: 70px;
+    }
+</style>
+<div class="page-box-content page-hotel">
+    <div class="clearfix"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8">
+                <h3>Điền thông tin liên hệ</h3>
+                <div class="box-content">
+                    <div class="" box-response-create-booking=""></div>
+                    <form method="post" id="form-hotel-create-booking" class="box-submit-form create-booking" novalidate="novalidate">
+                        <div class="col-lg-12 col-md-12">
+                            <div class="alert alert-danger" style="display:none;"><button class="close" data-close="alert"></button> Bạn có vài chỗ nhập không đúng. Vui lòng kiểm tra phía dưới. </div>
+                            <div class="alert alert-success" style="display:none;"><button class="close" data-close="alert"></button> Thật tuyệt vời, bạn đã cập nhật thành công! </div>
+                        </div>
+                        <input type="hidden" name="id_post" value="335156">
+                        <input type="hidden" name="info_order" value="{&quot;id_post&quot;:&quot;335156&quot;,&quot;id_room&quot;:&quot;256&quot;,&quot;id_price_room&quot;:&quot;room_1&quot;,&quot;info_params&quot;:{&quot;id_post&quot;:&quot;335156&quot;,&quot;ds&quot;:&quot;13112023&quot;,&quot;de&quot;:&quot;14112023&quot;,&quot;r&quot;:&quot;1&quot;,&quot;a&quot;:&quot;1&quot;,&quot;c&quot;:&quot;0&quot;,&quot;ca&quot;:&quot;&quot;}}">
+
+                        <div class="input-item form-group col-lg-12 col-md-12">
+                            <label for="txt_fullname">Họ và tên <span class="required">*</span></label>
+                            <input id="txt_fullname" autocomplete="off" required="" type="text" class="form-control" name="txt_fullname">
+                            <span class="help-block"></span>
+                        </div>                <div class="input-item form-group col-lg-7 col-md-7">
+                            <label for="txt_email">Email <span class="required">*</span></label>
+                            <input id="txt_email" autocomplete="off" required="" type="email" class="form-control" name="txt_email">
+                            <span class="help-block"></span>
+                        </div>                <div class="input-item form-group col-lg-5 col-md-5">
+                            <label for="txt_phone">Số điện thoại <span class="required">*</span></label>
+                            <input id="txt_phone" autocomplete="off" required="" type="text" class="form-control" name="txt_phone">
+                            <span class="help-block"></span>
+                        </div>                <div class="input-item form-group col-lg-12 col-md-12 box-full-services-extra">
+                            <label for="info_services_extra">Hãy cho chúng tôi biết Quý khách cần gì? </label>
+                            <div class="box-services-extra">
+                                <div class="note"> Lưu ý tất cả các yêu cầu chỉ được đáp ứng tùy theo khách sạn</div>
+                                <div class="box-services-extra-inner">
+                                    <div class="box-item type-radio">
+                                        <div class="box-item-inner">
+                                            <label for="rad-item-1"> <input id="rad-item-1" name="info_services_extra][room_smoke]" type="radio" value="0"> Phòng không hút thuốc </label>
+                                        </div>                            <div class="box-item-inner">
+                                            <label for="rad-item-2"> <input id="rad-item-2" name="info_services_extra][room_smoke]" type="radio" value="1"> Phòng hút thuốc </label>
+                                        </div>
+                                    </div><div class="box-item type-radio">
+                                        <div class="box-item-inner">
+                                            <label for="rad-item-3"> <input id="rad-item-3" name="info_services_extra][bed_type]" type="radio" value="1"> Tôi muốn lấy giường lớn </label>
+                                        </div>                            <div class="box-item-inner">
+                                            <label for="rad-item-4"> <input id="rad-item-4" name="info_services_extra][bed_type]" type="radio" value="2"> Tôi muốn lấy giường đôi </label>
+                                        </div>
+                                    </div><div class="box-checkbox-services">
+                                        <div class="box-item">
+                                            <label for="chk-item-1"> <input id="chk-item-1" name="info_services_extra][room_floor_high]" type="checkbox" value="1"> Tôi muốn lấy phòng tầng cao </label>
+                                            <div class="box-content-item chk-item-1 hidden">  </div>
+                                        </div>                        <div class="box-item">
+                                            <label for="chk-item-2"> <input id="chk-item-2" name="info_services_extra][room_cradle]" type="checkbox" value="1"> Thêm nôi trẻ em (có thể áp dụng phụ phí) </label>
+                                            <div class="box-content-item chk-item-2 hidden">  </div>
+                                        </div>                        <div class="box-item">
+                                            <label for="chk-item-3"> <input id="chk-item-3" name="info_services_extra][room_time_checkin]" type="checkbox" value="1"> Giờ nhận phòng </label>
+                                            <div class="box-content-item chk-item-3 hidden"> <input value="14:00" type="time" id="txt_room_time_checkin" name="info_services_extra][time_checkin]"> </div>
+                                        </div>                        <div class="box-item">
+                                            <label for="chk-item-4"> <input id="chk-item-4" name="info_services_extra][room_time_checkout]" type="checkbox" value="1"> Giờ trả phòng </label>
+                                            <div class="box-content-item chk-item-4 hidden"> <input value="12:00" type="time" id="txt_room_time_checkout" name="info_services_extra][time_checkout]"> </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <script>
+                                    $(document).ready(function () {
+                                        $(".box-services-extra .box-services-extra-inner .box-item input[type='checkbox']").click(function () {
+                                            var str_id = $(this).attr("id");
+                                            var is_checked = $(this).is(":checked");
+                                            if (is_checked) { $(".box-services-extra .box-services-extra-inner .box-item .box-content-item." + str_id).removeClass("hidden"); }
+                                            else { $(".box-services-extra .box-services-extra-inner .box-item .box-content-item." + str_id).addClass("hidden"); }
+                                        });
+                                    });
+                                </script>
+
+                            </div>
+
+                            <span class="help-block"></span>
+                        </div>                <div class="input-item form-group col-lg-12 col-md-12">
+                            <label for=""> </label>
+                            <div class="hotel-box-note">
+                                <div class="box-title"> <i class="fas fa-plus-circle"></i> Thêm yêu cầu đặc biệt </div>
+                                <textarea id="txt_note" autocomplete="off" maxlength="200" class="form-control txt_note hidden" name="info_services_extra][note]"></textarea>
+                            </div>
+                            <script>
+                                $(document).ready(function () {
+                                    $(".hotel-box-note .box-title").click(function () {
+                                        var obj_this_parents = $(this).parents(".hotel-box-note");
+                                        var is_active = obj_this_parents.hasClass("active");
+                                        if (!is_active) {
+                                            obj_this_parents.addClass("active");
+                                            obj_this_parents.find("i").removeClass("fa-plus-circle").addClass("fa-minus-circle");
+                                            obj_this_parents.find("textarea.txt_note").removeClass("hidden");
+                                        }
+                                        else {
+                                            obj_this_parents.removeClass("active");
+                                            obj_this_parents.find("i").removeClass("fa-minus-circle").addClass("fa-plus-circle");
+                                            obj_this_parents.find("textarea.txt_note").addClass("hidden");
+                                        }
+                                    });
+                                });
+                            </script>
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="box-submit"><button type="submit" class="btn-submit-contact-booking">Tiếp tục</button></div>
+                    </form>
+                    <script>
+                        var obj_query_data_submit_form_create_booking =
+                        {
+                            id_form: "#form-hotel-create-booking",
+                            action: "hotel_ajax_create_booking",
+                            title_question: " ",
+                            button_confirm: "Có, tiến hành thanh toán",
+                            button_cancel: "Kiểm tra lại",
+                            width: 560,
+                            icon: "no",
+                            customClass: { container: "swal2-popup-book-hotel" },
+                            html: '<table><tbody><tr><td><div class="title">Tất cả thông tin của bạn đều đã chính xác ?</div><div class="description">Bạn sẽ không thể thay đổi thông tin sau khi tiến hành thanh toán. Bạn có muốn tiếp tục ?</div></td></tr></tbody> </table>'
+                        };
+                        APPS_BASE.base_system_submit_form(obj_query_data_submit_form_create_booking);
+                    </script>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <h3>Thông tin đặt phòng</h3>
+                <div class="hotel-page-sidebar">
+                    <div class="box-summary">
+                        <div class="summary-main">
+                            <div class="box-img">
+                                <img class="" src="https://cdn2.vietnambooking.com/wp-content/uploads/hotel_pro/hotel_335156/mini_a75004399fb49b5f5ad781c1d84234d4.jpg" alt="">
+                            </div>
+                            <div class="box-title">
+                                <h3>Nhà khách Mã Đà Đồng Nai</h3>
+                                <div class="description"> Phòng tập thể  </div>
+                            </div>
+                        </div>
+                        <div class="summary-total">
+                            <table class="tlb-info">
+
+                                <tbody>
+                                    <tr>
+                                        <td> <div class="title"><i class="icon-vnbk icon-calendar-from-570-48 "></i> Ngày nhận phòng </div> </td>
+                                        <td> <div class="info-right"> 13/11/2023 </div> </td>
+                                    </tr>
+                                    <tr>
+                                        <td> <div class="title"><i class="icon-vnbk icon-calendar-to-612-48 "></i> Ngày trả phòng </div> </td>
+                                        <td> <div class="info-right">  14/11/2023 </div> </td>
+                                    </tr>
+                                    <tr>
+                                        <td> <div class="title"><i class="icon-vnbk icon-passenger-528-96"></i> Số khách phòng </div> </td>
+                                        <td> <div class="info-right"> 1 khách, 1 phòng </div> </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="summary-total">
+                            <table class="tlb-info tlb-info-price">
+                                <tbody>
+                                    <tr>
+                                        <td> <div class="title">1 phòng x 1 đêm </div> </td>
+                                        <td> <div class="info-right">5,457,000 VND</div> </td>
+                                    </tr>
+                                    <tr>
+                                        <td> <div class="title box-promo">Promo giảm 50%</div> </td>
+                                        <td> <div class="info-right">- 2,728,500 VND</div> </td>
+                                    </tr>
+
+                                    <tr class="tr-voucher hidden">
+                                        <td> <div class="title">Mã giảm giá </div> </td>
+                                        <td> <div class="info-right">0 VND</div> <input class="txt-total-price-hidden" type="hidden" value="2728500"> </td>
+                                    </tr>
+                                    <tr>
+                                        <td> <div class="title type-tax">Phí dịch vụ</div> </td>
+                                        <td> <div class="info-right type-tax">MIỄN PHÍ</div> </td>
+                                    </tr>
+                                    <tr class="tr-total">
+                                        <td> <div class="title">Tổng tiền</div> </td>
+                                        <td> <div data-price-format="2,728,500 VND" class="info-right">2,728,500 VND</div> </td>
+                                    </tr>
+                                    <tr class="tr-note">
+                                        <td colspan="2">
+                                            <div class="alert alert-warning">
+                                                Booking của bạn đang được chờ xác nhận. Tư vấn viên sẽ sớm liên hệ với bạn
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="box-hotline"><i class="icon-vnbk icon-phone-96-48"></i> Gọi <a href="tel:19004698">1900 4698</a> để được hỗ trợ 24/7</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+</div>
+
+<!--================ End footer Area  =================-->
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="~/js/jquery-3.2.1.min.js"></script>
+<script src="~/js/popper.js"></script>
+<script src="~/js/bootstrap.min.js"></script>
+<script src="~/vendors/owl-carousel/owl.carousel.min.js"></script>
+<script src="~/js/jquery.ajaxchimp.min.js"></script>
+<script src="~/js/mail-script.js"></script>
+<script src="~/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="~/vendors/nice-select/js/jquery.nice-select.js"></script>
+<script src="~/js/mail-script.js"></script>
+<script src="~/js/stellar.js"></script>
+<script src="~/vendors/lightbox/simpleLightbox.min.js"></script>
+<script src="~/js/custom.js"></script>

@@ -1,0 +1,76 @@
+﻿@using System.Net;
+@model DataAccess.Models.HotelsModels.HotelsViewModel
+
+<form asp-action="Update" method="post" role="form" id="hotelsDetailModal">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white">Phòng: #@Model?.Id - Tình Trạng: @Model?.Active</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <ul class="nav nav-tabs  mb-3 mt-3" id="iconTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="animated-underline-home-tab" href="#logInfoTab" data-toggle="tab" role="tab" aria-controls="icon-home" aria-selected="true"> Nội Dung</a>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="logInfoTab" role="tabpanel" aria-labelledby="icon-home-tab">
+                            <input asp-for="Id" type="hidden" id="modelId" value="@Model?.Id">
+
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <label asp-for="HotelName" class="control-label mb-10">Tên Khách Sạn</label>
+                                    <input asp-for="HotelName" type="text" class="form-control"
+                                           id="modelHotelName" name="modelHotelName" value="@Model?.HotelName">
+                                    <span asp-validation-for="HotelName" class="text-warning"></span>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label asp-for="HotelAddress" class="control-label mb-10">Địa Chỉ Khách Sạn</label>
+                                    <input asp-for="HotelAddress" type="text" class="form-control"
+                                           id="modelHotelAddress" name="modelHotelAddress" value="@Model?.HotelAddress">
+                                    <span asp-validation-for="HotelAddress" class="text-warning"></span>
+                                </div>
+
+                                <div class="col-lg-4">
+                                    <label asp-for="HotelLevel" class="control-label mb-10">Xếp Hạng Khách Sạn</label>
+                                    <input asp-for="HotelLevel" type="text" class="form-control"
+                                           id="modelHotelLevel" name="modelHotelLevel" value="@Model?.HotelLevel">
+                                    <span asp-validation-for="HotelLevel" class="text-warning"></span>
+                                </div>
+
+                                <div class="form-group col-lg-3">
+                                    <label class="control-label">Active/Inactive</label>
+                                    <div class="input-group">
+                                        <div class="checkbox checkbox-info">
+                                            <label asp-for="Active" class="switch s-icons s-outline s-outline-success">
+                                                <input type="checkbox" asp-for="Active" id="modelActive">
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="light-grey-hr" />
+                            <!-- Row -->
+                            <div class="form-group">
+                                <div class="col-lg-12">
+                                    <textarea class="form-control" asp-for="Description" rows="5" id="modelDescription" placeholder="Nội dung ghi chú">@Model?.Description</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="form-actions mt-10">
+                    <input id="updateBtn" type="button" class="btn btn-success" value="Lưu" />
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</form>
+
+<script src="~/admin/dist/js/Hotels/Hotelsdetail.js"></script>

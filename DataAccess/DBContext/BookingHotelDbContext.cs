@@ -20,21 +20,26 @@ namespace DataAccess.DBContext
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<Hotel>()
-            .HasMany(h => h.Service) // Assuming 'Service' is the collection navigation property in 'Hotel'
-            .WithOne(s => s.HotelCodeByUser) // Assuming 'Hotel' is the navigation property in 'Service' pointing back to 'Hotel'
-            .HasForeignKey(s => s.HotelCodeByUserId); // Assuming 'HotelId' is the foreign key property in 'Service'
+            // Configure HotelRoomService as a junction table
+            builder.Entity<HotelRoomService>()
+                .HasKey(hrs => new { hrs.HotelId, hrs.RoomId, hrs.ServiceId });
 
-            //builder.Entity<Hotel>()
-            //.HasMany(h => h.Room) // Assuming 'Room' is the collection navigation property in 'Hotel'
-            //.WithOne(s => s.HotelCodeByUser) // Assuming 'Hotel' is the navigation property in 'Room' pointing back to 'Hotel'
-            //.HasForeignKey(s => s.HotelCodeByUserId); // Assuming 'HotelId' is the foreign key property in 'Room'
+            builder.Entity<HotelRoomService>()
+                .HasOne(hrs => hrs.Hotel)
+                .WithMany(h => h.HotelRoomService)
+                .HasForeignKey(hrs => hrs.HotelId);
 
-             builder.Entity<Room>()
-            .HasMany(h => h.Service) // Assuming 'Service' is the collection navigation property in 'Hotel'
-            .WithOne(s => s.RoomCodeByUser) // Assuming 'Hotel' is the navigation property in 'Service' pointing back to 'Hotel'
-            .HasForeignKey(s => s.RoomCodeByUserId); // Assuming 'HotelId' is the foreign key property in 'Service'
+            builder.Entity<HotelRoomService>()
+                .HasOne(hrs => hrs.Room)
+                .WithMany(r => r.HotelRoomService)
+                .HasForeignKey(hrs => hrs.RoomId);
 
+            builder.Entity<HotelRoomService>()
+                .HasOne(hrs => hrs.Service)
+                .WithMany(s => s.HotelRoomService)
+                .HasForeignKey(hrs => hrs.ServiceId);
+
+            // Additional configurations for other relationships or constraints
         }
 
         public virtual DbSet<Booking> Booking { get; set; } = null!;
@@ -48,6 +53,7 @@ namespace DataAccess.DBContext
         public virtual DbSet<SaleOff> SaleOff { get; set; } = null!;
         public virtual DbSet<Service> Service { get; set; } = null!;
         public virtual DbSet<User> User { get; set; } = null!;
+        public virtual DbSet<HotelRoomService> HotelRoomService { get; set; }
 
     }
 }

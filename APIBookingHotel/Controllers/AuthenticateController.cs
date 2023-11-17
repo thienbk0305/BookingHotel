@@ -110,7 +110,6 @@ namespace APIBookingHotel.Controllers
                     token = new JwtSecurityTokenHandler().WriteToken(token),
                     RefreshToken = refreshToken,
                     expiration = token.ValidTo
-
                 });
             }
             return Unauthorized();

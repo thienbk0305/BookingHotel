@@ -52,7 +52,7 @@ namespace AdminBookingHotel.Controllers.Account
                 var dataJson = JsonConvert.SerializeObject(model);
                 var result = Common.HttpHelper.WebPost(RestSharp.Method.Post,url_api, base_url, dataJson);
 
-                if (string.IsNullOrEmpty(result))
+                if (string.IsNullOrEmpty(result) || result == null)
                 {
                     returnData.ResponseCode = "-1";
                     returnData.Description = "Đăng nhập thất bại";

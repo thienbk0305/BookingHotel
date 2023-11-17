@@ -11,7 +11,7 @@
         dateFormat: "m/d/Y",
     });
     "use strict";
-    $("#roomsTable").DataTable({
+    $("#hotelsTable").DataTable({
         "processing": true,
         "serverSide": true,
         "select": false,
@@ -42,7 +42,7 @@
             "sLengthMenu": "Results :  _MENU_"
         },
         "ajax": {
-            "url": "/WebRooms/LoadData",
+            "url": "/WebHotels/LoadData",
             "dataSrc": "dataResult",
             "type": "post",
             "datatype": "json",
@@ -64,45 +64,6 @@
             },
             {
                 'targets': [4],
-                'render': function (data) {
-                    out = '';
-                    badgeColorArray = ['success','danger','primary','secondary'];
-                    data = data.replace('[', '').replace(']', '').replaceAll('"', '')
-                    if (!data.includes(',')) {
-                        out = '<span class="badge outline-badge-info">' + data + '</span>';
-                    } else {
-                        tempArr = data.split(',')
-                        tempArr.forEach((element) => {
-                            rnd = Math.floor(Math.random() * badgeColorArray.length);
-                            badgeColor = 'outline-badge-' + badgeColorArray[rnd];
-                            out += '<span class="badge ' + badgeColor + '">' + element + ' </span>'
-                        })
-                    }
-                    return out;
-                }
-            },
-            {
-                'targets': [5],
-                'render': function (data) {
-                    out = '';
-                    badgeColorArray = ['info', 'warning'];
-                    // badgeColorArray = ['info','warning','success','danger','primary','secondary'];
-                    data = data.replace('[', '').replace(']', '').replaceAll('"', '')
-                    if (!data.includes(',')) {
-                        out = '<span class="badge outline-badge-info">' + data + '</span>';
-                    } else {
-                        tempArr = data.split(',')
-                        tempArr.forEach((element) => {
-                            rnd = Math.floor(Math.random() * badgeColorArray.length);
-                            badgeColor = 'outline-badge-' + badgeColorArray[rnd];
-                            out += '<span class="badge ' + badgeColor + '">' + element + ' </span>'
-                        })
-                    }
-                    return out;
-                }
-            },
-            {
-                'targets': [7],
                 'render': function (e, t, r, n) {
                     var out;
                     if (e === true) {
@@ -119,47 +80,44 @@
                 width: "5%"
             },
             { "data": "SysDate", "name": "SysDate", "autoWidth": true },
-            { "data": "RoomName", "name": "RoomName", "autoWidth": true },
-            { "data": "RoomSize", "name": "RoomSize", "autoWidth": true },
-            { "data": "RoomType", "name": "RoomType", "autoWidth": true },
-            { "data": "RoomHuman", "name": "RoomHuman", "autoWidth": true },
-            { "data": "Price", "name": "Price", "autoWidth": true },
+            { "data": "HotelName", "name": "HotelName", "autoWidth": true },
+            { "data": "HotelAddress", "name": "HotelAddress", "autoWidth": true },
             { "data": "Active", "name": "Active", "autoWidth": true },
             {
                 "render": function (data, type, row, meta) {
                     return (
-                        "<div class='btn-group'><button type='button' class='btn btn-primary btn-sm' onclick='return getRoomsByID(\"" + row.Id + "\")'>Edit</button></div>" +
-                        "<div class='btn-group'><button type='button' class='btn btn-primary btn-sm' onclick='return deleteRoomsByID(\"" + row.Id + "\")'>Delete</button></div>"
+                        "<div class='btn-group'><button type='button' class='btn btn-primary btn-sm' onclick='return getHotelsByID(\"" + row.Id + "\")'>Edit</button></div>" +
+                        "<div class='btn-group'><button type='button' class='btn btn-primary btn-sm' onclick='return deleteHotelsByID(\"" + row.Id + "\")'>Delete</button></div>"
                     );
                 },
                 "width": "20%"
             }
         ]
     });
-    var oTable = $('#roomsTable').DataTable();
+    var oTable = $('#hotelsTable').DataTable();
     $('#btnQuery').click(function () {
         oTable.draw();
     });
-    $(document).on("hide.bs.modal", "#RoomsDetailModal", function () {
+    $(document).on("hide.bs.modal", "#hotelsDetailModal", function () {
         oTable.draw();
     });
     $("#btnAddNew").click(function () {
-        var e = $("#RoomsDetailModal").data("url");
+        var e = $("#hotelsDetailModal").data("url");
         $.get(e, function (e) {
-            $("#RoomsDetailModal").html(e), $("#RoomsDetailModal").modal("show")
+            $("#hotelsDetailModal").html(e), $("#hotelsDetailModal").modal("show")
         })
     });
 });
 
-function getRoomsByID(Id) {
+function getHotelsByID(Id) {
     $.ajax({
-        url: "/WebRooms/Detail/",
+        url: "/WebHotels/Detail/",
         contentType: "application/json; charset=utf-8",
         data: { 'Id': Id },
         type: "GET",
         success: function (result) {
-            $('#RoomsDetailModal').html(result);
-            $('#RoomsDetailModal').modal('show');
+            $('#hotelsDetailModal').html(result);
+            $('#hotelsDetailModal').modal('show');
         },
         error: function (errormessage) {
             Swal.fire("Error", errormessage.responseText, "error");
@@ -167,9 +125,9 @@ function getRoomsByID(Id) {
     });
 };
 
-function deleteRoomsByID(id) {
+function deleteHotelsByID(id) {
     return $.ajax({
-        url: "/WebRooms/Delete/" + id,
+        url: "/WebHotels/Delete/" + id,
         type: "DELETE",
         success: function (e) {
         },

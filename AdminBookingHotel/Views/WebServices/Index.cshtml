@@ -1,0 +1,114 @@
+﻿@{
+    ViewBag.Title = "Quản Lý Dịch Vụ";
+    Layout = "_AdminLayout";
+}
+@section css {
+    <link rel="stylesheet" href="~/admin/plugins/summernote/summernote-bs4.css">
+}
+@section scripts
+    {
+    <!-- New JS Function -->
+    <script src="~/admin/dist/js/services/services.js"></script>
+    <script src="~/admin/plugins/summernote/summernote-bs4.min.js"></script>
+}
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="page-header">
+        <div class="page-title">
+            <h3>Danh Sách Dịch Vụ</h3>
+        </div>
+        <nav class="breadcrumb-one" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0);"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">Quản Lý Dịch Vụ</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><span>Danh Sách Dịch Vụ</span></li>
+            </ol>
+        </nav>
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!--/. container-fluid -->
+            <form id="ServicesModal">
+
+                <div class="row layout-top-spacing">
+                    <div class="col-12">
+                        <div class="statbox widget box box-shadow">
+                            <div class="widget-content widget-content-area">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10 text-left">Từ Ngày</label>
+                                            <input type='text' id="fromDate" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10 text-left">Đến Ngày</label>
+                                            <input type='text' id="toDate" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="form-group">
+                                            <label class="control-label mb-10">Tìm Kiếm</label>
+                                            <div class="input-group">
+                                                <input type="text" name="searchStringValue"
+                                                       placeholder="Tìm kiếm" id="searchStringValue"
+                                                       class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center mt-3">
+                                    <div class="button-list">
+                                        <button id="btnQuery" type="button" asp-action="LoadData" class="btn btn-primary"
+                                                class="pull-right">
+                                            Truy Vấn
+                                        </button>
+                                        <button id="btnAddNew" type="button" class="btn btn-success" >
+                                            Thêm Mới
+                                        </button>
+                                        <div class="modal fade bs-example-modal-xl" tabindex="-1" role="dialog"
+                                             aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" id="ServicesDetailModal"
+                                             data-url="@Url.Action("Detail", "WebServices")"></div>
+
+                                    </div>
+                                </div>
+                                <div class="table-wrap mt-2">
+                                    <div class="table-responsive style-1">
+                                        <table id="servicesTable" class="table style-1 table-hover non-hover" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>DateTime</th>
+                                                    <th>Tên Dịch Vụ</th>
+                                                    <th>Loại Dịch Vụ</th>
+                                                    <th>Tình Trạng</th>
+                                                    <th>Chi Tiết</th>
+                                                </tr>
+                                            </thead>
+                                            <tfoot>
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>DateTime</th>
+                                                    <th>Tên Dịch Vụ</th>
+                                                    <th>Loại Dịch Vụ</th>
+                                                    <th>Tình Trạng</th>
+                                                    <th>Chi Tiết</th>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>

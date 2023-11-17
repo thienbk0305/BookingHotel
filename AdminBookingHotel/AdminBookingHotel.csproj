@@ -72,11 +72,7 @@
   <ItemGroup>
     <Folder Include="Controllers\WebBookings\" />
     <Folder Include="Views\WebBookings\" />
-    <Folder Include="Views\WebServices\" />
-    <Folder Include="Views\WebHotels\" />
-    <Folder Include="wwwroot\admin\dist\js\hotels\" />
     <Folder Include="wwwroot\admin\dist\js\bookings\" />
-    <Folder Include="wwwroot\admin\dist\js\services\" />
   </ItemGroup>
 
 </Project>

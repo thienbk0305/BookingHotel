@@ -14,6 +14,25 @@
     <link rel="stylesheet" href="~/admin/plugins/overlayScrollbars/css/OverlayScrollbars.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="~/admin/dist/css/adminlte.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="~/admin/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="~/admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link rel="stylesheet" type="text/css" href="~/admin/plugins/bootstrap/css/bootstrap-dark.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/admin/dist/css/plugins-dark.css" />
+    <link rel="stylesheet" type="text/css" href="~/admin/plugins/datatables/dt-global_style-dark.css">
+    <link rel="stylesheet" type="text/css" href="~/admin/dist/css/dashboard/dash_2-dark.css" />
+    <link rel="stylesheet" type="text/css" href="~/admin/plugins/bootstrap-select/bootstrap-select-dark.css">
+    <link rel="stylesheet" type="text/css" href="~/admin/dist/css/components/tabs-accordian/custom-tabs-dark.css" />
+    <link rel="stylesheet" type="text/css" href="~/admin/plugins/datatables/select.bootstrap4-dark.css">
+    <link rel="stylesheet" type="text/css" href="~/admin/plugins/flatpickr/flatpickr-dark.css">
+        <!-- END GLOBAL MANDATORY STYLES -->
+    <link rel="stylesheet" type="text/css" href="~/admin/dist/css/icons.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/admin/dist/css/elements/miscellaneous.css" />
+    <!-- END PAGE LEVEL ~/plugins/CUSTOM STYLES -->
+    <link rel="stylesheet" type="text/css" href="~/admin/plugins/datatables/datatables.css">
+    <link rel="stylesheet" type="text/css" href="~/admin/plugins/datatables/custom_dt_html5.css">
+
 
     <style type="text/css">
         /* Chart.js */
@@ -262,9 +281,7 @@
                                     <li class="nav-item">
                                         <a href="#" class="nav-link">
                                             <i class="nav-icon fas fa-copy"></i>
-                                            <p>
-                                                <strong>Quản Lý Tài Khoản</strong>
-                                                <span class="badge badge-info right">6</span>
+                                            <p><strong>Quản Lý Tài Khoản</strong>
                                                 <i class="fas fa-angle-left right"></i>
                                             </p>
                                         </a>
@@ -291,7 +308,6 @@
                                             <i class="nav-icon fas fa-edit"></i>
                                             <p>
                                                 <strong>Quản Lý Tin Tức</strong>
-                                                <span class="badge badge-info right">10</span>
                                                 <i class="fas fa-angle-left right"></i>
                                             </p>
                                         </a>
@@ -350,7 +366,7 @@
                                     <li class="nav-item">
                                         <a href="#" class="nav-link">
                                             <i class="nav-icon fas fa-book"></i>
-                                            <p>Thông Tin BOOKING<i class="fas fa-angle-left right"></i></p>
+                                            <p>Thông Tin Booking<i class="fas fa-angle-left right"></i></p>
                                         </a>
                                         <ul class="nav nav-treeview">
                                             <li class="nav-item">
@@ -376,14 +392,14 @@
                                         <ul class="nav nav-treeview">
                                             <li class="nav-item">
                                                 <a href="pages/mailbox/mailbox.html" class="nav-link">
-                                                        @*  <i class="far fa-circle nav-icon"></i> *@
-                                                    <p>DANH SÁCH KHÁCH SẠN</p>
+                                                         <i class="far fa-circle nav-icon"></i>
+                                                    <p>Danh Sách Khách Sạn</p>
                                                 </a>
                                             </li>
                                             <li class="nav-item">
                                                 <a href="pages/mailbox/compose.html" class="nav-link">
-                                                        @* <i class="far fa-circle nav-icon"></i> *@
-                                                    <p>DANH SÁCH CHỜ</p>
+                                                        <i class="far fa-circle nav-icon"></i>
+                                                    <p>Danh Sách Chờ</p>
                                                 </a>
                                             </li>
 
@@ -391,7 +407,7 @@
                                     </li>
                                     <li class="nav-item">
                                         <a href="#" class="nav-link">
-                                                @* <i class="nav-icon fas fa-book"></i> *@
+                                                <i class="nav-icon fas fa-book"></i>
                                             <i class="fa-solid fa-person-military-pointing"></i>
                                             <p>THÔNG TIN BOOKING<i class="fas fa-angle-left right"></i> </p>
                                         </a>
@@ -399,7 +415,7 @@
                                             <li class="nav-item">
                                                 <a href="pages/examples/invoice.html" class="nav-link">
                                                     <i class="far fa-circle nav-icon"></i>
-                                                    <p>DANH SÁCH BOOKING</p>
+                                                    <p>Danh Sách Booking</p>
                                                 </a>
                                             </li>
 
@@ -430,7 +446,7 @@
             <strong>Copyright © 2024 <a style="color:yellow" href="https://adminlte.io">Booking Hotel</a>.</strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
-                <b>Version</b> 3.2.0
+                <b>Version</b> 1.1.0
             </div>
         </footer>
         <div id="sidebar-overlay"></div>
@@ -477,6 +493,8 @@
     <script src="~/admin/plugins/input-mask/jquery.inputmask.bundle.min.js"></script>
     <script src="~/admin/plugins/sweetalert/sweetalert2.js"></script>
     <script src="~/admin/ckeditor/ckeditor.js"></script>
+    <!-- Select2 -->
+    <script src="~/admin/plugins/select2/js/select2.full.min.js"></script>
     @RenderSection("scripts", false)
     @await Component.InvokeAsync("NToastNotify")
 </body>

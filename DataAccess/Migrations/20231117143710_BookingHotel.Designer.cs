@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(BookingHotelDbContext))]
-    [Migration("20231115031603_BookingHotel")]
+    [Migration("20231117143710_BookingHotel")]
     partial class BookingHotel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,7 +44,7 @@ namespace DataAccess.Migrations
                     b.Property<bool?>("Deposit")
                         .HasColumnType("bit");
 
-                    b.Property<string>("HotelCodeByUserId")
+                    b.Property<string>("HotelId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Note")
@@ -60,7 +60,7 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("CusCodeByUserId");
 
-                    b.HasIndex("HotelCodeByUserId");
+                    b.HasIndex("HotelId");
 
                     b.HasIndex("RoomCodeByUserId");
 
@@ -166,6 +166,26 @@ namespace DataAccess.Migrations
                     b.ToTable("Hotel");
                 });
 
+            modelBuilder.Entity("DataAccess.Entities.HotelRoomService", b =>
+                {
+                    b.Property<string>("HotelId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RoomId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ServiceId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("HotelId", "RoomId", "ServiceId");
+
+                    b.HasIndex("RoomId");
+
+                    b.HasIndex("ServiceId");
+
+                    b.ToTable("HotelRoomService");
+                });
+
             modelBuilder.Entity("DataAccess.Entities.Image", b =>
                 {
                     b.Property<string>("Id")
@@ -264,9 +284,6 @@ namespace DataAccess.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("HotelId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("ImgCodeByUserId")
                         .HasColumnType("nvarchar(450)");
 
@@ -289,8 +306,6 @@ namespace DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("HotelId");
 
                     b.HasIndex("ImgCodeByUserId");
 
@@ -344,33 +359,56 @@ namespace DataAccess.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("HotelCodeByUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("ImgCodeByUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("RoomCodeByUserId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<string>("ServiceContent")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ServiceName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ServiceType")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte>("ServiceType")
+                        .HasColumnType("tinyint");
 
                     b.Property<DateTime?>("SysDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("HotelCodeByUserId");
-
                     b.HasIndex("ImgCodeByUserId");
 
-                    b.HasIndex("RoomCodeByUserId");
-
                     b.ToTable("Service");
+                });
+
+            modelBuilder.Entity("HotelRoom", b =>
+                {
+                    b.Property<string>("HotelId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RoomId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("HotelId", "RoomId");
+
+                    b.HasIndex("RoomId");
+
+                    b.ToTable("HotelRoom");
+                });
+
+            modelBuilder.Entity("HotelService", b =>
+                {
+                    b.Property<string>("HotelId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ServiceId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("HotelId", "ServiceId");
+
+                    b.HasIndex("ServiceId");
+
+                    b.ToTable("HotelService");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -577,6 +615,21 @@ namespace DataAccess.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("RoomService", b =>
+                {
+                    b.Property<string>("RoomId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ServiceId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("RoomId", "ServiceId");
+
+                    b.HasIndex("ServiceId");
+
+                    b.ToTable("RoomService");
+                });
+
             modelBuilder.Entity("DataAccess.Entities.User", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
@@ -628,17 +681,15 @@ namespace DataAccess.Migrations
                         .WithMany("Booking")
                         .HasForeignKey("CusCodeByUserId");
 
-                    b.HasOne("DataAccess.Entities.Hotel", "HotelCodeByUser")
+                    b.HasOne("DataAccess.Entities.Hotel", null)
                         .WithMany("Booking")
-                        .HasForeignKey("HotelCodeByUserId");
+                        .HasForeignKey("HotelId");
 
                     b.HasOne("DataAccess.Entities.Room", "RoomCodeByUser")
                         .WithMany("Booking")
                         .HasForeignKey("RoomCodeByUserId");
 
                     b.Navigation("CusCodeByUser");
-
-                    b.Navigation("HotelCodeByUser");
 
                     b.Navigation("RoomCodeByUser");
                 });
@@ -667,6 +718,33 @@ namespace DataAccess.Migrations
                     b.Navigation("ImgCodeByUser");
                 });
 
+            modelBuilder.Entity("DataAccess.Entities.HotelRoomService", b =>
+                {
+                    b.HasOne("DataAccess.Entities.Hotel", "Hotel")
+                        .WithMany("HotelRoomService")
+                        .HasForeignKey("HotelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DataAccess.Entities.Room", "Room")
+                        .WithMany("HotelRoomService")
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DataAccess.Entities.Service", "Service")
+                        .WithMany("HotelRoomService")
+                        .HasForeignKey("ServiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Hotel");
+
+                    b.Navigation("Room");
+
+                    b.Navigation("Service");
+                });
+
             modelBuilder.Entity("DataAccess.Entities.New", b =>
                 {
                     b.HasOne("DataAccess.Entities.Image", "ImgCodeByUser")
@@ -678,10 +756,6 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("DataAccess.Entities.Room", b =>
                 {
-                    b.HasOne("DataAccess.Entities.Hotel", null)
-                        .WithMany("Room")
-                        .HasForeignKey("HotelId");
-
                     b.HasOne("DataAccess.Entities.Image", "ImgCodeByUser")
                         .WithMany("Room")
                         .HasForeignKey("ImgCodeByUserId");
@@ -700,23 +774,41 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("DataAccess.Entities.Service", b =>
                 {
-                    b.HasOne("DataAccess.Entities.Hotel", "HotelCodeByUser")
-                        .WithMany("Service")
-                        .HasForeignKey("HotelCodeByUserId");
-
                     b.HasOne("DataAccess.Entities.Image", "ImgCodeByUser")
                         .WithMany("Service")
                         .HasForeignKey("ImgCodeByUserId");
 
-                    b.HasOne("DataAccess.Entities.Room", "RoomCodeByUser")
-                        .WithMany("Service")
-                        .HasForeignKey("RoomCodeByUserId");
-
-                    b.Navigation("HotelCodeByUser");
-
                     b.Navigation("ImgCodeByUser");
+                });
 
-                    b.Navigation("RoomCodeByUser");
+            modelBuilder.Entity("HotelRoom", b =>
+                {
+                    b.HasOne("DataAccess.Entities.Hotel", null)
+                        .WithMany()
+                        .HasForeignKey("HotelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DataAccess.Entities.Room", null)
+                        .WithMany()
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("HotelService", b =>
+                {
+                    b.HasOne("DataAccess.Entities.Hotel", null)
+                        .WithMany()
+                        .HasForeignKey("HotelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DataAccess.Entities.Service", null)
+                        .WithMany()
+                        .HasForeignKey("ServiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -770,6 +862,21 @@ namespace DataAccess.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("RoomService", b =>
+                {
+                    b.HasOne("DataAccess.Entities.Room", null)
+                        .WithMany()
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DataAccess.Entities.Service", null)
+                        .WithMany()
+                        .HasForeignKey("ServiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("DataAccess.Entities.User", b =>
                 {
                     b.HasOne("DataAccess.Entities.Image", null)
@@ -790,11 +897,9 @@ namespace DataAccess.Migrations
 
                     b.Navigation("Evaluate");
 
-                    b.Navigation("Room");
+                    b.Navigation("HotelRoomService");
 
                     b.Navigation("SaleOff");
-
-                    b.Navigation("Service");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.Image", b =>
@@ -814,7 +919,12 @@ namespace DataAccess.Migrations
                 {
                     b.Navigation("Booking");
 
-                    b.Navigation("Service");
+                    b.Navigation("HotelRoomService");
+                });
+
+            modelBuilder.Entity("DataAccess.Entities.Service", b =>
+                {
+                    b.Navigation("HotelRoomService");
                 });
 #pragma warning restore 612, 618
         }

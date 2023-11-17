@@ -10,7 +10,7 @@ namespace DataAccess.Models.RoomsModels
 {
     public class RoomsViewModel
     {
-        public string? Id { get; set; }
+        public string Id { get; set; }
         public string? RoomName { get; set; }
         public string? RoomSize { get; set; }
         public string? RoomHuman { get; set; }
