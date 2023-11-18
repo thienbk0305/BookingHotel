@@ -6,6 +6,7 @@ using APIBookingHotel.Models;
 using AutoMapper;
 using DataAccess.Entities;
 using DataAccess.Models;
+using DataAccess.Models.CustomersModels;
 using DataAccess.Models.HotelsModels;
 using DataAccess.Models.NewsModels;
 using DataAccess.Models.RoomsModels;
@@ -24,6 +25,7 @@ namespace APIBookingHotel.AutoMapper
             CreateMap<RoomsViewModel, Room>().ReverseMap();
             CreateMap<ServicesViewModel, Service>().ReverseMap();
             CreateMap<HotelsViewModel, Hotel>().ReverseMap();
+            CreateMap<CustomersViewModel, Customer>().ReverseMap();
             //CreateMap<BookingsViewModel, Booking>().ReverseMap();
         }
     }

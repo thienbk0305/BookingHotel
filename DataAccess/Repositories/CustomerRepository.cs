@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using DataAccess.Models;
 using Microsoft.Data.SqlClient;
+using DataAccess.Models.CustomersModels;
 
 namespace DataAccess.Repositories
 {
@@ -20,7 +20,7 @@ namespace DataAccess.Repositories
           
         }
 
-        public async Task<int> InsertAsync(ContactView c, CancellationToken cancellation)
+        public async Task<int> InsertAsync(CustomersViewModel c, CancellationToken cancellation)
         {
             var cId = new SqlParameter("@c0", c.Id);
             var cFullName = new SqlParameter("@c1", c.CusFullName);

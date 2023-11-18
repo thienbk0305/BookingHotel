@@ -279,9 +279,9 @@ html,body {
 		<div class="signup">
 			<h2 class="form-title" id="signup">Đăng Ký</h2>
 			<div class="form-holder">
-				<input type="text" class="input" placeholder="FullName" id="txtFullName" />
-				<input type="email" class="input" placeholder="Email" id="txtEmail" />
-				<input type="password" class="input" placeholder="Password" id="txtPassWord" />
+				<input type="text" class="input" placeholder="FullName" id="fullNameRegister" />
+				<input type="email" class="input" placeholder="Email" id="emailRegister" />
+				<input type="password" class="input" placeholder="Password" id="passWordRegister" />
 			</div>
 			<button type="button" id="btnRegister" class="submit-btn">Đăng Ký</button>
 		</div>
@@ -289,8 +289,8 @@ html,body {
 			<div class="center">
 				<h2 class="form-title" id="login">Đăng Nhập</h2>
 				<div class="form-holder">
-					<input type="email" class="input" placeholder="Email" id="txtEmail" />
-					<input type="password" class="input" placeholder="Password" id="txtPassWord" />
+					<input type="email" class="input" placeholder="Email" id="emailLogin" />
+					<input type="password" class="input" placeholder="Password" id="passWordLogin" />
 				</div>
 				<button type="button" id="btnLogin" class="submit-btn">Đăng Nhập</button>
 			</div>
@@ -339,8 +339,8 @@ html,body {
 			});
 			//Login
 			function Login() {
-				var email = $("#txtEmail").val();
-				var password = $("#txtPassWord").val();
+				var email = $("#emailLogin").val();
+				var password = $("#passWordLogin").val();
 				var param = {
 					Email: email,
 					Password: password
@@ -369,9 +369,9 @@ html,body {
 			//Register
 			function Register() {
 				var rolename = "Customer"
-				var fullname = $("#txtFullName").val();
-				var email = $("#txtEmail").val();
-				var password = $("#txtPassWord").val();
+				var fullname = $("#fullNameRegister").val();
+				var email = $("#emailRegister").val();
+				var password = $("#passWordRegister").val();
 				var param = {
 					RoleName: rolename,
 					FullName: fullname,

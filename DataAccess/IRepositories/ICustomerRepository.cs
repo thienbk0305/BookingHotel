@@ -1,5 +1,5 @@
 ﻿using DataAccess.Entities;
-using DataAccess.Models;
+using DataAccess.Models.CustomersModels;
 using DataAccess.UnitOfWork;
 using System;
 using System.Collections.Generic;
@@ -11,6 +11,6 @@ namespace DataAccess.IRepositories
 {
     public interface ICustomerRepository : IGenericRepository<Customer>
     {
-        Task<int> InsertAsync(ContactView c, CancellationToken cancellation);
+        Task<int> InsertAsync(CustomersViewModel c, CancellationToken cancellation);
     }
 }

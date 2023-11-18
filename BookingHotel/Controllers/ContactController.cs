@@ -1,6 +1,7 @@
 ﻿using DataAccess.DBContext;
 using DataAccess.IRepositories;
 using DataAccess.Models;
+using DataAccess.Models.CustomersModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -9,15 +10,15 @@ using NToastNotify;
 namespace BookingHotel.Controllers
 {
 
-	public class ContactController : Controller
+    public class ContactController : Controller
 	{
 
-        IUtilitiesRepository<ContactView> _utilitiesRepository;
+        IUtilitiesRepository<CustomersViewModel> _utilitiesRepository;
         private readonly IToastNotification _toastNotification;
         private readonly IConfiguration _configuration;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly BookingHotelDbContext _dbContext;
-        public ContactController(IUtilitiesRepository<ContactView> utilitiesRepository,
+        public ContactController(IUtilitiesRepository<CustomersViewModel> utilitiesRepository,
                               IToastNotification toastNotification, IConfiguration configuration, RoleManager<IdentityRole> roleManager, BookingHotelDbContext dbContext)
         {
             _utilitiesRepository = utilitiesRepository;
@@ -33,27 +34,40 @@ namespace BookingHotel.Controllers
 		}
 
         [HttpPost]
-        public IActionResult Insert(ContactView model)
+        public IActionResult Insert(CustomersViewModel model)
         {
+            try
+            {
 
-            if (ModelState.IsValid)
-            {   
-                var listResult = new ContactView();
                 var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
-                var base_url = "Customer/Customer/AddContact"; //API Controller
+                var base_url = "Customers/AddContact"; //API Controller
+
                 var dataJson = JsonConvert.SerializeObject(model);
                 var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
-                var result = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Put, url_api, base_url, dataJson, token);
-                if (string.IsNullOrEmpty(result))
+                var updatedCustomers = "";
+                if (!string.IsNullOrEmpty(token))
                 {
-                    _toastNotification.AddErrorToastMessage("Có lỗi xảy ra! Vui lòng kiểm tra lại thông tin");
-                    return RedirectToAction("Index");
+                     updatedCustomers = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Put, url_api, base_url, dataJson, token);
+                }
+                else
+                {
+                     updatedCustomers = Common.HttpHelper.WebPost(RestSharp.Method.Put, url_api, base_url, dataJson);
                 }
 
-            }
-            _toastNotification.AddSuccessToastMessage("Cập nhật thông tin User thành công!");
-            return RedirectToAction("Index");
+                if (string.IsNullOrEmpty(updatedCustomers))
+                {
+                    return RedirectToAction("Index", "Contact");
+                }
 
+                var result = JsonConvert.DeserializeObject<RoleResult>(updatedCustomers);
+                _toastNotification.AddSuccessToastMessage("Success!");
+                return RedirectToAction("Index", "Contact");
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
 

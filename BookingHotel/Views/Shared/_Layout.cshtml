@@ -1,4 +1,4 @@
-﻿
+﻿@inject IHttpContextAccessor contxt;
 <!doctype html>
 <html lang="en">
 <head>
@@ -65,8 +65,7 @@
                         <li class="nav-item"><a style="color:red" class="nav-link" asp-controller="news" asp-action="index"><strong>Flash Sale</strong></a></li>
                         <li class="nav-item"><a class="nav-link" asp-controller="Profile" asp-action="index">Booking của tôi</a></li>
                         <li class="nav-item"><a class="nav-link" asp-controller="contact" asp-action="index">Liên hệ</a></li>
-                        <li class="nav-item"><a style="color:red" class="nav-link" asp-controller="cusAccount" asp-action="Login"><strong>Đăng Ký</strong></a></li>
-                        <li class="nav-item"><a style="color:blue" class="nav-link" asp-controller="cusAccount" asp-action="Login"><strong>Đăng nhập</strong></a></li>
+                        <li class="nav-item"><a style="color:blue" class="nav-link" asp-controller="cusAccount" asp-action="Login"><strong>@(string.IsNullOrEmpty(contxt.HttpContext!.Session.GetString("TOKEN_SERVER")) ? "Đăng Ký/Đăng nhập" : @contxt.HttpContext!.Session.GetString("TOKEN_SERVER"))</strong></a></li>
                     </ul>
                 </div>
             </nav>

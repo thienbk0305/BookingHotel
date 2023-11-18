@@ -1,25 +1,30 @@
 ﻿$(document).ready(function () {
     $('.selectpicker').selectpicker();
+
 });
+
+
 
 $("#updateBtn").click(function () {
 
     if ($("#modelId").val() == "") { id = 0 }
     else { id = $("#modelId").val() }
-    var modelTitle = $("#modelTitle").val();
-    var modelSumContent = $("#modelSumContent").val();
-    var modelNewsContent = $("#modelNewsContent").val();
-    var modelSource = $("#modelSource").val();
-  
+    var modelCusFullName = $("#modelCusFullName").val();
+    var modelPrice = parseFloat($("#modelPrice").val()); 
+    var modelCustomersize = $("#modelCustomersize").val();
+    var modelDescription = $("#modelDescription").val();
+
     const modelActiveCheckbox = document.getElementById('modelActive');
     const modelActive = modelActiveCheckbox.checked;
 
     model = {
-        Id: id, Title: modelTitle, SumContent: modelSumContent,
-        NewsContent: modelNewsContent, Source: modelSource, Active: modelActive
+        Id: id, RoomName: modelRoomName
+        , RoomType: modelRoomType, RoomHuman: modelRoomHuman, Price: modelPrice, Active: modelActive
+        , Customersize: modelCustomersize, Description: modelDescription
     }
+
     $.ajax({
-        url: '/WebNews/Update',
+        url: '/WebCustomers/Update',
         type: 'POST',
         data: JSON.stringify(model),
         contentType: "application/json; charset=utf-8",
@@ -58,7 +63,6 @@ $("#updateBtn").click(function () {
                 title: 'Lỗi',
                 text: 'Cập nhập thông tin không thành công'
             });
-
         }
     })
 });

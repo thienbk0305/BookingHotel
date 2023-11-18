@@ -11,7 +11,7 @@
         dateFormat: "m/d/Y",
     });
     "use strict";
-    $("#newsTable").DataTable({
+    $("#customersTable").DataTable({
         "processing": true,
         "serverSide": true,
         "select": false,
@@ -42,7 +42,7 @@
             "sLengthMenu": "Results :  _MENU_"
         },
         "ajax": {
-            "url": "/WebNews/LoadData",
+            "url": "/WebCustomers/LoadData",
             "dataSrc": "dataResult",
             "type": "post",
             "datatype": "json",
@@ -63,7 +63,7 @@
                 },
             },
             {
-                'targets': [5],
+                'targets': [6],
                 'render': function (e, t, r, n) {
                     var out;
                     if (e === true) {
@@ -80,45 +80,46 @@
                 width: "5%"
             },
             { "data": "SysDate", "name": "SysDate", "autoWidth": true },
-            { "data": "Title", "name": "Title", "autoWidth": true },
-            { "data": "SumContent", "name": "Summary", "autoWidth": true },
-            { "data": "Source", "name": "Source", "autoWidth": true },
+            { "data": "CusFullName", "name": "CusFullName", "autoWidth": true },
+            { "data": "CusPhone", "name": "CusPhone", "autoWidth": true },
+            { "data": "CusEmail", "name": "CusEmail", "autoWidth": true },
+            { "data": "CusDescription", "name": "CusDescription", "autoWidth": true },
             { "data": "Active", "name": "Active", "autoWidth": true },
             {
                 "render": function (data, type, row, meta) {
                     return (
-                         "<div class='btn-group'><button type='button' class='btn btn-primary btn-sm' onclick='return getNewsByID(\"" + row.Id + "\")'>Edit</button></div>" +
-                         "<div class='btn-group'><button type='button' class='btn btn-primary btn-sm' onclick='return deleteNewsByID(\"" + row.Id + "\")'>Delete</button></div>"
-                );
-            },
-            "width": "20%"
-        }
-    ]
+                        "<div class='btn-group'><button type='button' class='btn btn-primary btn-sm' onclick='return getCustomersByID(\"" + row.Id + "\")'>Edit</button></div>" +
+                        "<div class='btn-group'><button type='button' class='btn btn-primary btn-sm' onclick='return deleteCustomersByID(\"" + row.Id + "\")'>Delete</button></div>"
+                    );
+                },
+                "width": "20%"
+            }
+        ]
     });
-var oTable = $('#newsTable').DataTable();
-$('#btnQuery').click(function () {
-    oTable.draw();
-});
-$(document).on("hide.bs.modal", "#NewsDetailModal", function () {
-    oTable.draw();
-});
-$("#btnAddNew").click(function () {
-    var e = $("#NewsDetailModal").data("url");
-    $.get(e, function (e) {
-        $("#NewsDetailModal").html(e), $("#NewsDetailModal").modal("show")
-    })
-});
+    var oTable = $('#customersTable').DataTable();
+    $('#btnQuery').click(function () {
+        oTable.draw();
+    });
+    $(document).on("hide.bs.modal", "#CustomersDetailModal", function () {
+        oTable.draw();
+    });
+    $("#btnAddNew").click(function () {
+        var e = $("#CustomersDetailModal").data("url");
+        $.get(e, function (e) {
+            $("#CustomersDetailModal").html(e), $("#CustomersDetailModal").modal("show")
+        })
+    });
 });
 
-function getNewsByID(Id) {
+function getCustomersByID(Id) {
     $.ajax({
-        url: "/WebNews/Detail/",
+        url: "/WebCustomers/Detail/",
         contentType: "application/json; charset=utf-8",
         data: { 'Id': Id },
         type: "GET",
         success: function (result) {
-            $('#NewsDetailModal').html(result);
-            $('#NewsDetailModal').modal('show');
+            $('#CustomersDetailModal').html(result);
+            $('#CustomersDetailModal').modal('show');
         },
         error: function (errormessage) {
             Swal.fire("Error", errormessage.responseText, "error");
@@ -126,9 +127,9 @@ function getNewsByID(Id) {
     });
 };
 
-function deleteNewsByID(id) {
+function deleteCustomersByID(id) {
     return $.ajax({
-        url: "/WebNews/Delete/" + id,
+        url: "/WebCustomers/Delete/" + id,
         type: "DELETE",
         success: function (e) {
         },
