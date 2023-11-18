@@ -1,9 +1,12 @@
-﻿using AutoMapper;
+﻿using APIBookingHotel.LogServices;
+using APIBookingHotel.Models;
+using AutoMapper;
 using DataAccess.Entities;
 using DataAccess.Models.RoomsModels;
 using DataAccess.UnitOfWork;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace APIBookingHotel.Controllers.rooms
 {
@@ -14,11 +17,13 @@ namespace APIBookingHotel.Controllers.rooms
     {
         private readonly IBookingHotelUnitOfWork _bookingHotelUnitOfWork;
         private readonly IMapper _mapper;
+        private readonly ILoggerManager _loggerManager;
 
-        public RoomsController(IBookingHotelUnitOfWork bookingHotelUnitOfWork, IMapper mapper)
+        public RoomsController(IBookingHotelUnitOfWork bookingHotelUnitOfWork, IMapper mapper, ILoggerManager loggerManager)
         {
             _bookingHotelUnitOfWork = bookingHotelUnitOfWork;
             _mapper = mapper;
+            _loggerManager = loggerManager;
         }
 
         //<summary>
@@ -37,6 +42,7 @@ namespace APIBookingHotel.Controllers.rooms
             if (rooms != null)
             {
                 //result = _mapper.Map<List<roomsViewModel>>(rooms);
+                _loggerManager.LogInfo("Singlerooms: " + JsonConvert.SerializeObject(rooms));
                 return Ok(rooms);
             }
             return BadRequest();

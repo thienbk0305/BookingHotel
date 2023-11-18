@@ -12,6 +12,9 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using AutoMapper;
 using Microsoft.OpenApi.Models;
+using APIBookingHotel.LogServices;
+using NLog;
+using WebApiCore.LogServices;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -98,6 +101,10 @@ builder.Services.AddScoped(typeof(IUtilitiesRepository<>), typeof(UtilitiesRepos
 //Permission-Based Authorization
 builder.Services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
 builder.Services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
+//Logs
+builder.Services.AddSingleton<ILoggerManager, LoggerManager>();
+//LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(),"/NLog.config"));
+LogManager.LoadConfiguration("D:/2.Net/BookingHotel/APIBookingHotel/NLog.config");
 
 //AutoMapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

@@ -1,0 +1,32 @@
+2023-11-18 08:57:36.3319 INFO 638358946561557901 | user:{"Name":"MrQuan","Department":"BE_NET_CORE_0323","_logger":{}}
+2023-11-18 08:57:36.3760 DEBUG Here is debug message from the controller.
+2023-11-18 08:57:36.3760 WARN Here is warn message from the controller.
+2023-11-18 08:57:36.3760 ERROR Here is error message from the controller.
+2023-11-18 09:00:26.5641 INFO 638358948252382970 | user:{"Name":"MrQuan","Department":"BE_NET_CORE_0323","_logger":{}}
+2023-11-18 09:00:27.3579 DEBUG Here is debug message from the controller.
+2023-11-18 09:00:27.8830 WARN Here is warn message from the controller.
+2023-11-18 09:00:30.3487 ERROR Here is error message from the controller.
+2023-11-18 09:07:15.4913 INFO 638358952345874671 | user:{"Name":"MrQuan","Department":"BE_NET_CORE_0323","_logger":{}}
+2023-11-18 09:07:18.9479 DEBUG Here is debug message from the controller.
+2023-11-18 09:07:19.6443 WARN Here is warn message from the controller.
+2023-11-18 09:07:20.3466 ERROR Here is error message from the controller.
+2023-11-18 09:11:54.6625 INFO 638358955139055790 | user:{"Name":"MrQuan","Department":"BE_NET_CORE_0323","_logger":{}}
+2023-11-18 09:12:15.7775 DEBUG Here is debug message from the controller.
+2023-11-18 09:12:16.3262 WARN Here is warn message from the controller.
+2023-11-18 09:12:16.8148 ERROR Here is error message from the controller.
+2023-11-18 09:14:50.8720 INFO 638358956785067884 | user:{"Name":"MrQuan","Department":"BE_NET_CORE_0323","_logger":{}}
+2023-11-18 09:14:51.7239 DEBUG Here is debug message from the controller.
+2023-11-18 09:14:52.2006 WARN Here is warn message from the controller.
+2023-11-18 09:14:52.6826 ERROR Here is error message from the controller.
+2023-11-18 09:23:32.8307 INFO 638358962117202976 | user:{"Name":"MrQuan","Department":"BE_NET_CORE_0323","_logger":{}}
+2023-11-18 09:23:32.8663 DEBUG Here is debug message from the controller.
+2023-11-18 09:23:32.8663 WARN Here is warn message from the controller.
+2023-11-18 09:23:32.8663 ERROR Here is error message from the controller.
+2023-11-18 09:25:34.3746 INFO 638358963336112486 | user:{"Name":"MrQuan","Department":"BE_NET_CORE_0323","_logger":{}}
+2023-11-18 09:25:34.8335 DEBUG Here is debug message from the controller.
+2023-11-18 09:25:35.3726 WARN Here is warn message from the controller.
+2023-11-18 09:25:35.8245 ERROR Here is error message from the controller.
+2023-11-18 09:30:40.2772 INFO 638358966401344258 | user:{"Name":"MrQuan","Department":"BE_NET_CORE_0323","_logger":{}}
+2023-11-18 09:30:40.3139 DEBUG Here is debug message from the controller.
+2023-11-18 09:30:40.3139 WARN Here is warn message from the controller.
+2023-11-18 09:30:40.3139 ERROR Here is error message from the controller.
