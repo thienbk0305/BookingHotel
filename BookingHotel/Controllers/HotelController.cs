@@ -2,19 +2,17 @@
 
 namespace BookingHotel.Controllers
 {
-    [Route("hotel")]
     public class HotelController : Controller
     {
-        [Route("index")]
-        [Route("")]
         public IActionResult Index()
         {
             return View();
         }
-        //hotel detail page
-        [Route("hoteldetail")]
-        [Route("")]
-        public IActionResult hotelDetail()
+        public IActionResult HotelFilter()
+        {
+            return View();
+        }
+        public IActionResult HotelDetail()
         {
             return View();
         }

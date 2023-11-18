@@ -1,0 +1,562 @@
+﻿
+@{
+    ViewData["Title"] = "Danh sách khách sạn theo chọn lọc";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .container {
+        margin-top:10px;
+    }
+    .box-star{
+        font-size: 18px;
+        color: #f6d738;
+    }
+
+    .list_style{
+        margin-top: 10px;
+    }
+
+    .price-feature {
+        font-size: 20px;
+        color: #ff9000;
+        font-family: 'os_bold';
+    }
+    .fa-star{
+        font-size: 18px;
+        color: #f6d738;
+    }
+
+    #checkbox-star {
+        width: 40px;
+        height: 17px;
+    }
+</style>
+
+<!--================Breadcrumb Area =================-->
+    <section class="breadcrumb_area blog_banner_two">
+        <div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background=""></div>
+        <div class="container">
+            <div class="page-cover text-center">
+                <h2 class="page-cover-tittle f_48">Danh sách khách sạn</h2>
+                <ol class="breadcrumb">
+                    <li><a asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+                    <li><a asp-controller="hotel" asp-action="hoteldetail">Đồng Nai</a></li>
+                    <li class="active">Khách sạn Đồng Nai</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+<!--================Breadcrumb Area =================-->
+<div class="container">
+    <div class="hotel_booking_table">
+        <div class="col-md-3">
+            <h2>ĐẶT PHÒNG<br> CỦA BẠN</h2>
+        </div>
+        <div class="col-md-9">
+            <div class="boking_table">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="book_tabel_item">
+                            <div class="form-group">
+                                <div class='input-group date' id='datetimepicker11'>
+                                    <input type='text' class="form-control" placeholder="Ngày nhận phòng" />
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class='input-group date' id='datetimepicker1'>
+                                    <input type='text' class="form-control" placeholder="Ngày trả phòng" />
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="book_tabel_item">
+                            <div class="input-group">
+                                <select class="wide">
+                                    <option data-display="Người lớn">Người lớn</option>
+                                    <option value="1">Người già</option>
+                                    <option value="2">Người trẻ</option>
+                                    <option value="3">Người tàn tật</option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <select class="wide">
+                                    <option data-display="Trẻ em">Trẻ em</option>
+                                    <option value="1">Trẻ em</option>
+                                    <option value="2">Em bé</option>
+                                    <option value="3">Trẻ sơ sinh</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="book_tabel_item">
+                            <div class="input-group">
+                                <select class="wide">
+                                    <option data-display="Số phòng">Danh sách</option>
+                                    <option value="1">Phòng 01</option>
+                                    <option value="2">Phòng 02</option>
+                                    <option value="3">Phòng 03</option>
+                                </select>
+                            </div>
+                            <a class="book_now_btn button_hover" asp-controller="hotel" asp-action="hoteldetail">Tìm kiếm</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="blog_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="blog_left_sidebar">
+                    <article class="row blog_item">
+                        <div class="col-md-3">
+                            <div class="blog_info text-right">
+                                <span class="box-star">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <ul class="blog_meta list_style">
+                                    <li><a href="#">Dịch vụ phòng<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">Lễ tân 24h<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">TV<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">Bãi đỗ xe<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">Tủ lạnh nhỏ<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">Nước suối<i class="lnr lnr-eye"></i></a></li>
+                                    <div class="price-feature">799,000 VND</div>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="blog_post">
+                                <img src="~/image/blog/main-blog/m-blog-1.jpg" alt="">
+                                <div class="blog_details">
+                                    <a href="#"><h4>Nhà khách Mã Đà Đồng Nai</h4></a>
+                                    <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+                                    <h6>Xã Mã Đà, huyện Vĩnh Cửu, tỉnh Đồng Nai</h6>
+                                    <a asp-controller="hotel" asp-action="hoteldetail" class="view_btn button_hover">Lựa phòng</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="row blog_item">
+                        <div class="col-md-3">
+                            <div class="blog_info text-right">
+                                <span class="box-star">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <ul class="blog_meta list_style">
+                                    <li><a href="#">Dịch vụ phòng<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">Lễ tân 24h<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">TV<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">Bãi đỗ xe<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">Tủ lạnh nhỏ<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">Nước suối<i class="lnr lnr-eye"></i></a></li>
+                                    <div class="price-feature">799,000 VND</div>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="blog_post">
+                                <img src="~/image/blog/main-blog/m-blog-1.jpg" alt="">
+                                <div class="blog_details">
+                                    <a href="#"><h4>Nhà khách Mã Đà Đồng Nai</h4></a>
+                                    <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+                                    <h6>Xã Mã Đà, huyện Vĩnh Cửu, tỉnh Đồng Nai</h6>
+                                    <a asp-controller="hotel" asp-action="hoteldetail" class="view_btn button_hover">Lựa phòng</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="row blog_item">
+                        <div class="col-md-3">
+                            <div class="blog_info text-right">
+                                <span class="box-star">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <ul class="blog_meta list_style">
+                                    <li><a href="#">Dịch vụ phòng<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">Lễ tân 24h<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">TV<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">Bãi đỗ xe<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">Tủ lạnh nhỏ<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">Nước suối<i class="lnr lnr-eye"></i></a></li>
+                                    <div class="price-feature">799,000 VND</div>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="blog_post">
+                                <img src="~/image/blog/main-blog/m-blog-1.jpg" alt="">
+                                <div class="blog_details">
+                                    <a href="#"><h4>Nhà khách Mã Đà Đồng Nai</h4></a>
+                                    <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+                                    <h6>Xã Mã Đà, huyện Vĩnh Cửu, tỉnh Đồng Nai</h6>
+                                    <a asp-controller="hotel" asp-action="hoteldetail" class="view_btn button_hover">Lựa phòng</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="row blog_item">
+                        <div class="col-md-3">
+                            <div class="blog_info text-right">
+                                <span class="box-star">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <ul class="blog_meta list_style">
+                                    <li><a href="#">Dịch vụ phòng<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">Lễ tân 24h<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">TV<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">Bãi đỗ xe<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">Tủ lạnh nhỏ<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">Nước suối<i class="lnr lnr-eye"></i></a></li>
+                                    <div class="price-feature">799,000 VND</div>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="blog_post">
+                                <img src="~/image/blog/main-blog/m-blog-1.jpg" alt="">
+                                <div class="blog_details">
+                                    <a href="#"><h4>Nhà khách Mã Đà Đồng Nai</h4></a>
+                                    <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+                                    <h6>Xã Mã Đà, huyện Vĩnh Cửu, tỉnh Đồng Nai</h6>
+                                    <a asp-controller="hotel" asp-action="hoteldetail" class="view_btn button_hover">Lựa phòng</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="row blog_item">
+                        <div class="col-md-3">
+                            <div class="blog_info text-right">
+                                <span class="box-star">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <ul class="blog_meta list_style">
+                                    <li><a href="#">Dịch vụ phòng<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">Lễ tân 24h<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">TV<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">Bãi đỗ xe<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">Tủ lạnh nhỏ<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">Nước suối<i class="lnr lnr-eye"></i></a></li>
+                                    <div class="price-feature">799,000 VND</div>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="blog_post">
+                                <img src="~/image/blog/main-blog/m-blog-1.jpg" alt="">
+                                <div class="blog_details">
+                                    <a href="#"><h4>Nhà khách Mã Đà Đồng Nai</h4></a>
+                                    <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+                                    <h6>Xã Mã Đà, huyện Vĩnh Cửu, tỉnh Đồng Nai</h6>
+                                    <a asp-controller="hotel" asp-action="hoteldetail" class="view_btn button_hover">Lựa phòng</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="row blog_item">
+                        <div class="col-md-3">
+                            <div class="blog_info text-right">
+                                <span class="box-star">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </span>
+                                <ul class="blog_meta list_style">
+                                    <li><a href="#">Dịch vụ phòng<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">Lễ tân 24h<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">TV<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">Bãi đỗ xe<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">Tủ lạnh nhỏ<i class="lnr lnr-eye"></i></a></li>
+                                    <li><a href="#">Nước suối<i class="lnr lnr-eye"></i></a></li>
+                                    <div class="price-feature">799,000 VND</div>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="blog_post">
+                                <img src="~/image/blog/main-blog/m-blog-1.jpg" alt="">
+                                <div class="blog_details">
+                                    <a href="#"><h4>Nhà khách Mã Đà Đồng Nai</h4></a>
+                                    <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+                                    <h6>Xã Mã Đà, huyện Vĩnh Cửu, tỉnh Đồng Nai</h6>
+                                    <a asp-controller="hotel" asp-action="hoteldetail" class="view_btn button_hover">Lựa phòng</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <nav class="blog-pagination justify-content-center d-flex">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a href="#" class="page-link" aria-label="Previous">
+                                    <span aria-hidden="true">
+                                        <span class="lnr lnr-chevron-left"></span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="page-item"><a href="#" class="page-link">01</a></li>
+                            <li class="page-item active"><a href="#" class="page-link">02</a></li>
+                            <li class="page-item"><a href="#" class="page-link">03</a></li>
+                            <li class="page-item"><a href="#" class="page-link">04</a></li>
+                            <li class="page-item"><a href="#" class="page-link">09</a></li>
+                            <li class="page-item">
+                                <a href="#" class="page-link" aria-label="Next">
+                                    <span aria-hidden="true">
+                                        <span class="lnr lnr-chevron-right"></span>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="blog_right_sidebar">
+                    <aside class="single_sidebar_widget search_widget">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Tìm tên khách sạn">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"><i class="lnr lnr-magnifier"></i></button>
+                            </span>
+                        </div><!-- /input-group -->
+                        <div class="br"></div>
+                    </aside>
+
+                    @* lọc theo giá *@
+                    <aside class="single_sidebar_widget popular_post_widget">
+                        <h3 class="widget_title">Tìm theo giá</h3>
+                        <div class="content">
+                            <div class="hotel-cat-product slider-box-show-price">
+                                <span class="from">0</span> - <span class="to">2,499,000</span>
+                            </div>
+                            <div class="hotel-cat-slider-range ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" id="hotel-cat-slider-range" aria-disabled="false"><div class="ui-slider-range ui-widget-header ui-corner-all" style="left: 0%; width: 100%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 0%;"></a><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 100%;"></a></div>
+
+                            <input type="hidden" value="0" class="min-price-range">
+                            <input type="hidden" value="0" class="min-price-range-temp">
+
+                            <input type="hidden" value="2499000" class="max-price-range">
+                            <input type="hidden" value="2499000" class="max-price-range-temp">
+
+                            <script>
+                                var obj_query_data_slider_range = {
+                                    tag_class: '.hotel-cat-slider-range',
+                                    min: 0, max: 2499000,
+                                    tag_show_from: '.hotel-cat-product.slider-box-show-price span.from',
+                                    tag_show_to: '.hotel-cat-product.slider-box-show-price span.to',
+                                    tag_input_min_hidden: '.min-price-range',
+                                    tag_input_max_hidden: '.max-price-range'
+                                };
+                                APPS_POST_HOTEL.post_hotel_single_cat_system_filter_by_slider_range_price(obj_query_data_slider_range);
+                            </script>
+                        </div>
+                        <div class="br"></div>
+                    </aside>
+                    @* end *@
+
+                   
+                    <aside class="single_sidebar_widget post_category_widget">
+                        <h4 class="widget_title">Tìm theo sao</h4>
+                        <div class="box-item hotel-single-cat">
+                            <div class="content">
+                                <div data-filter="rs" class="box-filter">
+                                    <div>
+                                        <label>
+                                            <input type="checkbox" id="checkbox-star" value="5">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label>
+                                            <input type="checkbox" id="checkbox-star" value="4">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label>
+                                            <input type="checkbox" id="checkbox-star" value="3">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label>
+                                            <input type="checkbox" id="checkbox-star" value="2">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label>
+                                            <input type="checkbox" id="checkbox-star" value="1">
+                                            <i class="fas fa-star"></i>
+                                        </label>
+                                    </div>
+
+                                </div>
+                                <div class="br"></div>
+                    </aside>
+
+                    <aside class="single_sidebar_widget post_category_widget">
+                        <h4 class="widget_title">Tìm theo loại ở</h4>
+                        <div class="box-item hotel-single-cat">
+                            <div class="content">
+                                <div data-filter="rs" class="box-filter">
+                                    <div>
+                                        <label>
+                                            <input type="checkbox" id="checkbox-star" value="1">
+                                            Khách sạn
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label>
+                                            <input type="checkbox" id="checkbox-star" value="1">
+                                            Khách sạn căn hộ
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label>
+                                            <input type="checkbox" id="checkbox-star" value="1">
+                                            Resort
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label>
+                                            <input type="checkbox" id="checkbox-star" value="1">
+                                            Homestay
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="br"></div>
+                    </aside>
+
+                    <aside class="single_sidebar_widget post_category_widget">
+                        <h4 class="widget_title">Tìm theo khu vực</h4>
+                        <div class="box-item hotel-single-cat">
+                            <div class="content">
+                                <div data-filter="rs" class="box-filter">
+                                    <div>
+                                        <label>
+                                            <input type="checkbox" id="checkbox-star" value="1">
+                                            Vĩnh Cửu
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label>
+                                            <input type="checkbox" id="checkbox-star" value="1">
+                                            Trảng Bom
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label>
+                                            <input type="checkbox" id="checkbox-star" value="1">
+                                            Thành phố Biên Hòa
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label>
+                                            <input type="checkbox" id="checkbox-star" value="1">
+                                            Long Thành
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="br"></div>
+                    </aside>
+                    <aside class="single_sidebar_widget post_category_widget">
+                        <h4 class="widget_title">Tìm theo dịch vụ</h4>
+                        <div class="box-item hotel-single-cat">
+                            <div class="content">
+                                <div data-filter="rs" class="box-filter">
+                                    <div>
+                                        <label>
+                                            <input type="checkbox" id="checkbox-star" value="1">
+                                            Wifi
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label>
+                                            <input type="checkbox" id="checkbox-star" value="1">
+                                            Phòng không hút thuốc
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label>
+                                            <input type="checkbox" id="checkbox-star" value="1">
+                                            Phòng có hút thuốc
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label>
+                                            <input type="checkbox" id="checkbox-star" value="1">
+                                            Bãi đậu xe
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="br"></div>
+                    </aside>
+
+                    <aside class="single-sidebar-widget newsletter_widget">
+                        <h4 class="widget_title">Đặt phòng nhanh</h4>
+                        <p>
+                            Vui lòng nhập Email của bạn. 
+                            Chúng tôi sẽ giúp bạn đặt phòng nhanh hơn !
+                        </p>
+                        <div class="form-group d-flex flex-row">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+                                </div>
+                                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Enter email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nhập Email'">
+                            </div>
+                            <a href="#" class="bbtns">Gửi</a>
+                        </div>
+                        
+                        <div class="br"></div>
+                    </aside>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+  
+
+   <!--================ End footer Area  =================-->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="~/js/jquery-3.2.1.min.js"></script>
+<script src="~/js/popper.js"></script>
+<script src="~/js/bootstrap.min.js"></script>
+<script src="~/vendors/owl-carousel/owl.carousel.min.js"></script>
+<script src="~/js/jquery.ajaxchimp.min.js"></script>
+<script src="~/js/mail-script.js"></script>
+<script src="~/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="~/vendors/nice-select/js/jquery.nice-select.js"></script>
+<script src="~/js/mail-script.js"></script>
+<script src="~/js/stellar.js"></script>
+<script src="~/vendors/lightbox/simpleLightbox.min.js"></script>
+<script src="~/js/custom.js"></script>
