@@ -17,7 +17,6 @@ namespace DataAccess.Entities
         public int Status { get; set; }
         public long TotalAmount { get; set; }
         public DateTime CreatedDate { get; set; }
-        public string UpdateUser { get; set; }
 
         public virtual ICollection<BookingDetail> BookingDetail { get; set; }
     }

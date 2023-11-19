@@ -197,6 +197,7 @@ namespace DataAccess.Migrations
                     RoomType = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Status = table.Column<byte>(type: "tinyint", nullable: false),
                     Active = table.Column<bool>(type: "bit", nullable: false),
                     SysDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ImgCodeByUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
@@ -374,32 +375,30 @@ namespace DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    CheckIn = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CheckOut = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Active = table.Column<bool>(type: "bit", nullable: false),
-                    Deposit = table.Column<bool>(type: "bit", nullable: true),
-                    Paid = table.Column<bool>(type: "bit", nullable: true),
-                    Note = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CusCodeByUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    RoomCodeByUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    HotelId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    CustomerId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    TotalAmount = table.Column<long>(type: "bigint", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    HotelId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    RoomId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Booking", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Booking_Customer_CusCodeByUserId",
-                        column: x => x.CusCodeByUserId,
+                        name: "FK_Booking_Customer_CustomerId",
+                        column: x => x.CustomerId,
                         principalTable: "Customer",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Booking_Hotel_HotelId",
                         column: x => x.HotelId,
                         principalTable: "Hotel",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Booking_Room_RoomCodeByUserId",
-                        column: x => x.RoomCodeByUserId,
+                        name: "FK_Booking_Room_RoomId",
+                        column: x => x.RoomId,
                         principalTable: "Room",
                         principalColumn: "Id");
                 });
@@ -507,6 +506,27 @@ namespace DataAccess.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "BookingDetail",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    BookingId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    RoomId = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    CreateAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BookingDetail", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_BookingDetail_Booking_BookingId",
+                        column: x => x.BookingId,
+                        principalTable: "Booking",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -552,9 +572,9 @@ namespace DataAccess.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Booking_CusCodeByUserId",
+                name: "IX_Booking_CustomerId",
                 table: "Booking",
-                column: "CusCodeByUserId");
+                column: "CustomerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Booking_HotelId",
@@ -562,9 +582,14 @@ namespace DataAccess.Migrations
                 column: "HotelId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Booking_RoomCodeByUserId",
+                name: "IX_Booking_RoomId",
                 table: "Booking",
-                column: "RoomCodeByUserId");
+                column: "RoomId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BookingDetail_BookingId",
+                table: "BookingDetail",
+                column: "BookingId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Evaluate_CusCodeByUserId",
@@ -645,7 +670,7 @@ namespace DataAccess.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Booking");
+                name: "BookingDetail");
 
             migrationBuilder.DropTable(
                 name: "Evaluate");
@@ -678,16 +703,19 @@ namespace DataAccess.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "Customer");
-
-            migrationBuilder.DropTable(
-                name: "Room");
+                name: "Booking");
 
             migrationBuilder.DropTable(
                 name: "Service");
 
             migrationBuilder.DropTable(
+                name: "Customer");
+
+            migrationBuilder.DropTable(
                 name: "Hotel");
+
+            migrationBuilder.DropTable(
+                name: "Room");
 
             migrationBuilder.DropTable(
                 name: "Image");

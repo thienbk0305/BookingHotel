@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(BookingHotelDbContext))]
-    [Migration("20231119053427_Customize")]
-    partial class Customize
+    [Migration("20231119152218_BookingHotel")]
+    partial class BookingHotel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -47,10 +47,6 @@ namespace DataAccess.Migrations
 
                     b.Property<long>("TotalAmount")
                         .HasColumnType("bigint");
-
-                    b.Property<string>("UpdateUser")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

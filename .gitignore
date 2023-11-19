@@ -23,7 +23,7 @@ x64/
 *.dll
 *.pdb
 *.bin
-*.json
+#.json
 *.cache
 *.editconfig
 *.editorconfig
