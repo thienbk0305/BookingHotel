@@ -8,13 +8,18 @@ namespace DataAccess.Entities
 {
     public class Booking : IEntity
     {
-
+        public Booking()
+        {
+            BookingDetail = new HashSet<BookingDetail>();
+        }
         public string Id { get; set; }
         public string CustomerId { get; set; }
         public int Status { get; set; }
         public long TotalAmount { get; set; }
         public DateTime CreatedDate { get; set; }
         public string UpdateUser { get; set; }
+
+        public virtual ICollection<BookingDetail> BookingDetail { get; set; }
     }
     public class OrderRequest
     {

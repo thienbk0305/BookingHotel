@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(BookingHotelDbContext))]
-    [Migration("20231118232851_Customize")]
+    [Migration("20231119053427_Customize")]
     partial class Customize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,42 +29,64 @@ namespace DataAccess.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("CheckIn")
+                    b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("CheckOut")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CusCodeByUserId")
+                    b.Property<string>("CustomerId")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
-
-                    b.Property<bool?>("Deposit")
-                        .HasColumnType("bit");
 
                     b.Property<string>("HotelId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("Paid")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("RoomCodeByUserId")
+                    b.Property<string>("RoomId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<long>("TotalAmount")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("UpdateUser")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CusCodeByUserId");
+                    b.HasIndex("CustomerId");
 
                     b.HasIndex("HotelId");
 
-                    b.HasIndex("RoomCodeByUserId");
+                    b.HasIndex("RoomId");
 
                     b.ToTable("Booking");
+                });
+
+            modelBuilder.Entity("DataAccess.Entities.BookingDetail", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("BookingId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CreateAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RoomId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookingId");
+
+                    b.ToTable("BookingDetail");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.Customer", b =>
@@ -680,21 +702,28 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("DataAccess.Entities.Booking", b =>
                 {
-                    b.HasOne("DataAccess.Entities.Customer", "CusCodeByUser")
+                    b.HasOne("DataAccess.Entities.Customer", null)
                         .WithMany("Booking")
-                        .HasForeignKey("CusCodeByUserId");
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("DataAccess.Entities.Hotel", null)
                         .WithMany("Booking")
                         .HasForeignKey("HotelId");
 
-                    b.HasOne("DataAccess.Entities.Room", "RoomCodeByUser")
+                    b.HasOne("DataAccess.Entities.Room", null)
                         .WithMany("Booking")
-                        .HasForeignKey("RoomCodeByUserId");
+                        .HasForeignKey("RoomId");
+                });
 
-                    b.Navigation("CusCodeByUser");
-
-                    b.Navigation("RoomCodeByUser");
+            modelBuilder.Entity("DataAccess.Entities.BookingDetail", b =>
+                {
+                    b.HasOne("DataAccess.Entities.Booking", null)
+                        .WithMany("BookingDetail")
+                        .HasForeignKey("BookingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("DataAccess.Entities.Evaluate", b =>
@@ -885,6 +914,11 @@ namespace DataAccess.Migrations
                     b.HasOne("DataAccess.Entities.Image", null)
                         .WithMany("User")
                         .HasForeignKey("ImageId");
+                });
+
+            modelBuilder.Entity("DataAccess.Entities.Booking", b =>
+                {
+                    b.Navigation("BookingDetail");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.Customer", b =>
