@@ -21,6 +21,7 @@ namespace DataAccess.Entities
         public string? RoomType { get; set; }
         public decimal Price { get; set; }
         public string? Description { get; set; }
+        public Status Status { get; set; } = Status.Status_1;
         public bool Active { get; set; } = false;
         public DateTime? SysDate { get; set; }
 
@@ -32,5 +33,15 @@ namespace DataAccess.Entities
         public virtual ICollection<Hotel> Hotel { get; set; }
         public virtual ICollection<Service> Service { get; set; }
         public virtual ICollection<HotelRoomService> HotelRoomService { get; set; }
+    }
+    public enum Status : byte
+    {
+        [Display(Name = "Phòng Mới")]
+        Status_1 = 0,
+        [Display(Name = "Phòng Hot")]
+        Status_2 = 1,
+        [Display(Name = "Phòng Giảm Giá")]
+        Status_3 = 2
+
     }
 }

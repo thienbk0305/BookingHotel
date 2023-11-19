@@ -10,7 +10,7 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-ALTER PROCEDURE [dbo].[SP_UpdatePID]
+CREATE PROCEDURE [dbo].[SP_UpdatePID]
 	@Id nvarchar(450),
 	@FullName nvarchar(MAX),
 	@PhoneNumber nvarchar(MAX),
@@ -54,7 +54,7 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-ALTER PROCEDURE [dbo].[SP_InsertContact]
+CREATE PROCEDURE [dbo].[SP_InsertContact]
 	@Id nvarchar(450),
 	@CusFullName nvarchar(MAX),
 	@CusPhone nvarchar(MAX),

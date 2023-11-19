@@ -8,11 +8,11 @@ namespace BookingHotel.Controllers
         {
             return View();
         }
-        public IActionResult HotelFilter()
+        public IActionResult HotelDetail()
         {
             return View();
         }
-        public IActionResult HotelDetail()
+        public IActionResult HotelFilter()
         {
             return View();
         }

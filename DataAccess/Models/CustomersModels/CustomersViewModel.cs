@@ -22,4 +22,5 @@ namespace DataAccess.Models.CustomersModels
         public string? Id_Evaluate { get; set; }
         public string? Description { get; set; }
     }
+
 }

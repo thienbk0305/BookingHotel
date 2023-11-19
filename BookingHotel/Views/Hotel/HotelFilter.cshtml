@@ -1,18 +1,18 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Danh sách khách sạn theo chọn lọc";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style>
     .container {
-        margin-top:10px;
+        margin-top: 10px;
     }
-    .box-star{
+
+    .box-star {
         font-size: 18px;
         color: #f6d738;
     }
 
-    .list_style{
+    .list_style {
         margin-top: 10px;
     }
 
@@ -21,7 +21,8 @@
         color: #ff9000;
         font-family: 'os_bold';
     }
-    .fa-star{
+
+    .fa-star {
         font-size: 18px;
         color: #f6d738;
     }
@@ -33,19 +34,19 @@
 </style>
 
 <!--================Breadcrumb Area =================-->
-    <section class="breadcrumb_area blog_banner_two">
-        <div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background=""></div>
-        <div class="container">
-            <div class="page-cover text-center">
-                <h2 class="page-cover-tittle f_48">Danh sách khách sạn</h2>
-                <ol class="breadcrumb">
-                    <li><a asp-controller="Home" asp-action="Index">Trang chủ</a></li>
-                    <li><a asp-controller="hotel" asp-action="hoteldetail">Đồng Nai</a></li>
-                    <li class="active">Khách sạn Đồng Nai</li>
-                </ol>
-            </div>
+<section class="breadcrumb_area blog_banner_two">
+    <div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background=""></div>
+    <div class="container">
+        <div class="page-cover text-center">
+            <h2 class="page-cover-tittle f_48">Danh sách khách sạn</h2>
+            <ol class="breadcrumb">
+                <li><a asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+                <li><a asp-controller="Hotel" asp-action="HotelDetail">Đồng Nai</a></li>
+                <li class="active">Khách sạn Đồng Nai</li>
+            </ol>
         </div>
-    </section>
+    </div>
+</section>
 <!--================Breadcrumb Area =================-->
 <div class="container">
     <div class="hotel_booking_table">
@@ -105,7 +106,7 @@
                                     <option value="3">Phòng 03</option>
                                 </select>
                             </div>
-                            <a class="book_now_btn button_hover" asp-controller="hotel" asp-action="hoteldetail">Tìm kiếm</a>
+                            <a class="book_now_btn button_hover" asp-controller="Hotel" asp-action="HotelDetail">Tìm kiếm</a>
                         </div>
                     </div>
                 </div>
@@ -144,7 +145,7 @@
                                     <a href="#"><h4>Nhà khách Mã Đà Đồng Nai</h4></a>
                                     <i class="fa fa-thumb-tack" aria-hidden="true"></i>
                                     <h6>Xã Mã Đà, huyện Vĩnh Cửu, tỉnh Đồng Nai</h6>
-                                    <a asp-controller="hotel" asp-action="hoteldetail" class="view_btn button_hover">Lựa phòng</a>
+                                    <a asp-controller="Hotel" asp-action="HotelDetail" class="view_btn button_hover">Lựa phòng</a>
                                 </div>
                             </div>
                         </div>
@@ -174,7 +175,7 @@
                                     <a href="#"><h4>Nhà khách Mã Đà Đồng Nai</h4></a>
                                     <i class="fa fa-thumb-tack" aria-hidden="true"></i>
                                     <h6>Xã Mã Đà, huyện Vĩnh Cửu, tỉnh Đồng Nai</h6>
-                                    <a asp-controller="hotel" asp-action="hoteldetail" class="view_btn button_hover">Lựa phòng</a>
+                                    <a asp-controller="Hotel" asp-action="HotelDetail" class="view_btn button_hover">Lựa phòng</a>
                                 </div>
                             </div>
                         </div>
@@ -204,7 +205,7 @@
                                     <a href="#"><h4>Nhà khách Mã Đà Đồng Nai</h4></a>
                                     <i class="fa fa-thumb-tack" aria-hidden="true"></i>
                                     <h6>Xã Mã Đà, huyện Vĩnh Cửu, tỉnh Đồng Nai</h6>
-                                    <a asp-controller="hotel" asp-action="hoteldetail" class="view_btn button_hover">Lựa phòng</a>
+                                    <a asp-controller="Hotel" asp-action="HotelDetail" class="view_btn button_hover">Lựa phòng</a>
                                 </div>
                             </div>
                         </div>
@@ -234,7 +235,7 @@
                                     <a href="#"><h4>Nhà khách Mã Đà Đồng Nai</h4></a>
                                     <i class="fa fa-thumb-tack" aria-hidden="true"></i>
                                     <h6>Xã Mã Đà, huyện Vĩnh Cửu, tỉnh Đồng Nai</h6>
-                                    <a asp-controller="hotel" asp-action="hoteldetail" class="view_btn button_hover">Lựa phòng</a>
+                                    <a asp-controller="Hotel" asp-action="HotelDetail" class="view_btn button_hover">Lựa phòng</a>
                                 </div>
                             </div>
                         </div>
@@ -264,7 +265,7 @@
                                     <a href="#"><h4>Nhà khách Mã Đà Đồng Nai</h4></a>
                                     <i class="fa fa-thumb-tack" aria-hidden="true"></i>
                                     <h6>Xã Mã Đà, huyện Vĩnh Cửu, tỉnh Đồng Nai</h6>
-                                    <a asp-controller="hotel" asp-action="hoteldetail" class="view_btn button_hover">Lựa phòng</a>
+                                    <a asp-controller="Hotel" asp-action="HotelDetail" class="view_btn button_hover">Lựa phòng</a>
                                 </div>
                             </div>
                         </div>
@@ -294,7 +295,7 @@
                                     <a href="#"><h4>Nhà khách Mã Đà Đồng Nai</h4></a>
                                     <i class="fa fa-thumb-tack" aria-hidden="true"></i>
                                     <h6>Xã Mã Đà, huyện Vĩnh Cửu, tỉnh Đồng Nai</h6>
-                                    <a asp-controller="hotel" asp-action="hoteldetail" class="view_btn button_hover">Lựa phòng</a>
+                                    <a asp-controller="Hotel" asp-action="HotelDetail" class="view_btn button_hover">Lựa phòng</a>
                                 </div>
                             </div>
                         </div>
@@ -367,7 +368,7 @@
                     </aside>
                     @* end *@
 
-                   
+
                     <aside class="single_sidebar_widget post_category_widget">
                         <h4 class="widget_title">Tìm theo sao</h4>
                         <div class="box-item hotel-single-cat">
@@ -521,7 +522,7 @@
                     <aside class="single-sidebar-widget newsletter_widget">
                         <h4 class="widget_title">Đặt phòng nhanh</h4>
                         <p>
-                            Vui lòng nhập Email của bạn. 
+                            Vui lòng nhập Email của bạn.
                             Chúng tôi sẽ giúp bạn đặt phòng nhanh hơn !
                         </p>
                         <div class="form-group d-flex flex-row">
@@ -533,21 +534,21 @@
                             </div>
                             <a href="#" class="bbtns">Gửi</a>
                         </div>
-                        
+
                         <div class="br"></div>
                     </aside>
-                    
+
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-  
 
-   <!--================ End footer Area  =================-->
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+<!--================ End footer Area  =================-->
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="~/js/jquery-3.2.1.min.js"></script>
 <script src="~/js/popper.js"></script>
 <script src="~/js/bootstrap.min.js"></script>
