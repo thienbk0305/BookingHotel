@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
     $('.selectpicker').selectpicker();
+    var imageData;
 });
 
 $("#updateBtn").click(function () {
@@ -10,16 +11,16 @@ $("#updateBtn").click(function () {
     var modelSumContent = $("#modelSumContent").val();
     var modelNewsContent = $("#modelNewsContent").val();
     var modelSource = $("#modelSource").val();
-  
+
     const modelActiveCheckbox = document.getElementById('modelActive');
     const modelActive = modelActiveCheckbox.checked;
 
     model = {
         Id: id, Title: modelTitle, SumContent: modelSumContent,
-        NewsContent: modelNewsContent, Source: modelSource, Active: modelActive
+        NewsContent: modelNewsContent, Source: modelSource, Active: modelActive, ImgCodeByUserId: imageData
     }
     $.ajax({
-        url: '/WebNews/Update',
+        url: 'WebNews/Update',
         type: 'POST',
         data: JSON.stringify(model),
         contentType: "application/json; charset=utf-8",
@@ -62,3 +63,82 @@ $("#updateBtn").click(function () {
         }
     })
 });
+$("#uploadImg").click(function () {
+    convertImg();
+    //convertImg().then(d => { console.log(d); imageData = d; });
+})
+function convertImg() {
+    debugger
+    var input = document.getElementById('featureImg');
+    var file = input.files[0];
+    var imgData;
+    var result = new Promise((resolve, reject) => {
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var base64String = e.target.result.split(",")[1];
+                sendDataToApi(base64String).done(function (d) {
+                    resolve(d);
+                })
+
+            }
+            reader.readAsDataURL(file);
+            $("#imagePreview").attr("src", URL.createObjectURL(file));
+        } else {
+            reject(undefined);
+        }
+    });
+    return result;
+}
+
+//function sendDataToApi(base64String) {
+//    var sign = crypto.randomUUID();
+//    var apiUrl = "https://localhost:7219/api/Identity/UploadImage";
+//    return $.ajax({
+//        xhrFields: {
+//            withCredentials: true
+//        },
+//        crossDomain: true,
+//        type: "POST",
+//        url: apiUrl,
+//        data: {
+//            sign: sign,
+//            base64Image: base64String
+//        },
+
+//        success: function (response) {
+
+//            var obj = JSON.parse(response);
+//            returnData = obj.description;
+//            console.log(returnData)
+//        },
+//        error: function (error) {
+//            console.log(error);
+//        }
+//    });
+//}
+
+function sendDataToApi(base64String) {
+    var sign = crypto.randomUUID();
+    var apiUrl = "WebNews/UploadImage";
+    var returnData;
+    return $.ajax({
+        type: "POST",
+        url: apiUrl,
+        data: {
+            sign: sign,
+            base64Image: base64String
+        },
+
+        success: function (response) {
+
+            var obj = JSON.parse(response);
+            returnData = obj.description;
+            imageData = returnData;
+            console.log("imageData:" + imageData);
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+}

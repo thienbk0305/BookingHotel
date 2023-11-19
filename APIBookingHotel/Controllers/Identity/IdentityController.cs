@@ -27,7 +27,7 @@ using System.Security.Claims;
 namespace APIBookingHotel.Controllers.Identity
 {
     [ApiController]
-    [Route("api/Identity/Identity")]
+    [Route("api/Identity")]
     [Authorize(Roles = "Admin,User")]
     public class IdentityController : ControllerBase
     {
@@ -158,6 +158,7 @@ namespace APIBookingHotel.Controllers.Identity
                 var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
 
                 var result = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Post,url_api, base_url, dataJson, token);
+                returnData = JsonConvert.DeserializeObject<UploadImageResponseData>(result);
 
             }
             catch (Exception)

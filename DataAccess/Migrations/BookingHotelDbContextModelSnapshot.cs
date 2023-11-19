@@ -46,10 +46,6 @@ namespace DataAccess.Migrations
                     b.Property<long>("TotalAmount")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("UpdateUser")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");

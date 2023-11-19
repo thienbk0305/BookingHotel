@@ -54,7 +54,7 @@ namespace AdminBookingHotel.Controllers.User
 
                 var listResult = new List<ProfileView>();
                 var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
-                var base_url = "Identity/Identity/Users?searchValue=" + searchValue + "&roleValue=" + roleValue; //API Controller
+                var base_url = "Identity/Users?searchValue=" + searchValue + "&roleValue=" + roleValue; //API Controller
                 var dataJson = JsonConvert.SerializeObject(listResult);
                 var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
                 var result = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Get, url_api, base_url, dataJson, token);
@@ -86,7 +86,7 @@ namespace AdminBookingHotel.Controllers.User
             }
             var listResult = new ProfileViewById();
             var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
-            var base_url = "Identity/Identity/GetUser/" + id + ""; //API Controller
+            var base_url = "Identity/GetUser/" + id + ""; //API Controller
             var dataJson = JsonConvert.SerializeObject(listResult);
             var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
             var result = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Get, url_api, base_url, dataJson, token);
@@ -113,7 +113,7 @@ namespace AdminBookingHotel.Controllers.User
             {
                 var listResult = new ProfileViewById();
                 var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
-                var base_url = "Identity/Identity/UpdateUser"; //API Controller
+                var base_url = "Identity/UpdateUser"; //API Controller
                 var dataJson = JsonConvert.SerializeObject(model);
                 var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
                 var result = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Put, url_api, base_url, dataJson, token);
