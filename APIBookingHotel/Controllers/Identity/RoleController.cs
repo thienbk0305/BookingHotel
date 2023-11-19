@@ -19,7 +19,7 @@ using OfficeOpenXml;
 namespace APIBookingHotel.Controllers.Identity
 {
     [ApiController]
-    [Route("api/Identity/Role")]
+    [Route("api/Identity")]
     [Authorize(Roles = "Admin")]
     public class RoleController : ControllerBase
     {

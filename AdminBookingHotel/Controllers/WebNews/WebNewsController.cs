@@ -2,6 +2,7 @@
 using DataAccess.IRepositories;
 using DataAccess.Models;
 using DataAccess.Models.NewsModels;
+using MediaBookingHotel.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -155,7 +156,30 @@ namespace AdminBookingHotel.Controllers.WebNews
             }
             _toastNotification.AddSuccessToastMessage("Success!");
             return RedirectToAction("Index", "WebNews");
+        }
+        [HttpPost]
+        public IActionResult UploadImage(UploadImageRequestData model)
+        {
+            if (ModelState.IsValid)
+            {
+                var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
+                var base_url = "Identity/Uploadimage"; //API Controller
 
+                var secretKey = "CAjEbwkeGqO@#Gn3Fsd8SRs2dFLMfxTo11a";
+                var sign = Common.Security.MD5Hash(model.base64Image + "|" + secretKey);
+                model.sign = sign;
+                var dataJson = JsonConvert.SerializeObject(model);
+                var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
+                var uploadResult = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Post, url_api, base_url, dataJson, token);
+                if (string.IsNullOrEmpty(uploadResult))
+                {
+                    _toastNotification.AddErrorToastMessage("Có lỗi xảy ra! Vui lòng kiểm tra lại thông tin");
+                    return BadRequest();
+                }
+                _toastNotification.AddSuccessToastMessage("Success!");
+                return Ok(uploadResult);
+            }
+            return BadRequest();
 
         }
     }

@@ -26,7 +26,7 @@ namespace AdminBookingHotel.Controllers.Role
         {
             var listResult = new RoleResult();
             var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
-            var base_url = "Identity/Role/Roles"; //API Controller
+            var base_url = "Identity/Roles"; //API Controller
             var dataJson = JsonConvert.SerializeObject(listResult);
             var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
             var result = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Get, url_api, base_url, dataJson, token);
@@ -52,7 +52,7 @@ namespace AdminBookingHotel.Controllers.Role
         {
             var listResult = new RoleResultById();
             var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
-            var base_url = "Identity/Role/GetRole/"+id+""; //API Controller
+            var base_url = "Identity/GetRole/" + id+""; //API Controller
             var dataJson = JsonConvert.SerializeObject(listResult);
             var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
             var result = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Get, url_api, base_url, dataJson, token);
@@ -75,7 +75,7 @@ namespace AdminBookingHotel.Controllers.Role
             {
                 var listResult = new RoleResult();
                 var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
-                var base_url = "Identity/Role/Save"; //API Controller
+                var base_url = "Identity/Save"; //API Controller
                 var dataJson = JsonConvert.SerializeObject(model);
                 var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
                 var result = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Post, url_api, base_url, dataJson, token);

@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIBookingHotel", "..\APIBo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdminBookingHotel", "..\AdminBookingHotel\AdminBookingHotel.csproj", "{DAFBA753-33AE-46A2-A5B6-B5A16E962C61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBookingHotel", "..\MediaBookingHotel\MediaBookingHotel.csproj", "{47F7112A-6284-4711-AB94-332B706B6E02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaBookingHotel", "..\MediaBookingHotel\MediaBookingHotel.csproj", "{47F7112A-6284-4711-AB94-332B706B6E02}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
