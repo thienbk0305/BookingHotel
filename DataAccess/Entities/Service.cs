@@ -16,7 +16,7 @@ namespace DataAccess.Entities
 
         public string Id { get; set; }
         public string? ServiceName { get; set; }
-        public Type ServiceType { get; set; } = Type.Type_1;
+        public Types ServiceType { get; set; } = Types.Types_1;
         public string? ServiceContent { get; set; }
         public string? Description { get; set; }
         public bool Active { get; set; } = false;
@@ -31,14 +31,14 @@ namespace DataAccess.Entities
         public virtual ICollection<HotelRoomService> HotelRoomService { get; set; }
 
     }
-    public enum Type : byte
+    public enum Types : byte
     {
         [Display(Name = "Hotel")]
-        Type_1 = 0,
+        Types_1 = 0,
         [Display(Name = "Room")]
-        Type_2 = 1,
+        Types_2 = 1,
         [Display(Name = "Khác")]
-        Type_3 = 2
+        Types_3 = 2
 
     }
 }

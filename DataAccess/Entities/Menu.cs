@@ -7,11 +7,7 @@ namespace DataAccess.Entities
 {
     public class Menu : IEntity
     {
-        //public Menu()
-        //{
-        //    New = new HashSet<New>();
-        //}
-        //[Key]
+
         public string Id { get; set; }
         public string? MenuName { get; set; }
         public int? MenuLevel { get; set; }
@@ -19,6 +15,5 @@ namespace DataAccess.Entities
         public bool? Visible { get; set; }
         public DateTime? SysDate { get; set; }
 
-        //public virtual ICollection<New> New { get; set; }
     }
 }

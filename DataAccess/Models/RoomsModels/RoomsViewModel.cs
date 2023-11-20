@@ -15,6 +15,7 @@ namespace DataAccess.Models.RoomsModels
         public string? RoomSize { get; set; }
         public string? RoomHuman { get; set; }
         public string? RoomType { get; set; }
+        public Status Status { get; set; }
         public decimal Price { get; set; }
         public string? Description { get; set; }
         public bool Active { get; set; } = false;

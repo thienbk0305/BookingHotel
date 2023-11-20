@@ -94,6 +94,7 @@ builder.Services.AddScoped<IRoomsRepository, RoomsRepository>();
 builder.Services.AddScoped<IServicesRepository, ServicesRepository>();
 builder.Services.AddScoped<IHotelsRepository, HotelsRepository>();
 builder.Services.AddScoped<IImagesRepository, ImagesRepository>();
+builder.Services.AddScoped<ISystemsRepository, SystemsRepository>();
 builder.Services.AddScoped<IBookingsRepository, BookingsRepository>();
 builder.Services.AddTransient<IBookingHotelUnitOfWork, BookingHotelUnitOfWork>();
 builder.Services.AddScoped(typeof(IUtilitiesRepository<>), typeof(UtilitiesRepository<>));
@@ -103,8 +104,8 @@ builder.Services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProv
 builder.Services.AddScoped<IAuthorizationHandler, PermissionAuthorizationHandler>();
 //Logs
 builder.Services.AddSingleton<ILoggerManager, LoggerManager>();
-//LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(),"/NLog.config"));
-LogManager.LoadConfiguration("D:/2.Net/BookingHotel/APIBookingHotel/NLog.config");
+LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/NLog.config"));
+//LogManager.LoadConfiguration("D:/2.Net/BookingHotel/APIBookingHotel/NLog.config");
 
 //AutoMapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

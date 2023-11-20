@@ -1,0 +1,70 @@
+﻿@using System.Net;
+@model DataAccess.Models.SystemsModels.SystemsViewModel
+
+
+<form asp-action="Update" method="post" role="form" id="systemsDetailModal">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title text-white">Phòng: #@Model?.Id - Tình Trạng: @Model?.Active</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <ul class="nav nav-tabs  mb-3 mt-3" id="iconTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="animated-underline-home-tab" href="#logInfoTab" data-toggle="tab" role="tab" aria-controls="icon-home" aria-selected="true"> Nội Dung</a>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="logInfoTab" role="tabpanel" aria-labelledby="icon-home-tab">
+                            <input asp-for="Id" type="hidden" id="modelId" value="@Model?.Id">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label asp-for="HotelId" class="control-label mb-10">Chọn Khách Sạn</label>
+                                        <select class="selectpicker form-control" asp-for="HotelId" id="modelHotelId"
+                                                asp-items="ViewBag.HotelName">
+                                            <option value="">Chọn Khách Sạn</option>
+                                        </select>
+                                        <span asp-validation-for="HotelId" class="text-warning"></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label asp-for="RoomId" class="control-label mb-10">Chọn Phòng</label>
+                                        <select class="selectpicker form-control" asp-for="RoomId" id="modelRoomId"
+                                                asp-items="ViewBag.RoomName">
+                                            <option value="">Chọn Phòng</option>
+                                        </select>
+                                        <span asp-validation-for="RoomId" class="text-warning"></span>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label asp-for="ServiceId" class="control-label mb-10">Chọn Dịch Vụ</label>
+                                        <select class="selectpicker form-control" asp-for="ServiceId" id="modelServiceId"
+                                                asp-items="ViewBag.ServiceName">
+                                            <option value="">Chọn Dịch Vụ</option>
+                                        </select>
+                                        <span asp-validation-for="ServiceId" class="text-warning"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="light-grey-hr" />
+                            <!-- Row -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="form-actions mt-10">
+                    <input id="updateBtn" type="button" class="btn btn-success" value="Lưu" />
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</form>
+
+<script src="~/admin/dist/js/systems/systemsdetail.js"></script>

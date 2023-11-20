@@ -45,11 +45,9 @@ namespace APIBookingHotel.Controllers.News
         public async Task<IActionResult> GetNewsAsync(DateTime? fromDate, DateTime? toDate, string? searchString)
         {
             string sql = "Select N.*,I.FileName From New N Left Join Image I On N.ImgCodeByUserId=I.Id";
-            var result = new List<NewsViewModel>();
             var news = await _bookingHotelUnitOfWork.NewsRepository.FromSqlQueryAsync(sql, HttpContext.RequestAborted);
             if (news != null)
             {
-                //result = _mapper.Map<List<NewsViewModel>>(news);
                 return Ok(news);
             }
             return BadRequest();

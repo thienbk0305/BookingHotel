@@ -115,6 +115,7 @@ namespace APIBookingHotel.Controllers.rooms
                 rooms = _mapper.Map<Room>(model);
                 rooms.SysDate = DateTime.Now;
                 var result = await _bookingHotelUnitOfWork.RoomsRepository.Update(rooms, HttpContext.RequestAborted);
+                await _bookingHotelUnitOfWork.SaveAsync();
                 if (result != null)
                 {
                     return Ok(rooms);
