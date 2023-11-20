@@ -30,7 +30,7 @@
                                     <div class="form-group">
                                         <label asp-for="ServiceType" class="control-label mb-10">Loại Dịch Vụ</label>
                                         <select asp-for="ServiceType" class="selectpicker form-control" id="modelServiceType"
-                                                asp-items="Html.GetEnumSelectList<DataAccess.Entities.Type>()" value="@Model?.ServiceType">
+                                                asp-items="Html.GetEnumSelectList<DataAccess.Entities.Types>()" value="@Model?.ServiceType">
                                         </select>
                                     </div>
                                 </div>

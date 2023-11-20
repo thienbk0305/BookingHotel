@@ -21,6 +21,7 @@ namespace DataAccess.UnitOfWork
         IHotelsRepository HotelsRepository { get; }
         IImagesRepository ImagesRepository { get; }
         IBookingsRepository BookingsRepository { get; }
+        ISystemsRepository SystemsRepository { get; }
 
         int Save();
         Task<int> SaveAsync();

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.IRepositories
 {
-    public interface IServicesRepository : IGenericRepository<Service>
+    public interface IHotelsRepository : IGenericRepository<Hotel>
     {
     }
 }

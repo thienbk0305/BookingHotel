@@ -11,6 +11,7 @@ using DataAccess.Models.HotelsModels;
 using DataAccess.Models.NewsModels;
 using DataAccess.Models.RoomsModels;
 using DataAccess.Models.ServicesModels;
+using DataAccess.Models.SystemsModels;
 using Microsoft.AspNetCore.Identity;
 
 namespace APIBookingHotel.AutoMapper
@@ -26,6 +27,7 @@ namespace APIBookingHotel.AutoMapper
             CreateMap<ServicesViewModel, Service>().ReverseMap();
             CreateMap<HotelsViewModel, Hotel>().ReverseMap();
             CreateMap<CustomersViewModel, Customer>().ReverseMap();
+            CreateMap<HRSViewModel, HotelRoomService>().ReverseMap();
             //CreateMap<BookingsViewModel, Booking>().ReverseMap();
         }
     }
