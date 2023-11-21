@@ -1,6 +1,8 @@
-﻿@using System.Net;
+﻿﻿@using System.Net;
 @model DataAccess.Models.RoomsModels.RoomsViewModel
-
+@{
+    decimal? amount = @Model?.Price;
+}
 <form asp-action="Update" method="post" role="form" id="RoomsDetailModal">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -17,6 +19,7 @@
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="logInfoTab" role="tabpanel" aria-labelledby="icon-home-tab">
                             <input asp-for="Id" type="hidden" id="modelId" value="@Model?.Id">
+                            <input type="hidden" value="@Model?.ImgCodeByUserId" asp-for="ImgCodeByUserId" id="imgCodeByUserId" />
                             <div class="row">
                                 <div class="col-lg-4">
                                     <label asp-for="RoomName" class="control-label mb-10">Phòng</label>
@@ -42,7 +45,12 @@
                                         <input type="hidden" id="RoomHumanString" value="@Model?.RoomHuman">
                                     </div>
                                 </div>
-
+                                <div class="col-lg-2">
+                                    <label asp-for="Price" class="control-label mb-10">Giá</label>
+                                    <input asp-for="Price" type="text" class="form-control" name="Price" id="modelPrice"
+                                           value="@amount?.ToString("#,##0")">
+                                    <span asp-validation-for="Price" class="text-warning"></span>
+                                </div>
                                 <div class="col-lg-2">
                                     <label asp-for="RoomSize" class="control-label mb-10">Kích Thước</label>
                                     <input asp-for="RoomSize" type="text" class="form-control"
@@ -65,6 +73,15 @@
                             <div class="form-group">
                                 <div class="col-lg-12">
                                     <textarea class="form-control" asp-for="Description" rows="5" id="modelDescription" placeholder="Nội dung ghi chú">@Model?.Description</textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label mb-2">Feature Image</label>
+                                <div class="input-group">
+                                    <input type="file" id="featureImg" name="featureImg">
+                                    <button type="button" id="uploadImg">Upload</button>
+
+                                    <img id="imagePreview" style="max-width: 100%; max-height: 300px;" />
                                 </div>
                             </div>
                         </div>

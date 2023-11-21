@@ -1,4 +1,4 @@
-﻿@{
+﻿﻿@{
     ViewBag.Title = "Quản Lý Phòng";
     Layout = "_AdminLayout";
 }
@@ -36,78 +36,82 @@
 
                 <div class="row layout-top-spacing">
                     <div class="col-12">
-                        <div class="statbox widget box box-shadow">
-                            <div class="widget-content widget-content-area">
-                                <div class="row">
-                                    <div class="col-lg-4">
-                                        <div class="form-group">
-                                            <label class="control-label mb-10 text-left">Từ Ngày</label>
-                                            <input type='text' id="fromDate" class="form-control" />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="form-group">
-                                            <label class="control-label mb-10 text-left">Đến Ngày</label>
-                                            <input type='text' id="toDate" class="form-control" />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="form-group">
-                                            <label class="control-label mb-10">Tìm Kiếm</label>
-                                            <div class="input-group">
-                                                <input type="text" name="searchStringValue"
-                                                       placeholder="Tìm kiếm" id="searchStringValue"
-                                                       class="form-control">
-                                            </div>
-                                        </div>
+                        @* <div class="statbox widget box box-shadow"> *@
+                        <div class="widget-content widget-content-area">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label class="control-label mb-10 text-left">Từ Ngày</label>
+                                        <input type='text' id="fromDate" class="form-control" />
                                     </div>
                                 </div>
-                                <div class="text-center mt-3">
-                                    <div class="button-list">
-                                        <button id="btnQuery" type="button" asp-action="LoadData" class="btn btn-primary"
-                                                class="pull-right">
-                                            Truy Vấn
-                                        </button>
-                                        <button id="btnAddNew" type="button" class="btn btn-success" >
-                                            Thêm Mới
-                                        </button>
-                                        <div class="modal fade bs-example-modal-xl" tabindex="-1" role="dialog"
-                                             aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" id="RoomsDetailModal"
-                                             data-url="@Url.Action("Detail", "WebRooms")"></div>
-
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label class="control-label mb-10 text-left">Đến Ngày</label>
+                                        <input type='text' id="toDate" class="form-control" />
                                     </div>
                                 </div>
-                                <div class="table-wrap mt-2">
-                                    <div class="table-responsive style-1">
-                                        <table id="roomsTable" class="table style-1 table-hover non-hover" style="width:100%">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>DateTime</th>
-                                                    <th>Phòng</th>
-                                                    <th>Kích Thước</th>
-                                                    <th>Loại Giường</th>
-                                                    <th>Số Người</th>
-                                                    <th>Tình Trạng</th>
-                                                    <th>Chi Tiết</th>
-                                                </tr>
-                                            </thead>
-                                            <tfoot>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>DateTime</th>
-                                                    <th>Phòng</th>
-                                                    <th>Kích Thước</th>
-                                                    <th>Loại Giường</th>
-                                                    <th>Số Người</th>
-                                                    <th>Tình Trạng</th>
-                                                    <th>Chi Tiết</th>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label class="control-label mb-10">Tìm Kiếm</label>
+                                        <div class="input-group">
+                                            <input type="text" name="searchStringValue"
+                                                   placeholder="Tìm kiếm" id="searchStringValue"
+                                                   class="form-control">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                            <div class="text-center mt-3">
+                                <div class="button-list">
+                                    <button id="btnQuery" type="button" asp-action="LoadData" class="btn btn-primary"
+                                            class="pull-right">
+                                        Truy Vấn
+                                    </button>
+                                    <button id="btnAddNew" type="button" class="btn btn-success">
+                                        Thêm Mới
+                                    </button>
+                                    <div class="modal fade bs-example-modal-xl" tabindex="-1" role="dialog"
+                                         aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" id="RoomsDetailModal"
+                                         data-url="@Url.Action("Detail", "WebRooms")"></div>
+
+                                </div>
+                            </div>
+                            <div class="table-wrap mt-2">
+                                <div class="table-responsive style-1">
+                                    <table id="roomsTable" class="table style-1 table-hover non-hover" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>DateTime</th>
+                                                <th>Phòng</th>
+                                                <th>Kích Thước</th>
+                                                <th>Loại Giường</th>
+                                                <th>Người</th>
+                                                <th>Giá</th>
+                                                <th>Tình Trạng</th>
+                                                <th>Image</th>
+                                                <th>Chi Tiết</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>DateTime</th>
+                                                <th>Phòng</th>
+                                                <th>Kích Thước</th>
+                                                <th>Loại Giường</th>
+                                                <th>Người</th>
+                                                <th>Giá</th>
+                                                <th>Tình Trạng</th>
+                                                <th>Image</th>
+                                                <th>Chi Tiết</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                            @* </div> *@
                         </div>
                     </div>
                 </div>
