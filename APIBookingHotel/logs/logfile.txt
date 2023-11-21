@@ -10624,3 +10624,28 @@
 2023-11-21 16:12:52.7076 Trace FileTarget(Name=logfile) has 2 layouts
 2023-11-21 16:12:52.7201 Trace FileTarget(Name=logfile): Using appenderFactory: NLog.Internal.FileAppenders.SingleProcessFileAppender+Factory
 2023-11-21 16:12:52.7201 Info Configuration initialized.
+2023-11-21 16:17:52.0848 Info AppDomain Shutting down. LogFactory closing...
+2023-11-21 16:17:52.0911 Debug Stopping file watching for path 'D:\2.Net\BookingHotel\APIBookingHotel' filter 'NLog.config'
+2023-11-21 16:17:52.0911 Trace Flushing all 1 targets...
+2023-11-21 16:17:52.0911 Trace ForEachItemInParallel() 1 items
+2023-11-21 16:17:52.0911 Trace FileTarget(Name=logfile): FlushAsync
+2023-11-21 16:17:52.0911 Trace Continuation invoked: 
+2023-11-21 16:17:52.0911 Trace Parallel task completed. 0 items remaining
+2023-11-21 16:17:52.0911 Debug Flush completed
+2023-11-21 16:17:52.0911 Trace FileTarget(Name=logfile): FlushAsync Done
+2023-11-21 16:17:52.0911 Debug Closing logging configuration...
+2023-11-21 16:17:52.0911 Trace Closing FileTarget(Name=logfile)
+2023-11-21 16:17:52.0911 Debug FileTarget(Name=logfile): Closing...
+2023-11-21 16:17:52.1104 Debug FileTarget(Name=logfile): Closed.
+2023-11-21 16:17:52.1104 Trace Closing D:/2.Net/BookingHotel/APIBookingHotel/logs/${shortdate}_logfile.txt
+2023-11-21 16:17:52.1112 Trace Closing Layout Renderer: ${literal}
+2023-11-21 16:17:52.1112 Trace Closing Layout Renderer: ${shortdate}
+2023-11-21 16:17:52.1112 Trace Closing Layout Renderer: ${literal}
+2023-11-21 16:17:52.1112 Trace Closing ${longdate} ${level:uppercase=true} ${message}
+2023-11-21 16:17:52.1112 Trace Closing Layout Renderer: ${longdate}
+2023-11-21 16:17:52.1112 Trace Closing Layout Renderer: ${literal}
+2023-11-21 16:17:52.1112 Trace Closing Layout Renderer: ${level}
+2023-11-21 16:17:52.1112 Trace Closing Layout Renderer: ${literal}
+2023-11-21 16:17:52.1112 Trace Closing Layout Renderer: ${message}
+2023-11-21 16:17:52.1112 Debug Finished closing logging configuration.
+2023-11-21 16:17:52.1112 Info LogFactory has been closed.
