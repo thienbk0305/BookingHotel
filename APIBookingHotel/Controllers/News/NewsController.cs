@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace APIBookingHotel.Controllers.News
 {
-    
+
     [Route("api/News/")]
     [ApiController]
     public class NewsController : ControllerBase
@@ -44,11 +44,13 @@ namespace APIBookingHotel.Controllers.News
 
         public async Task<IActionResult> GetNewsAsync(DateTime? fromDate, DateTime? toDate, string? searchString)
         {
-            string sql = "Select N.*,I.FileName From New N Left Join Image I On N.ImgCodeByUserId=I.Id";
-            var news = await _bookingHotelUnitOfWork.NewsRepository.FromSqlQueryAsync(sql, HttpContext.RequestAborted);
-            if (news != null)
+            //string sql = "Select N.*,I.ImgCode From New N Left Join Image I On N.ImgCodeByUserId=I.Id";
+            //var news = await _bookingHotelUnitOfWork.NewsRepository.FromSqlQueryAsync(sql, HttpContext.RequestAborted);
+            var news = new List<NewsViewModel>();
+            var result = await _bookingHotelUnitOfWork.NewsRepository.GetAllNewsAsync(searchString, HttpContext.RequestAborted);
+            if (result != null)
             {
-                return Ok(news);
+                return Ok(result);
             }
             return BadRequest();
         }
@@ -64,7 +66,7 @@ namespace APIBookingHotel.Controllers.News
         public async Task<IActionResult> GetSingleNews(string id)
         {
             var result = new NewsViewModel();
-            var news = await _bookingHotelUnitOfWork.NewsRepository.GetById(id,HttpContext.RequestAborted);
+            var news = await _bookingHotelUnitOfWork.NewsRepository.GetNewsDetail(id, HttpContext.RequestAborted);
             if (news != null)
             {
                 //result = _mapper.Map<NewsViewModel>(news);
@@ -100,9 +102,9 @@ namespace APIBookingHotel.Controllers.News
                     };
                     var imagesResult = await _bookingHotelUnitOfWork.ImagesRepository.Add(images, HttpContext.RequestAborted);
                     news.ImgCodeByUserId = imagesResult.Id;
-                }    
-                    var result = await _bookingHotelUnitOfWork.NewsRepository.Add(news, HttpContext.RequestAborted);
-                if (result  != null)
+                }
+                var result = await _bookingHotelUnitOfWork.NewsRepository.Add(news, HttpContext.RequestAborted);
+                if (result != null)
                 {
                     await _bookingHotelUnitOfWork.SaveAsync();
                     return Ok(news);
@@ -131,26 +133,31 @@ namespace APIBookingHotel.Controllers.News
             {
                 news = _mapper.Map<New>(model);
                 news.SysDate = DateTime.Now;
-                if (model.ImgCodeByUserId != null)
+                if (!string.IsNullOrEmpty(model.ImgCode))
                 {
-
-                    var imagesResult = await _bookingHotelUnitOfWork.ImagesRepository.GetById(id, HttpContext.RequestAborted);
-                    if (imagesResult != null)
+                    // Neu da co imgcodebyuserid thi update
+                    if (!string.IsNullOrEmpty(model.ImgCodeByUserId))
                     {
-                        imagesResult.SysDate = DateTime.Now;
-                        await _bookingHotelUnitOfWork.ImagesRepository.Update(imagesResult, HttpContext.RequestAborted);
+                        var imagesResult = await _bookingHotelUnitOfWork.ImagesRepository.GetById(model.ImgCodeByUserId, HttpContext.RequestAborted);
+                        if (imagesResult != null)
+                        {
+                            imagesResult.SysDate = DateTime.Now;
+                            imagesResult.ImgCode = model.ImgCode;
+                            await _bookingHotelUnitOfWork.ImagesRepository.Update(imagesResult, HttpContext.RequestAborted);
+                        }
                     }
                     else
                     {
                         var images = new Image()
                         {
                             Id = Common.Security.GenerateRandomId(),
-                            ImgCode = model.ImgCodeByUserId,
+                            ImgCode = model.ImgCode,
                             SysDate = DateTime.Now
                         };
-                        imagesResult= await _bookingHotelUnitOfWork.ImagesRepository.Add(images, HttpContext.RequestAborted);
+                        var newImagesResult = await _bookingHotelUnitOfWork.ImagesRepository.Add(images, HttpContext.RequestAborted);
+                        news.ImgCodeByUserId = newImagesResult.Id;
                     }
-                    news.ImgCodeByUserId = imagesResult.Id;
+
                 }
 
                 var result = await _bookingHotelUnitOfWork.NewsRepository.Update(news, HttpContext.RequestAborted);
@@ -189,4 +196,3 @@ namespace APIBookingHotel.Controllers.News
 
     }
 }
-

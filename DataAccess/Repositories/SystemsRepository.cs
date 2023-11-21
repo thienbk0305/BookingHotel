@@ -3,6 +3,7 @@ using DataAccess.Entities;
 using DataAccess.IRepositories;
 using DataAccess.Models;
 using DataAccess.Models.SystemsModels;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -47,16 +48,32 @@ namespace DataAccess.Repositories
                      RoomSize = rooms.RoomSize,
                      RoomHuman = rooms.RoomHuman,
                      RoomType = rooms.RoomType,
-                     Status = rooms.Status,
-                     Price = rooms.Price,
-                     Active = rooms.Active,
+                     Status = hrs.Status,
+                     Price = hrs.Price,
+                     Active = hrs.Active,
                      ServiceId = services.Id,
                      ServiceName = services.ServiceName,
                      ServiceType = services.ServiceType,
                      ServiceContent = services.ServiceContent
-                 }).ToListAsync();
+                 }).Where(m =>
+                (m.Id != null && m.Id.ToLower().Contains(searchValue!.ToString().ToLower()))).ToListAsync();
             await _db.SaveChangesAsync(cancellation);
             return data!;
+
+        }
+        public async Task<int> UpdateSystemsAsync(HRSViewModel hrs, CancellationToken cancellation)
+        {
+
+            var hrsId = new SqlParameter("@p0", hrs.Id);
+            var hrsHotelId = new SqlParameter("@p1", hrs.HotelId);
+            var hrsRoomId = new SqlParameter("@p2", hrs.RoomId);
+            var hrsServiceId = new SqlParameter("@p3", hrs.ServiceId);
+            var hrsPrice = new SqlParameter("@p4", hrs.Price);
+            var hrsStatus = new SqlParameter("@p5", hrs.Status);
+            var hrsActive = new SqlParameter("@p6", hrs.Active);
+
+
+            return await _db.Database.ExecuteSqlRawAsync("EXEC SP_UpdateSystem @p0,@p1,@p2,@p3,@p4", hrsId, hrsHotelId, hrsRoomId, hrsServiceId, hrsPrice);
 
         }
     }

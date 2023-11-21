@@ -70,7 +70,7 @@ namespace APIBookingHotel.Controllers.Systems
         // <param name="id"></param>
         [HttpPost]
         [Route("AddSystems")]
-        [Authorize(Roles = "Admin")]
+        [AllowAnonymous]
         public async Task<IActionResult> AddSystems(HRSViewModel model)
         {
             if (ModelState.IsValid)
@@ -78,7 +78,7 @@ namespace APIBookingHotel.Controllers.Systems
                 var systems = new HotelRoomService();
                 systems = _mapper.Map<HotelRoomService>(model);
                 systems.Id = Common.Security.GenerateRandomId();
-
+                systems.SysDate = DateTime.Now;
                 var result = await _bookingHotelUnitOfWork.SystemsRepository.Add(systems, HttpContext.RequestAborted);
                 if (result != null)
                 {
@@ -97,7 +97,7 @@ namespace APIBookingHotel.Controllers.Systems
         // <param name="SystemsModel"></param>
         [HttpPost]
         [Route("EditSystems")]
-        [Authorize(Roles = "Admin")]
+        [AllowAnonymous]
         public async Task<IActionResult> EditSystems(string id, HRSViewModel model)
         {
              var systems = await _bookingHotelUnitOfWork.SystemsRepository.GetById(id, HttpContext.RequestAborted);
@@ -108,6 +108,7 @@ namespace APIBookingHotel.Controllers.Systems
             if (ModelState.IsValid)
             {
                 systems = _mapper.Map<HotelRoomService>(model);
+                systems.SysDate = DateTime.Now;
                 var result = await _bookingHotelUnitOfWork.SystemsRepository.Update(systems, HttpContext.RequestAborted);
                 if (result != null)
                 {

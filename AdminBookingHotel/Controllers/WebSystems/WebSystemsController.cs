@@ -107,7 +107,7 @@ namespace AdminBookingHotel.Controllers.WebSystems
         }
 
         [HttpPost]
-        public IActionResult Update([FromBody] SystemsViewModel model)
+        public IActionResult Update([FromBody] HRSViewModel model)
         {
             var id = model.Id;
             try

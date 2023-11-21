@@ -71,6 +71,16 @@
                     } else out = '<span class="badge badge-warning"> InActive </span>';
                     return out;
                 }
+            },
+            {
+                'targets': [6],
+                'render': function (e, t, r, n) {
+                    var out = ''
+                    if (e !== null) {
+                        out = '<img src="https://localhost:7204/Avatar/' + e + '" width="100px" height="100px"</>'
+                    }
+                    return out;
+                }
             }
         ],
         "columns": [
@@ -84,30 +94,31 @@
             { "data": "SumContent", "name": "Summary", "autoWidth": true },
             { "data": "Source", "name": "Source", "autoWidth": true },
             { "data": "Active", "name": "Active", "autoWidth": true },
+            { "data": "ImgCode", "name": "ImgCode", "autoWidth": true },
             {
                 "render": function (data, type, row, meta) {
                     return (
-                         "<div class='btn-group'><button type='button' class='btn btn-primary btn-sm' onclick='return getNewsByID(\"" + row.Id + "\")'>Edit</button></div>" +
-                         "<div class='btn-group'><button type='button' class='btn btn-primary btn-sm' onclick='return deleteNewsByID(\"" + row.Id + "\")'>Delete</button></div>"
-                );
-            },
-            "width": "20%"
-        }
-    ]
+                        "<div class='btn-group'><button type='button' class='btn btn-primary btn-sm' onclick='return getNewsByID(\"" + row.Id + "\")'>Edit</button></div>" +
+                        "<div class='btn-group'><button type='button' class='btn btn-primary btn-sm' onclick='return deleteNewsByID(\"" + row.Id + "\")'>Delete</button></div>"
+                    );
+                },
+                "width": "20%"
+            }
+        ]
     });
-var oTable = $('#newsTable').DataTable();
-$('#btnQuery').click(function () {
-    oTable.draw();
-});
-$(document).on("hide.bs.modal", "#NewsDetailModal", function () {
-    oTable.draw();
-});
-$("#btnAddNew").click(function () {
-    var e = $("#NewsDetailModal").data("url");
-    $.get(e, function (e) {
-        $("#NewsDetailModal").html(e), $("#NewsDetailModal").modal("show")
-    })
-});
+    var oTable = $('#newsTable').DataTable();
+    $('#btnQuery').click(function () {
+        oTable.draw();
+    });
+    $(document).on("hide.bs.modal", "#NewsDetailModal", function () {
+        oTable.draw();
+    });
+    $("#btnAddNew").click(function () {
+        var e = $("#NewsDetailModal").data("url");
+        $.get(e, function (e) {
+            $("#NewsDetailModal").html(e), $("#NewsDetailModal").modal("show")
+        })
+    });
 });
 
 function getNewsByID(Id) {
@@ -137,5 +148,3 @@ function deleteNewsByID(id) {
         }
     }), !1
 }
-
-

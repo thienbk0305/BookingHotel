@@ -102,7 +102,7 @@
                 }
             },
             {
-                'targets': [7],
+                'targets': [6],
                 'render': function (e, t, r, n) {
                     var out;
                     if (e === true) {
@@ -123,7 +123,6 @@
             { "data": "RoomSize", "name": "RoomSize", "autoWidth": true },
             { "data": "RoomType", "name": "RoomType", "autoWidth": true },
             { "data": "RoomHuman", "name": "RoomHuman", "autoWidth": true },
-            { "data": "Price", "name": "Price", "autoWidth": true },
             { "data": "Active", "name": "Active", "autoWidth": true },
             {
                 "render": function (data, type, row, meta) {

@@ -96,6 +96,7 @@ builder.Services.AddScoped<IHotelsRepository, HotelsRepository>();
 builder.Services.AddScoped<IImagesRepository, ImagesRepository>();
 builder.Services.AddScoped<ISystemsRepository, SystemsRepository>();
 builder.Services.AddScoped<IBookingsRepository, BookingsRepository>();
+builder.Services.AddScoped<IBookingDetailsRepository, BookingDetailsRepository>();
 builder.Services.AddTransient<IBookingHotelUnitOfWork, BookingHotelUnitOfWork>();
 builder.Services.AddScoped(typeof(IUtilitiesRepository<>), typeof(UtilitiesRepository<>));
 

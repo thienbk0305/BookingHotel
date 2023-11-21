@@ -11,13 +11,13 @@ $("#updateBtn").click(function () {
     var modelSumContent = $("#modelSumContent").val();
     var modelNewsContent = $("#modelNewsContent").val();
     var modelSource = $("#modelSource").val();
-
+    var imgCodeByUserId = $("#imgCodeByUserId").val();
     const modelActiveCheckbox = document.getElementById('modelActive');
     const modelActive = modelActiveCheckbox.checked;
 
     model = {
         Id: id, Title: modelTitle, SumContent: modelSumContent,
-        NewsContent: modelNewsContent, Source: modelSource, Active: modelActive, ImgCodeByUserId: imageData
+        NewsContent: modelNewsContent, Source: modelSource, Active: modelActive, ImgCode: imageData, ImgCodeByUserId: imgCodeByUserId
     }
     $.ajax({
         url: 'WebNews/Update',

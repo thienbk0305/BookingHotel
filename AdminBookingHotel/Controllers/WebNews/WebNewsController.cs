@@ -94,7 +94,6 @@ namespace AdminBookingHotel.Controllers.WebNews
             }
 
             news = JsonConvert.DeserializeObject<NewsViewModel>(result);
-
             return PartialView("_Detail", news);
         }
 
@@ -111,7 +110,8 @@ namespace AdminBookingHotel.Controllers.WebNews
                 if (string.IsNullOrEmpty(id) || id == "0")
                 {
                     base_url = "News/AddNews"; //API Controller
-                } else
+                }
+                else
                 {
                     base_url = "News/EditNews?id=" + model.Id; //API Controller
                 }
