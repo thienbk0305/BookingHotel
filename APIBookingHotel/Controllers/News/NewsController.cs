@@ -92,12 +92,12 @@ namespace APIBookingHotel.Controllers.News
                 news = _mapper.Map<New>(model);
                 news.Id = Common.Security.GenerateRandomId();
                 news.SysDate = DateTime.Now;
-                if (model.ImgCodeByUserId != null)
+                if (!string.IsNullOrEmpty(model.ImgCode))
                 {
                     var images = new Image()
                     {
                         Id = Common.Security.GenerateRandomId(),
-                        ImgCode = model.ImgCodeByUserId,
+                        ImgCode = model.ImgCode,
                         SysDate = DateTime.Now
                     };
                     var imagesResult = await _bookingHotelUnitOfWork.ImagesRepository.Add(images, HttpContext.RequestAborted);
@@ -107,7 +107,7 @@ namespace APIBookingHotel.Controllers.News
                 if (result != null)
                 {
                     await _bookingHotelUnitOfWork.SaveAsync();
-                    return Ok(news);
+                    return Ok(1);
                 }
             }
             return BadRequest();
@@ -164,7 +164,7 @@ namespace APIBookingHotel.Controllers.News
                 if (result != null)
                 {
                     await _bookingHotelUnitOfWork.SaveAsync();
-                    return Ok(news);
+                    return Ok(1);
                 }
             }
             return BadRequest();

@@ -40,7 +40,7 @@ namespace APIBookingHotel.Controllers.Identity
         private readonly IDistributedCache _cache;
         private IConfiguration _config;
 
-        public IdentityController(BookingHotelDbContext db,IBookingHotelUnitOfWork unitOfWork,IIdentityRepository identityRepository, IMapper mapper, UserManager<User> userManager, RoleManager<IdentityRole> roleManager, IDistributedCache cache, IConfiguration configtion)
+        public IdentityController(BookingHotelDbContext db, IBookingHotelUnitOfWork unitOfWork, IIdentityRepository identityRepository, IMapper mapper, UserManager<User> userManager, RoleManager<IdentityRole> roleManager, IDistributedCache cache, IConfiguration configtion)
         {
             _unitOfWork = unitOfWork;
             _identityRepository = identityRepository;
@@ -58,7 +58,7 @@ namespace APIBookingHotel.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("Users")]
-        //[Authorize(Policy = Permissions.Users.View)]
+        [Authorize(Policy = Permissions.Users.View)]
         public async Task<IActionResult> GetAll(string? searchValue, string? roleValue)
         {
 
@@ -157,7 +157,7 @@ namespace APIBookingHotel.Controllers.Identity
 
                 var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
 
-                var result = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Post,url_api, base_url, dataJson, token);
+                var result = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Post, url_api, base_url, dataJson, token);
                 returnData = JsonConvert.DeserializeObject<UploadImageResponseData>(result);
 
             }

@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 
 namespace APIBookingHotel.Controllers.rooms
 {
-    
+
     [Route("api/rooms/")]
     [ApiController]
     public class RoomsController : ControllerBase
@@ -38,7 +38,7 @@ namespace APIBookingHotel.Controllers.rooms
         public async Task<IActionResult> GetroomsAsync(DateTime? fromDate, DateTime? toDate, string? searchString)
         {
             var result = new List<RoomsViewModel>();
-            var rooms = await _bookingHotelUnitOfWork.RoomsRepository.GetAll(HttpContext.RequestAborted);
+            var rooms = await _bookingHotelUnitOfWork.RoomsRepository.GetAllRoomsAsync(searchString, HttpContext.RequestAborted);
             if (rooms != null)
             {
                 //result = _mapper.Map<List<roomsViewModel>>(rooms);
@@ -59,7 +59,7 @@ namespace APIBookingHotel.Controllers.rooms
         public async Task<IActionResult> GetSinglerooms(string id)
         {
             var result = new RoomsViewModel();
-            var rooms = await _bookingHotelUnitOfWork.RoomsRepository.GetById(id,HttpContext.RequestAborted);
+            var rooms = await _bookingHotelUnitOfWork.RoomsRepository.GetRoomDetailAsync(id, HttpContext.RequestAborted);
             if (rooms != null)
             {
                 //result = _mapper.Map<roomsViewModel>(rooms);
@@ -85,11 +85,22 @@ namespace APIBookingHotel.Controllers.rooms
                 rooms = _mapper.Map<Room>(model);
                 rooms.Id = Common.Security.GenerateRandomId();
                 rooms.SysDate = DateTime.Now;
+                if (!string.IsNullOrEmpty(model.ImgCode))
+                {
+                    var images = new Image()
+                    {
+                        Id = Common.Security.GenerateRandomId(),
+                        ImgCode = model.ImgCode,
+                        SysDate = DateTime.Now
+                    };
+                    var imagesResult = await _bookingHotelUnitOfWork.ImagesRepository.Add(images, HttpContext.RequestAborted);
+                    rooms.ImgCodeByUserId = imagesResult.Id;
+                }
                 var result = await _bookingHotelUnitOfWork.RoomsRepository.Add(rooms, HttpContext.RequestAborted);
-                if (result  != null)
+                if (result != null)
                 {
                     await _bookingHotelUnitOfWork.SaveAsync();
-                    return Ok(rooms);
+                    return Ok(1);
                 }
             }
             return BadRequest();
@@ -107,18 +118,45 @@ namespace APIBookingHotel.Controllers.rooms
         public async Task<IActionResult> Editrooms(string id, RoomsViewModel model)
         {
             var rooms = await _bookingHotelUnitOfWork.RoomsRepository.GetById(id, HttpContext.RequestAborted);
-            if (rooms == null) {
+            if (rooms == null)
+            {
                 return BadRequest();
             }
             if (ModelState.IsValid)
             {
                 rooms = _mapper.Map<Room>(model);
                 rooms.SysDate = DateTime.Now;
+                if (!string.IsNullOrEmpty(model.ImgCode))
+                {
+                    // Neu da co imgcodebyuserid thi update
+                    if (!string.IsNullOrEmpty(model.ImgCodeByUserId))
+                    {
+                        var imagesResult = await _bookingHotelUnitOfWork.ImagesRepository.GetById(model.ImgCodeByUserId, HttpContext.RequestAborted);
+                        if (imagesResult != null)
+                        {
+                            imagesResult.SysDate = DateTime.Now;
+                            imagesResult.ImgCode = model.ImgCode;
+                            await _bookingHotelUnitOfWork.ImagesRepository.Update(imagesResult, HttpContext.RequestAborted);
+                        }
+                    }
+                    else
+                    {
+                        var images = new Image()
+                        {
+                            Id = Common.Security.GenerateRandomId(),
+                            ImgCode = model.ImgCode,
+                            SysDate = DateTime.Now
+                        };
+                        var newImagesResult = await _bookingHotelUnitOfWork.ImagesRepository.Add(images, HttpContext.RequestAborted);
+                        rooms.ImgCodeByUserId = newImagesResult.Id;
+                    }
+
+                }
                 var result = await _bookingHotelUnitOfWork.RoomsRepository.Update(rooms, HttpContext.RequestAborted);
                 await _bookingHotelUnitOfWork.SaveAsync();
                 if (result != null)
                 {
-                    return Ok(rooms);
+                    return Ok(1);
                 }
             }
             return BadRequest();
@@ -150,4 +188,3 @@ namespace APIBookingHotel.Controllers.rooms
 
     }
 }
-
