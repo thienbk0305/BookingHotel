@@ -124,5 +124,14 @@ namespace AdminBookingHotel.Controllers.Account
 				throw;
 			}
 		}
-	}
+        
+        [AllowAnonymous]
+        [HttpGet]
+        public IActionResult LogOut()
+        {
+            //Delete the Cookie from Browser.
+            Response.Cookies.Delete("TOKEN_SERVER");
+            return RedirectToAction("Login");
+        }
+    }
 }

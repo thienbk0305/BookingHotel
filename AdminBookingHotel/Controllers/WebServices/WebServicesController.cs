@@ -31,6 +31,12 @@ namespace AdminBookingHotel.Controllers.WebServices
         [HttpGet]
         public IActionResult Index()
         {
+            var userId = HttpContext.Session.GetString("TOKEN_SERVER");
+            if (userId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             return View();
         }
         [HttpPost]

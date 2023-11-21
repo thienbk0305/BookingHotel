@@ -26,7 +26,7 @@
     <link rel="stylesheet" type="text/css" href="~/admin/dist/css/components/tabs-accordian/custom-tabs-dark.css" />
     <link rel="stylesheet" type="text/css" href="~/admin/plugins/datatables/select.bootstrap4-dark.css">
     <link rel="stylesheet" type="text/css" href="~/admin/plugins/flatpickr/flatpickr-dark.css">
-        <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- END GLOBAL MANDATORY STYLES -->
     <link rel="stylesheet" type="text/css" href="~/admin/dist/css/icons.min.css" />
     <link rel="stylesheet" type="text/css" href="~/admin/dist/css/elements/miscellaneous.css" />
     <!-- END PAGE LEVEL ~/plugins/CUSTOM STYLES -->
@@ -37,8 +37,13 @@
     <style type="text/css">
         /* Chart.js */
         @@keyframes chartjs-render-animation {
-            from {opacity: .99}
-            to { opacity: 1}
+            from {
+                opacity: .99
+            }
+
+            to {
+                opacity: 1
+            }
         }
 
         .chartjs-render-monitor {
@@ -89,7 +94,7 @@
     <!-- END GLOBAL MANDATORY STYLES -->
     @RenderSection("css",false)
 </head>
-<body class="dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed" style="height: auto;">
+<body class="dark-mode layout-fixed layout-navbar-fixed layout-footer-fixed" style="height: auto;">
     <div class="wrapper">
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center" style="height: 0px;">
@@ -103,12 +108,12 @@
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-                <li class="nav-item d-none d-sm-inline-block">
+@*                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Trang chủ</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="#" class="nav-link">Liên hệ</a>
-                </li>
+                </li> *@
             </ul>
 
             <!-- Right navbar links -->
@@ -197,23 +202,23 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="far fa-bell"></i>
-                        <span class="badge badge-warning navbar-badge">15</span>
+                        @* <span class="badge badge-warning navbar-badge">15</span> *@
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <span class="dropdown-item dropdown-header">15 Notifications</span>
+                       @*  <span class="dropdown-item dropdown-header">15 Notifications</span> *@
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item">
-                            <i class="fas fa-envelope mr-2"></i> 4 new messages
+                           @*  <i class="fas fa-envelope mr-2"></i> 4 new messages *@
                             <span class="float-right text-muted text-sm">3 mins</span>
                         </a>
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item">
-                            <i class="fas fa-users mr-2"></i> 8 friend requests
+                           @*  <i class="fas fa-users mr-2"></i> 8 friend requests *@
                             <span class="float-right text-muted text-sm">12 hours</span>
                         </a>
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item">
-                            <i class="fas fa-file mr-2"></i> 3 new reports
+                           @*  <i class="fas fa-file mr-2"></i> 3 new reports *@
                             <span class="float-right text-muted text-sm">2 days</span>
                         </a>
                         <div class="dropdown-divider"></div>
@@ -236,7 +241,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="index3.html" class="brand-link">
+            <a href="#" class="brand-link">
                 <img src="~/admin/dist/img/AdminLTELogo.png" alt="Booking Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light"><strong>KHU VỰC ADMIN</strong></span>
             </a>
@@ -281,7 +286,8 @@
                                     <li class="nav-item">
                                         <a href="#" class="nav-link">
                                             <i class="nav-icon fas fa-copy"></i>
-                                            <p><strong>Quản Lý Tài Khoản</strong>
+                                            <p>
+                                                <strong>Quản Lý Tài Khoản</strong>
                                                 <i class="fas fa-angle-left right"></i>
                                             </p>
                                         </a>
@@ -332,8 +338,10 @@
                                     <li class="nav-item">
                                         <a href="#" class="nav-link">
                                             <i class="nav-icon fas fa-book"></i>
-                                            <p>Thông Tin Khách Hàng 
-                                                <i class="fas fa-angle-left right"></i></p>
+                                            <p>
+                                                Thông Tin Khách Hàng
+                                                <i class="fas fa-angle-left right"></i>
+                                            </p>
                                         </a>
                                         <ul class="nav nav-treeview">
                                             <li class="nav-item">
@@ -384,49 +392,55 @@
 
                                         </ul>
                                     </li>
+                                    @*------ACCOUNT------*@
+                                    <li class="nav-item">
+                                        <a href="/Account/Logout" class="nav-link">
+                                            <p><strong>Logout</strong> </p>
+                                        </a>
+                                    </li>
                                     @*-----------------------------------------------------------------------------*@
                                     @*------KHU VỰC MERCHANT------*@
-@*                                     <li class="nav-header">KHU VỰC MERCHANT</li>
+                                    @*                                     <li class="nav-header">KHU VỰC MERCHANT</li>
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link">
-                                            <p>
-                                                THÔNG TIN KHÁCH SẠN
-                                                <i class="fas fa-angle-left right"></i>
-                                            </p>
-                                        </a>
-                                        <ul class="nav nav-treeview">
-                                            <li class="nav-item">
-                                                <a href="pages/mailbox/mailbox.html" class="nav-link">
-                                                         <i class="far fa-circle nav-icon"></i>
-                                                    <p>Danh Sách Khách Sạn</p>
-                                                </a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="pages/mailbox/compose.html" class="nav-link">
-                                                        <i class="far fa-circle nav-icon"></i>
-                                                    <p>Danh Sách Chờ</p>
-                                                </a>
-                                            </li>
-
-                                        </ul>
+                                    <a href="#" class="nav-link">
+                                    <p>
+                                    THÔNG TIN KHÁCH SẠN
+                                    <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                    <a href="pages/mailbox/mailbox.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Danh Sách Khách Sạn</p>
+                                    </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a href="#" class="nav-link">
-                                                <i class="nav-icon fas fa-book"></i>
-                                            <i class="fa-solid fa-person-military-pointing"></i>
-                                            <p>THÔNG TIN BOOKING<i class="fas fa-angle-left right"></i> </p>
-                                        </a>
-                                        <ul class="nav nav-treeview">
-                                            <li class="nav-item">
-                                                <a href="pages/examples/invoice.html" class="nav-link">
-                                                    <i class="far fa-circle nav-icon"></i>
-                                                    <p>Danh Sách Booking</p>
-                                                </a>
-                                            </li>
+                                    <a href="pages/mailbox/compose.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Danh Sách Chờ</p>
+                                    </a>
+                                    </li>
 
-                                        </ul>
+                                    </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                    <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-book"></i>
+                                    <i class="fa-solid fa-person-military-pointing"></i>
+                                    <p>THÔNG TIN BOOKING<i class="fas fa-angle-left right"></i> </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                    <a href="pages/examples/invoice.html" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Danh Sách Booking</p>
+                                    </a>
+                                    </li>
+
+                                    </ul>
                                     </li> *@
-@*                                     <a href="#" class="nav-link">HOẠT ĐỘNG KINH DOANH</a> *@
+                                    @*                                     <a href="#" class="nav-link">HOẠT ĐỘNG KINH DOANH</a> *@
                                 </ul>
 
                             </nav>
@@ -479,7 +493,7 @@
     <script src="~/admin/plugins/chart.js/Chart.min.js"></script>
 
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-@*     <script src="~/admin/dist/js/pages/dashboard2.js"></script> *@
+    @*     <script src="~/admin/dist/js/pages/dashboard2.js"></script> *@
     <!-- Datatables  -->
     <script src="~/admin/plugins/moment/moment-with-locales.min.js"></script>
     <script src="~/admin/plugins/datatables/datatables.js"></script>

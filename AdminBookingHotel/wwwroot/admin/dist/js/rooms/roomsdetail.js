@@ -38,16 +38,17 @@ $("#updateBtn").click(function () {
     var modelRoomName = $("#modelRoomName").val();
     var modelRoomType = ($('#modelRoomType').val() != null ? $('#modelRoomType').val().join(',') : "");
     var modelRoomHuman = ($('#modelRoomHuman').val() != null ? $('#modelRoomHuman').val().join(',') : "");
+    var modelPrice = parseFloat($("#modelPrice").val());
     var modelRoomSize = $("#modelRoomSize").val();
     var modelDescription = $("#modelDescription").val();
-
+    var imgCodeByUserId = $("#imgCodeByUserId").val();
     const modelActiveCheckbox = document.getElementById('modelActive');
     const modelActive = modelActiveCheckbox.checked;
 
     model = {
         Id: id, RoomName: modelRoomName
-        , RoomType: modelRoomType, RoomHuman: modelRoomHuman, Active: modelActive
-        , RoomSize: modelRoomSize, Description: modelDescription
+        , RoomType: modelRoomType, RoomHuman: modelRoomHuman, Price: modelPrice, Active: modelActive
+        , RoomSize: modelRoomSize, Description: modelDescription, ImgCode: imageData, ImgCodeByUserId: imgCodeByUserId
     }
 
     $.ajax({
@@ -93,3 +94,54 @@ $("#updateBtn").click(function () {
         }
     })
 });
+$("#uploadImg").click(function () {
+    convertImg();
+    //convertImg().then(d => { console.log(d); imageData = d; });
+})
+function convertImg() {
+    debugger
+    var input = document.getElementById('featureImg');
+    var file = input.files[0];
+    var imgData;
+    var result = new Promise((resolve, reject) => {
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var base64String = e.target.result.split(",")[1];
+                sendDataToApi(base64String).done(function (d) {
+                    resolve(d);
+                })
+
+            }
+            reader.readAsDataURL(file);
+            $("#imagePreview").attr("src", URL.createObjectURL(file));
+        } else {
+            reject(undefined);
+        }
+    });
+    return result;
+}
+function sendDataToApi(base64String) {
+    var sign = crypto.randomUUID();
+    var apiUrl = "WebHotels/UploadImage";
+    var returnData;
+    return $.ajax({
+        type: "POST",
+        url: apiUrl,
+        data: {
+            sign: sign,
+            base64Image: base64String
+        },
+
+        success: function (response) {
+
+            var obj = JSON.parse(response);
+            returnData = obj.description;
+            imageData = returnData;
+            console.log("imageData:" + imageData);
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+}

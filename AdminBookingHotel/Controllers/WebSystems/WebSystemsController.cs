@@ -32,6 +32,12 @@ namespace AdminBookingHotel.Controllers.WebSystems
         [HttpGet]
         public IActionResult Index()
         {
+            var userId = HttpContext.Session.GetString("TOKEN_SERVER");
+            if (userId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             var hotelNames = _dbContext.Hotel.ToList();
             ViewData["HotelName"] = new SelectList(hotelNames, "Id", "HotelName");
             return View();

@@ -1,4 +1,4 @@
-﻿@using System.Net;
+﻿﻿@using System.Net;
 @model DataAccess.Models.HotelsModels.HotelsViewModel
 
 <form asp-action="Update" method="post" role="form" id="hotelsDetailModal">
@@ -17,7 +17,7 @@
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="logInfoTab" role="tabpanel" aria-labelledby="icon-home-tab">
                             <input asp-for="Id" type="hidden" id="modelId" value="@Model?.Id">
-
+                            <input type="hidden" value="@Model?.ImgCodeByUserId" asp-for="ImgCodeByUserId" id="imgCodeByUserId" />
                             <div class="row">
                                 <div class="col-lg-4">
                                     <label asp-for="HotelName" class="control-label mb-10">Tên Khách Sạn</label>
@@ -58,6 +58,15 @@
                                     <textarea class="form-control" asp-for="Description" rows="5" id="modelDescription" placeholder="Nội dung ghi chú">@Model?.Description</textarea>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label class="control-label mb-2">Feature Image</label>
+                                <div class="input-group">
+                                    <input type="file" id="featureImg" name="featureImg">
+                                    <button type="button" id="uploadImg">Upload</button>
+
+                                    <img id="imagePreview" style="max-width: 100%; max-height: 300px;" />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -73,4 +82,4 @@
     </div>
 </form>
 
-<script src="~/admin/dist/js/Hotels/Hotelsdetail.js"></script>
+<script src="~/admin/dist/js/hotels/hotelsdetail.js"></script>

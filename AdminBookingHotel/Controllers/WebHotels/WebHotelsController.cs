@@ -2,6 +2,7 @@
 using DataAccess.IRepositories;
 using DataAccess.Models;
 using DataAccess.Models.HotelsModels;
+using MediaBookingHotel.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -13,6 +14,7 @@ using System.Net;
 
 namespace AdminBookingHotel.Controllers.WebHotels
 {
+
     public class WebHotelsController : Controller
     {
         IUtilitiesRepository<HotelsViewModel> _utilitiesRepository;
@@ -31,6 +33,12 @@ namespace AdminBookingHotel.Controllers.WebHotels
         [HttpGet]
         public IActionResult Index()
         {
+            var userId = HttpContext.Session.GetString("TOKEN_SERVER");
+            if (userId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             return View();
         }
         [HttpPost]
@@ -109,7 +117,8 @@ namespace AdminBookingHotel.Controllers.WebHotels
                 if (string.IsNullOrEmpty(id) || id == "0")
                 {
                     base_url = "Hotels/AddHotels"; //API Controller
-                } else
+                }
+                else
                 {
                     base_url = "Hotels/EditHotels?id=" + model.Id; //API Controller
                 }
@@ -122,7 +131,7 @@ namespace AdminBookingHotel.Controllers.WebHotels
                     return RedirectToAction("Index", "WebHotels");
                 }
 
-                var result = JsonConvert.DeserializeObject<RoleResult>(updatedHotels);
+                //var result = JsonConvert.DeserializeObject<RoleResult>(updatedHotels);
                 _toastNotification.AddSuccessToastMessage("Success!");
                 return RedirectToAction("Index", "WebHotels");
 
@@ -158,6 +167,30 @@ namespace AdminBookingHotel.Controllers.WebHotels
             _toastNotification.AddSuccessToastMessage("Success!");
             return RedirectToAction("Index", "WebHotels");
 
+
+        }
+        [HttpPost]
+        public IActionResult UploadImage(UploadImageRequestData model)
+        {
+            if (ModelState.IsValid)
+            {
+                var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
+                var base_url = "Identity/Uploadimage"; //API Controller
+                var secretKey = "CAjEbwkeGqO@#Gn3Fsd8SRs2dFLMfxTo11a";
+                var sign = Common.Security.MD5Hash(model.base64Image + "|" + secretKey);
+                model.sign = sign;
+                var dataJson = JsonConvert.SerializeObject(model);
+                var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
+                var uploadResult = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Post, url_api, base_url, dataJson, token);
+                if (string.IsNullOrEmpty(uploadResult))
+                {
+                    _toastNotification.AddErrorToastMessage("Có lỗi xảy ra! Vui lòng kiểm tra lại thông tin");
+                    return BadRequest();
+                }
+                _toastNotification.AddSuccessToastMessage("Success!");
+                return Ok(uploadResult);
+            }
+            return BadRequest();
 
         }
     }

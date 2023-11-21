@@ -10,7 +10,7 @@ namespace DataAccess.Models.RoomsModels
 {
     public class RoomsViewModel
     {
-        public string Id { get; set; }
+        public string? Id { get; set; }
         public string? RoomName { get; set; }
         public string? RoomSize { get; set; }
         public string? RoomHuman { get; set; }
@@ -18,6 +18,9 @@ namespace DataAccess.Models.RoomsModels
         public string? Description { get; set; }
         public bool Active { get; set; } = false;
         public DateTime? SysDate { get; set; }
+        public string? ImgCodeByUserId { get; set; }
+
+        public string? ImgCode { get; set; }
 
     }
 }
