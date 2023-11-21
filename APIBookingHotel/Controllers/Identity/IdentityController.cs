@@ -58,7 +58,7 @@ namespace APIBookingHotel.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("Users")]
-        [Authorize(Policy = Permissions.Users.View)]
+        //[Authorize(Policy = Permissions.Users.View)]
         public async Task<IActionResult> GetAll(string? searchValue, string? roleValue)
         {
 

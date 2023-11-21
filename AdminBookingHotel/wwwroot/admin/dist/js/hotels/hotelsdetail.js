@@ -10,15 +10,15 @@ $("#updateBtn").click(function () {
     var modelHotelName = $("#modelHotelName").val();
     var modelHotelAddress = $('#modelHotelAddress').val();
     var modelDescription = $("#modelDescription").val();
-    var modelHotelLevel = parseInt($("#modelHotelLevel").val()); 
-
+    var modelHotelLevel = parseInt($("#modelHotelLevel").val());
+    var imgCodeByUserId = $("#imgCodeByUserId").val();
     const modelActiveCheckbox = document.getElementById('modelActive');
     const modelActive = modelActiveCheckbox.checked;
 
 
     model = {
         Id: id, HotelName: modelHotelName, HotelAddress: modelHotelAddress, HotelLevel: modelHotelLevel,
-        Active: modelActive, Description: modelDescription
+        Active: modelActive, Description: modelDescription, ImgCode: imageData, ImgCodeByUserId: imgCodeByUserId
     }
 
     $.ajax({
@@ -64,3 +64,54 @@ $("#updateBtn").click(function () {
         }
     })
 });
+$("#uploadImg").click(function () {
+    convertImg();
+    //convertImg().then(d => { console.log(d); imageData = d; });
+})
+function convertImg() {
+    debugger
+    var input = document.getElementById('featureImg');
+    var file = input.files[0];
+    var imgData;
+    var result = new Promise((resolve, reject) => {
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var base64String = e.target.result.split(",")[1];
+                sendDataToApi(base64String).done(function (d) {
+                    resolve(d);
+                })
+
+            }
+            reader.readAsDataURL(file);
+            $("#imagePreview").attr("src", URL.createObjectURL(file));
+        } else {
+            reject(undefined);
+        }
+    });
+    return result;
+}
+function sendDataToApi(base64String) {
+    var sign = crypto.randomUUID();
+    var apiUrl = "WebHotels/UploadImage";
+    var returnData;
+    return $.ajax({
+        type: "POST",
+        url: apiUrl,
+        data: {
+            sign: sign,
+            base64Image: base64String
+        },
+
+        success: function (response) {
+
+            var obj = JSON.parse(response);
+            returnData = obj.description;
+            imageData = returnData;
+            console.log("imageData:" + imageData);
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
+}

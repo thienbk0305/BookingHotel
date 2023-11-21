@@ -36,10 +36,6 @@ namespace DataAccess.Repositories
                  join hrs in _db.HotelRoomService on hotels.Id equals hrs.HotelId
                  join rooms in _db.Room on hrs.RoomId equals rooms.Id
                  join services in _db.Service on hrs.ServiceId equals services.Id
-                 join images_h in _db.Image on hotels.ImgCodeByUserId equals images_h.Id into gjHotel
-                 from subhotels in gjHotel.DefaultIfEmpty()
-                 join images_r in _db.Image on rooms.ImgCodeByUserId equals images_r.Id into gjRoom
-                 from subrooms in gjRoom.DefaultIfEmpty()
                  select new SystemsViewModel()
                  {
                      Id = hrs.Id,
@@ -58,9 +54,7 @@ namespace DataAccess.Repositories
                      ServiceId = services.Id,
                      ServiceName = services.ServiceName,
                      ServiceType = services.ServiceType,
-                     ServiceContent = services.ServiceContent,
-                     HotelImage = subhotels.ImgCode,
-                     RoomImage = subrooms.ImgCode
+                     ServiceContent = services.ServiceContent
                  }).Where(m =>
                 (m.Id != null && m.Id.ToLower().Contains(searchValue!.ToString().ToLower()))).ToListAsync();
             await _db.SaveChangesAsync(cancellation);

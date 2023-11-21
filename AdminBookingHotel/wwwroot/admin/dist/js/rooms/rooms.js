@@ -50,6 +50,9 @@
 
             }
         },
+        select: {
+            style: 'multi'
+        },
         "columnDefs": [
             {
                 'targets': [0],
@@ -66,7 +69,7 @@
                 'targets': [4],
                 'render': function (data) {
                     out = '';
-                    badgeColorArray = ['success','danger','primary','secondary'];
+                    badgeColorArray = ['success', 'danger', 'primary', 'secondary'];
                     data = data.replace('[', '').replace(']', '').replaceAll('"', '')
                     if (!data.includes(',')) {
                         out = '<span class="badge outline-badge-info">' + data + '</span>';
@@ -110,6 +113,16 @@
                     } else out = '<span class="badge badge-warning"> InActive </span>';
                     return out;
                 }
+            },
+            {
+                'targets': [7],
+                'render': function (e, t, r, n) {
+                    var out = ''
+                    if (e !== null) {
+                        out = '<img src="https://localhost:7204/Avatar/' + e + '" width="100px" height="100px"</>'
+                    }
+                    return out;
+                }
             }
         ],
         "columns": [
@@ -124,6 +137,7 @@
             { "data": "RoomType", "name": "RoomType", "autoWidth": true },
             { "data": "RoomHuman", "name": "RoomHuman", "autoWidth": true },
             { "data": "Active", "name": "Active", "autoWidth": true },
+            { "data": "ImgCode", "name": "ImgCode", "autoWidth": true },
             {
                 "render": function (data, type, row, meta) {
                     return (
@@ -177,5 +191,3 @@ function deleteRoomsByID(id) {
         }
     }), !1
 }
-
-

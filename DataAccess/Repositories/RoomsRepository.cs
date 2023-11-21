@@ -37,7 +37,6 @@ namespace DataAccess.Repositories
                      RoomType = hotel.RoomType,
                      Description = hotel.Description,
                      Active = hotel.Active,
-                     Price = hotel.Price,
                      SysDate = hotel.SysDate,
                      ImgCodeByUserId = hotel.ImgCodeByUserId,
                      ImgCode = gi.ImgCode
@@ -62,7 +61,6 @@ namespace DataAccess.Repositories
                      RoomType = hotel.RoomType,
                      Description = hotel.Description,
                      Active = hotel.Active,
-                     Price = hotel.Price,
                      SysDate = hotel.SysDate,
                      ImgCodeByUserId = hotel.ImgCodeByUserId,
                      ImgCode = gi.ImgCode

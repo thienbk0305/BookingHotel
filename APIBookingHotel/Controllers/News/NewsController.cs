@@ -47,7 +47,7 @@ namespace APIBookingHotel.Controllers.News
             //string sql = "Select N.*,I.ImgCode From New N Left Join Image I On N.ImgCodeByUserId=I.Id";
             //var news = await _bookingHotelUnitOfWork.NewsRepository.FromSqlQueryAsync(sql, HttpContext.RequestAborted);
             var news = new List<NewsViewModel>();
-            var result = await _bookingHotelUnitOfWork.NewsRepository.GetAllNewsAsync(searchString, HttpContext.RequestAborted);
+            var result = await _bookingHotelUnitOfWork.NewsRepository.GetAllNewsAsync(searchString!, HttpContext.RequestAborted);
             if (result != null)
             {
                 return Ok(result);
