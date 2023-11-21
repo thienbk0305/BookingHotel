@@ -1,4 +1,6 @@
 ﻿using DataAccess.Entities;
+using DataAccess.Models.NewsModels;
+using DataAccess.Models.SystemsModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +11,6 @@ namespace DataAccess.IRepositories
 {
     public interface INewsRepository : IGenericRepository<New>
     {
+        Task<IEnumerable<NewsViewModel>> GetAllNewsAsync(string searchValue, CancellationToken cancellation);
     }
 }

@@ -10,7 +10,7 @@ namespace DataAccess.Models.SystemsModels
 {
     public class SystemsViewModel
     {
-        public string Id { get; set; }
+        public string? Id { get; set; }
         public string? HotelId { get; set; }
         public string? HotelName { get; set; }
         public string? HotelAddress { get; set; }

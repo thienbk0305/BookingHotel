@@ -17,6 +17,7 @@ namespace DataAccess.Models.NewsModels
         public bool Active { get; set; }
         public DateTime? SysDate { get; set; }
         public string? ImgCodeByUserId { get; set; }
+        public string? ImgCode { get; set; }
 
     }
 }

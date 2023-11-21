@@ -30,28 +30,27 @@ namespace APIBookingHotel.Controllers.News
         [HttpGet]
         [Route("GetNews")]
         [AllowAnonymous]
-        //public async Task<IActionResult> GetNewsAsync(DateTime? fromDate, DateTime? toDate, string? searchString)
-        //{
-        //    var result = new List<NewsViewModel>();
-        //    var news = await _bookingHotelUnitOfWork.NewsRepository.GetAll(HttpContext.RequestAborted);
-        //    if (news != null)
-        //    {
-        //        //result = _mapper.Map<List<NewsViewModel>>(news);
-        //        return Ok(news);
-        //    }
-        //    return BadRequest();
-        //}
-
-        public async Task<IActionResult> GetNewsAsync(DateTime? fromDate, DateTime? toDate, string? searchString)
+        public async Task<IActionResult> GetNewsAsync( string? searchString)
         {
-            string sql = "Select N.*,I.FileName From New N Left Join Image I On N.ImgCodeByUserId=I.Id";
-            var news = await _bookingHotelUnitOfWork.NewsRepository.FromSqlQueryAsync(sql, HttpContext.RequestAborted);
+            var result = new List<NewsViewModel>();
+            var news = await _bookingHotelUnitOfWork.NewsRepository.GetAllNewsAsync(searchString!, HttpContext.RequestAborted);
             if (news != null)
             {
                 return Ok(news);
             }
             return BadRequest();
         }
+
+        //public async Task<IActionResult> GetNewsAsync(DateTime? fromDate, DateTime? toDate, string? searchString)
+        //{
+        //    string sql = "Select N.*,I.ImgCode ImgCodeByUser From New N Left Join Image I On N.ImgCodeByUserId=I.Id";
+        //    var news = await _bookingHotelUnitOfWork.NewsRepository.FromSqlQueryAsync(sql, HttpContext.RequestAborted);
+        //    if (news != null)
+        //    {
+        //        return Ok(news);
+        //    }
+        //    return BadRequest();
+        //}
 
         //<summary>
         //    Get single news by id

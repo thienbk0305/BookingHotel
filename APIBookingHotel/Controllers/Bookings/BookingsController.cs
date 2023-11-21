@@ -45,11 +45,11 @@ namespace APIBookingHotel.Controllers.Bookings
         //        // Kiểm tra xem giá tiền của Booking có khớp với DB không?
         //        foreach (var item in requestData.orderItems)
         //        {
-        //            var bookingDetail= await _bookingHotelUnitOfWork.RoomsRepository.GetById(item.BookingId, HttpContext.RequestAborted);
-        //            var bookingDetail = _context.sanpham.ToList().Where(s => s.PrductID == item.ProductID).FirstOrDefault();
-        //            if (bookingDetail == null || bookingDetail.BookingId <= 0)
+        //            var bookingDetail = await _bookingHotelUnitOfWork.SystemsRepository.GetById(item.BookingId, HttpContext.RequestAborted);
+
+        //            if (bookingDetail == null)
         //            {
-        //                errItems += item.ProductID + "";
+        //                errItems += item.BookingId + "";
         //                continue;
         //            }
 
@@ -60,15 +60,13 @@ namespace APIBookingHotel.Controllers.Bookings
         //        var customerId = 0;
         //        //Kiểm tra xem đã có khách hàng nào trùng thông tin chưa ?
 
-        //        var customerInfor = _context.customer.
-        //            Where(s => s.CustomerPhoneNumber == requestData.customer.CustomerPhoneNumber).FirstOrDefault();
+        //        var customerInfor = await _bookingHotelUnitOfWork.CustomerRepository.GetById(requestData.customer.CusFullName, HttpContext.RequestAborted);
 
-        //        if (customerInfor == null || customerInfor.CustomerID <= 0)
+        //        if (customerInfor == null)
         //        {
         //            // TH1 : chưa có
         //            // tạo khách hàng để lấy CustomerId
-        //            var cusID = await _orderRepository.Customer_Insert(requestData.customer);
-
+        //            var cusID = await _bookingHotelUnitOfWork.CustomerRepository.Add(requestData.customer,, HttpContext.RequestAborted);
         //            if (cusID <= 0)
         //            {
         //                returnData.ResponseCode = "-1";
@@ -83,7 +81,7 @@ namespace APIBookingHotel.Controllers.Bookings
         //        {
         //            // TH2 : đã có 
         //            // Lấy customer theo thông tin khách nhập
-        //            customerId = customerInfor.CustomerID;
+        //            customerId = customerInfor.Id;
         //        }
 
 
