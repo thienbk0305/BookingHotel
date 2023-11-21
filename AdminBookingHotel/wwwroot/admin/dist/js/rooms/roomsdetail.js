@@ -38,7 +38,6 @@ $("#updateBtn").click(function () {
     var modelRoomName = $("#modelRoomName").val();
     var modelRoomType = ($('#modelRoomType').val() != null ? $('#modelRoomType').val().join(',') : "");
     var modelRoomHuman = ($('#modelRoomHuman').val() != null ? $('#modelRoomHuman').val().join(',') : "");
-    var modelPrice = parseFloat($("#modelPrice").val()); 
     var modelRoomSize = $("#modelRoomSize").val();
     var modelDescription = $("#modelDescription").val();
 
@@ -47,7 +46,7 @@ $("#updateBtn").click(function () {
 
     model = {
         Id: id, RoomName: modelRoomName
-        , RoomType: modelRoomType, RoomHuman: modelRoomHuman, Price: modelPrice, Active: modelActive
+        , RoomType: modelRoomType, RoomHuman: modelRoomHuman, Active: modelActive
         , RoomSize: modelRoomSize, Description: modelDescription
     }
 

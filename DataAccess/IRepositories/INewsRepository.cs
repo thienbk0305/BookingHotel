@@ -12,5 +12,6 @@ namespace DataAccess.IRepositories
     public interface INewsRepository : IGenericRepository<New>
     {
         Task<IEnumerable<NewsViewModel>> GetAllNewsAsync(string searchValue, CancellationToken cancellation);
+        Task<NewsViewModel> GetNewsDetail(string id, CancellationToken cancellation);
     }
 }

@@ -14,16 +14,16 @@ namespace BookingHotel.Controllers
             var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
             var base_url = "news/getnews"; //API Controller
             var dataJson = JsonConvert.SerializeObject(listResult);
-            
+
             var result = Common.HttpHelper.WebPost(RestSharp.Method.Get, url_api, base_url, dataJson);
             listResult = JsonConvert.DeserializeObject<List<NewsViewModel>>(result);
             return View(listResult);
         }
 
         [Route("detail")]
-        public IActionResult Detail(string id) 
+        public IActionResult Detail(string id)
         {
-             if (String.IsNullOrEmpty(id))
+            if (String.IsNullOrEmpty(id))
             {
                 return RedirectToAction("Index");
             }

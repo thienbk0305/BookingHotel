@@ -4,6 +4,7 @@ using DataAccess.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(BookingHotelDbContext))]
-    partial class BookingHotelDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231121040127_EditHRS1102")]
+    partial class EditHRS1102
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -193,17 +195,11 @@ namespace DataAccess.Migrations
                     b.Property<string>("ServiceId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<bool>("Active")
-                        .HasColumnType("bit");
-
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<byte>("Status_HRS")
-                        .HasColumnType("tinyint");
 
                     b.Property<DateTime?>("SysDate")
                         .HasColumnType("datetime2");
@@ -318,6 +314,9 @@ namespace DataAccess.Migrations
                     b.Property<string>("ImgCodeByUserId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("RoomHuman")
                         .HasColumnType("nvarchar(max)");
 
@@ -329,6 +328,9 @@ namespace DataAccess.Migrations
 
                     b.Property<string>("RoomType")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte>("Status")
+                        .HasColumnType("tinyint");
 
                     b.Property<DateTime?>("SysDate")
                         .HasColumnType("datetime2");

@@ -21,6 +21,7 @@ namespace DataAccess.UnitOfWork
         IHotelsRepository HotelsRepository { get; }
         IImagesRepository ImagesRepository { get; }
         IBookingsRepository BookingsRepository { get; }
+        IBookingDetailsRepository BookingDetailsRepository { get; }
         ISystemsRepository SystemsRepository { get; }
 
         int Save();

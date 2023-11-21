@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DataAccess.Entities;
 using DataAccess.Models;
+using DataAccess.Models.SystemsModels;
 using DataAccess.UnitOfWork;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -25,10 +26,13 @@ namespace APIBookingHotel.Controllers.Bookings
         }
 
         //[HttpPost]
-        //[Route("OrderInsert")]
+        //[Route("BookingsInsert")]
         //[AllowAnonymous]
-        //public async Task<ActionResult> OrderInsert(CreateOrderRequestData requestData)
+        //public async Task<ActionResult> BoookingsInsert(CreateOrderRequestData requestData)
         //{
+        //    var errItems = "";
+        //    decimal totalAmount = 0;
+        //    var customerId = "";
         //    var returnData = new ReturnData();
         //    try
         //    {
@@ -40,8 +44,7 @@ namespace APIBookingHotel.Controllers.Bookings
         //            return Ok(returnData);
         //        }
 
-        //        var errItems = "";
-        //        var totalAmount = 0;
+
         //        // Kiểm tra xem giá tiền của Booking có khớp với DB không?
         //        foreach (var item in requestData.orderItems)
         //        {
@@ -57,67 +60,64 @@ namespace APIBookingHotel.Controllers.Bookings
 
         //        }
 
-        //        var customerId = 0;
         //        //Kiểm tra xem đã có khách hàng nào trùng thông tin chưa ?
 
-        //        var customerInfor = await _bookingHotelUnitOfWork.CustomerRepository.GetById(requestData.customer.CusFullName, HttpContext.RequestAborted);
+        //        var customerInfor = await _bookingHotelUnitOfWork.CustomerRepository.GetById(requestData.customer.CusPhone, HttpContext.RequestAborted);
 
         //        if (customerInfor == null)
         //        {
         //            // TH1 : chưa có
         //            // tạo khách hàng để lấy CustomerId
-        //            var cusID = await _bookingHotelUnitOfWork.CustomerRepository.Add(requestData.customer,, HttpContext.RequestAborted);
-        //            if (cusID <= 0)
+        //            var cusID = await _bookingHotelUnitOfWork.CustomerRepository.Add(requestData.customer,HttpContext.RequestAborted);
+        //            if (cusID != null)
         //            {
         //                returnData.ResponseCode = "-1";
         //                returnData.Description = "Dữ liệu không hợp lệ";
         //                return Ok(returnData);
         //            }
 
-        //            customerId = cusID;
+        //            customerId = cusID.Id;
 
         //        }
         //        else
         //        {
         //            // TH2 : đã có 
         //            // Lấy customer theo thông tin khách nhập
+
         //            customerId = customerInfor.Id;
         //        }
 
 
         //        foreach (var item in requestData.orderItems)
         //        {
-        //            var productDetail = _context.sanpham.ToList().Where(s => s.PrductID == item.ProductID).FirstOrDefault();
+        //            //var bookingDetail = new List<SystemsViewModel>();
+        //            var bookingDetail = await _bookingHotelUnitOfWork.RoomsRepository.GetById(item.BookingId, HttpContext.RequestAborted);
 
-        //            totalAmount += productDetail.DonGia;
+        //            totalAmount += bookingDetail.Price;
         //        }
         //        // Tạo order 
 
-
-
-        //        var order = new Order
+        //        var order = new Booking
         //        {
         //            TotalAmount = totalAmount,
         //            CreatedDate = DateTime.Now,
-        //            CustomerID = customerId,
+        //            CustomerId = customerId,
         //        };
 
-        //        var orderID = await _orderRepository.OrderInsert(order);
-        //        if (orderID > 0)
+        //        var orderId = await _bookingHotelUnitOfWork.BookingsRepository.Add(order, HttpContext.RequestAborted);
+        //        if (orderId != null)
         //        {
         //            // tạo order Detail
         //            foreach (var item in requestData.orderItems)
         //            {
-        //                var rs = _orderRepository.OrderDetailInsert(new OrderDetail
+        //                var rs = _bookingHotelUnitOfWork.BookingDetailsRepository.Add(new BookingDetail
         //                {
-        //                    OrderID = orderID,
-        //                    ProductID = item.ProductID,
+        //                    BookingId = item.BookingId,
         //                    Quantity = item.Quantity,
         //                    CreateAt = DateTime.Now
-        //                });
+        //                }, HttpContext.RequestAborted);
         //            }
         //        }
-
         //        returnData.ResponseCode = "1"; ;
         //        returnData.Description = "Chúc mừng bạn đã tạo đơn hàng thành công !";
         //        return Ok(returnData);

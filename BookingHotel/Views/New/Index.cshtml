@@ -1,4 +1,4 @@
-﻿@using DataAccess.Models.NewsModels;
+﻿﻿@using DataAccess.Models.NewsModels;
 ﻿@{
     ViewData["Title"] = "Tin tức";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -136,42 +136,42 @@
 <section id="blog_area" class="blog_area">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-12">
                 <div class="blog_left_sidebar">
                     @foreach (var news in Model)
                     {
-                        
-                    <article class="row blog_item">
-                        <div class="col-md-3">
-                            <div class="blog_info text-right">
-                                <div class="post_tag">
-                                    <a href="#">Du lịch,</a>
-                                    <a href="#">Dịch vụ,</a>
-                                    <a href="#">Vũng Tàu,</a>
-                                    <a href="#">Giá rẻ</a>
+
+                        <article class="row blog_item">
+                            <div class="col-md-3">
+                                <div class="blog_info text-right">
+                                    <div class="post_tag">
+                                        <a href="#">Du lịch,</a>
+                                        <a href="#">Dịch vụ,</a>
+                                        <a href="#">Vũng Tàu,</a>
+                                        <a href="#">Giá rẻ</a>
+                                    </div>
+                                    <ul class="blog_meta list_style">
+                                        <li><a href="#">@news.Source<i class="lnr lnr-user"></i></a></li>
+                                        <li><a href="#">@news.SysDate<i class="lnr lnr-calendar-full"></i></a></li>
+                                        <li><a href="#">0 Views<i class="lnr lnr-eye"></i></a></li>
+                                        <li><a href="#">06 Comments<i class="lnr lnr-bubble"></i></a></li>
+                                    </ul>
                                 </div>
-                                <ul class="blog_meta list_style">
-                                    <li><a href="#">@news.Source<i class="lnr lnr-user"></i></a></li>
-                                    <li><a href="#">@news.SysDate<i class="lnr lnr-calendar-full"></i></a></li>
-                                    <li><a href="#">0 Views<i class="lnr lnr-eye"></i></a></li>
-                                    <li><a href="#">06 Comments<i class="lnr lnr-bubble"></i></a></li>
-                                </ul>
                             </div>
-                        </div>
-                        <div class="col-md-9">
-                            <div class="blog_post">
-                                <img src="~/image/blog/main-blog/m-blog-1.jpg" alt="">
-                                <div class="blog_details">
+                            <div class="col-md-9">
+                                <div class="blog_post">
+                                    <img src="https://localhost:7204/Avatar/@news.ImgCode" alt="Feature Image">
+                                    <div class="blog_details">
                                         <a href="/news/detail?id=@news.Id"><h2>@news.Title</h2></a>
-                                    <p>@news.SumContent</p>
-                                    <a href="/news/detail?id=@news.Id" class="view_btn button_hover">Xem chi tiết</a>
+                                        <p>@news.SumContent</p>
+                                        <a href="/news/detail?id=@news.Id" class="view_btn button_hover">Xem chi tiết</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </article>
+                        </article>
                     }
 
-                   <nav class="blog-pagination justify-content-center d-flex">
+                    <nav class="blog-pagination justify-content-center d-flex">
                         <ul class="pagination">
                             <li class="page-item">
                                 <a href="#" class="page-link" aria-label="Previous">
@@ -180,10 +180,9 @@
                                     </span>
                                 </a>
                             </li>
-                            <li class="page-item"><a href="#" class="page-link">01</a></li>
-                            <li class="page-item active"><a href="#" class="page-link">02</a></li>
-                            <li class="page-item"><a href="#" class="page-link">03</a></li>
-                            <li class="page-item"><a href="#" class="page-link">04</a></li>
+                            <li class="page-item active"><a href="#" class="page-link">01</a></li>
+                            <li class="page-item"><a href="#" class="page-link">02</a></li>
+
                             <li class="page-item"><a href="#" class="page-link">09</a></li>
                             <li class="page-item">
                                 <a href="#" class="page-link" aria-label="Next">
@@ -196,168 +195,168 @@
                     </nav>
                 </div>
             </div>
-            <div class="col-lg-4">
-                <div class="blog_right_sidebar">
-                    <aside class="single_sidebar_widget search_widget">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Tìm kiếm tin tức">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button"><i class="lnr lnr-magnifier"></i></button>
-                            </span>
-                        </div><!-- /input-group -->
-                        <div class="br"></div>
-                    </aside>
-                    <aside class="single_sidebar_widget author_widget">
-                        <img class="author_img rounded-circle" src="~/image/blog/author.png" alt="">
-                        <h4>BOOKING HOTEL 247</h4>
-                        <p>Dịch vụ đặt phòng khách sạn nhanh nhất hiện nay</p>
-                        <div class="social_icon">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-github"></i></a>
-                            <a href="#"><i class="fa fa-behance"></i></a>
-                        </div>
-                        <label>Mọi thắc mắc của quý khách</label>
-                        Xin vui lòng liên hệ :<a href="tel:18009090">1800 9090</a></span>
-                        <div class="br"></div>
-                    </aside>
-                    <aside class="single_sidebar_widget popular_post_widget">
-                        <h3 class="widget_title">Combo Khách sạn ưu đãi</h3>
-                        <div class="media post_item">
-                            <img src="~/image/blog/post1.jpg" alt="post">
-                            <div class="media-body">
-                                <a href="#">
-                                    <h3>
-                                        Combo Vé máy bay / Xe giường nằm + khách sạn Sapa
-                                    </h3>
-                                </a>
-                                <p style="color:red"><strong>Từ 3,388,000đ</strong></p>
-                            </div>
-                        </div>
-                        <div class="media post_item">
-                            <img src="~/image/blog/post1.jpg" alt="post">
-                            <div class="media-body">
-                                <a href="#">
-                                    <h3>
-                                        Combo Vé máy bay / Xe giường nằm + khách sạn Sapa
-                                    </h3>
-                                </a>
-                                <p style="color:red"><strong>Từ 3,388,000đ</strong></p>
-                            </div>
-                        </div>
-                        <div class="media post_item">
-                            <img src="~/image/blog/post1.jpg" alt="post">
-                            <div class="media-body">
-                                <a href="#">
-                                    <h3>
-                                        Combo Vé máy bay / Xe giường nằm + khách sạn Sapa
-                                    </h3>
-                                </a>
-                                <p style="color:red"><strong>Từ 3,388,000đ</strong></p>
-                            </div>
-                        </div>
-                        <div class="media post_item">
-                            <img src="~/image/blog/post1.jpg" alt="post">
-                            <div class="media-body">
-                                <a href="#">
-                                    <h3>
-                                        Combo Vé máy bay / Xe giường nằm + khách sạn Sapa
-                                    </h3>
-                                </a>
-                                <p style="color:red"><strong>Từ 3,388,000đ</strong></p>
-                            </div>
-                        </div>
-                        <div class="br"></div>
-                    </aside>
-                    <aside class="single_sidebar_widget ads_widget">
-                        <a href="#"><img class="img-fluid" src="~/image/blog/add.jpg" alt=""></a>
-                        <div class="br"></div>
-                    </aside>
-                    <aside class="single_sidebar_widget post_category_widget">
-                        <h4 class="widget_title">Post Catgories</h4>
-                        <ul class="list_style cat-list">
-                            <li>
-                                <a href="#" class="d-flex justify-content-between">
-                                    <p>Technology</p>
-                                    <p>37</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="d-flex justify-content-between">
-                                    <p>Lifestyle</p>
-                                    <p>24</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="d-flex justify-content-between">
-                                    <p>Fashion</p>
-                                    <p>59</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="d-flex justify-content-between">
-                                    <p>Art</p>
-                                    <p>29</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="d-flex justify-content-between">
-                                    <p>Food</p>
-                                    <p>15</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="d-flex justify-content-between">
-                                    <p>Architecture</p>
-                                    <p>09</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" class="d-flex justify-content-between">
-                                    <p>Adventure</p>
-                                    <p>44</p>
-                                </a>
-                            </li>
-                        </ul>
-                        <div class="br"></div>
-                    </aside>
-                    <aside class="single-sidebar-widget newsletter_widget">
-                        <h4 class="widget_title">Newsletter</h4>
-                        <p>
-                            Here, I focus on a range of items and features that we use in life without
-                            giving them a second thought.
-                        </p>
-                        <div class="form-group d-flex flex-row">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i></div>
-                                </div>
-                                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Enter email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email'">
-                            </div>
-                            <a href="#" class="bbtns">Subcribe</a>
-                        </div>
-                        <p class="text-bottom">You can unsubscribe at any time</p>
-                        <div class="br"></div>
-                    </aside>
-                    <aside class="single-sidebar-widget tag_cloud_widget">
-                        <h4 class="widget_title">Tag Clouds</h4>
-                        <ul class="list_style">
-                            <li><a href="#">Technology</a></li>
-                            <li><a href="#">Fashion</a></li>
-                            <li><a href="#">Architecture</a></li>
-                            <li><a href="#">Fashion</a></li>
-                            <li><a href="#">Food</a></li>
-                            <li><a href="#">Technology</a></li>
-                            <li><a href="#">Lifestyle</a></li>
-                            <li><a href="#">Art</a></li>
-                            <li><a href="#">Adventure</a></li>
-                            <li><a href="#">Food</a></li>
-                            <li><a href="#">Lifestyle</a></li>
-                            <li><a href="#">Adventure</a></li>
-                        </ul>
-                    </aside>
-                </div>
+            @* <div class="col-lg-4">
+            <div class="blog_right_sidebar">
+            <aside class="single_sidebar_widget search_widget">
+            <div class="input-group">
+            <input type="text" class="form-control" placeholder="Tìm kiếm tin tức">
+            <span class="input-group-btn">
+            <button class="btn btn-default" type="button"><i class="lnr lnr-magnifier"></i></button>
+            </span>
+            </div><!-- /input-group -->
+            <div class="br"></div>
+            </aside>
+            <aside class="single_sidebar_widget author_widget">
+            <img class="author_img rounded-circle" src="~/image/blog/author.png" alt="">
+            <h4>BOOKING HOTEL 247</h4>
+            <p>Dịch vụ đặt phòng khách sạn nhanh nhất hiện nay</p>
+            <div class="social_icon">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-github"></i></a>
+            <a href="#"><i class="fa fa-behance"></i></a>
             </div>
+            <label>Mọi thắc mắc của quý khách</label>
+            Xin vui lòng liên hệ :<a href="tel:18009090">1800 9090</a></span>
+            <div class="br"></div>
+            </aside>
+            <aside class="single_sidebar_widget popular_post_widget">
+            <h3 class="widget_title">Combo Khách sạn ưu đãi</h3>
+            <div class="media post_item">
+            <img src="~/image/blog/post1.jpg" alt="post">
+            <div class="media-body">
+            <a href="#">
+            <h3>
+            Combo Vé máy bay / Xe giường nằm + khách sạn Sapa
+            </h3>
+            </a>
+            <p style="color:red"><strong>Từ 3,388,000đ</strong></p>
+            </div>
+            </div>
+            <div class="media post_item">
+            <img src="~/image/blog/post1.jpg" alt="post">
+            <div class="media-body">
+            <a href="#">
+            <h3>
+            Combo Vé máy bay / Xe giường nằm + khách sạn Sapa
+            </h3>
+            </a>
+            <p style="color:red"><strong>Từ 3,388,000đ</strong></p>
+            </div>
+            </div>
+            <div class="media post_item">
+            <img src="~/image/blog/post1.jpg" alt="post">
+            <div class="media-body">
+            <a href="#">
+            <h3>
+            Combo Vé máy bay / Xe giường nằm + khách sạn Sapa
+            </h3>
+            </a>
+            <p style="color:red"><strong>Từ 3,388,000đ</strong></p>
+            </div>
+            </div>
+            <div class="media post_item">
+            <img src="~/image/blog/post1.jpg" alt="post">
+            <div class="media-body">
+            <a href="#">
+            <h3>
+            Combo Vé máy bay / Xe giường nằm + khách sạn Sapa
+            </h3>
+            </a>
+            <p style="color:red"><strong>Từ 3,388,000đ</strong></p>
+            </div>
+            </div>
+            <div class="br"></div>
+            </aside>
+            <aside class="single_sidebar_widget ads_widget">
+            <a href="#"><img class="img-fluid" src="~/image/blog/add.jpg" alt=""></a>
+            <div class="br"></div>
+            </aside>
+            <aside class="single_sidebar_widget post_category_widget">
+            <h4 class="widget_title">Post Catgories</h4>
+            <ul class="list_style cat-list">
+            <li>
+            <a href="#" class="d-flex justify-content-between">
+            <p>Technology</p>
+            <p>37</p>
+            </a>
+            </li>
+            <li>
+            <a href="#" class="d-flex justify-content-between">
+            <p>Lifestyle</p>
+            <p>24</p>
+            </a>
+            </li>
+            <li>
+            <a href="#" class="d-flex justify-content-between">
+            <p>Fashion</p>
+            <p>59</p>
+            </a>
+            </li>
+            <li>
+            <a href="#" class="d-flex justify-content-between">
+            <p>Art</p>
+            <p>29</p>
+            </a>
+            </li>
+            <li>
+            <a href="#" class="d-flex justify-content-between">
+            <p>Food</p>
+            <p>15</p>
+            </a>
+            </li>
+            <li>
+            <a href="#" class="d-flex justify-content-between">
+            <p>Architecture</p>
+            <p>09</p>
+            </a>
+            </li>
+            <li>
+            <a href="#" class="d-flex justify-content-between">
+            <p>Adventure</p>
+            <p>44</p>
+            </a>
+            </li>
+            </ul>
+            <div class="br"></div>
+            </aside>
+            <aside class="single-sidebar-widget newsletter_widget">
+            <h4 class="widget_title">Newsletter</h4>
+            <p>
+            Here, I focus on a range of items and features that we use in life without
+            giving them a second thought.
+            </p>
+            <div class="form-group d-flex flex-row">
+            <div class="input-group">
+            <div class="input-group-prepend">
+            <div class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+            </div>
+            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Enter email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email'">
+            </div>
+            <a href="#" class="bbtns">Subcribe</a>
+            </div>
+            <p class="text-bottom">You can unsubscribe at any time</p>
+            <div class="br"></div>
+            </aside>
+            <aside class="single-sidebar-widget tag_cloud_widget">
+            <h4 class="widget_title">Tag Clouds</h4>
+            <ul class="list_style">
+            <li><a href="#">Technology</a></li>
+            <li><a href="#">Fashion</a></li>
+            <li><a href="#">Architecture</a></li>
+            <li><a href="#">Fashion</a></li>
+            <li><a href="#">Food</a></li>
+            <li><a href="#">Technology</a></li>
+            <li><a href="#">Lifestyle</a></li>
+            <li><a href="#">Art</a></li>
+            <li><a href="#">Adventure</a></li>
+            <li><a href="#">Food</a></li>
+            <li><a href="#">Lifestyle</a></li>
+            <li><a href="#">Adventure</a></li>
+            </ul>
+            </aside>
+            </div>
+            </div> *@
         </div>
     </div>
 </section>
