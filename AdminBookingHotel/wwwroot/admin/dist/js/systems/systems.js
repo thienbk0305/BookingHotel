@@ -93,7 +93,16 @@
                     }
                     return out;
                 }
-            },
+            }, 
+            //{
+            //    'targets': [7],
+            //    'render': function (e, t, r, n) {
+            //        return 0 == e ? out = '<span class="badge badge-warning">Phòng Mới</span>'
+            //            : 1 == e ? out = '<span class="badge badge-success">Phòng Hot</span>'
+            //                : 2 == e && (out = '<span class="badge badge-danger">Phòng Giảm Giá</span>')
+            //    },
+
+            //},
             {
                 'targets': [7],
                 'render': function (e, t, r, n) {
@@ -117,6 +126,7 @@
             { "data": "RoomType", "name": "RoomType", "autoWidth": true },
             { "data": "RoomHuman", "name": "RoomHuman", "autoWidth": true },
             { "data": "Price", "name": "Price", "autoWidth": true },
+           /* { "data": "Status", "name": "Status", "autoWidth": true },*/
             { "data": "Active", "name": "Active", "autoWidth": true },
             {
                 "render": function (data, type, row, meta) {

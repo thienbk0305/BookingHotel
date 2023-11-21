@@ -107,7 +107,9 @@ namespace APIBookingHotel.Controllers.Systems
             }
             if (ModelState.IsValid)
             {
-                var result = await _bookingHotelUnitOfWork.SystemsRepository.UpdateSystemsAsync(model, HttpContext.RequestAborted);
+                systems = _mapper.Map<HotelRoomService>(model);
+                systems.SysDate = DateTime.Now;
+                var result = await _bookingHotelUnitOfWork.SystemsRepository.Update(systems, HttpContext.RequestAborted);
                 if (result != null)
                 {
                     return Ok(systems);

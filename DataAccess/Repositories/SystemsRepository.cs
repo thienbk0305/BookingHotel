@@ -48,7 +48,7 @@ namespace DataAccess.Repositories
                      RoomSize = rooms.RoomSize,
                      RoomHuman = rooms.RoomHuman,
                      RoomType = rooms.RoomType,
-                     Status = hrs.Status_HRS,
+                     Status = hrs.Status,
                      Price = hrs.Price,
                      Active = hrs.Active,
                      ServiceId = services.Id,
@@ -73,7 +73,7 @@ namespace DataAccess.Repositories
             var hrsActive = new SqlParameter("@p6", hrs.Active);
 
 
-            return await _db.Database.ExecuteSqlRawAsync("EXEC SP_UpdateSystem @p0,@p1,@p2,@p3,@p4,@p5,@p6", hrsId, hrsHotelId, hrsRoomId, hrsServiceId, hrsPrice, hrsStatus, hrsActive);
+            return await _db.Database.ExecuteSqlRawAsync("EXEC SP_UpdateSystem @p0,@p1,@p2,@p3,@p4", hrsId, hrsHotelId, hrsRoomId, hrsServiceId, hrsPrice);
 
         }
     }

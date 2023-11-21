@@ -59,7 +59,7 @@
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="form-group">
-                                        <label asp-for="Status" class="control-label mb-10">Loại Dịch Vụ</label>
+                                        <label asp-for="Status" class="control-label mb-10">Phân Loại</label>
                                         <select asp-for="Status" class="selectpicker form-control" id="modelStatus"
                                                 asp-items="Html.GetEnumSelectList<DataAccess.Entities.Status>()" value="@Model?.Status">
                                         </select>

@@ -21,7 +21,7 @@ namespace DataAccess.Entities
         public Service? Service { get; set; }
 
         public double Price { get; set; }
-        public Status Status_HRS { get; set; } = Status.Status_1;
+        public Status Status { get; set; } = Status.Status_1;
         public bool Active { get; set; } = false;
         public DateTime? SysDate { get; set; }
 
