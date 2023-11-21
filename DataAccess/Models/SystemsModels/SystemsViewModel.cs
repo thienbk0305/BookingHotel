@@ -21,12 +21,14 @@ namespace DataAccess.Models.SystemsModels
         public string? HotelName { get; set; }
         public string? HotelAddress { get; set; }
         public int? HotelLevel { get; set; }
+        public string? HotelImage { get; set; }
 
         public string? RoomId { get; set; }
         public string? RoomName { get; set; }
         public string? RoomSize { get; set; }
         public string? RoomHuman { get; set; }
         public string? RoomType { get; set; }
+        public string? RoomImage { get; set; }
 
         public string? ServiceId { get; set; }
         public string? ServiceName { get; set; }
