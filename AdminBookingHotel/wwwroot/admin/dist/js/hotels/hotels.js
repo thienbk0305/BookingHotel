@@ -16,7 +16,7 @@
         "serverSide": true,
         "select": false,
         "filter": true,
-        "ordering": true,
+        "ordering": false,
         "searching": true,
         "pageLength": 20,
         "lengthMenu": [20, 50, 100, 500],
@@ -50,6 +50,9 @@
 
             }
         },
+        select: {
+            style: 'multi'
+        },
         "columnDefs": [
             {
                 'targets': [0],
@@ -63,12 +66,35 @@
                 },
             },
             {
-                'targets': [4],
+                'targets': [3],
+                'render': function (e) {
+                    var out = '';
+                    if (e !== null) {
+                        for (let i = 0; i < e; i++) {
+                            out += '⭐'
+                        }
+                    }
+                    return out;
+
+                },
+            },
+            {
+                'targets': [5],
                 'render': function (e, t, r, n) {
                     var out;
                     if (e === true) {
                         out = '<span class="badge badge-success"> Active </span>'
                     } else out = '<span class="badge badge-warning"> InActive </span>';
+                    return out;
+                }
+            },
+            {
+                'targets': [6],
+                'render': function (e, t, r, n) {
+                    var out = ''
+                    if (e !== null) {
+                        out = '<img src="https://localhost:7204/Avatar/' + e + '" width="100px" height="100px"</>'
+                    }
                     return out;
                 }
             }
@@ -81,8 +107,10 @@
             },
             { "data": "SysDate", "name": "SysDate", "autoWidth": true },
             { "data": "HotelName", "name": "HotelName", "autoWidth": true },
+            { "data": "HotelLevel", "name": "HotelLevel", "autoWidth": true },
             { "data": "HotelAddress", "name": "HotelAddress", "autoWidth": true },
             { "data": "Active", "name": "Active", "autoWidth": true },
+            { "data": "ImgCode", "name": "ImgCode", "autoWidth": true },
             {
                 "render": function (data, type, row, meta) {
                     return (
@@ -136,5 +164,3 @@ function deleteHotelsByID(id) {
         }
     }), !1
 }
-
-
