@@ -33,7 +33,7 @@ namespace APIBookingHotel.Controllers.Hotels
         public async Task<IActionResult> GetHotelsAsync(DateTime? fromDate, DateTime? toDate, string? searchString)
         {
             var result = new List<HotelsViewModel>();
-            var Hotels = await _bookingHotelUnitOfWork.HotelsRepository.GetAllHotelsAsync(searchString, HttpContext.RequestAborted);
+            var Hotels = await _bookingHotelUnitOfWork.HotelsRepository.GetAllHotelsAsync(searchString!, HttpContext.RequestAborted);
             if (Hotels != null)
             {
                 //result = _mapper.Map<List<HotelsViewModel>>(Hotels);

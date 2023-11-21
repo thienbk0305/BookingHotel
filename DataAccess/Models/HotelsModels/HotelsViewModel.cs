@@ -8,12 +8,15 @@ namespace DataAccess.Models.HotelsModels
 {
     public class HotelsViewModel
     {
-        public string Id { get; set; }
+        public string? Id { get; set; }
         public string? HotelName { get; set; }
         public string? HotelAddress { get; set; }
         public int? HotelLevel { get; set; }
         public string? Description { get; set; }
         public bool Active { get; set; }
         public DateTime? SysDate { get; set; }
+        public string? ImgCodeByUserId { get; set; }
+
+        public string? ImgCode { get; set; }
     }
 }

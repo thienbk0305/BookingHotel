@@ -38,7 +38,7 @@ namespace APIBookingHotel.Controllers.rooms
         public async Task<IActionResult> GetroomsAsync(DateTime? fromDate, DateTime? toDate, string? searchString)
         {
             var result = new List<RoomsViewModel>();
-            var rooms = await _bookingHotelUnitOfWork.RoomsRepository.GetAllRoomsAsync(searchString, HttpContext.RequestAborted);
+            var rooms = await _bookingHotelUnitOfWork.RoomsRepository.GetAllRoomsAsync(searchString!, HttpContext.RequestAborted);
             if (rooms != null)
             {
                 //result = _mapper.Map<List<roomsViewModel>>(rooms);
