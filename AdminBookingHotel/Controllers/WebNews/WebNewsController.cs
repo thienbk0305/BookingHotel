@@ -130,7 +130,7 @@ namespace AdminBookingHotel.Controllers.WebNews
                     return RedirectToAction("Index", "WebNews");
                 }
 
-                var result = JsonConvert.DeserializeObject<RoleResult>(updatedNews);
+                //var result = JsonConvert.DeserializeObject<RoleResult>(updatedNews);
                 _toastNotification.AddSuccessToastMessage("Success!");
                 return RedirectToAction("Index", "WebNews");
 
