@@ -107,7 +107,7 @@ namespace DataAccess.Repositories
                      Active = users.Active,
                      AvatarImage = users.AvatarImage,
                      RoleId = roles.Id,
-                 }).AsNoTracking().FirstOrDefaultAsync(t => t.Id == id);
+                 }).AsNoTracking().FirstOrDefaultAsync(t => t.Id == id || t.Email == id);
             await _db.SaveChangesAsync(cancellation);
             return data!;
         }

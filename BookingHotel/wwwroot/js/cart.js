@@ -1,6 +1,15 @@
 ﻿$(document).ready(function () {
     $('.selectpicker').selectpicker();
+    var f1 = flatpickr(document.getElementById('checkIn'), {
+        defaultDate: "today",
+        dateFormat: "m/d/Y",
 
+    });
+
+    var f2 = flatpickr(document.getElementById('checkOut'), {
+        defaultDate: new Date().fp_incr(1),
+        dateFormat: "m/d/Y",
+    });
 });
 
 
@@ -9,24 +18,20 @@ $("#updateBtn").click(function () {
 
     if ($("#modelId").val() == "") { id = 0 }
     else { id = $("#modelId").val() }
-    var modelHotelId = $("#modelHotelId").val();
-    var modelRoomId = $("#modelRoomId").val();
-    var modelServiceId = $("#modelServiceId").val();
-    var modelPrice = parseFloat($("#modelPrice").val());
+
+    var checkIn = $("#checkIn").val();
+    var checkOut = $("#checkOut").val();
+    var txt_fullname = $("#txt_fullname").val();
+    var txt_email = $("#txt_email").val();
+    var txt_phone = $("#txt_phone").val();
     debugger
-    var modelStatus = $("#modelStatus").val();
-
-    const modelActiveCheckbox = document.getElementById('modelActive');
-    const modelActive = modelActiveCheckbox.checked;
-
     model = {
-        Id: id, HotelId: modelHotelId, RoomId: modelRoomId, ServiceId: modelServiceId
-        , Price: modelPrice, Active: modelActive, Status: modelStatus
-
+        Id: id, cusPhone: txt_phone, cusEmail: txt_email, cusFullName: txt_fullname,
+        CheckIn: checkIn, CheckOut: checkOut
     }
 
     $.ajax({
-        url: '/WebSystems/Update',
+        url: '/WebBookings/Update',
         type: 'POST',
         data: JSON.stringify(model),
         contentType: "application/json; charset=utf-8",
@@ -56,14 +61,14 @@ $("#updateBtn").click(function () {
             Swal.fire({
                 icon: 'success',
                 title: 'OK',
-                text: 'Cập nhập thông tin thành công'
+                text: 'Thanh Toán thành công'
             });
         },
         error: function (response) {
             Swal.fire({
                 icon: 'error',
                 title: 'Lỗi',
-                text: 'Cập nhập thông tin không thành công'
+                text: 'Thanh Toán không thành công'
             });
         }
     })

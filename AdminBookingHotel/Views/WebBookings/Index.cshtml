@@ -1,5 +1,5 @@
 ﻿﻿@{
-    ViewBag.Title = "Quản Lý Hệ Thống";
+    ViewBag.Title = "Quản Lý Booking";
     Layout = "_AdminLayout";
 }
 @section css {
@@ -8,7 +8,7 @@
 @section scripts
     {
     <!-- New JS Function -->
-    <script src="~/admin/dist/js/systems/systems.js"></script>
+    <script src="~/admin/dist/js/bookings/bookings.js"></script>
     <script src="~/admin/plugins/summernote/summernote-bs4.min.js"></script>
 }
 
@@ -17,13 +17,13 @@
     <!-- Content Header (Page header) -->
     <div class="page-header">
         <div class="page-title">
-            <h3>Danh Sách Hệ Thống</h3>
+            <h3>Danh Sách Booking</h3>
         </div>
         <nav class="breadcrumb-one" aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="javascript:void(0);"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0);">Quản Lý Hệ Thống</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><span>Danh Sách Hệ Thống</span></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">Quản Lý Booking</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><span>Danh Sách Booking</span></li>
             </ol>
         </nav>
     </div>
@@ -32,7 +32,7 @@
     <section class="content">
         <div class="container-fluid">
             <!--/. container-fluid -->
-            <form id="SystemsModal">
+            <form id="BookingsModal">
 
                 <div class="row layout-top-spacing">
                     <div class="col-12">
@@ -68,28 +68,26 @@
                                                 class="pull-right">
                                             Truy Vấn
                                         </button>
-                                        <button id="btnAddNew" type="button" class="btn btn-success">
-                                            Thêm Mới
-                                        </button>
                                         <div class="modal fade bs-example-modal-xl" tabindex="-1" role="dialog"
-                                             aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" id="systemsDetailModal"
-                                             data-url="@Url.Action("Detail", "WebSystems")"></div>
+                                             aria-labelledby="myExtraLargeModalLabel" aria-hidden="true" id="bookingsDetailModal"
+                                             data-url="@Url.Action("Detail", "WebBookkings")"></div>
 
                                     </div>
                                 </div>
                                 <div class="table-wrap mt-2">
                                     <div class="table-responsive style-1">
-                                        <table id="systemsTable" class="table style-1 table-hover non-hover" style="width:100%">
+                                        <table id="bookingsTable" class="table style-1 table-hover non-hover" style="width:100%">
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
+                                                    <th>Ngày Booking</th>
+@*                                                     <th>Tên Khách Hàng</th>
                                                     <th>Tên Khách Sạn</th>
                                                     <th>Tên Phòng</th>
-                                                    <th>Tên Tiện Ích</th>
-                                                    <th>Loại Giường</th>
-                                                    <th>Số Người</th>
-                                                    <th>Giá</th>
-                                                    @* <th>Phân Loại</th> *@
+                                                    <th>Ngày Nhận Phòng</th>
+                                                    <th>Ngày Trả Phòng</th>
+                                                    <th>Số lượng</th>
+                                                    <th>Tổng Tiền</th> *@
                                                     <th>Tình Trạng</th>
                                                     <th>Chi Tiết</th>
                                                 </tr>
@@ -97,13 +95,14 @@
                                             <tfoot>
                                                 <tr>
                                                     <th>#</th>
+                                                    <th>Ngày Booking</th>
+@*                                                     <th>Tên Khách Hàng</th>
                                                     <th>Tên Khách Sạn</th>
                                                     <th>Tên Phòng</th>
-                                                    <th>Tên Tiện Ích</th>
-                                                    <th>Loại Giường</th>
-                                                    <th>Số Người</th>
-                                                    <th>Giá</th>
-                                                    @*  <th>Phân Loại</th> *@
+                                                    <th>Ngày Nhận Phòng</th>
+                                                    <th>Ngày Trả Phòng</th>
+                                                    <th>Số lượng</th>
+                                                    <th>Tổng Tiền</th> *@
                                                     <th>Tình Trạng</th>
                                                     <th>Chi Tiết</th>
                                                 </tr>

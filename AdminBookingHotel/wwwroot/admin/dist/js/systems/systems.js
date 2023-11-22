@@ -59,7 +59,7 @@
                 'targets': [4],
                 'render': function (data) {
                     out = '';
-                    badgeColorArray = ['success','danger','primary','secondary'];
+                    badgeColorArray = ['success', 'danger', 'primary', 'secondary'];
                     data = data.replace('[', '').replace(']', '').replaceAll('"', '')
                     if (!data.includes(',')) {
                         out = '<span class="badge outline-badge-info">' + data + '</span>';
@@ -93,7 +93,7 @@
                     }
                     return out;
                 }
-            }, 
+            },
             //{
             //    'targets': [7],
             //    'render': function (e, t, r, n) {
@@ -126,7 +126,7 @@
             { "data": "RoomType", "name": "RoomType", "autoWidth": true },
             { "data": "RoomHuman", "name": "RoomHuman", "autoWidth": true },
             { "data": "Price", "name": "Price", "autoWidth": true },
-           /* { "data": "Status", "name": "Status", "autoWidth": true },*/
+            /* { "data": "Status", "name": "Status", "autoWidth": true },*/
             { "data": "Active", "name": "Active", "autoWidth": true },
             {
                 "render": function (data, type, row, meta) {
@@ -181,5 +181,3 @@ function deleteSystemsByID(id) {
         }
     }), !1
 }
-
-

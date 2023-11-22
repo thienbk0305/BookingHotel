@@ -43,6 +43,7 @@ namespace DataAccess.DBContext
         }
 
         public virtual DbSet<Booking> Booking { get; set; } = null!;
+        public virtual DbSet<BookingDetail> BookingDetail { get; set; } = null!;
         public virtual DbSet<Customer> Customer { get; set; } = null!;
         public virtual DbSet<Evaluate> Evaluate { get; set; } = null!;
         public virtual DbSet<Hotel> Hotel { get; set; } = null!;

@@ -69,7 +69,6 @@ $("#uploadImg").click(function () {
     //convertImg().then(d => { console.log(d); imageData = d; });
 })
 function convertImg() {
-    debugger
     var input = document.getElementById('featureImg');
     var file = input.files[0];
     var imgData;

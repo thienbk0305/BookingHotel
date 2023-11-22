@@ -9,6 +9,8 @@ namespace DataAccess.IRepositories
     public interface ISystemsRepository : IGenericRepository<HotelRoomService>
     {
         Task<IEnumerable<SystemsViewModel>> GetAllSystemsAsync(string searchValue, CancellationToken cancellation);
+        Task<IEnumerable<SystemsViewModel>> GetSystemsDetailByHotelId(string id, CancellationToken cancellation);
+        Task<SystemsViewModel> GetSystemsDetailAsync(string searchValue, CancellationToken cancellation);
         Task<int> UpdateSystemsAsync(HRSViewModel hrs, CancellationToken cancellation);
     }
 }

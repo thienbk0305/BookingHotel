@@ -9,7 +9,7 @@ namespace DataAccess.Entities
     {
         [Key]
         public string Id { get; set; }
-        public decimal? Discount { get; set; }
+        public double? Discount { get; set; }
         public DateTime? BeginDatetime { get; set; }
         public DateTime? ExpiryDatetime { get; set; }
         public int? Numbers { get; set; }

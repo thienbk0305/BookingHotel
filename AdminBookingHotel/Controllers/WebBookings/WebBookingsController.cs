@@ -1,32 +1,34 @@
 ﻿using DataAccess.DBContext;
 using DataAccess.IRepositories;
 using DataAccess.Models;
-using DataAccess.Models.RoomsModels;
+using DataAccess.Models.BookingsModels;
+using DataAccess.Models.SystemsModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NToastNotify;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
 
-namespace AdminBookingHotel.Controllers.WebRooms
+namespace AdminBookingHotel.Controllers.WebSystems
 {
-    public class WebRoomsController : Controller
+    public class WebBookingsController : Controller
     {
-        IUtilitiesRepository<RoomsViewModel> _utilitiesRepository;
+        IUtilitiesRepository<BookingsViewModel> _utilitiesRepository;
         private readonly IToastNotification _toastNotification;
-
         private readonly IConfiguration _configuration;
+        private readonly BookingHotelDbContext _dbContext;
 
-        public WebRoomsController(IUtilitiesRepository<RoomsViewModel> utilitiesRepository,
-                              IToastNotification toastNotification, IConfiguration configuration)
+        public WebBookingsController(IUtilitiesRepository<BookingsViewModel> utilitiesRepository,
+                              IToastNotification toastNotification, IConfiguration configuration, BookingHotelDbContext dbContext)
         {
             _utilitiesRepository = utilitiesRepository;
             _toastNotification = toastNotification;
             _configuration = configuration;
-
+            _dbContext = dbContext;
         }
         [HttpGet]
         public IActionResult Index()
@@ -53,9 +55,9 @@ namespace AdminBookingHotel.Controllers.WebRooms
                         : Request.Form["length"].FirstOrDefault());
                 var searchValue = Request.Form["search[value]"].FirstOrDefault();
 
-                var listResult = new List<RoomsViewModel>();
+                var listResult = new List<BookingsViewModel>();
                 var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
-                var base_url = "Rooms/GetRooms"; //API Controller
+                var base_url = "Systems/GetBookings?searchValue=" + searchValue; //API Controller
                 var dataJson = JsonConvert.SerializeObject(listResult);
                 var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
                 var result = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Get, url_api, base_url, dataJson, token);
@@ -66,7 +68,7 @@ namespace AdminBookingHotel.Controllers.WebRooms
                     return RedirectToAction("Index");
                 }
 
-                listResult = JsonConvert.DeserializeObject<List<RoomsViewModel>>(result);
+                listResult = JsonConvert.DeserializeObject<List<BookingsViewModel>>(result);
 
                 var returnedData = _utilitiesRepository.InitiateDataTable(draw!, length!, start!, listResult!);
                 return returnedData;
@@ -81,56 +83,51 @@ namespace AdminBookingHotel.Controllers.WebRooms
         [HttpGet]
         public IActionResult Detail(string id)
         {
+
             if (id == null)
             {
                 return PartialView("_Detail");
             }
-            var rooms = new RoomsViewModel();
+            var Systems = new BookingsViewModel();
             var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
-            var base_url = "Rooms/SingleRooms?id=" + id; //API Controller
-            var dataJson = JsonConvert.SerializeObject(rooms);
+            var base_url = "Systems/SingleBookings?id=" + id; //API Controller
+            var dataJson = JsonConvert.SerializeObject(Systems);
             var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
             var result = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Get, url_api, base_url, dataJson, token);
 
             if (string.IsNullOrEmpty(result))
             {
                 _toastNotification.AddErrorToastMessage("Có lỗi xảy ra! Vui lòng kiểm tra lại thông tin");
-                return RedirectToAction("Index", "WebRooms");
+                return RedirectToAction("Index", "WebBookings");
             }
 
-            rooms = JsonConvert.DeserializeObject<RoomsViewModel>(result);
+            Systems = JsonConvert.DeserializeObject<BookingsViewModel>(result);
 
-            return PartialView("_Detail", rooms);
+            return PartialView("_Detail", Systems);
         }
 
         [HttpPost]
-        public IActionResult Update([FromBody] RoomsViewModel model)
+        public IActionResult Update([FromBody] BookingsViewModel model)
         {
             var id = model.Id;
             try
             {
 
                 var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
-                var base_url = "";
-                if (string.IsNullOrEmpty(id) || id == "0")
-                {
-                    base_url = "Rooms/AddRooms"; //API Controller
-                } else
-                {
-                    base_url = "Rooms/EditRooms?id=" + model.Id; //API Controller
-                }
+                var base_url = "Systems/EditBookings?id=" + model.Id; //API Controller
+
                 var dataJson = JsonConvert.SerializeObject(model);
                 var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
-                var updatedRooms = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Post, url_api, base_url, dataJson, token);
+                var updatedSystems = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Post, url_api, base_url, dataJson, token);
 
-                if (string.IsNullOrEmpty(updatedRooms))
+                if (string.IsNullOrEmpty(updatedSystems))
                 {
-                    return RedirectToAction("Index", "WebRooms");
+                    return RedirectToAction("Index", "WebBookings");
                 }
 
-                //var result = JsonConvert.DeserializeObject<RoleResult>(updatedRooms);
+                var result = JsonConvert.DeserializeObject<RoleResult>(updatedSystems);
                 _toastNotification.AddSuccessToastMessage("Success!");
-                return RedirectToAction("Index", "WebRooms");
+                return RedirectToAction("Index", "WebBookings");
 
             }
             catch (Exception)
@@ -138,33 +135,6 @@ namespace AdminBookingHotel.Controllers.WebRooms
 
                 throw;
             }
-        }
-
-        [HttpDelete]
-        public IActionResult Delete(string id)
-        {
-            if (id == null)
-            {
-                return PartialView("_Detail");
-            }
-
-            var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
-            var base_url = "Rooms/DeleteRooms?id=" + id; //API Controller
-            var dataJson = JsonConvert.SerializeObject(id);
-            var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
-            var deleteRooms = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Delete, url_api, base_url, dataJson, token);
-
-            if (string.IsNullOrEmpty(deleteRooms))
-            {
-                _toastNotification.AddErrorToastMessage("Có lỗi xảy ra! Vui lòng kiểm tra lại thông tin");
-                return RedirectToAction("Index", "WebRooms");
-            }
-
-            var result = JsonConvert.DeserializeObject<RoleResult>(deleteRooms);
-            _toastNotification.AddSuccessToastMessage("Success!");
-            return RedirectToAction("Index", "WebRooms");
-
-
         }
     }
 }
