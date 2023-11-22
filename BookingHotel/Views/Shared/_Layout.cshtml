@@ -71,7 +71,7 @@
                         <li class="nav-item"><a style="color:red" class="nav-link" asp-controller="New" asp-action="index"><strong>Tin tức</strong></a></li>
                         <li class="nav-item"><a class="nav-link" asp-controller="Profile" asp-action="index">Booking của tôi</a></li>
                         <li class="nav-item"><a class="nav-link" asp-controller="contact" asp-action="index">Liên hệ</a></li>
-                        <li class="nav-item"><a style="color:blue" class="nav-link" asp-controller="cusAccount" asp-action="Login"><strong>@(string.IsNullOrEmpty(contxt.HttpContext!.Session.GetString("TOKEN_EMAIL")) ? "Đăng Ký/Đăng nhập" : @contxt.HttpContext!.Session.GetString("TOKEN_EMAIL"))</strong></a></li>
+                        <li class="nav-item"><a style="color:blue" class="nav-link" asp-controller="cusAccount" asp-action="Login"><strong>@(string.IsNullOrEmpty(contxt.HttpContext!.Session.GetString("TOKEN_SERVER")) ? "Đăng Ký/Đăng nhập" : @contxt.HttpContext!.Session.GetString("TOKEN_SERVER"))</strong></a></li>
                     </ul>
                 </div>
             </nav>

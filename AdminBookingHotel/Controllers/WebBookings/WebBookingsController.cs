@@ -2,7 +2,6 @@
 using DataAccess.IRepositories;
 using DataAccess.Models;
 using DataAccess.Models.BookingsModels;
-using DataAccess.Models.SystemsModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -13,7 +12,7 @@ using NToastNotify;
 using System.ComponentModel.DataAnnotations;
 using System.Net;
 
-namespace AdminBookingHotel.Controllers.WebSystems
+namespace AdminBookingHotel.Controllers.WebBookings
 {
     public class WebBookingsController : Controller
     {
@@ -57,7 +56,7 @@ namespace AdminBookingHotel.Controllers.WebSystems
 
                 var listResult = new List<BookingsViewModel>();
                 var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
-                var base_url = "Systems/GetBookings?searchValue=" + searchValue; //API Controller
+                var base_url = "Bookings/GetBookings?searchValue=" + searchValue; //API Controller
                 var dataJson = JsonConvert.SerializeObject(listResult);
                 var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
                 var result = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Get, url_api, base_url, dataJson, token);
@@ -88,10 +87,10 @@ namespace AdminBookingHotel.Controllers.WebSystems
             {
                 return PartialView("_Detail");
             }
-            var Systems = new BookingsViewModel();
+            var Bookings = new BookingsViewModel();
             var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
-            var base_url = "Systems/SingleBookings?id=" + id; //API Controller
-            var dataJson = JsonConvert.SerializeObject(Systems);
+            var base_url = "Bookings/SingleBookings?id=" + id; //API Controller
+            var dataJson = JsonConvert.SerializeObject(Bookings);
             var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
             var result = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Get, url_api, base_url, dataJson, token);
 
@@ -101,9 +100,9 @@ namespace AdminBookingHotel.Controllers.WebSystems
                 return RedirectToAction("Index", "WebBookings");
             }
 
-            Systems = JsonConvert.DeserializeObject<BookingsViewModel>(result);
+            Bookings = JsonConvert.DeserializeObject<BookingsViewModel>(result);
 
-            return PartialView("_Detail", Systems);
+            return PartialView("_Detail", Bookings);
         }
 
         [HttpPost]
@@ -114,18 +113,18 @@ namespace AdminBookingHotel.Controllers.WebSystems
             {
 
                 var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
-                var base_url = "Systems/EditBookings?id=" + model.Id; //API Controller
+                var base_url = "Bookings/EditBookings?id=" + model.Id; //API Controller
 
                 var dataJson = JsonConvert.SerializeObject(model);
                 var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
-                var updatedSystems = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Post, url_api, base_url, dataJson, token);
+                var updatedBookings = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Post, url_api, base_url, dataJson, token);
 
-                if (string.IsNullOrEmpty(updatedSystems))
+                if (string.IsNullOrEmpty(updatedBookings))
                 {
                     return RedirectToAction("Index", "WebBookings");
                 }
 
-                var result = JsonConvert.DeserializeObject<RoleResult>(updatedSystems);
+                var result = JsonConvert.DeserializeObject<RoleResult>(updatedBookings);
                 _toastNotification.AddSuccessToastMessage("Success!");
                 return RedirectToAction("Index", "WebBookings");
 

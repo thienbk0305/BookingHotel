@@ -66,7 +66,7 @@ namespace BookingHotel.Controllers
 					tokenInfor.Description = "Đăng nhập thành công";
 					tokenInfor.Extention = model.Email;
 
-                    _contextAccessor.HttpContext!.Session.SetString("TOKEN_EMAIL", model.Email);
+                    _contextAccessor.HttpContext!.Session.SetString("TOKEN_SERVER", model.Email);
 					if (string.IsNullOrEmpty(tokenInfor.Fullname))
 					{
 						tokenInfor.Fullname = "";
@@ -94,7 +94,7 @@ namespace BookingHotel.Controllers
 
 		}
 		[HttpPost]
-		public JsonResult Register(LoginModel model)
+		public JsonResult Register(RegisterModel model)
 		{
 			var returnData = new ReturnData();
 			try

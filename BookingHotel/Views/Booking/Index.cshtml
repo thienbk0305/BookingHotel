@@ -33,7 +33,7 @@
                             <span class="help-block"></span>
                         </div>                <div class="input-item form-group col-lg-7 col-md-7">
                             <label for="txt_email">Email <span class="required">*</span></label>
-                            <input id="txt_email" autocomplete="off" required="" type="email" class="form-control" name="txt_email" value='@(string.IsNullOrEmpty(contxt.HttpContext!.Session.GetString("TOKEN_EMAIL")) ? "":@contxt.HttpContext!.Session.GetString("TOKEN_EMAIL"))'/>
+                            <input id="txt_email" autocomplete="off" required="" type="email" class="form-control" name="txt_email" value='@(string.IsNullOrEmpty(contxt.HttpContext!.Session.GetString("TOKEN_SERVER")) ? "":@contxt.HttpContext!.Session.GetString("TOKEN_SERVER"))' />
                             <span class="help-block"></span>
                         </div>                <div class="input-item form-group col-lg-5 col-md-5">
                             <label for="txt_phone">Số điện thoại <span class="required">*</span></label>
