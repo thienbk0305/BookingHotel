@@ -50,6 +50,9 @@
 
             }
         },
+        select: {
+            style: 'multi'
+        },
         "columnDefs": [
             {
                 'targets': [0],

@@ -138,7 +138,7 @@ function sendDataToApi(base64String) {
             var obj = JSON.parse(response);
             returnData = obj.description;
             imageData = returnData;
-            console.log("imageData:" + imageData);
+ /*           console.log("imageData:" + imageData);*/
         },
         error: function (error) {
             console.log(error);

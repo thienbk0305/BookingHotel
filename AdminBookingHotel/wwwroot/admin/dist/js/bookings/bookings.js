@@ -50,70 +50,31 @@
 
             }
         },
-        //"columnDefs": [
-        //    {
-        //        'targets': [0],
-        //        'className': "select-checkbox",
-        //    },
-        //    {
-        //        'targets': [4],
-        //        'render': function (data) {
-        //            out = '';
-        //            badgeColorArray = ['success', 'danger', 'primary', 'secondary'];
-        //            data = data.replace('[', '').replace(']', '').replaceAll('"', '')
-        //            if (!data.includes(',')) {
-        //                out = '<span class="badge outline-badge-info">' + data + '</span>';
-        //            } else {
-        //                tempArr = data.split(',')
-        //                tempArr.forEach((element) => {
-        //                    rnd = Math.floor(Math.random() * badgeColorArray.length);
-        //                    badgeColor = 'outline-badge-' + badgeColorArray[rnd];
-        //                    out += '<span class="badge ' + badgeColor + '">' + element + ' </span>'
-        //                })
-        //            }
-        //            return out;
-        //        }
-        //    },
-        //    {
-        //        'targets': [5],
-        //        'render': function (data) {
-        //            out = '';
-        //            badgeColorArray = ['info', 'warning'];
-        //            // badgeColorArray = ['info','warning','success','danger','primary','secondary'];
-        //            data = data.replace('[', '').replace(']', '').replaceAll('"', '')
-        //            if (!data.includes(',')) {
-        //                out = '<span class="badge outline-badge-info">' + data + '</span>';
-        //            } else {
-        //                tempArr = data.split(',')
-        //                tempArr.forEach((element) => {
-        //                    rnd = Math.floor(Math.random() * badgeColorArray.length);
-        //                    badgeColor = 'outline-badge-' + badgeColorArray[rnd];
-        //                    out += '<span class="badge ' + badgeColor + '">' + element + ' </span>'
-        //                })
-        //            }
-        //            return out;
-        //        }
-        //    },
-        //    //{
-        //    //    'targets': [7],
-        //    //    'render': function (e, t, r, n) {
-        //    //        return 0 == e ? out = '<span class="badge badge-warning">Phòng Mới</span>'
-        //    //            : 1 == e ? out = '<span class="badge badge-success">Phòng Hot</span>'
-        //    //                : 2 == e && (out = '<span class="badge badge-danger">Phòng Giảm Giá</span>')
-        //    //    },
+        "columnDefs": [
+            {
+                'targets': [0],
+                'className': "select-checkbox",
+            },
+            {
+                'targets': [1],
+                'render': function (e) {
+                    if (e == "2001-01-01T00:00:00" || e == "0001-01-01T00:00:00") return "";
+                    else return moment(e).format("MM/DD/YYYY HH:mm");
+                },
+            },
+            {
+                'targets': [9],
+                'render': function (e, t, r, n) {
+                    return 0 == e ? out = '<span class="badge badge-warning">Phòng Mới</span>'
+                        : 1 == e ? out = '<span class="badge badge-success">Phòng Hot</span>'
+                            : 2 == e && (out = '<span class="badge badge-danger">Phòng Giảm Giá</span>')
+                },
 
-        //    //},
-        //    {
-        //        'targets': [7],
-        //        'render': function (e, t, r, n) {
-        //            var out;
-        //            if (e === true) {
-        //                out = '<span class="badge badge-success"> Active </span>'
-        //            } else out = '<span class="badge badge-warning"> InActive </span>';
-        //            return out;
-        //        }
-        //    }
-        //],
+            }
+        ],
+        select: {
+            style: 'multi'
+        },
         "columns": [
             {
                 data: null,
@@ -121,14 +82,14 @@
                 width: "5%"
             },
             { "data": "CreatedDate", "name": "CreatedDate", "autoWidth": true },
-            //{ "data": "FullName", "name": "FullName", "autoWidth": true },
-            //{ "data": "HotelName", "name": "HotelName", "autoWidth": true },
-            //{ "data": "RoomName", "name": "RoomName", "autoWidth": true },
-            //{ "data": "CheckIn", "name": "CheckIn", "autoWidth": true },
-            //{ "data": "CheckOut", "name": "CheckOut", "autoWidth": true },
-            //{ "data": "Quantity", "name": "Quantity", "autoWidth": true },
-            //{ "data": "TotalAmount", "name": "TotalAmount", "autoWidth": true },
-            { "data": "status", "name": "status", "autowidth": true },
+            { "data": "FullName", "name": "FullName", "autoWidth": true },
+            { "data": "HotelName", "name": "HotelName", "autoWidth": true },
+            { "data": "RoomName", "name": "RoomName", "autoWidth": true },
+            { "data": "CheckIn", "name": "CheckIn", "autoWidth": true },
+            { "data": "CheckOut", "name": "CheckOut", "autoWidth": true },
+            { "data": "Quantity", "name": "Quantity", "autoWidth": true },
+            { "data": "TotalAmount", "name": "TotalAmount", "autoWidth": true },
+            { "data": "Status", "name": "Status", "autowidth": true },
             {
                 "render": function (data, type, row, meta) {
                     return (
