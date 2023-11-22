@@ -54,7 +54,7 @@ namespace APIBookingHotel.Controllers.Systems
         public async Task<IActionResult> GetSingleSystems(string id)
         {
             var result = new SystemsViewModel();
-            var Systems = await _bookingHotelUnitOfWork.SystemsRepository.GetById(id, HttpContext.RequestAborted);
+            var Systems = await _bookingHotelUnitOfWork.SystemsRepository.GetSystemsDetailAsync(id, HttpContext.RequestAborted);
             if (Systems != null)
             {
                 return Ok(Systems);

@@ -10,5 +10,6 @@ namespace DataAccess.IRepositories
     {
         Task<IEnumerable<SystemsViewModel>> GetAllSystemsAsync(string searchValue, CancellationToken cancellation);
         Task<int> UpdateSystemsAsync(HRSViewModel hrs, CancellationToken cancellation);
+        Task<SystemsViewModel> GetSystemsDetailAsync(string searchValue, CancellationToken cancellation);
     }
 }

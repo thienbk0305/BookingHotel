@@ -9,7 +9,6 @@ namespace DataAccess.Entities
     {
         public Hotel()
         {
-            Booking = new HashSet<Booking>();
             Room = new HashSet<Room>();
             Service = new HashSet<Service>();
             SaleOff = new HashSet<SaleOff>();
@@ -27,7 +26,6 @@ namespace DataAccess.Entities
         public virtual Image ImgCodeByUser { get; set; }
         public string? ImgCodeByUserId { get; set; }
 
-        public virtual ICollection<Booking> Booking { get; set; }
         public virtual ICollection<Room> Room { get; set; }
         public virtual ICollection<Service> Service { get; set; }
         public virtual ICollection<SaleOff> SaleOff { get; set; }

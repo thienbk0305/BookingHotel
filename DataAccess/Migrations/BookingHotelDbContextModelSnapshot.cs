@@ -27,32 +27,26 @@ namespace DataAccess.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<DateTime>("CreatedDate")
+                    b.Property<DateTime?>("CheckIn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("CheckOut")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CustomerId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("HotelId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<byte>("StatusBooking")
+                        .HasColumnType("tinyint");
 
-                    b.Property<string>("RoomId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("TotalAmount")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("TotalAmount")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
-
-                    b.HasIndex("HotelId");
-
-                    b.HasIndex("RoomId");
 
                     b.ToTable("Booking");
                 });
@@ -71,10 +65,6 @@ namespace DataAccess.Migrations
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
-
-                    b.Property<string>("RoomId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -354,8 +344,8 @@ namespace DataAccess.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("Discount")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double?>("Discount")
+                        .HasColumnType("float");
 
                     b.Property<DateTime?>("ExpiryDatetime")
                         .HasColumnType("datetime2");
@@ -703,23 +693,6 @@ namespace DataAccess.Migrations
                     b.HasDiscriminator().HasValue("User");
                 });
 
-            modelBuilder.Entity("DataAccess.Entities.Booking", b =>
-                {
-                    b.HasOne("DataAccess.Entities.Customer", null)
-                        .WithMany("Booking")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DataAccess.Entities.Hotel", null)
-                        .WithMany("Booking")
-                        .HasForeignKey("HotelId");
-
-                    b.HasOne("DataAccess.Entities.Room", null)
-                        .WithMany("Booking")
-                        .HasForeignKey("RoomId");
-                });
-
             modelBuilder.Entity("DataAccess.Entities.BookingDetail", b =>
                 {
                     b.HasOne("DataAccess.Entities.Booking", null)
@@ -732,7 +705,7 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("DataAccess.Entities.Evaluate", b =>
                 {
                     b.HasOne("DataAccess.Entities.Customer", "CusCodeByUser")
-                        .WithMany("Evaluate")
+                        .WithMany()
                         .HasForeignKey("CusCodeByUserId");
 
                     b.HasOne("DataAccess.Entities.Hotel", "HotelCodeByUser")
@@ -924,17 +897,8 @@ namespace DataAccess.Migrations
                     b.Navigation("BookingDetail");
                 });
 
-            modelBuilder.Entity("DataAccess.Entities.Customer", b =>
-                {
-                    b.Navigation("Booking");
-
-                    b.Navigation("Evaluate");
-                });
-
             modelBuilder.Entity("DataAccess.Entities.Hotel", b =>
                 {
-                    b.Navigation("Booking");
-
                     b.Navigation("Evaluate");
 
                     b.Navigation("HotelRoomService");
@@ -957,8 +921,6 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("DataAccess.Entities.Room", b =>
                 {
-                    b.Navigation("Booking");
-
                     b.Navigation("HotelRoomService");
                 });
 

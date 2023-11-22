@@ -13,7 +13,6 @@ $("#updateBtn").click(function () {
     var modelRoomId = $("#modelRoomId").val();
     var modelServiceId = $("#modelServiceId").val();
     var modelPrice = parseFloat($("#modelPrice").val());
-    debugger
     var modelStatus = $("#modelStatus").val();
 
     const modelActiveCheckbox = document.getElementById('modelActive');
