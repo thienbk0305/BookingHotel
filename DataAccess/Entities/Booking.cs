@@ -13,6 +13,7 @@ namespace DataAccess.Entities
             BookingDetail = new HashSet<BookingDetail>();
         }
         public string Id { get; set; }
+        public string HRSId { get; set; }
         public string CustomerId { get; set; }
         public DateTime? CheckIn { get; set; }
         public DateTime? CheckOut { get; set; }
@@ -21,6 +22,7 @@ namespace DataAccess.Entities
         public DateTime? CreatedDate { get; set; }
 
         public virtual ICollection<BookingDetail> BookingDetail { get; set; }
+
     }
 
     public enum StatusBooking : byte
@@ -37,12 +39,13 @@ namespace DataAccess.Entities
     {
         public string? BookingId { get; set; }
         public int Quantity { get; set; } = 1;
+        public DateTime? CheckIn { get; set; }
+        public DateTime? CheckOut { get; set; }
     }
     public class CreateOrderRequestData
     {
         public Customer? customer { get; set; }
         public List<OrderRequest>? orderItems { get; set; }
-        public DateTime? CheckIn { get; set; }
-        public DateTime? CheckOut { get; set; }
+
     }
 }

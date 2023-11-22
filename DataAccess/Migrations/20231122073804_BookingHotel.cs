@@ -28,6 +28,7 @@ namespace DataAccess.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    HRSId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CustomerId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CheckIn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CheckOut = table.Column<DateTime>(type: "datetime2", nullable: true),

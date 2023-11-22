@@ -33,6 +33,9 @@
     <script src="~/Scripts/js.cookie.js"></script>
     <script src="~/Scripts/Cart/StoreCart.js"></script>
     <link rel="stylesheet" href="~/css/style_hotel.css" />
+
+    <link rel="stylesheet" type="text/css" href="~/plugins/flatpickr/flatpickr-dark.css">
+
     @RenderSection("css",false)
 </head>
 @* <style>
@@ -59,13 +62,13 @@
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Khách sạn</a>
                             <ul class="dropdown-menu">
                                 @* <li class="nav-item"><a class="nav-link" href="#">Tìm theo khu vực</a></li> *@
-                                <li class="nav-item"><a class="nav-link" asp-controller="New" asp-action="index">Tin tức</a></li>
+@*                                 <li class="nav-item"><a class="nav-link" asp-controller="New" asp-action="index">Tin tức</a></li>
                                 <li class="nav-item"><a class="nav-link" asp-controller="news" asp-action="detail">Hướng dẫn đặt phòng</a></li>
-                                <li class="nav-item"><a class="nav-link" asp-controller="Contact" asp-action="index">Đối tác khách sạn</a></li>
+                                <li class="nav-item"><a class="nav-link" asp-controller="Contact" asp-action="index">Đối tác khách sạn</a></li> *@
 
                             </ul>
                         </li>
-                        <li class="nav-item"><a style="color:red" class="nav-link" asp-controller="news" asp-action="index"><strong>Flash Sale</strong></a></li>
+                        <li class="nav-item"><a style="color:red" class="nav-link" asp-controller="New" asp-action="index"><strong>Tin tức</strong></a></li>
                         <li class="nav-item"><a class="nav-link" asp-controller="Profile" asp-action="index">Booking của tôi</a></li>
                         <li class="nav-item"><a class="nav-link" asp-controller="contact" asp-action="index">Liên hệ</a></li>
                         <li class="nav-item"><a style="color:blue" class="nav-link" asp-controller="cusAccount" asp-action="Login"><strong>@(string.IsNullOrEmpty(contxt.HttpContext!.Session.GetString("TOKEN_SERVER")) ? "Đăng Ký/Đăng nhập" : @contxt.HttpContext!.Session.GetString("TOKEN_SERVER"))</strong></a></li>

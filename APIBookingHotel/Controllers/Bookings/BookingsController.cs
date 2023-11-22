@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using DataAccess.Entities;
 using DataAccess.Models;
-using DataAccess.Models.SystemsModels;
+using DataAccess.Models.BookingsModels;
 using DataAccess.UnitOfWork;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -23,6 +23,27 @@ namespace APIBookingHotel.Controllers.Bookings
         {
             _bookingHotelUnitOfWork = bookingHotelUnitOfWork;
             _mapper = mapper;
+        }
+
+        //<summary>
+        //    Get all Bookings from db
+        //</summary>
+        //
+        // <param name="searchString"></param>
+        [HttpGet]
+        [Route("GetBookings")]
+        [AllowAnonymous]
+
+        public async Task<IActionResult> GetBookingsAsync(string? searchValue)
+        {
+            var bookings = await _bookingHotelUnitOfWork.BookingsRepository.GetAllBookingsAsync(searchValue!, HttpContext.RequestAborted);
+            var result = _mapper.Map<List<BookingsViewModel>>(bookings);
+
+            if (bookings != null)
+            {
+                return Ok(bookings);
+            }
+            return BadRequest();
         }
 
         [HttpPost]
@@ -56,29 +77,33 @@ namespace APIBookingHotel.Controllers.Bookings
                         continue;
                     }
 
-                    //chECK Thêm số lượng nếu có
-
                 }
 
                 //Kiểm tra xem đã có khách hàng nào trùng thông tin chưa ?
 
-                var customerInfor = await _bookingHotelUnitOfWork.CustomerRepository.GetById(requestData.customer.CusPhone, HttpContext.RequestAborted);
+                var customerInfor = await _bookingHotelUnitOfWork.CustomerRepository.GetById(requestData.customer.CusEmail, HttpContext.RequestAborted);
 
                 if (customerInfor == null)
                 {
-                    // TH1 : chưa có
-                    // tạo khách hàng để lấy CustomerId
-                    requestData.customer.Id = Common.Security.GenerateRandomId();
-                    var cusID = await _bookingHotelUnitOfWork.CustomerRepository.Add(requestData.customer, HttpContext.RequestAborted);
-                    if (cusID == null)
+
+                    // TH1 : chưa có, kiểm tra tb user
+                    var userInfor = await _bookingHotelUnitOfWork.Identity.GetById(requestData.customer.CusEmail, HttpContext.RequestAborted);
+                    if (userInfor == null)
                     {
-                        returnData.ResponseCode = "-1";
-                        returnData.Description = "Dữ liệu không hợp lệ";
-                        return Ok(returnData);
+                        // tạo khách hàng để lấy CustomerId
+                        requestData.customer.Id = Common.Security.GenerateRandomId();
+                        var cusId = await _bookingHotelUnitOfWork.CustomerRepository.Add(requestData.customer, HttpContext.RequestAborted);
+                        if (cusId == null)
+                        {
+                            returnData.ResponseCode = "-1";
+                            returnData.Description = "Dữ liệu không hợp lệ";
+                            return Ok(returnData);
+                        }
+                        customerId = cusId.Id;
+                    } else
+                    {
+                        customerId = userInfor.Id;
                     }
-
-                    customerId = cusID.Id;
-
                 }
                 else
                 {
@@ -101,8 +126,9 @@ namespace APIBookingHotel.Controllers.Bookings
                     TotalAmount = totalAmount,
                     CreatedDate = DateTime.Now,
                     CustomerId = customerId!,
-                    CheckIn = requestData.CheckIn,
-                    CheckOut = requestData.CheckOut,
+                    HRSId = requestData.orderItems[0].BookingId,
+                    CheckIn = requestData.orderItems[0].CheckIn,
+                    CheckOut = requestData.orderItems[0].CheckOut,
                 };
 
                 var orderId = await _bookingHotelUnitOfWork.BookingsRepository.Add(order, HttpContext.RequestAborted);

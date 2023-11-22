@@ -69,10 +69,4 @@
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\WebBookings\" />
-    <Folder Include="Views\WebBookings\" />
-    <Folder Include="wwwroot\admin\dist\js\bookings\" />
-  </ItemGroup>
-
 </Project>

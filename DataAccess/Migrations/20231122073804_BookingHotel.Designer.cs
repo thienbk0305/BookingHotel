@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(BookingHotelDbContext))]
-    [Migration("20231122050713_BookingHotel")]
+    [Migration("20231122073804_BookingHotel")]
     partial class BookingHotel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,6 +39,10 @@ namespace DataAccess.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CustomerId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HRSId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
