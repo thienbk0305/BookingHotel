@@ -65,7 +65,18 @@ namespace BookingHotel.Controllers
 					tokenInfor.ResponseCode = "1";
 					tokenInfor.Description = "Đăng nhập thành công";
 					tokenInfor.Extention = model.Email;
-                    _contextAccessor.HttpContext!.Session.SetString("TOKEN_SERVER", model.Email);
+
+                    _contextAccessor.HttpContext!.Session.SetString("TOKEN_EMAIL", model.Email);
+					if (string.IsNullOrEmpty(tokenInfor.Fullname))
+					{
+						tokenInfor.Fullname = "";
+                    }
+                    if (string.IsNullOrEmpty(tokenInfor.PhoneNumber))
+                    {
+                        tokenInfor.PhoneNumber = "";
+                    }
+                    _contextAccessor.HttpContext!.Session.SetString("TOKEN_FULLNAME", tokenInfor.Fullname!);
+                    _contextAccessor.HttpContext!.Session.SetString("TOKEN_PHONENUMBER", tokenInfor.PhoneNumber!);
                 }
 				else
 				{

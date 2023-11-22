@@ -30,6 +30,8 @@ namespace DataAccess.Models
         public string? ResponseCode { get; set; }
         public string? Description { get; set; }
         public string? Extention { get; set; }
+        public string? Fullname { get; set; }
+        public string? PhoneNumber { get; set; }
     }
 
     public class TokenInfor : ReturnData
