@@ -11,7 +11,7 @@
         dateFormat: "m/d/Y",
     });
     "use strict";
-    $("#systemsTable").DataTable({
+    $("#bookingsTable").DataTable({
         "processing": true,
         "serverSide": true,
         "select": false,
@@ -42,7 +42,7 @@
             "sLengthMenu": "Results :  _MENU_"
         },
         "ajax": {
-            "url": "/WebSystems/LoadData",
+            "url": "/WebBookings/LoadData",
             "dataSrc": "dataResult",
             "type": "post",
             "datatype": "json",
@@ -131,26 +131,19 @@
             {
                 "render": function (data, type, row, meta) {
                     return (
-                        "<div class='btn-group'><button type='button' class='btn btn-primary btn-sm' onclick='return getSystemsByID(\"" + row.Id + "\")'>Edit</button></div>" +
-                        "<div class='btn-group'><button type='button' class='btn btn-primary btn-sm' onclick='return deleteSystemsByID(\"" + row.Id + "\")'>Delete</button></div>"
+                        "<div class='btn-group'><button type='button' class='btn btn-primary btn-sm' onclick='return getSystemsByID(\"" + row.Id + "\")'>Edit</button></div>"
                     );
                 },
                 "width": "20%"
             }
         ]
     });
-    var oTable = $('#systemsTable').DataTable();
+    var oTable = $('#bookingsTable').DataTable();
     $('#btnQuery').click(function () {
         oTable.draw();
     });
-    $(document).on("hide.bs.modal", "#systemsDetailModal", function () {
+    $(document).on("hide.bs.modal", "#bookingsDetailModal", function () {
         oTable.draw();
-    });
-    $("#btnAddNew").click(function () {
-        var e = $("#systemsDetailModal").data("url");
-        $.get(e, function (e) {
-            $("#systemsDetailModal").html(e), $("#systemsDetailModal").modal("show")
-        })
     });
 });
 
@@ -161,23 +154,11 @@ function getSystemsByID(Id) {
         data: { 'Id': Id },
         type: "GET",
         success: function (result) {
-            $('#systemsDetailModal').html(result);
-            $('#systemsDetailModal').modal('show');
+            $('#bookingsDetailModal').html(result);
+            $('#bookingsDetailModal').modal('show');
         },
         error: function (errormessage) {
             Swal.fire("Error", errormessage.responseText, "error");
         }
     });
 };
-
-function deleteSystemsByID(id) {
-    return $.ajax({
-        url: "/WebSystem/Delete/" + id,
-        type: "DELETE",
-        success: function (e) {
-        },
-        error: function (e) {
-            swal("Error", e.responseText, "error")
-        }
-    }), !1
-}

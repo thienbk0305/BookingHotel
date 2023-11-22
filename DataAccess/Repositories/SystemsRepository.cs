@@ -36,10 +36,8 @@ namespace DataAccess.Repositories
                  join hrs in _db.HotelRoomService on hotels.Id equals hrs.HotelId
                  join rooms in _db.Room on hrs.RoomId equals rooms.Id
                  join services in _db.Service on hrs.ServiceId equals services.Id
-                 join images in _db.Image on hotels.ImgCodeByUserId equals images.Id into gj
-                 from gi in gj.DefaultIfEmpty()
-                 //join images_a in _db.Image on rooms.ImgCodeByUserId equals images_a.Id into gj_a
-                 //from gi_a in gj.DefaultIfEmpty()
+                 join images in _db.Image on hotels.ImgCodeByUserId equals images.Id into imghotels
+                 from img in imghotels.DefaultIfEmpty()
                  select new SystemsViewModel()
                  {
                      Id = hrs.Id,
@@ -58,13 +56,19 @@ namespace DataAccess.Repositories
                      ServiceId = services.Id,
                      ServiceName = services.ServiceName,
                      ServiceType = services.ServiceType,
-                     ServiceContent = services.ServiceContent
+                     ServiceContent = services.ServiceContent,
+                     HotelImage = img.ImgCode
                  }).Where(m =>
                 (m.Id != null && m.Id.ToLower().Contains(searchValue!.ToString().ToLower()))).ToListAsync();
             await _db.SaveChangesAsync(cancellation);
             return data!;
+
         }
 
+        /// Get all entities async <summary>
+        /// </summary>
+        /// <param name="searchValue"></param>
+        /// <returns></returns>
         public async Task<SystemsViewModel> GetSystemsDetailAsync(string searchValue, CancellationToken cancellation)
         {
             if (searchValue == null)
@@ -77,8 +81,8 @@ namespace DataAccess.Repositories
                  join hrs in _db.HotelRoomService on hotels.Id equals hrs.HotelId
                  join rooms in _db.Room on hrs.RoomId equals rooms.Id
                  join services in _db.Service on hrs.ServiceId equals services.Id
-                 join images in _db.Image on hotels.ImgCodeByUserId equals images.Id into gj
-                 from gi in gj.DefaultIfEmpty()
+                 join images in _db.Image on hotels.ImgCodeByUserId equals images.Id into imghotels
+                 from img in imghotels.DefaultIfEmpty()
                  where hrs.Id == searchValue
                  select new SystemsViewModel()
                  {
@@ -98,10 +102,54 @@ namespace DataAccess.Repositories
                      ServiceId = services.Id,
                      ServiceName = services.ServiceName,
                      ServiceType = services.ServiceType,
-                     ServiceContent = services.ServiceContent
+                     ServiceContent = services.ServiceContent,
+                     HotelImage = img.ImgCode
                  }).FirstOrDefaultAsync();
-            await _db.SaveChangesAsync(cancellation);
             return data!;
+
+        }
+
+        /// Get all entities async <summary>
+        /// </summary>
+        /// <param name="hotelid"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<SystemsViewModel>> GetSystemsDetailByHotelId(string id, CancellationToken cancellation)
+        {
+
+            var data = await
+                (from hotels in _db.Hotel
+                 join hrs in _db.HotelRoomService on hotels.Id equals hrs.HotelId
+                 join rooms in _db.Room on hrs.RoomId equals rooms.Id
+                 join services in _db.Service on hrs.ServiceId equals services.Id
+                 join images in _db.Image on hotels.ImgCodeByUserId equals images.Id into imghotels
+                 from img in imghotels.DefaultIfEmpty()
+                 join images_r in _db.Image on rooms.ImgCodeByUserId equals images_r.Id into imgrooms
+                 from imag in imgrooms.DefaultIfEmpty()
+                 where hrs.HotelId == id
+                 select new SystemsViewModel()
+                 {
+                     Id = hrs.Id,
+                     HotelId = hotels.Id,
+                     HotelName = hotels.HotelName,
+                     HotelAddress = hotels.HotelAddress,
+                     HotelLevel = hotels.HotelLevel,
+                     RoomId = rooms.Id,
+                     RoomName = rooms.RoomName,
+                     RoomSize = rooms.RoomSize,
+                     RoomHuman = rooms.RoomHuman,
+                     RoomType = rooms.RoomType,
+                     Status = hrs.Status,
+                     Price = hrs.Price,
+                     Active = hrs.Active,
+                     ServiceId = services.Id,
+                     ServiceName = services.ServiceName,
+                     ServiceType = services.ServiceType,
+                     ServiceContent = services.ServiceContent,
+                     HotelImage = img.ImgCode,
+                     RoomImage = imag.ImgCode
+                 }).ToListAsync();
+            return data!;
+
         }
         public async Task<int> UpdateSystemsAsync(HRSViewModel hrs, CancellationToken cancellation)
         {

@@ -34,8 +34,29 @@ namespace APIBookingHotel.Controllers.Systems
 
         public async Task<IActionResult> GetSystemsAsync(string? searchValue)
         {
-            var systems = await _bookingHotelUnitOfWork.SystemsRepository.GetAllSystemsAsync(searchValue!,HttpContext.RequestAborted);
+            var systems = await _bookingHotelUnitOfWork.SystemsRepository.GetAllSystemsAsync(searchValue!, HttpContext.RequestAborted);
             var result = _mapper.Map<List<SystemsViewModel>>(systems);
+
+            if (systems != null)
+            {
+                return Ok(systems);
+            }
+            return BadRequest();
+        }
+        //<summary>
+        //    Get all Systems from db
+        //</summary>
+        //
+        // <param name="searchDate"></param>
+        // <param name="searchString"></param>
+        [HttpGet]
+        [Route("GetSystemsByHotelId")]
+        [AllowAnonymous]
+
+        public async Task<IActionResult> GetSystemsByHotelId(string hotelId)
+        {
+            var systems = await _bookingHotelUnitOfWork.SystemsRepository.GetSystemsDetailByHotelId(hotelId, HttpContext.RequestAborted);
+            //var result = _mapper.Map<List<SystemsViewModel>>(systems);
 
             if (systems != null)
             {
@@ -100,7 +121,7 @@ namespace APIBookingHotel.Controllers.Systems
         [AllowAnonymous]
         public async Task<IActionResult> EditSystems(string id, HRSViewModel model)
         {
-             var systems = await _bookingHotelUnitOfWork.SystemsRepository.GetById(id, HttpContext.RequestAborted);
+            var systems = await _bookingHotelUnitOfWork.SystemsRepository.GetById(id, HttpContext.RequestAborted);
             if (systems == null)
             {
                 return BadRequest();
@@ -144,5 +165,3 @@ namespace APIBookingHotel.Controllers.Systems
 
     }
 }
-
-

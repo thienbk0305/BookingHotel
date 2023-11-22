@@ -13,14 +13,15 @@ $("#updateBtn").click(function () {
     var modelRoomId = $("#modelRoomId").val();
     var modelServiceId = $("#modelServiceId").val();
     var modelPrice = parseFloat($("#modelPrice").val());
+    debugger
     var modelStatus = $("#modelStatus").val();
 
     const modelActiveCheckbox = document.getElementById('modelActive');
     const modelActive = modelActiveCheckbox.checked;
-    
+
     model = {
-        Id: id,HotelId: modelHotelId, RoomId: modelRoomId, ServiceId: modelServiceId
-        ,Price: modelPrice, Active: modelActive, Status: modelStatus
+        Id: id, HotelId: modelHotelId, RoomId: modelRoomId, ServiceId: modelServiceId
+        , Price: modelPrice, Active: modelActive, Status: modelStatus
 
     }
 

@@ -46,9 +46,9 @@ namespace APIBookingHotel.Controllers.Bookings
 
 
                 // Kiểm tra số lượng Booking?
-                foreach (var item in requestData.orderItems)
+                foreach (var item in requestData.orderItems!)
                 {
-                    var bookingDetail = await _bookingHotelUnitOfWork.SystemsRepository.GetById(item.BookingId, HttpContext.RequestAborted);
+                    var bookingDetail = await _bookingHotelUnitOfWork.SystemsRepository.GetById(item.BookingId!, HttpContext.RequestAborted);
 
                     if (bookingDetail == null)
                     {
@@ -100,7 +100,7 @@ namespace APIBookingHotel.Controllers.Bookings
                     Id = Common.Security.GenerateRandomId(),
                     TotalAmount = totalAmount,
                     CreatedDate = DateTime.Now,
-                    CustomerId = customerId,
+                    CustomerId = customerId!,
                     CheckIn = requestData.CheckIn,
                     CheckOut = requestData.CheckOut,
                 };
