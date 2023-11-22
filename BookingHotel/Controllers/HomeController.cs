@@ -1,5 +1,8 @@
 ﻿using BookingHotel.Models;
+using DataAccess.Models.HotelsModels;
+using DataAccess.Models.SystemsModels;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Diagnostics;
 
 namespace BookingHotel.Controllers
@@ -15,11 +18,19 @@ namespace BookingHotel.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var listResult = new List<SystemsViewModel>();
+            var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
+            var base_url = "Systems/GetSystems"; //API Controller
+            var dataJson = JsonConvert.SerializeObject(listResult);
+            var result = Common.HttpHelper.WebPost(RestSharp.Method.Get, url_api, base_url, dataJson);
+            listResult = JsonConvert.DeserializeObject<List<SystemsViewModel>>(result);
+            listResult = listResult.Where(h => h.Status == DataAccess.Entities.Status.Status_2).ToList();
+            return View(listResult);
         }
 
         public IActionResult Privacy()
         {
+
             return View();
         }
 

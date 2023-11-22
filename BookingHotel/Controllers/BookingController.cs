@@ -12,6 +12,11 @@ namespace BookingHotel.Controllers
         // GET: BookingCart
         public IActionResult Index()
         {
+            var token = HttpContext.Session.GetString("TOKEN_SERVER");
+            if (!string.IsNullOrEmpty(token))
+            {
+                ViewData["token"] = token;
+            }
             var list_cart = new List<BookingCart>();
             try
             {

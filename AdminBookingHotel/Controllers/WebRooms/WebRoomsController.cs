@@ -128,7 +128,7 @@ namespace AdminBookingHotel.Controllers.WebRooms
                     return RedirectToAction("Index", "WebRooms");
                 }
 
-                var result = JsonConvert.DeserializeObject<RoleResult>(updatedRooms);
+                //var result = JsonConvert.DeserializeObject<RoleResult>(updatedRooms);
                 _toastNotification.AddSuccessToastMessage("Success!");
                 return RedirectToAction("Index", "WebRooms");
 

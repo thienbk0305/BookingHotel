@@ -44,6 +44,27 @@ namespace APIBookingHotel.Controllers.Systems
             return BadRequest();
         }
         //<summary>
+        //    Get all Systems from db
+        //</summary>
+        //
+        // <param name="searchDate"></param>
+        // <param name="searchString"></param>
+        [HttpGet]
+        [Route("GetSystemsByHotelId")]
+        [AllowAnonymous]
+
+        public async Task<IActionResult> GetSystemsByHotelId(string hotelId)
+        {
+            var systems = await _bookingHotelUnitOfWork.SystemsRepository.GetSystemsDetailByHotelId(hotelId, HttpContext.RequestAborted);
+            //var result = _mapper.Map<List<SystemsViewModel>>(systems);
+
+            if (systems != null)
+            {
+                return Ok(systems);
+            }
+            return BadRequest();
+        }
+        //<summary>
         //    Get single Systems by id
         //</summary>
         //
@@ -54,7 +75,7 @@ namespace APIBookingHotel.Controllers.Systems
         public async Task<IActionResult> GetSingleSystems(string id)
         {
             var result = new SystemsViewModel();
-            var Systems = await _bookingHotelUnitOfWork.SystemsRepository.GetById(id, HttpContext.RequestAborted);
+            var Systems = await _bookingHotelUnitOfWork.SystemsRepository.GetSystemsDetailAsync(id, HttpContext.RequestAborted);
             if (Systems != null)
             {
                 return Ok(Systems);
