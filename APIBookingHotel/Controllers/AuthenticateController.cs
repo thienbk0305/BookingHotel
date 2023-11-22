@@ -84,7 +84,7 @@ namespace APIBookingHotel.Controllers
                     new(ClaimTypes.NameIdentifier, user.Id),
                     new Claim(ClaimTypes.Email, user.Email),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                    new Claim(ClaimTypes.Name, user.UserName),
+                    new Claim(ClaimTypes.Name, user.FullName!),
                     new Claim(ClaimTypes.MobilePhone, user.PhoneNumber ?? string.Empty)
                 }
                 .Union(userClaims)
@@ -110,7 +110,9 @@ namespace APIBookingHotel.Controllers
                 {
                     token = new JwtSecurityTokenHandler().WriteToken(token),
                     RefreshToken = refreshToken,
-                    expiration = token.ValidTo
+                    expiration = token.ValidTo,
+                    FullName = user.FullName,
+                    PhoneNumber = user.PhoneNumber
                 });
             }
             return Unauthorized();

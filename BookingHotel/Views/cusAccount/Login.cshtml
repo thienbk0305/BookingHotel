@@ -354,7 +354,9 @@ html,body {
 						var token = data.token;
 						if (token != null && token != "") {
 							var expiration = data.expiration;
-							setCookie("TOKEN_SERVER", token, expiration);
+							setCookie("TOKEN_EMAIL", token, expiration);
+							setCookie("TOKEN_FULLNAME", token, expiration);
+							setCookie("TOKEN_PHONENUMBER", token, expiration);
 							window.location.href = "/Home"
 						} else {
 							alert("Đăng nhập thất bại");
