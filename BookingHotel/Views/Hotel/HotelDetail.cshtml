@@ -34,7 +34,7 @@
                         <div class="accomodation_item text-center">
                             <div class="hotel_img">
                                 <img src="https://localhost:7204/Avatar/@hotelRoom.RoomImage" alt="">
-                                <a asp-controller="booking" asp-action="index" class="btn theme_btn button_hover">Đặt ngay</a>
+                                <a asp-controller="booking" asp-action="index" asp-route-id="@hotelRoom.Id" class="btn theme_btn button_hover">Đặt ngay</a>
                             </div>
                             <h4>@hotelRoom.RoomName</h4>
                             <a href="#"><h4 class="sec_h4">@hotelRoom.RoomType</h4></a>
@@ -150,7 +150,7 @@
 </section>
 
 <!--================ Accomodation Area  =================-->
-<section class="accomodation_area section_gap">
+@* <section class="accomodation_area section_gap">
     <div class="container">
         <div class="section_title text-center">
             <h2 class="title_color">Các loại phòng thường</h2>
@@ -239,7 +239,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> *@
 <!--================ Accomodation Area  =================-->
 <!--================Booking Tabel Area  =================-->
 <!--================ Accomodation Area  =================-->

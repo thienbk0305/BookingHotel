@@ -1,8 +1,10 @@
-﻿@{
+﻿@using DataAccess.Models.SystemsModels;
+@{
     ViewData["Title"] = "Thông tin đặt phòng";
     Layout = "~/Views/Shared/_Layout.cshtml";
 } 
 @inject IHttpContextAccessor contxt;
+@model SystemsViewModel
 <style>
     .row {
         margin-top: 70px;
@@ -30,45 +32,46 @@
                             <span class="help-block"></span>
                         </div>                <div class="input-item form-group col-lg-7 col-md-7">
                             <label for="txt_email">Email <span class="required">*</span></label>
-                            <input id="txt_email" autocomplete="off" required="" type="email" class="form-control" name="txt_email" value='@(string.IsNullOrEmpty(contxt.HttpContext!.Session.GetString("TOKEN_SERVER")) ? "": @contxt.HttpContext!.Session.GetString("TOKEN_SERVER"))' />
+                            <input id="txt_email" autocomplete="off" required="" type="email" class="form-control" name="txt_email" value='@(string.IsNullOrEmpty(contxt.HttpContext!.Session.GetString("TOKEN_SERVER")) ? "":@contxt.HttpContext!.Session.GetString("TOKEN_SERVER"))' />
                             <span class="help-block"></span>
                         </div>                <div class="input-item form-group col-lg-5 col-md-5">
                             <label for="txt_phone">Số điện thoại <span class="required">*</span></label>
                             <input id="txt_phone" autocomplete="off" required="" type="text" class="form-control" name="txt_phone">
                             <span class="help-block"></span>
-                        </div>                <div class="input-item form-group col-lg-12 col-md-12 box-full-services-extra">
-                            <label for="info_services_extra">Hãy cho chúng tôi biết Quý khách cần gì? </label>
-                            <div class="box-services-extra">
-                                <div class="note"> Lưu ý tất cả các yêu cầu chỉ được đáp ứng tùy theo khách sạn</div>
-                                <div class="box-services-extra-inner">
-                                    <div class="box-item type-radio">
-                                        <div class="box-item-inner">
-                                            <label for="rad-item-1"> <input id="rad-item-1" name="info_services_extra][room_smoke]" type="radio" value="0"> Phòng không hút thuốc </label>
-                                        </div>                            <div class="box-item-inner">
-                                            <label for="rad-item-2"> <input id="rad-item-2" name="info_services_extra][room_smoke]" type="radio" value="1"> Phòng hút thuốc </label>
-                                        </div>
-                                    </div><div class="box-item type-radio">
-                                        <div class="box-item-inner">
-                                            <label for="rad-item-3"> <input id="rad-item-3" name="info_services_extra][bed_type]" type="radio" value="1"> Tôi muốn lấy giường lớn </label>
-                                        </div>                            <div class="box-item-inner">
-                                            <label for="rad-item-4"> <input id="rad-item-4" name="info_services_extra][bed_type]" type="radio" value="2"> Tôi muốn lấy giường đôi </label>
-                                        </div>
-                                    </div><div class="box-checkbox-services">
-                                        <div class="box-item">
-                                            <label for="chk-item-1"> <input id="chk-item-1" name="info_services_extra][room_floor_high]" type="checkbox" value="1"> Tôi muốn lấy phòng tầng cao </label>
-                                            <div class="box-content-item chk-item-1 hidden">  </div>
-                                        </div>                        <div class="box-item">
-                                            <label for="chk-item-2"> <input id="chk-item-2" name="info_services_extra][room_cradle]" type="checkbox" value="1"> Thêm nôi trẻ em (có thể áp dụng phụ phí) </label>
-                                            <div class="box-content-item chk-item-2 hidden">  </div>
-                                        </div>                        <div class="box-item">
-                                            <label for="chk-item-3"> <input id="chk-item-3" name="info_services_extra][room_time_checkin]" type="checkbox" value="1"> Giờ nhận phòng </label>
-                                            <div class="box-content-item chk-item-3 hidden"> <input value="14:00" type="time" id="txt_room_time_checkin" name="info_services_extra][time_checkin]"> </div>
-                                        </div>                        <div class="box-item">
-                                            <label for="chk-item-4"> <input id="chk-item-4" name="info_services_extra][room_time_checkout]" type="checkbox" value="1"> Giờ trả phòng </label>
-                                            <div class="box-content-item chk-item-4 hidden"> <input value="12:00" type="time" id="txt_room_time_checkout" name="info_services_extra][time_checkout]"> </div>
-                                        </div>
-                                    </div>
-                                </div>
+                        </div>                
+@*                          <div class="input-item form-group col-lg-12 col-md-12 box-full-services-extra">
+                             <label for="info_services_extra">Hãy cho chúng tôi biết Quý khách cần gì? </label>
+                             <div class="box-services-extra">
+                                 <div class="note"> Lưu ý tất cả các yêu cầu chỉ được đáp ứng tùy theo khách sạn</div>
+                                 <div class="box-services-extra-inner">
+                                     <div class="box-item type-radio">
+                                         <div class="box-item-inner">
+                                             <label for="rad-item-1"> <input id="rad-item-1" name="info_services_extra][room_smoke]" type="radio" value="0"> Phòng không hút thuốc </label>
+                                         </div>                            <div class="box-item-inner">
+                                             <label for="rad-item-2"> <input id="rad-item-2" name="info_services_extra][room_smoke]" type="radio" value="1"> Phòng hút thuốc </label>
+                                         </div>
+                                     </div><div class="box-item type-radio">
+                                         <div class="box-item-inner">
+                                             <label for="rad-item-3"> <input id="rad-item-3" name="info_services_extra][bed_type]" type="radio" value="1"> Tôi muốn lấy giường lớn </label>
+                                         </div>                            <div class="box-item-inner">
+                                             <label for="rad-item-4"> <input id="rad-item-4" name="info_services_extra][bed_type]" type="radio" value="2"> Tôi muốn lấy giường đôi </label>
+                                         </div>
+                                     </div><div class="box-checkbox-services">
+                                         <div class="box-item">
+                                             <label for="chk-item-1"> <input id="chk-item-1" name="info_services_extra][room_floor_high]" type="checkbox" value="1"> Tôi muốn lấy phòng tầng cao </label>
+                                             <div class="box-content-item chk-item-1 hidden">  </div>
+                                         </div>                        <div class="box-item">
+                                             <label for="chk-item-2"> <input id="chk-item-2" name="info_services_extra][room_cradle]" type="checkbox" value="1"> Thêm nôi trẻ em (có thể áp dụng phụ phí) </label>
+                                             <div class="box-content-item chk-item-2 hidden">  </div>
+                                         </div>                        <div class="box-item">
+                                             <label for="chk-item-3"> <input id="chk-item-3" name="info_services_extra][room_time_checkin]" type="checkbox" value="1"> Giờ nhận phòng </label>
+                                             <div class="box-content-item chk-item-3 hidden"> <input value="14:00" type="time" id="txt_room_time_checkin" name="info_services_extra][time_checkin]"> </div>
+                                         </div>                        <div class="box-item">
+                                             <label for="chk-item-4"> <input id="chk-item-4" name="info_services_extra][room_time_checkout]" type="checkbox" value="1"> Giờ trả phòng </label>
+                                             <div class="box-content-item chk-item-4 hidden"> <input value="12:00" type="time" id="txt_room_time_checkout" name="info_services_extra][time_checkout]"> </div>
+                                         </div>
+                                     </div>
+                                 </div>
 
                                 <script>
                                     $(document).ready(function () {
@@ -84,7 +87,8 @@
                             </div>
 
                             <span class="help-block"></span>
-                        </div>                <div class="input-item form-group col-lg-12 col-md-12">
+                        </div>                
+                        <div class="input-item form-group col-lg-12 col-md-12">
                             <label for=""> </label>
                             <div class="hotel-box-note">
                                 <div class="box-title"> <i class="fas fa-plus-circle"></i> Thêm yêu cầu đặc biệt </div>
@@ -109,7 +113,7 @@
                                 });
                             </script>
                             <span class="help-block"></span>
-                        </div>
+                        </div> *@
                         <div class="box-submit"><button type="submit" class="btn-submit-contact-booking">Tiếp tục</button></div>
                     </form>
                     <script>
@@ -138,8 +142,8 @@
                                 <img class="" src="https://cdn2.vietnambooking.com/wp-content/uploads/hotel_pro/hotel_335156/mini_a75004399fb49b5f5ad781c1d84234d4.jpg" alt="">
                             </div>
                             <div class="box-title">
-                                <h3>Nhà khách Mã Đà Đồng Nai</h3>
-                                <div class="description"> Phòng tập thể  </div>
+                                <h3>@Model.HotelName</h3>
+                                <div class="description"> @Model.RoomName  </div>
                             </div>
                         </div>
                         <div class="summary-total">
@@ -148,15 +152,15 @@
                                 <tbody>
                                     <tr>
                                         <td> <div class="title"><i class="icon-vnbk icon-calendar-from-570-48 "></i> Ngày nhận phòng </div> </td>
-                                        <td> <div class="info-right"> 13/11/2023 </div> </td>
+                                        <td> <div class="info-right"> <input type="date" class=""/> </div> </td>
                                     </tr>
                                     <tr>
                                         <td> <div class="title"><i class="icon-vnbk icon-calendar-to-612-48 "></i> Ngày trả phòng </div> </td>
-                                        <td> <div class="info-right">  14/11/2023 </div> </td>
+                                        <td> <div class="info-right">  <input type="date" /> </div> </td>
                                     </tr>
                                     <tr>
                                         <td> <div class="title"><i class="icon-vnbk icon-passenger-528-96"></i> Số khách phòng </div> </td>
-                                        <td> <div class="info-right"> 1 khách, 1 phòng </div> </td>
+                                        <td> <div class="info-right"> @Model.RoomHuman </div> </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -166,9 +170,9 @@
                                 <tbody>
                                     <tr>
                                         <td> <div class="title">1 phòng x 1 đêm </div> </td>
-                                        <td> <div class="info-right">5,457,000 VND</div> </td>
+                                        <td> <div class="info-right">@Model.Price</div> </td>
                                     </tr>
-                                    <tr>
+                                    @* <tr>
                                         <td> <div class="title box-promo">Promo giảm 50%</div> </td>
                                         <td> <div class="info-right">- 2,728,500 VND</div> </td>
                                     </tr>
@@ -176,14 +180,14 @@
                                     <tr class="tr-voucher hidden">
                                         <td> <div class="title">Mã giảm giá </div> </td>
                                         <td> <div class="info-right">0 VND</div> <input class="txt-total-price-hidden" type="hidden" value="2728500"> </td>
-                                    </tr>
+                                    </tr> *@
                                     <tr>
                                         <td> <div class="title type-tax">Phí dịch vụ</div> </td>
                                         <td> <div class="info-right type-tax">MIỄN PHÍ</div> </td>
                                     </tr>
                                     <tr class="tr-total">
                                         <td> <div class="title">Tổng tiền</div> </td>
-                                        <td> <div data-price-format="2,728,500 VND" class="info-right">2,728,500 VND</div> </td>
+                                        <td> <div data-price-format="2,728,500 VND" class="info-right">@Model.Price VND</div> </td>
                                     </tr>
                                     <tr class="tr-note">
                                         <td colspan="2">

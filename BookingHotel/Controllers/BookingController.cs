@@ -1,6 +1,7 @@
 ﻿using BookingHotel.Models;
 using DataAccess.Entities;
 using DataAccess.Models;
+using DataAccess.Models.SystemsModels;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Web;
@@ -10,26 +11,27 @@ namespace BookingHotel.Controllers
     public class BookingController : Controller
     {
         // GET: BookingCart
-        public IActionResult Index()
+        public async Task<IActionResult> Index(string id)
         {
-            var token = HttpContext.Session.GetString("TOKEN_SERVER");
-            if (!string.IsNullOrEmpty(token))
-            {
-                ViewData["token"] = token;
-            }
-            var list_cart = new List<BookingCart>();
-            try
-            {
-                var cart = Request.Cookies["BookingCart"] != null ? Request.Cookies["BookingCart"]!.ToString() : string.Empty;
-                list_cart = Newtonsoft.Json.JsonConvert.DeserializeObject<List<BookingCart>>(HttpUtility.UrlDecode(cart));
-            }
-            catch (Exception ex)
-            {
+            var room = new SystemsViewModel();
+            var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
+            var base_url = "Systems/SingleSystems?id=" + id; //API Controller
+            var dataJson = JsonConvert.SerializeObject(room);
+            var result = Common.HttpHelper.WebPost(RestSharp.Method.Get, url_api, base_url, dataJson);
+            room = JsonConvert.DeserializeObject<SystemsViewModel>(result);
+            //var list_cart = new List<BookingCart>();
+            //try
+            //{
+            //    var cart = Request.Cookies["BookingCart"] != null ? Request.Cookies["BookingCart"]!.ToString() : string.Empty;
+            //    list_cart = Newtonsoft.Json.JsonConvert.DeserializeObject<List<BookingCart>>(HttpUtility.UrlDecode(cart));
+            //}
+            //catch (Exception ex)
+            //{
 
-                throw;
-            }
+            //    throw;
+            //}
 
-            return View(list_cart);
+            return View(room);
         }
 
         public JsonResult CheckOut(Customer customerReq)
