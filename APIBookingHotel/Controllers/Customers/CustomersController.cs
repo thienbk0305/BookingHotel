@@ -146,17 +146,37 @@ namespace APIBookingHotel.Controllers.Customers
         [HttpPut]
         [Route("AddContact")]
         [AllowAnonymous]
-        //[Authorize(Policy = Permissions.Users.Edit)]
         public async Task<IActionResult> AddContact(CustomersViewModel model)
         {
             if (ModelState.IsValid)
             {
-                model.Id = Common.Security.GenerateRandomId();
-                model.Id_Evaluate = Common.Security.GenerateRandomId();
-                var contactsResponse = _mapper.Map<CustomersViewModel>(model);
-                await _bookingHotelUnitOfWork.CustomerRepository.InsertAsync(contactsResponse, HttpContext.RequestAborted);
-                await _bookingHotelUnitOfWork.SaveAsync();
-                return Ok(contactsResponse);
+                var customerInfor = await _bookingHotelUnitOfWork.CustomerRepository.GetById(model.CusEmail!, HttpContext.RequestAborted);
+                if (customerInfor == null)
+                {
+
+                    // tạo khách hàng để lấy CustomerId
+                    model.Id = Common.Security.GenerateRandomId();
+                    model.Id_Evaluate = Common.Security.GenerateRandomId();
+                    var contactsResponse = _mapper.Map<CustomersViewModel>(model);
+                    await _bookingHotelUnitOfWork.CustomerRepository.InsertAsync(contactsResponse, HttpContext.RequestAborted);
+                    await _bookingHotelUnitOfWork.SaveAsync();
+                    return Ok(1);
+
+                }
+                else {
+                    var evaluates = new Evaluate();
+                    evaluates.Id = Common.Security.GenerateRandomId();
+                    evaluates.CusCodeByUserId = customerInfor.Id;
+                    evaluates.Description = model.Description;
+                    evaluates.CreationDate = DateTime.Now;
+                    var result = await _bookingHotelUnitOfWork.EvalutesRepository.Add(evaluates, HttpContext.RequestAborted);
+                    if (result != null)
+                    {
+                        await _bookingHotelUnitOfWork.SaveAsync();
+                        return Ok(1);
+                    }
+                }
+
             }
             return NoContent();
         }

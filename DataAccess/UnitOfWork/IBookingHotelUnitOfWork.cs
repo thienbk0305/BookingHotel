@@ -20,6 +20,7 @@ namespace DataAccess.UnitOfWork
         IServicesRepository ServicesRepository { get; }
         IHotelsRepository HotelsRepository { get; }
         IImagesRepository ImagesRepository { get; }
+        IEvalutesRepository EvalutesRepository { get; } 
         IBookingsRepository BookingsRepository { get; }
         IBookingDetailsRepository BookingDetailsRepository { get; }
         ISystemsRepository SystemsRepository { get; }

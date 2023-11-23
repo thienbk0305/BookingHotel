@@ -59,7 +59,27 @@
                 'targets': [1],
                 'render': function (e) {
                     if (e == "2001-01-01T00:00:00" || e == "0001-01-01T00:00:00") return "";
-                    else return moment(e).format("MM/DD/YYYY HH:mm");
+                    else return moment(e).format("MM/DD/YYYY");
+                },
+            },
+            {
+                'targets': [5],
+                'render': function (e) {
+                    if (e == "2001-01-01T00:00:00" || e == "0001-01-01T00:00:00") return "";
+                    else return moment(e).format("MM/DD/YYYY");
+                },
+            },
+            {
+                'targets': [6],
+                'render': function (e) {
+                    if (e == "2001-01-01T00:00:00" || e == "0001-01-01T00:00:00") return "";
+                    else return moment(e).format("MM/DD/YYYY");
+                },
+            },
+            {
+                'targets': [8],
+                'render': function (e) {
+                    return e.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
                 },
             },
             {

@@ -24,14 +24,28 @@ $("#updateBtn").click(function () {
     var txt_fullname = $("#txt_fullname").val();
     var txt_email = $("#txt_email").val();
     var txt_phone = $("#txt_phone").val();
+    var quantity = $("#modelquantity").val(); 
+    const checkInDate = new Date(checkIn);
+    const checkOutDate = new Date(checkOut);
     debugger
-    model = {
-        Id: id, cusPhone: txt_phone, cusEmail: txt_email, cusFullName: txt_fullname,
-        CheckIn: checkIn, CheckOut: checkOut
-    }
 
+    model = {
+        "customer": {
+            "cusFullName": txt_fullname,
+            "cusEmail": txt_email,
+            "cusPhone": txt_phone
+        },
+        "orderItems": [
+            {
+                "bookingId": id,
+                "quantity": quantity,
+                "checkIn": checkInDate,
+                "checkOut": checkOutDate
+            }
+        ]
+    }
     $.ajax({
-        url: '/WebBookings/Update',
+        url: '/Booking/Update',
         type: 'POST',
         data: JSON.stringify(model),
         contentType: "application/json; charset=utf-8",

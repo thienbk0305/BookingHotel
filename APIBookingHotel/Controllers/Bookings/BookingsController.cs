@@ -52,7 +52,7 @@ namespace APIBookingHotel.Controllers.Bookings
         public async Task<ActionResult> BoookingsInsert(CreateOrderRequestData requestData)
         {
             var errItems = "";
-            double totalAmount = 0; 
+            double totalAmount = 0;
             var customerId = "";
             var returnData = new ReturnData();
             try
@@ -80,18 +80,16 @@ namespace APIBookingHotel.Controllers.Bookings
                 }
 
                 //Kiểm tra xem đã có khách hàng nào trùng thông tin chưa ?
-
-                var customerInfor = await _bookingHotelUnitOfWork.CustomerRepository.GetById(requestData.customer.CusEmail, HttpContext.RequestAborted);
-
-                if (customerInfor == null)
+                var userInfor = await _bookingHotelUnitOfWork.Identity.GetById(requestData.customer.CusEmail, HttpContext.RequestAborted);
+                if (userInfor == null)
                 {
+                    var customerInfor = await _bookingHotelUnitOfWork.CustomerRepository.GetById(requestData.customer.CusEmail, HttpContext.RequestAborted);
 
-                    // TH1 : chưa có, kiểm tra tb user
-                    var userInfor = await _bookingHotelUnitOfWork.Identity.GetById(requestData.customer.CusEmail, HttpContext.RequestAborted);
-                    if (userInfor == null)
+                    if (customerInfor == null)
                     {
                         // tạo khách hàng để lấy CustomerId
                         requestData.customer.Id = Common.Security.GenerateRandomId();
+                        requestData.customer.SysDate = DateTime.Now;
                         var cusId = await _bookingHotelUnitOfWork.CustomerRepository.Add(requestData.customer, HttpContext.RequestAborted);
                         if (cusId == null)
                         {
@@ -100,22 +98,20 @@ namespace APIBookingHotel.Controllers.Bookings
                             return Ok(returnData);
                         }
                         customerId = cusId.Id;
-                    } else
+                    }
+                    else
                     {
-                        customerId = userInfor.Id;
+                        customerId = customerInfor.Id;
                     }
                 }
                 else
                 {
-                    // TH2 : đã có 
-                    // Lấy customer theo thông tin khách nhập
-                    customerId = customerInfor.Id;
+                    customerId = userInfor.Id;
                 }
-
 
                 foreach (var item in requestData.orderItems)
                 {
-                    var bookingDetail = await _bookingHotelUnitOfWork.SystemsRepository.GetSystemsDetailAsync(item.BookingId, HttpContext.RequestAborted);
+                    var bookingDetail = await _bookingHotelUnitOfWork.SystemsRepository.GetSystemsDetailAsync(item.BookingId!, HttpContext.RequestAborted);
                     totalAmount += bookingDetail.Price * item.Quantity;
                 }
                 // Tạo order 
@@ -126,7 +122,7 @@ namespace APIBookingHotel.Controllers.Bookings
                     TotalAmount = totalAmount,
                     CreatedDate = DateTime.Now,
                     CustomerId = customerId!,
-                    HRSId = requestData.orderItems[0].BookingId,
+                    HRSId = requestData.orderItems[0].BookingId!,
                     CheckIn = requestData.orderItems[0].CheckIn,
                     CheckOut = requestData.orderItems[0].CheckOut,
                 };
@@ -147,9 +143,9 @@ namespace APIBookingHotel.Controllers.Bookings
                         await _bookingHotelUnitOfWork.BookingDetailsRepository.Add(orderDetail, HttpContext.RequestAborted);
                     }
                 }
-                returnData.ResponseCode = "1"; ;
-                returnData.Description = "Chúc mừng bạn đã tạo đơn hàng thành công !";
-                return Ok(returnData);
+                //returnData.ResponseCode = "1"; ;
+                //returnData.Description = "Chúc mừng bạn đã tạo đơn hàng thành công !";
+                return Ok(1);
             }
             catch (Exception ex)
             {

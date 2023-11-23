@@ -94,6 +94,7 @@ builder.Services.AddScoped<IRoomsRepository, RoomsRepository>();
 builder.Services.AddScoped<IServicesRepository, ServicesRepository>();
 builder.Services.AddScoped<IHotelsRepository, HotelsRepository>();
 builder.Services.AddScoped<IImagesRepository, ImagesRepository>();
+builder.Services.AddScoped<IEvalutesRepository, EvalutesRepository>();
 builder.Services.AddScoped<ISystemsRepository, SystemsRepository>();
 builder.Services.AddScoped<IBookingsRepository, BookingsRepository>();
 builder.Services.AddScoped<IBookingDetailsRepository, BookingDetailsRepository>();

@@ -3,6 +3,7 @@
     ViewData["Title"] = "Liên hệ";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@inject IHttpContextAccessor contxt;
 <!--================Breadcrumb Area =================-->
 <section class="breadcrumb_area">
     <div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background=""></div>
@@ -47,13 +48,13 @@
                 <form class="row contact_form" asp-action="Insert" method="post" id="contactForm" novalidate="novalidate">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="CusFullName" name="CusFullName" asp-for="CusFullName" placeholder="Nhập tên của bạn">
+                            <input type="text" class="form-control" id="CusFullName" name="CusFullName" asp-for="CusFullName" placeholder="Nhập tên của bạn" value='@(string.IsNullOrEmpty(contxt.HttpContext!.Session.GetString("TOKEN_FULLNAME")) ? "":@contxt.HttpContext!.Session.GetString("TOKEN_FULLNAME"))' />
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" id="CusEmail" name="CusEmail" asp-for="CusEmail" placeholder="Nhập địa chỉ email">
+                            <input type="email" class="form-control" id="CusEmail" name="CusEmail" asp-for="CusEmail" placeholder="Nhập địa chỉ email" value='@(string.IsNullOrEmpty(contxt.HttpContext!.Session.GetString("TOKEN_SERVER")) ? "":@contxt.HttpContext!.Session.GetString("TOKEN_SERVER"))' />
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="CusPhone" name="CusPhone" asp-for="CusPhone" placeholder="Nhập số điện thoại">
+                            <input type="text" class="form-control" id="CusPhone" name="CusPhone" asp-for="CusPhone" placeholder="Nhập số điện thoại" value='@(string.IsNullOrEmpty(contxt.HttpContext!.Session.GetString("TOKEN_PHONENUMBER")) ? "":@contxt.HttpContext!.Session.GetString("TOKEN_PHONENUMBER"))' />
                         </div>
                     </div>
                     <div class="col-md-6">
