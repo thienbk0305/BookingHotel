@@ -124,7 +124,8 @@ namespace AdminBookingHotel.Controllers.WebSystems
                 if (string.IsNullOrEmpty(id) || id == "0")
                 {
                     base_url = "Systems/AddSystems"; //API Controller
-                } else
+                }
+                else
                 {
                     base_url = "Systems/EditSystems?id=" + model.Id; //API Controller
                 }

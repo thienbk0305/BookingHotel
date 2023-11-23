@@ -15,7 +15,32 @@
 
 
 $("#updateBtn").click(function () {
+    if ($("#txt_fullname").val() == '') {
+        Swal.fire({
+            icon: 'error',
+            title: 'Lỗi',
+            text: 'Vui Lòng Nhập Họ Tên'
+        });
+        return false;
+    };
 
+    if ($("#txt_email").val() == '') {
+        Swal.fire({
+            icon: 'error',
+            title: 'Lỗi',
+            text: 'Vui Lòng Nhập Email'
+        });
+        return false;
+    };
+
+    if ($("#txt_phone").val() == '') {
+        Swal.fire({
+            icon: 'error',
+            title: 'Lỗi',
+            text: 'Vui Lòng Nhập Số Điện Thoại'
+        });
+        return false;
+    };
     if ($("#modelId").val() == "") { id = 0 }
     else { id = $("#modelId").val() }
 
@@ -24,7 +49,7 @@ $("#updateBtn").click(function () {
     var txt_fullname = $("#txt_fullname").val();
     var txt_email = $("#txt_email").val();
     var txt_phone = $("#txt_phone").val();
-    var quantity = $("#modelquantity").val(); 
+    var quantity = $("#modelquantity").val();
     const checkInDate = new Date(checkIn);
     const checkOutDate = new Date(checkOut);
 
@@ -72,9 +97,13 @@ $("#updateBtn").click(function () {
         },
         success: function (response) {
             Swal.fire({
-                icon: 'success',
-                title: 'OK',
-                text: 'Thanh Toán thành công'
+                title: "Thanh toán thành công!",
+                confirmButtonText: "OK",
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    window.location.href = "/Booking/Confirmation?id=" + response
+                }
             });
         },
         error: function (response) {

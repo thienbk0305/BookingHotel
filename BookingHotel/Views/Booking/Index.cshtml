@@ -12,35 +12,6 @@
 @section scripts {
     <script>
         $(document).ready(function () {
-            $("#btnMessages").click(function () {
-                if ($("#txt_fullname").val() == '') {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Lỗi',
-                        text: 'Vui Lòng Nhập Họ Tên'
-                    });
-                    return false;
-                };
-
-                if ($("#txt_email").val() == '') {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Lỗi',
-                        text: 'Vui Lòng Nhập Email'
-                    });
-                    return false;
-                };
-
-                if ($("#txt_phone").val() == '') {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Lỗi',
-                        text: 'Vui Lòng Nhập Số Điện Thoại'
-                    });
-                    return false;
-                };
-            });
-
             var totalamount = 0;
             var amount = @Model?.Price; 
             var formattedTotalAmount = amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
@@ -97,8 +68,8 @@
                             <span class="help-block"></span>
                         </div>
 
-                        <div class="box-submit"><button type="submit" class="btn-submit-contact-booking">Thanh Toán</button></div>
-                        <input id="updateBtn" type="button" class="btn btn-success" value="Thanh Toán" />
+                        <div class="box-submit"><button type="button" id="updateBtn" class="btn-submit-contact-booking">Thanh Toán</button></div>
+                       @*  <input id="updateBtn" type="button" class="btn btn-success" value="Thanh Toán" /> *@
                     </form>
                     <script>
                         var obj_query_data_submit_form_create_booking =
@@ -210,7 +181,7 @@
     </div>
 </div>
 
-<script src="~/js/carts.js"></script>
+<script src="~/js/cart.js"></script>
 <!--================ End footer Area  =================-->
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -107,6 +107,12 @@
 
             //},
             {
+                'targets': [6],
+                'render': function (e) {
+                    return e.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+                },
+            },
+            {
                 'targets': [7],
                 'render': function (e, t, r, n) {
                     var out;
