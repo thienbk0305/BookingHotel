@@ -20,9 +20,15 @@ namespace BookingHotel.Controllers
             hotel = JsonConvert.DeserializeObject<List<SystemsViewModel>>(result);
             return View(hotel);
         }
-        public IActionResult HotelFilter()
+        public IActionResult HotelFilter(string searchString)
         {
-            return View();
+            var hotel = new List<SystemsViewModel>();
+            var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
+            var base_url = "Systems/GetSystems?searchValue=" + searchString; //API Controller
+            var dataJson = JsonConvert.SerializeObject(hotel);
+            var result = Common.HttpHelper.WebPost(RestSharp.Method.Get, url_api, base_url, dataJson);
+            hotel = JsonConvert.DeserializeObject<List<SystemsViewModel>>(result);
+            return View(hotel);
         }
     }
 }

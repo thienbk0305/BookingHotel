@@ -59,7 +59,7 @@ namespace DataAccess.Repositories
                      ServiceContent = services.ServiceContent,
                      HotelImage = img.ImgCode
                  }).Where(m =>
-                (m.Id != null && m.Id.ToLower().Contains(searchValue!.ToString().ToLower()))).ToListAsync();
+                (m.HotelName != null && m.HotelName.ToLower().Contains(searchValue!.ToString().ToLower()))).ToListAsync();
             await _db.SaveChangesAsync(cancellation);
             return data!;
 
