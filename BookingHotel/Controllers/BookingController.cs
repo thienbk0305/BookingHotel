@@ -52,10 +52,10 @@ namespace BookingHotel.Controllers
 
                 if (string.IsNullOrEmpty(updatedBookings))
                 {
-                    return RedirectToAction("Index", "Booking");
+                    return RedirectToAction("Index");
                 }
-                //var result = JsonConvert.DeserializeObject<RoleResult>(updatedBookings);
-                return RedirectToAction("Index", "Booking");
+                var result = JsonConvert.DeserializeObject<string>(updatedBookings);
+                return Ok(result);
 
             }
             catch (Exception)
@@ -117,6 +117,18 @@ namespace BookingHotel.Controllers
 
                 throw;
             }
+        }
+
+        [HttpGet]
+        public IActionResult Confirmation(string id)
+        {
+            var booking = new BookingsViewModel();
+            var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
+            var base_url = "Bookings/GetBookingDetail?id=" + id; //API Controller
+            var dataJson = JsonConvert.SerializeObject(booking);
+            var result = Common.HttpHelper.WebPost(RestSharp.Method.Get, url_api, base_url, dataJson);
+            booking = JsonConvert.DeserializeObject<BookingsViewModel>(result);
+            return View(booking);
         }
 
     }

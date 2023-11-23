@@ -73,9 +73,13 @@ $("#updateBtn").click(function () {
         },
         success: function (response) {
             Swal.fire({
-                icon: 'success',
-                title: 'OK',
-                text: 'Thanh Toán thành công'
+                title: "Thanh toán thành công!",
+                confirmButtonText: "OK",
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    window.location.href = "/Booking/Confirmation?id=" + response
+                } 
             });
         },
         error: function (response) {

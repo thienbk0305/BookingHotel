@@ -46,6 +46,21 @@ namespace APIBookingHotel.Controllers.Bookings
             return BadRequest();
         }
 
+        [HttpGet]
+        [Route("GetBookingDetail")]
+        [AllowAnonymous]
+
+        public async Task<IActionResult> GetBookingDetail(string id)
+        {
+            var bookings = await _bookingHotelUnitOfWork.BookingsRepository.GetBookingsDetailAsync(id, HttpContext.RequestAborted);
+
+            if (bookings != null)
+            {
+                return Ok(bookings);
+            }
+            return BadRequest();
+        }
+
         [HttpPost]
         [Route("BookingsInsert")]
         [AllowAnonymous]
@@ -145,7 +160,7 @@ namespace APIBookingHotel.Controllers.Bookings
                 }
                 //returnData.ResponseCode = "1"; ;
                 //returnData.Description = "Chúc mừng bạn đã tạo đơn hàng thành công !";
-                return Ok(1);
+                return Ok(orderId.Id);
             }
             catch (Exception ex)
             {

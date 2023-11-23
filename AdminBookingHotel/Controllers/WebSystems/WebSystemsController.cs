@@ -68,7 +68,7 @@ namespace AdminBookingHotel.Controllers.WebSystems
                     _toastNotification.AddSuccessToastMessage("Bạn không có quyền");
                     return RedirectToAction("Index");
                 }
-
+                
                 listResult = JsonConvert.DeserializeObject<List<SystemsViewModel>>(result);
 
                 var returnedData = _utilitiesRepository.InitiateDataTable(draw!, length!, start!, listResult!);
