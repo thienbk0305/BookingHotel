@@ -27,7 +27,6 @@ $("#updateBtn").click(function () {
     var quantity = $("#modelquantity").val(); 
     const checkInDate = new Date(checkIn);
     const checkOutDate = new Date(checkOut);
-    debugger
 
     model = {
         "customer": {
