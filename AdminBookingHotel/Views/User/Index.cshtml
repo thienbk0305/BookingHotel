@@ -53,16 +53,19 @@
                         data.group = group;
                     }
                 },
+                "select": {
+                    'style': 'multi'
+                },
                 "columnDefs": [
                     {
                         'targets': [0],
-                        "visible": false,
+                        'className': "select-checkbox",
                     },
                     {
                         'targets': [6],
-                        'render': function (data, type, row, meta) {
+                        'render': function (e, t, r, n) {
                             var out;
-                            if (data === true) {
+                            if (e === true) {
                                 out = '<span class="badge badge-success"> Active </span>'
                             } else out = '<span class="badge badge-warning"> InActive </span>';
                             return out;
@@ -70,7 +73,11 @@
                     }
                 ],
                 "columns": [
-                    { "data": "Id", "name": "Id", "autoWidth": true },
+                    {
+                        "data": null,
+                        "defaultContent": "",
+                        "width": "5%"
+                    },
                     { "data": "FullName", "name": "FullName", "autoWidth": true },
                     { "data": "PhoneNumber", "name": "PhoneNumber", "autoWidth": true },
                     { "data": "Email", "name": "Email", "autoWidth": true },
@@ -166,7 +173,7 @@
                                     <table id="userTable" class="table table-striped table-bordered">
                                         <thead>
                                             <tr>
-                                                <th>Id</th>
+                                            <th>#</th>
                                                 <th>Họ Tên</th>
                                                 <th>Số Điện Thoại</th>
                                                 <th>Email</th>
@@ -178,7 +185,7 @@
                                         </thead>
                                         <tfoot>
                                             <tr>
-                                                <th>Id</th>
+                                            <th>#</th>
                                                 <th>Họ Tên</th>
                                                 <th>Số Điện Thoại</th>
                                                 <th>Email</th>

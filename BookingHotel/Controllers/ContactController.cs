@@ -59,7 +59,7 @@ namespace BookingHotel.Controllers
                     return RedirectToAction("Index", "Contact");
                 }
 
-                var result = JsonConvert.DeserializeObject<RoleResult>(updatedCustomers);
+                //var result = JsonConvert.DeserializeObject<RoleResult>(updatedCustomers);
                 _toastNotification.AddSuccessToastMessage("Success!");
                 return RedirectToAction("Index", "Contact");
 

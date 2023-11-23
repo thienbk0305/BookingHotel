@@ -40,7 +40,8 @@ namespace DataAccess.Repositories
                      SysDate = hotel.SysDate,
                      ImgCodeByUserId = hotel.ImgCodeByUserId,
                      ImgCode = gi.ImgCode
-                 }).ToListAsync();
+                 }).Where(m =>
+                (m.HotelName != null && m.HotelName.ToLower().Contains(searchValue!.ToString().ToLower()))).ToListAsync();
             await _context.SaveChangesAsync(cancellation);
             return data!;
         }

@@ -371,12 +371,12 @@ html,body {
 			//Register
 			function Register() {
 				if ($("#fullNameRegister").val() == '') {
-					// Swal.fire({
-					// 	icon: 'error',
-					// 	title: 'Lỗi',
-					// 	text: 'Vui Lòng Nhập FullName'
-					// });
-					alert("Vui Lòng Nhập FullName");
+					Swal.fire({
+						icon: 'error',
+						title: 'Lỗi',
+						text: 'Vui Lòng Nhập FullName'
+					});
+					// alert("Vui Lòng Nhập FullName");
 					return false;
 				};
 				var rolename = "Customer"

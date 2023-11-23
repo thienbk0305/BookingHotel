@@ -5,14 +5,16 @@ using DataAccess.Models.BookingsModels;
 using DataAccess.Models.SystemsModels;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using NToastNotify;
 using System.Web;
 
 namespace BookingHotel.Controllers
 {
     public class BookingController : Controller
     {
-        // GET: BookingCart
-        public async Task<IActionResult> Index(string id)
+		private readonly IToastNotification _toastNotification;
+		// GET: BookingCart
+		public async Task<IActionResult> Index(string id)
         {
             var room = new SystemsViewModel();
             var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
@@ -39,30 +41,25 @@ namespace BookingHotel.Controllers
         [HttpPost]
         public IActionResult Update([FromBody] CreateOrderRequestData model)
         {
-
             try
             {
-
                 var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
                 var base_url = "Bookings/BookingsInsert"; //API Controller
 
                 var dataJson = JsonConvert.SerializeObject(model);
                 var token = Request.Cookies["TOKEN_SERVER"] != null ? Request.Cookies["TOKEN_SERVER"]!.ToString() : string.Empty;
-                var updatedSystems = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Post, url_api, base_url, dataJson, token);
+                var updatedBookings = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Post, url_api, base_url, dataJson, token);
 
-                if (string.IsNullOrEmpty(updatedSystems))
+                if (string.IsNullOrEmpty(updatedBookings))
                 {
-                    return RedirectToAction("Index", "Bookings");
+                    return RedirectToAction("Index", "Booking");
                 }
-
-                var result = JsonConvert.DeserializeObject<RoleResult>(updatedSystems);
-
-                return RedirectToAction("Index", "Bookings");
+                //var result = JsonConvert.DeserializeObject<RoleResult>(updatedBookings);
+                return RedirectToAction("Index", "Booking");
 
             }
             catch (Exception)
             {
-
                 throw;
             }
         }

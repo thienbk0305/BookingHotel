@@ -66,7 +66,7 @@
                 },
             },
             {
-                'targets': [5],
+                'targets': [4],
                 'render': function (e, t, r, n) {
                     var out;
                     if (e === true) {
@@ -76,7 +76,7 @@
                 }
             },
             {
-                'targets': [6],
+                'targets': [5],
                 'render': function (e, t, r, n) {
                     var out = ''
                     if (e !== null) {
@@ -94,7 +94,7 @@
             },
             { "data": "SysDate", "name": "SysDate", "autoWidth": true },
             { "data": "Title", "name": "Title", "autoWidth": true },
-            { "data": "SumContent", "name": "Summary", "autoWidth": true },
+/*            { "data": "SumContent", "name": "Summary", "autoWidth": true },*/
             { "data": "Source", "name": "Source", "autoWidth": true },
             { "data": "Active", "name": "Active", "autoWidth": true },
             { "data": "ImgCode", "name": "ImgCode", "autoWidth": true },
