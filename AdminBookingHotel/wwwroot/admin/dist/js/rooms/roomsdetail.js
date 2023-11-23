@@ -15,14 +15,13 @@
 function GetSeletedRoomType() {
     $('#modelRoomType').append("<option value='1 giường đôi'>1 giường đôi</option>");
     $('#modelRoomType').append("<option value='2 giường đơn'>2 giường đơn</option>");
-    $('#modelRoomType').append("<option value='2 giường đôi'>2 giường đôi</option>");
+    $('#modelRoomType').append("<option value='2 giường đôi'>2 giường đôi</option>"); //*
     $('#modelRoomType').append("<option value='1 giường đôi hoặc 2 giường đơn'>1 giường đôi hoặc 2 giường đơn</option>");
     $('#modelRoomType').append("<option value='2 giường đơn / 1 giường King'>2 giường đơn / 1 giường King</option>");
     $('#modelRoomType').append("<option value='2 giường đơn / 1 giường Queen'>2 giường đơn / 1 giường Queen</option>");
     $('#modelRoomType').append("<option value='1 giường đôi + 1 giường tầng'>1 giường đôi + 1 giường tầng</option>");
     $('#modelRoomType').selectpicker('refresh');
 }
-
 function GetSeletedRoomHuman() {
     $('#modelRoomHuman').append("<option value='2 người lớn'>2 người lớn</option>");
     $('#modelRoomHuman').append("<option value='2 em bé'>2 em bé</option>");

@@ -4,6 +4,40 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @inject IHttpContextAccessor contxt;
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#btnMessages").click(function () {
+                if ($("#CusFullName").val() == '') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Lỗi',
+                        text: 'Vui Lòng Nhập Họ Tên'
+                    });
+                    return false;
+                };
+
+                if ($("#CusEmail").val() == '') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Lỗi',
+                        text: 'Vui Lòng Nhập Email'
+                    });
+                    return false;
+                };
+
+                if ($("#CusPhone").val() == '') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Lỗi',
+                        text: 'Vui Lòng Nhập Số Điện Thoại'
+                    });
+                    return false;
+                };
+            });
+        });
+    </script>
+}
 <!--================Breadcrumb Area =================-->
 <section class="breadcrumb_area">
     <div class="overlay bg-parallax" data-stellar-ratio="0.8" data-stellar-vertical-offset="0" data-background=""></div>
@@ -63,7 +97,7 @@
                         </div>
                     </div>
                     <div class="col-md-12 text-right">
-                        <button type="submit" value="submit" class="btn theme_btn button_hover">Gửi tin nhắn</button>
+                        <button type="submit" id="btnMessages" value="submit" class="btn theme_btn button_hover">Gửi tin nhắn</button>
                     </div>
                 </form>
             </div>

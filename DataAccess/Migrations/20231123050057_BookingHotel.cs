@@ -365,19 +365,25 @@ namespace DataAccess.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CusCodeByUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    HotelCodeByUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    UserCodeByUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    HotelId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Evaluate", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Evaluate_AspNetUsers_UserCodeByUserId",
+                        column: x => x.UserCodeByUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Evaluate_Customer_CusCodeByUserId",
                         column: x => x.CusCodeByUserId,
                         principalTable: "Customer",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Evaluate_Hotel_HotelCodeByUserId",
-                        column: x => x.HotelCodeByUserId,
+                        name: "FK_Evaluate_Hotel_HotelId",
+                        column: x => x.HotelId,
                         principalTable: "Hotel",
                         principalColumn: "Id");
                 });
@@ -569,9 +575,14 @@ namespace DataAccess.Migrations
                 column: "CusCodeByUserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Evaluate_HotelCodeByUserId",
+                name: "IX_Evaluate_HotelId",
                 table: "Evaluate",
-                column: "HotelCodeByUserId");
+                column: "HotelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Evaluate_UserCodeByUserId",
+                table: "Evaluate",
+                column: "UserCodeByUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Hotel_ImgCodeByUserId",
@@ -672,10 +683,10 @@ namespace DataAccess.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "Booking");
 
             migrationBuilder.DropTable(
-                name: "Booking");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Customer");

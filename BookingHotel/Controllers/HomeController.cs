@@ -24,7 +24,7 @@ namespace BookingHotel.Controllers
             var dataJson = JsonConvert.SerializeObject(listResult);
             var result = Common.HttpHelper.WebPost(RestSharp.Method.Get, url_api, base_url, dataJson);
             listResult = JsonConvert.DeserializeObject<List<SystemsViewModel>>(result);
-            listResult = listResult.Where(h => h.Status == DataAccess.Entities.Status.Status_2).ToList();
+            listResult = listResult!.Where(h => h.Status == DataAccess.Entities.Status.Status_2).ToList();
             return View(listResult);
         }
 

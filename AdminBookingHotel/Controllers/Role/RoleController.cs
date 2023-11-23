@@ -24,6 +24,12 @@ namespace AdminBookingHotel.Controllers.Role
         [HttpGet]
         public IActionResult Index()
         {
+            var userId = HttpContext.Session.GetString("TOKEN_SERVER");
+            if (userId == null)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
             var listResult = new RoleResult();
             var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
             var base_url = "Identity/Roles"; //API Controller
@@ -34,7 +40,7 @@ namespace AdminBookingHotel.Controllers.Role
             if (string.IsNullOrEmpty(result))
             {
                 _toastNotification.AddSuccessToastMessage("Bạn không có quyền");
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","User");
             }
 
             listResult = JsonConvert.DeserializeObject<RoleResult>(result);

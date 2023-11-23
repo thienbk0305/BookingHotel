@@ -47,20 +47,21 @@ namespace BookingHotel.Controllers
                 var updatedCustomers = "";
                 if (!string.IsNullOrEmpty(token))
                 {
-                     updatedCustomers = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Put, url_api, base_url, dataJson, token);
+                     updatedCustomers = Common.HttpHelper.WebPost_WithToken(RestSharp.Method.Post, url_api, base_url, dataJson, token);
                 }
                 else
                 {
-                     updatedCustomers = Common.HttpHelper.WebPost(RestSharp.Method.Put, url_api, base_url, dataJson);
+                     updatedCustomers = Common.HttpHelper.WebPost(RestSharp.Method.Post, url_api, base_url, dataJson);
                 }
 
                 if (string.IsNullOrEmpty(updatedCustomers))
                 {
+                    _toastNotification.AddSuccessToastMessage("Gửi Tin Nhắn Thất Bại");
                     return RedirectToAction("Index", "Contact");
                 }
 
                 //var result = JsonConvert.DeserializeObject<RoleResult>(updatedCustomers);
-                _toastNotification.AddSuccessToastMessage("Success!");
+                _toastNotification.AddSuccessToastMessage("Gửi Tin Nhắn Thành Công");
                 return RedirectToAction("Index", "Contact");
 
             }

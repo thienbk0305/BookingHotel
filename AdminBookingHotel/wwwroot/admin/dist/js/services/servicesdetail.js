@@ -20,12 +20,16 @@ function GetSeletedService() {
         $('#modelServiceContent').append("<option value='Nhà hàng'>Nhà hàng</option>");
         $('#modelServiceContent').append("<option value='Quầy bar'>Wifi</option>");
         $('#modelServiceContent').append("<option value='Máy lạnh'>Máy lạnh</option>");
+        $('#modelServiceContent').append("<option value='Giáp biển'>Giáp biển</option>"); //*
+        $('#modelServiceContent').append("<option value='Tiện nghi tổ chức tiệc/họp'>Tiện nghi tổ chức tiệc/họp</option>"); //*
         $('#modelServiceContent').append("<option value='Phòng không hút thuốc'>Phòng không hút thuốc</option>");
     } else if ($("#modelServiceType").val() == "1") {
         $('#modelServiceContent').append("<option value='“Service & WINE”/ giá phòng có rượu'>“Service & WINE”/ giá phòng có rượu</option>");
         $('#modelServiceContent').append("<option value='Giá trên đã bao gồm thuế, phí dịch vụ và ăn sáng cho 02 người lớn và 02 trẻ em dưới 06 tuổi ngủ chung với bố mẹ'>Giá trên đã bao gồm thuế, phí dịch vụ và ăn sáng cho 02 người lớn và 02 trẻ em dưới 06 tuổi ngủ chung với bố mẹ</option>");
         $('#modelServiceContent').append("<option value='Miễn phí sử dụng internet tốc độ cao'>Miễn phí sử dụng hồ bơi, Gym</option>");
         $('#modelServiceContent').append("<option value='Chỗ đậu xe'>Chỗ đậu xe</option>");
+        $('#modelServiceContent').append("<option value='Nôi trẻ em miễn phí'>Nôi trẻ em miễn phí</option>");//*
+        $('#modelServiceContent').append("<option value='Buffet sáng theo chuẩn quốc tế'>Buffet sáng theo chuẩn quốc tế</option>");//*
         $('#modelServiceContent').append("<option value='Nước uống chào mừng khi nhận phòng'>Nước uống chào mừng khi nhận phòng</option>");
         $('#modelServiceContent').append("<option value='01 chai rượu vang nhập khẩu từ Úc mỗi phòng áp dụng cho giá phòng “Service & WINE”'>01 chai rượu vang nhập khẩu từ Úc mỗi phòng áp dụng cho giá phòng “Service & WINE”</option>");
 
@@ -38,7 +42,6 @@ function GetSeletedService() {
         $('#modelServiceContent').append("<option value='Wifi'>Wifi</option>");
         $('#modelServiceContent').append("<option value='Phòng không hút thuốc'>Phòng không hút thuốc</option>");
         $('#modelServiceContent').append("<option value='Dịch vụ phòng'>Dịch vụ phòng</option>");
-
     }
 
     $('#modelServiceContent').selectpicker('refresh');

@@ -17,8 +17,8 @@ namespace DataAccess.Entities
         
         public string? CusCodeByUserId { get; set; }
 
-        public virtual Hotel? HotelCodeByUser { get; set; }
+        public virtual User? UserCodeByUser { get; set; }
         
-        public string? HotelCodeByUserId { get; set; }
+        public string? UserCodeByUserId { get; set; }
     }
 }

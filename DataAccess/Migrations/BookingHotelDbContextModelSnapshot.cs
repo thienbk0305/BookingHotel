@@ -128,17 +128,22 @@ namespace DataAccess.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("HotelCodeByUserId")
+                    b.Property<string>("HotelId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int?>("Rate")
                         .HasColumnType("int");
 
+                    b.Property<string>("UserCodeByUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CusCodeByUserId");
 
-                    b.HasIndex("HotelCodeByUserId");
+                    b.HasIndex("HotelId");
+
+                    b.HasIndex("UserCodeByUserId");
 
                     b.ToTable("Evaluate");
                 });
@@ -712,13 +717,17 @@ namespace DataAccess.Migrations
                         .WithMany()
                         .HasForeignKey("CusCodeByUserId");
 
-                    b.HasOne("DataAccess.Entities.Hotel", "HotelCodeByUser")
+                    b.HasOne("DataAccess.Entities.Hotel", null)
                         .WithMany("Evaluate")
-                        .HasForeignKey("HotelCodeByUserId");
+                        .HasForeignKey("HotelId");
+
+                    b.HasOne("DataAccess.Entities.User", "UserCodeByUser")
+                        .WithMany()
+                        .HasForeignKey("UserCodeByUserId");
 
                     b.Navigation("CusCodeByUser");
 
-                    b.Navigation("HotelCodeByUser");
+                    b.Navigation("UserCodeByUser");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.Hotel", b =>

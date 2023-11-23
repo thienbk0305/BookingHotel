@@ -109,19 +109,20 @@ namespace BookingHotel.Controllers
 					return Json(returnData);
 				}
 
+
 				var url_api = System.Configuration.ConfigurationManager.AppSettings["URL_API"] ?? "https://localhost:7219/api/";
 				var base_url = "Authenticate/Register"; //API Controller
 				var dataJson = JsonConvert.SerializeObject(model);
 				var result = Common.HttpHelper.WebPost(RestSharp.Method.Post, url_api, base_url, dataJson);
 
-				if (string.IsNullOrEmpty(result))
-				{
-					returnData.ResponseCode = "-1";
-					returnData.Description = "Đăng ký thất bại";
-					return Json(returnData);
-				}
+                if (string.IsNullOrEmpty(result) || result == "0")
+                {
+                    returnData.ResponseCode = "-1";
+                    returnData.Description = "Đăng ký thất bại, Tài Khoản này đã được đăng ký";
+                    return Json(returnData);
+                }
 
-				returnData.ResponseCode = "1";
+                returnData.ResponseCode = "1";
 				returnData.Description = "Đăng ký thành công";
 				// trả kết quả về View 
 				return Json(returnData);

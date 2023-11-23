@@ -71,6 +71,7 @@ namespace APIBookingHotel.Controllers
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
             var user = await _userManager.FindByNameAsync(model.Email);
+
             if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
             {
                 var userClaims = await _userManager.GetClaimsAsync(user);
@@ -127,8 +128,7 @@ namespace APIBookingHotel.Controllers
 
             if (userExists != null)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError,
-                    new Response { Status = "Error", Message = "User already exists!" });
+                return Ok(0);
             }
 
             User user = new()
@@ -185,7 +185,7 @@ namespace APIBookingHotel.Controllers
                         Message = "Rolde creation failed! Please check role details and try again."
                     });
             }
-            return Ok(new Response { Status = "Success", Message = "User created successfully!" });
+            return Ok(1);
         }
 
         private JwtSecurityToken CreateToken(IEnumerable<Claim> authClaims)

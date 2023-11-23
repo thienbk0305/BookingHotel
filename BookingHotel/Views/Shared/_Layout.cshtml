@@ -196,5 +196,6 @@
     <script src="~/js/custom.js"></script>
     <script src="~/js/contact.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    @await Component.InvokeAsync("NToastNotify")
 </body>
 </html>

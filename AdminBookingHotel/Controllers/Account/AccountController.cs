@@ -106,10 +106,10 @@ namespace AdminBookingHotel.Controllers.Account
 				var dataJson = JsonConvert.SerializeObject(model);
 				var result = Common.HttpHelper.WebPost(RestSharp.Method.Post,url_api, base_url, dataJson);
 
-				if (string.IsNullOrEmpty(result))
+				if (string.IsNullOrEmpty(result) || result == "0")
 				{
 					returnData.ResponseCode = "-1";
-					returnData.Description = "Đăng ký thất bại";
+					returnData.Description = "Đăng ký thất bại, Tài Khoản này đã được đăng ký";
 					return Json(returnData);
 				}
 
