@@ -68,7 +68,7 @@ namespace AdminBookingHotel.Controllers.User
                 if (string.IsNullOrEmpty(result) || result == null)
                 {
                     _toastNotification.AddSuccessToastMessage("Bạn không có quyền");
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index","Home");
                 }
 
                 listResult = JsonConvert.DeserializeObject<List<ProfileView>>(result);

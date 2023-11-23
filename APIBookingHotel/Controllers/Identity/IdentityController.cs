@@ -28,7 +28,7 @@ namespace APIBookingHotel.Controllers.Identity
 {
     [ApiController]
     [Route("api/Identity")]
-    [Authorize(Roles = "Admin,User")]
+    [Authorize]
     public class IdentityController : ControllerBase
     {
         private readonly IBookingHotelUnitOfWork _unitOfWork;
@@ -59,6 +59,8 @@ namespace APIBookingHotel.Controllers.Identity
         [HttpGet]
         [Route("Users")]
         //[Authorize(Policy = Permissions.Users.View)]
+        //[Authorize(Policy = Permissions.Customers.View)]
+        [Authorize(Roles = "Admin,User")]
         public async Task<IActionResult> GetAll(string? searchValue, string? roleValue)
         {
 
@@ -106,6 +108,7 @@ namespace APIBookingHotel.Controllers.Identity
         /// <returns></returns>
         [HttpGet]
         [Route("GetUser/{id}")]
+        [Authorize(Roles = "Admin")]
         //[Authorize(Policy = Permissions.Users.View)]
         public async Task<Result<ProfileView>> GetUser(string? id)
         {

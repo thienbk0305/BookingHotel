@@ -12,34 +12,34 @@
 @section scripts {
     <script>
         $(document).ready(function () {
-            if ($("#txt_fullname").val() == '') {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Lỗi',
-                    text: 'Vui Lòng Nhập Họ Tên'
-                });
-                return false;
-            };
+            $("#btnMessages").click(function () {
+                if ($("#txt_fullname").val() == '') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Lỗi',
+                        text: 'Vui Lòng Nhập Họ Tên'
+                    });
+                    return false;
+                };
 
-            if ($("#txt_email").val() == '') {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Lỗi',
-                    text: 'Vui Lòng Nhập Email'
-                });
-                return false;
-            };
+                if ($("#txt_email").val() == '') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Lỗi',
+                        text: 'Vui Lòng Nhập Email'
+                    });
+                    return false;
+                };
 
-            if ($("#txt_phone").val() == '') {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Lỗi',
-                    text: 'Vui Lòng Nhập Số Điện Thoại'
-                });
-                return false;
-            };
-
-
+                if ($("#txt_phone").val() == '') {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Lỗi',
+                        text: 'Vui Lòng Nhập Số Điện Thoại'
+                    });
+                    return false;
+                };
+            });
 
             var totalamount = 0;
             var amount = @Model?.Price; 
@@ -57,8 +57,7 @@
                 $("#modelTotal").text(formattedTotalAmount);
 
             });
-           
-           
+ 
         });
     </script>
 }

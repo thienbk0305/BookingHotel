@@ -35,7 +35,7 @@ namespace AdminBookingHotel.Controllers.Role
             if (string.IsNullOrEmpty(result))
             {
                 _toastNotification.AddSuccessToastMessage("Bạn không có quyền xem danh sách Role");
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
 
             listResult = JsonConvert.DeserializeObject<PermissionResult>(result);

@@ -40,7 +40,7 @@ namespace AdminBookingHotel.Controllers.Role
             if (string.IsNullOrEmpty(result))
             {
                 _toastNotification.AddSuccessToastMessage("Bạn không có quyền");
-                return RedirectToAction("Index","User");
+                return RedirectToAction("Index","Home");
             }
 
             listResult = JsonConvert.DeserializeObject<RoleResult>(result);

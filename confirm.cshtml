@@ -1,0 +1,104 @@
+﻿@{
+    ViewData["Title"] = "Xác nhận thanh toán";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .row{
+        padding-top:90px;
+    }
+</style>
+<div class="hotel-box-confirm hotel-box-full-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="box-content-top">
+
+                    <h3>Booking Hotel 247 xin cám ơn Quý Khách !</h3>
+                    <div class="box-img">
+                        <img src="https://data.vietnambooking.com/business/hotel/banner/banner_confirm.png" alt="banner">
+                    </div>
+                    <div class="description">
+                        Chúng tôi đang xử lý đơn hàng của bạn và sẽ liên hệ lại bạn trong thời gian sớm nhất để hoàn tất giao dịch.<br>
+                        Mọi thắc mắc xin liên hệ qua tổng đài: <a href="tel:19003498">1900 3498</a> hoặc email: <a href="mailto:bookinghotel247vn@gmail.com">bookinghotel247vn@gmail.com</a> để được hỗ trợ kịp thời.
+                    </div>
+                    <div class="note">   </div>
+
+                </div>
+
+                <div class="clearfix"></div>
+                <div class="box-content-bottom">
+                    <div class="box-item type-content">
+                        <h3>Chi tiết đơn hàng</h3>
+                        <div class="box-content">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="2">
+                                            <div class="box-info-top">
+                                                <div class="box-img">             <img alt=" Junior Deluxe City View Junior Deluxe City View room " src="https://cdn2.vietnambooking.com/wp-content/uploads/hotel_pro/hotel_353355/mini_d876d86e587c9a76cdaa1ceb46d2b483.jpg">  </div>
+                                                <div class="box-title">
+                                                    <h3>Khách sạn Vias Vũng Tàu </h3>
+                                                    <h4> Junior Deluxe City View Junior Deluxe City View room  </h4>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr> <td><i class="icon-vnbk icon-booking-id-288-48 "></i> Mã đơn hàng</td> <td><span class="code">VNBKH44816743464</span></td> </tr>
+                                    <tr> <td><i class="icon-vnbk icon-calendar-from-570-48 "></i> Ngày nhận phòng</td> <td>23/11/2023</td> </tr>
+                                    <tr> <td><i class="icon-vnbk icon-calendar-to-612-48 "></i> Ngày trả phòng</td> <td>24/11/2023</td> </tr>
+                                    <tr> <td><i class="icon-vnbk icon-passenger-528-96 "></i> Số khách, phòng</td> <td>1 khách, 1 phòng</td> </tr>
+
+                                    <tr class="tr-price"> <td>Tổng tiền thanh toán</td> <td> <span class="price">1,725,000 VND</span></td> </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>                <div class="box-item type-content">
+                        <h3>Thông tin liên hệ</h3>
+                        <div class="box-content">
+                            <table>
+                                <tbody>
+                                    <tr> <td><i class="icon-vnbk icon-user-0-48 "></i> Họ và tên</td> <td>test form</td> </tr>
+                                    <tr> <td><i class="icon-vnbk icon-email-48-48 "></i> Email</td> <td>akneon1@gmail.com</td> </tr>
+                                    <tr> <td><i class="icon-vnbk icon-phone-96-48 "></i> Số điện thoại</td> <td>123456789</td> </tr>
+                                    <tr> <td><i class="icon-vnbk icon-special-request-144-48 "></i> Yêu cầu đặc biệt</td> <td>  <div class="box-note"></div></td> </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="box-back-home"><a asp-controller="Home" asp-action="Index">VỀ TRANG CHỦ</a></div>
+                    <script class="script-push-notification">
+                        var data = { type_notify: "hotel_pro_update_book", email: "akneon1@gmail.com", code_book: "VNBKH44816743464", fullname: "test form", phone: "123456789", id_order: 16743 };
+                        APPS_BASE.base_system_listen_notification(data);
+
+                                        //var data_order_book = {type_notify:"hotel_pro_cat_info_notification",fullname:"test form",phone:"12345xxxx",title:"Khách sạn Vias Vũng Tàu"};
+                                        //APPS_BASE.base_system_listen_notification(data_order_book);
+                                        //$(".script-push-notification").remove();
+                    </script>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="~/js/cart.js"></script>
+<!--================ End footer Area  =================-->
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="~/js/jquery-3.2.1.min.js"></script>
+<script src="~/js/popper.js"></script>
+<script src="~/js/bootstrap.min.js"></script>
+<script src="~/vendors/owl-carousel/owl.carousel.min.js"></script>
+<script src="~/js/jquery.ajaxchimp.min.js"></script>
+<script src="~/js/mail-script.js"></script>
+<script src="~/vendors/bootstrap-datepicker/bootstrap-datetimepicker.min.js"></script>
+<script src="~/vendors/nice-select/js/jquery.nice-select.js"></script>
+<script src="~/js/mail-script.js"></script>
+<script src="~/js/stellar.js"></script>
+<script src="~/vendors/lightbox/simpleLightbox.min.js"></script>
+<script src="~/js/custom.js"></script>
+
+
